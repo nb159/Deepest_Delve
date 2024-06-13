@@ -27,8 +27,6 @@ public class GameManager : MonoBehaviour
     //movement
     [SerializeField] public float playerSpeed = 5f;
     [SerializeField] public float playerDashMultiplier = 10f;
-
-
     
 
     private void Awake()

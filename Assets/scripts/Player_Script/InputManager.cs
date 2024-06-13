@@ -19,12 +19,10 @@ public class InputManager : MonoBehaviour
     public bool dashInput = false;
     public bool drinkPotionInput = false;
 
-
     private void Awake()
     {
         playerAnimatorManager = GetComponent<PlayerAnimatorManager>();
     }   
-
     private void OnEnable()
     {
         if (playerInput == null)
@@ -39,11 +37,9 @@ public class InputManager : MonoBehaviour
             playerInput.Player.Dash.canceled += i => dashInput = false;
             playerInput.Player.DrinkPotion.performed += i => drinkPotionInput = true;
             playerInput.Player.DrinkPotion.canceled += i => drinkPotionInput = false;
-            
         }
 
         playerInput.Enable();
-        
     }
 
     private void OnDisable()
@@ -57,9 +53,8 @@ public class InputManager : MonoBehaviour
         verticalInput = movementInput.y;
         horizontalInput = movementInput.x;
 
-
         moveAmount = Mathf.Clamp01(Mathf.Abs(horizontalInput) + Mathf.Abs(verticalInput));
-        playerAnimatorManager.updateAnimatorFreeRoamValues(0, moveAmount);
+        playerAnimatorManager.updateAnimatorFreeRoamValues(horizontalInput, moveAmount);
     }
 
     public void HandleAllInputs()

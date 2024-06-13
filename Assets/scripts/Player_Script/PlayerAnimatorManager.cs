@@ -34,11 +34,9 @@ public class PlayerAnimatorManager : MonoBehaviour
         //animation Snapping
         float snappedHorizontal;
         float snappedVerticle;
-        
 
         snappedHorizontal = SnapHorizontalMovement(horizontalMovement);
         snappedVerticle = SnapVerticleMovement(verticleMovement);
-
 
         animator.SetFloat(horzintall, snappedHorizontal, 0.1f, Time.deltaTime);
         animator.SetFloat(verticle, snappedVerticle, 0.01f, Time.deltaTime);
@@ -88,6 +86,7 @@ public class PlayerAnimatorManager : MonoBehaviour
         
         if(canAttack){
             canAttack = false;
+            canDrinkPotion = false;
             animator.SetTrigger("LightAttack");
         }        
     }
@@ -96,6 +95,7 @@ public class PlayerAnimatorManager : MonoBehaviour
         if(!canDrinkPotion) return;
         GameManager.instance.playerSpeed /=2;
         canDrinkPotion = false;
+        canAttack = false;
         animator.SetTrigger("DrinkPotion");
     }
 
@@ -103,7 +103,8 @@ public class PlayerAnimatorManager : MonoBehaviour
         if(animator.GetCurrentAnimatorStateInfo(0).IsName("LightAttack")){
             //animation ends on 0.98f. So for safety the threshhold will be 0.95f
             if(animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.95f ) {
-                canAttack = true; 
+                canAttack = true;
+                canDrinkPotion = true;
             }
         }
 
@@ -113,6 +114,7 @@ public class PlayerAnimatorManager : MonoBehaviour
                 Debug.Log("DrinkPotion");
                 GameManager.instance.playerSpeed *= 2;
                 canDrinkPotion = true;
+                canAttack = true;
             }
         }
     }
