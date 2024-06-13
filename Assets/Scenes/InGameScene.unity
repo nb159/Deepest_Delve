@@ -1254,7 +1254,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1985377950}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 63f1bdadf61de9f46ba972544fb55d12, type: 3}
   m_Name: 
@@ -1262,7 +1262,7 @@ MonoBehaviour:
   projectilePrefab: {fileID: 4090044406767457404, guid: edf0baab95db9f14f835ecd4c975b8e5, type: 3}
   firePoint: {fileID: 351709453}
   player: {fileID: 184057526}
-  fireRate: 2
+  fireRate: 1
   projectileSpeed: 20
   projectileDamage: 20
 --- !u!114 &1985377956
