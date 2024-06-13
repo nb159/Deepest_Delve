@@ -49,12 +49,30 @@ public class PlayerLocomotion : MonoBehaviour
         }
     }
 
-    private void HandleRotation(){
-        Vector3 targetDirection = Vector3.zero;
+    // private void HandleRotation(){
+    //     Vector3 targetDirection = Vector3.zero;
 
-        targetDirection = cameraObject.forward * inputManager.verticalInput;
-        targetDirection += cameraObject.right * inputManager.horizontalInput;
-        targetDirection.Normalize();
+    //     targetDirection = cameraObject.forward * inputManager.verticalInput;
+    //     targetDirection += cameraObject.right * inputManager.horizontalInput;
+    //     targetDirection.Normalize();
+    //     targetDirection.y = 0;
+
+    //     if(targetDirection == Vector3.zero){
+    //         targetDirection = transform.forward;
+    //     }
+
+    //     Quaternion targetRotation = Quaternion.LookRotation(targetDirection);
+    //     Quaternion playerRotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+
+    //     // transform.rotation = playerRotation;
+    //     transform.LookAt(bossenemy);
+        
+    // }
+
+    private void HandleRotation(){
+        Vector3 targetDirection = bossenemy.position - transform.position;
+
+        // Zero out the y-component of the direction to prevent the player from tipping over
         targetDirection.y = 0;
 
         if(targetDirection == Vector3.zero){
@@ -62,10 +80,10 @@ public class PlayerLocomotion : MonoBehaviour
         }
 
         Quaternion targetRotation = Quaternion.LookRotation(targetDirection);
-        Quaternion playerRotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+        Quaternion playerRotation = Quaternion.Slerp(transform.rotation, targetRotation, GameManager.instance.playerRotationSpeed * Time.deltaTime);
 
-        // transform.rotation = playerRotation;
-        transform.LookAt(bossenemy);
+        transform.rotation = playerRotation;
+
         
     }
 
