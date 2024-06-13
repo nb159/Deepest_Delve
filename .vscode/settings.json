@@ -51,5 +51,5 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "🌳5_vs_40🌳.sln"
+    "dotnet.defaultSolution": "Deepest_Delve.sln"
 }
