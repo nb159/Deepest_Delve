@@ -29,9 +29,11 @@ public class PlayerCombat : MonoBehaviour
     private void HandleLightAttack(){
         if(inputManager.lightAttackInput && GameManager.instance.playerStamina >= GameManager.instance.playerStaminaLightAttackCost
         && playerAnimatorManager.canAttack){
-            playerAnimatorManager.LightAttackAnimation();
-            GameManager.instance.playerStamina -= GameManager.instance.playerStaminaLightAttackCost;
+            
             inputManager.lightAttackInput = false;
+            GameManager.instance.playerStamina -= GameManager.instance.playerStaminaLightAttackCost;
+
+            playerAnimatorManager.LightAttackAnimation();
         }
     }
 
@@ -44,7 +46,7 @@ public class PlayerCombat : MonoBehaviour
     }
 
     private void HandlePotionDrink(){
-        Debug.Log("input" + inputManager.drinkPotionInput + "amount: " + GameManager.instance.playerPotions+ " canDrink: " + playerAnimatorManager.canDrinkPotion);
+        //Debug.Log("input" + inputManager.drinkPotionInput + "amount: " + GameManager.instance.playerPotions+ " canDrink: " + playerAnimatorManager.canDrinkPotion);
         if(inputManager.drinkPotionInput && GameManager.instance.playerPotions > 0 && playerAnimatorManager.canDrinkPotion){
             inputManager.drinkPotionInput = false;
 

@@ -43,8 +43,8 @@ public class PlayerLocomotion : MonoBehaviour
         moveDirection.Normalize();
         moveDirection.y = 0;
         moveDirection *= GameManager.instance.playerSpeed;
-     
-        if(isWalking){
+        if(PlayerAnimatorManager.instance.canMove){
+            //ebug.Log(moveDirection);
             playerRigidbody.velocity = moveDirection;
         }
     }
@@ -97,7 +97,7 @@ public class PlayerLocomotion : MonoBehaviour
         inputManager.dashInput = false;
 
         if(moveDirection == Vector3.zero) yield break;
-        isWalking = false;
+        PlayerAnimatorManager.instance.canMove = false;
         playerRigidbody.drag  = 0;
         PlayerAnimatorManager.instance.isDashing = true;
         PlayerAnimatorManager.instance.DashAnimation();
@@ -105,14 +105,14 @@ public class PlayerLocomotion : MonoBehaviour
         Vector3 targetDashPos = moveDirection + transform.position;
         targetDashPos *= dashSpeed;
 
-        Debug.Log(Vector3.Distance(transform.position, targetDashPos));
+        //Debug.Log(Vector3.Distance(transform.position, targetDashPos));
         while(Vector3.Distance(transform.position, targetDashPos) > 3){
             playerRigidbody.velocity += moveDirection;
             Debug.DrawLine(transform.position + new Vector3(0,3,0), targetDashPos, Color.red);
             yield return new WaitForSeconds(0.1f); 
         }
 
-        isWalking = true;
+        PlayerAnimatorManager.instance.canMove = true;
         PlayerAnimatorManager.instance.isDashing = false;
         playerRigidbody.drag  = 5;
         GameManager.instance.playerStamina -= GameManager.instance.playerStaminaDashCost;

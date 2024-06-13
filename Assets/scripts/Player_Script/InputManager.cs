@@ -9,7 +9,7 @@ public class InputManager : MonoBehaviour
     PlayerAnimatorManager playerAnimatorManager;
 
     public PlayerInput playerInput;
-    Vector2 movementInput;
+    public Vector2 movementInput;
 
     [Header("Movement Variables")]
     public float moveAmount;
@@ -59,7 +59,7 @@ public class InputManager : MonoBehaviour
 
     public void HandleAllInputs()
     {
-        if(playerAnimatorManager.canAttack){
+        if(playerAnimatorManager.canMove){
             HandleMovementInput();
         }else{
             verticalInput = 0;

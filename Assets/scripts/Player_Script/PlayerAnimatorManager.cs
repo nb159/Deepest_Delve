@@ -7,12 +7,15 @@ public class PlayerAnimatorManager : MonoBehaviour
     public static PlayerAnimatorManager instance;
     Animator animator;
     PlayerLocomotion playerLocomotion;
+    InputManager inputManager;
     int horzintall;
     int verticle;
+    [Header("Can do's")]
     public bool canAttack = true;
     public bool canDrinkPotion = true;
     public bool isDashing = false;
-    InputManager inputManager;
+    public bool canMove = true;
+    
 
     private void Awake(){
         if(instance == null){
@@ -29,6 +32,7 @@ public class PlayerAnimatorManager : MonoBehaviour
     }
     public void Update(){
         changeParameterOnAnimationEnd();
+        
     }
     public void updateAnimatorFreeRoamValues(float horizontalMovement, float verticleMovement){
 
@@ -84,11 +88,14 @@ public class PlayerAnimatorManager : MonoBehaviour
     }
 
     public void LightAttackAnimation(){
-        
+        Debug.Log(canAttack);
         if(canAttack){
             canAttack = false;
             canDrinkPotion = false;
+            canMove = false;
             animator.SetTrigger("LightAttack");
+            Debug.Log(animator.GetCurrentAnimatorStateInfo(0).IsTag("LightAttack"));
+          
         }        
     }
 
@@ -104,19 +111,23 @@ public class PlayerAnimatorManager : MonoBehaviour
     }
 
     public void changeParameterOnAnimationEnd(){
-        if(animator.GetCurrentAnimatorStateInfo(0).IsName("LightAttack")){
+
+        if(animator.GetCurrentAnimatorStateInfo(0).IsTag("LightAttack")){
+            Debug.Log("LightAttack");
             //animation ends on 0.98f. So for safety the threshhold will be 0.95f
+            Debug.Log(animator.GetCurrentAnimatorStateInfo(0).normalizedTime);
             if(animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.95f ) {
                 canAttack = true;
                 canDrinkPotion = true;
+                canMove = true;
             }
         }
 
         //TODO: normailized time ends at 0.9 for some reasion..
         if(animator.GetCurrentAnimatorStateInfo(0).IsName("DrinkPotion")){
-            Debug.Log(animator.GetCurrentAnimatorStateInfo(0).normalizedTime);
+            // Debug.Log(animator.GetCurrentAnimatorStateInfo(0).normalizedTime);
             if(animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.90f && canAttack == false && !canDrinkPotion){
-                Debug.Log("DrinkPotion");
+                
                 GameManager.instance.playerSpeed *= 2;
                 canDrinkPotion = true;
                 canAttack = true;
