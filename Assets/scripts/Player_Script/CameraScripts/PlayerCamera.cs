@@ -69,7 +69,7 @@ public class PlayerCamera : MonoBehaviour
         Vector3 targetRotation = targetToLookAt.position - transform.position;
         targetRotation.y = 0f; // Lock rotation on the Y axis
         Quaternion targetQuaternion = Quaternion.LookRotation(targetRotation);
-        Quaternion clampedRotation = Quaternion.RotateTowards(transform.rotation, targetQuaternion, GameManager.instance.cameraRotationSpeed * Time.deltaTime);
+        Quaternion clampedRotation = Quaternion.Slerp(transform.rotation, targetQuaternion, GameManager.instance.cameraRotationSpeed * Time.deltaTime);
         // clampedRotation.eulerAngles = new Vector3(
         //     Mathf.Clamp(clampedRotation.eulerAngles.x, 0    , 25),
         //     clampedRotation.eulerAngles.y,
