@@ -8,8 +8,8 @@ public class CombatManager : MonoBehaviour
 {
     public static CombatManager instance;
 
-    [SerializeField] private GameObject Boss;
-    [SerializeField] private GameObject Player;
+    private GameObject Boss;
+    private GameObject Player;
 
     [Header("Player Stats")]
     [SerializeField] private float lightAttackDamage = 10f;
@@ -34,6 +34,9 @@ public class CombatManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        Boss = GameObject.FindWithTag("Boss");
+        Player = GameObject.FindWithTag("Player");
+
     }
 
     public void playerLightAttack(){

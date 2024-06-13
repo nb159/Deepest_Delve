@@ -46,7 +46,7 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        ChangeScene(GameScene.MainMenuScene);
+        ChangeScene(GameScene.InGameScene);
     }
 
 
@@ -71,7 +71,7 @@ public class GameManager : MonoBehaviour
                 break;
             case GameScene.InGameScene:
                 StartGame();
-                ShowCursor(false);
+                ShowCursor(true);
                 break;
 
 

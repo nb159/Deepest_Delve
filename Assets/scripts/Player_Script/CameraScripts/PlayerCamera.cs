@@ -39,7 +39,7 @@ public class PlayerCamera : MonoBehaviour
     }
 
     private void Start(){
-        DontDestroyOnLoad(gameObject);
+        //DontDestroyOnLoad(gameObject);
         cameraZPosition = cameraObject.transform.localPosition.z;
     }
 
@@ -57,6 +57,7 @@ public class PlayerCamera : MonoBehaviour
     }
 
     private void HandleRotations(){
+        //todo: fix rotation
         //when close to the to the target, container X rotation changes to be able to look at the camera
         transform.LookAt(targetToLookAt);
     }

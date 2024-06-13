@@ -54,7 +54,7 @@ public class Projectile : MonoBehaviour
         // Apply damage to the player if hit
         if (hitInfo.CompareTag("Player"))
         {
-          Debug.Log("player is being hurt");
+          //Debug.Log("player is being hurt");
         }
 
         // Destroy the projectile after impact
