@@ -93,7 +93,6 @@ public class PlayerAnimatorManager : MonoBehaviour
     }
 
     public void DrinkPotionAnimation(){
-        if(!canDrinkPotion) return;
         GameManager.instance.playerSpeed /=2;
         canDrinkPotion = false;
         canAttack = false;
@@ -113,8 +112,10 @@ public class PlayerAnimatorManager : MonoBehaviour
             }
         }
 
+        //TODO: normailized time ends at 0.9 for some reasion..
         if(animator.GetCurrentAnimatorStateInfo(0).IsName("DrinkPotion")){
-            if(animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.95f && !canDrinkPotion){
+            Debug.Log(animator.GetCurrentAnimatorStateInfo(0).normalizedTime);
+            if(animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.90f && canAttack == false && !canDrinkPotion){
                 Debug.Log("DrinkPotion");
                 GameManager.instance.playerSpeed *= 2;
                 canDrinkPotion = true;

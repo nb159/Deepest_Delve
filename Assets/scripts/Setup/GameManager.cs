@@ -1,9 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+
+
     public static GameManager instance;
 
     [Header("Game Stats")]
@@ -27,7 +30,6 @@ public class GameManager : MonoBehaviour
     //movement
     [SerializeField] public float playerSpeed = 5f;
     [SerializeField] public float playerDashMultiplier = 10f;
-    
 
     private void Awake()
     {
@@ -42,16 +44,75 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    // Start is called before the first frame update
     void Start()
     {
-    
+        ChangeScene(GameScene.InGameScene);
     }
 
-    // Update is called once per frame
-    void Update()
+
+
+    public enum GameScene { MainMenuScene, InGameScene, PlayerDeathScene, WinScene }
+    public GameScene currentScene;
+ 
+
+    public void ChangeScene(GameScene newScene)
     {
-        
+        currentScene = newScene;
+        HandleSceneChange();
     }
 
+    private void HandleSceneChange()
+    {
+        switch (currentScene)
+        {
+            case GameScene.MainMenuScene:
+                LoadMainMenu();
+                ShowCursor(true);
+                break;
+            case GameScene.InGameScene:
+                StartGame();
+                ShowCursor(true);
+                break;
+
+
+            case GameScene.PlayerDeathScene:
+                PlayerDeath();
+                ShowCursor(true);
+                break;
+
+            case GameScene.WinScene:
+                PlayerWin();
+                ShowCursor(true);
+                break;
+        }
+    }
+
+    private void LoadMainMenu()
+    {
+        SceneManager.LoadScene("MainMenu");
+    }
+ 
+    private void StartGame()
+    {
+        SceneManager.LoadScene("InGameScene");
+    }
+  private void PlayerWin()
+    {
+        SceneManager.LoadScene("WinScene");
+    }
+
+
+
+    public void PlayerDeath()
+    {
+        SceneManager.LoadScene("DeathScene");
+    }
+
+
+
+    private void ShowCursor(bool isVisible)
+    {
+        Cursor.visible = isVisible;
+        Cursor.lockState = isVisible ? CursorLockMode.None : CursorLockMode.Locked;
+    }
 }

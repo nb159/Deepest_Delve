@@ -64,6 +64,8 @@ public class InputManager : MonoBehaviour
         }else{
             verticalInput = 0;
             horizontalInput = 0;
-        }       
+        }
+
+        //Debug.Log(dashInput+ " " + drinkPotionInput);       
     }
 }

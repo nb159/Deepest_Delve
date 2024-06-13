@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
-    public float speed = 10f;
-    public int damage = 20;
+    public float speed ;
+    public int damage;
     public Transform target;
-    public float homingSensitivity = 2f; 
+    public float homingSensitivity = 5f; 
     private Rigidbody rb;
 
     void Start()
@@ -15,7 +15,7 @@ public class Projectile : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         if (rb == null)
         {
-            //Debug.LogError("No Rigidbody attached to the projectile.");
+            
             return;
         }
 
@@ -27,16 +27,7 @@ public class Projectile : MonoBehaviour
         }
     }
 
-    void FixedUpdate()
-    {
-        if (target != null && rb != null)
-        {
-            
-            Vector3 direction = (target.position - transform.position).normalized;
-            Vector3 newVelocity = Vector3.Lerp(rb.velocity.normalized, direction, homingSensitivity * Time.deltaTime);
-            rb.velocity = newVelocity * speed;
-        }
-    }
+   
 
     public void Initialize(Transform target, float projectileSpeed, int projectileDamage)
     {
@@ -63,7 +54,7 @@ public class Projectile : MonoBehaviour
         // Apply damage to the player if hit
         if (hitInfo.CompareTag("Player"))
         {
-          
+          //Debug.Log("player is being hurt");
         }
 
         // Destroy the projectile after impact
