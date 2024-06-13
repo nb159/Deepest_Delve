@@ -284,6 +284,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canAttack: 1
+  canDrinkPotion: 1
 --- !u!114 &184057530
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -301,6 +302,7 @@ MonoBehaviour:
   horizontalInput: 0
   lightAttackInput: 0
   dashInput: 0
+  drinkPotionInput: 0
 --- !u!54 &184057531
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -886,16 +888,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d6f523900bb0e644b59c22498ccfadb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  GameSpeedtime: 1
   bossHealth: 100
   bossAttackDelay: 1
   playerHealth: 100
+  playerPotions: 4
+  PotionHpRegenAmount: 30
   playerStamina: 100
   playerStaminaRegen: 1
   playerStaminaDashCost: 20
-  playerStaminaAttackCost: 10
+  playerStaminaLightAttackCost: 10
   playerSpeed: 5
   playerDashMultiplier: 15
-  potions: -8
 --- !u!4 &1103667833
 Transform:
   m_ObjectHideFlags: 0
