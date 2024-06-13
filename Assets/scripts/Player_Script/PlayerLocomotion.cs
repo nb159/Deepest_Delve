@@ -18,7 +18,7 @@ public class PlayerLocomotion : MonoBehaviour
     [SerializeField] public float movementSpeed = 5;
     [SerializeField] public float rotationSpeed = 15;
     [SerializeField] private float dashSpeed = 10f; // Set this to the desired dash speed
-    [SerializeField] private bool isDashing = false;
+    [SerializeField] public bool isDashing = false;
     [SerializeField]private float dashSmoothTime = 0.2f; // Set this to the desired smoothing time
     private Vector3 dashVelocity = Vector3.zero; // This will store the current velocity of the dash
     private Vector3 targetVelocity;
@@ -70,7 +70,7 @@ public class PlayerLocomotion : MonoBehaviour
     }
 
     private void HandleDash(){
-        if(inputManager.dashInput && !isDashing && GameManager.instance.playerStamina >= GameManager.instance.playerStaminaDashCost ){
+        if(inputManager.dashInput && !PlayerAnimatorManager.instance.isDashing && GameManager.instance.playerStamina >= GameManager.instance.playerStaminaDashCost ){
             StartCoroutine(dashRoutine()); 
         }
     }
@@ -81,7 +81,7 @@ public class PlayerLocomotion : MonoBehaviour
         if(moveDirection == Vector3.zero) yield break;
         isWalking = false;
         playerRigidbody.drag  = 0;
-        isDashing = true;
+        PlayerAnimatorManager.instance.isDashing = true;
         PlayerAnimatorManager.instance.DashAnimation();
         
         Vector3 targetDashPos = moveDirection + transform.position;
@@ -95,7 +95,7 @@ public class PlayerLocomotion : MonoBehaviour
         }
 
         isWalking = true;
-        isDashing = false;
+        PlayerAnimatorManager.instance.isDashing = false;
         playerRigidbody.drag  = 5;
         GameManager.instance.playerStamina -= GameManager.instance.playerStaminaDashCost;
     }
