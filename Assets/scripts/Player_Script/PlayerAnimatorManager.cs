@@ -99,6 +99,10 @@ public class PlayerAnimatorManager : MonoBehaviour
         animator.SetTrigger("DrinkPotion");
     }
 
+    public void DashAnimation(){
+        animator.SetTrigger("DashTrigger");
+    }
+
     public void changeParameterOnAnimationEnd(){
         if(animator.GetCurrentAnimatorStateInfo(0).IsName("LightAttack")){
             //animation ends on 0.98f. So for safety the threshhold will be 0.95f
@@ -110,7 +114,6 @@ public class PlayerAnimatorManager : MonoBehaviour
 
         if(animator.GetCurrentAnimatorStateInfo(0).IsName("DrinkPotion")){
             if(animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.95f && !canDrinkPotion){
-                animator.ResetTrigger("DrinkPotion");
                 Debug.Log("DrinkPotion");
                 GameManager.instance.playerSpeed *= 2;
                 canDrinkPotion = true;

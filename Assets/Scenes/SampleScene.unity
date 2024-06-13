@@ -895,7 +895,7 @@ MonoBehaviour:
   playerPotions: 4
   PotionHpRegenAmount: 30
   playerStamina: 100
-  playerStaminaRegen: 1
+  playerStaminaRegen: 50
   playerStaminaDashCost: 20
   playerStaminaLightAttackCost: 10
   playerSpeed: 5

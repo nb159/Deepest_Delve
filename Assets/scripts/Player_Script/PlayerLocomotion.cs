@@ -78,10 +78,11 @@ public class PlayerLocomotion : MonoBehaviour
     private IEnumerator dashRoutine(){
         inputManager.dashInput = false;
 
-        if(moveDirection == Vector3.zero) moveDirection = transform.forward * -1;
+        if(moveDirection == Vector3.zero) yield break;
         isWalking = false;
         playerRigidbody.drag  = 0;
         isDashing = true;
+        PlayerAnimatorManager.instance.DashAnimation();
         
         Vector3 targetDashPos = moveDirection + transform.position;
         targetDashPos *= dashSpeed;
