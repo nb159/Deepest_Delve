@@ -2,17 +2,17 @@ using UnityEngine;
 using TMPro;
 using System.IO;
 
-public class ConfigReader : MonoBehaviour
+public class ButtonTextScript : MonoBehaviour
 {
     [System.Serializable]
     public class Config
     {
         public string StartButton;
-        public string ExitButton;
+        public string EndButton;
     }
 
     public TMP_Text StartButtonText;
-    public TMP_Text ExitButtonText;
+    public TMP_Text EndButtonText;
 
     private void Start()
     {
@@ -22,21 +22,23 @@ public class ConfigReader : MonoBehaviour
     private void ReadConfig()
     {
         // Load the JSON file from the Resources folder
-        TextAsset jsonFile = Resources.Load<TextAsset>("config");
+        TextAsset jsonFile = Resources.Load<TextAsset>("ButtonTextConfig");
+        //Debug.Log(jsonFile.text);
+
         if (jsonFile != null)
         {
             // Deserialize the JSON file to Config object
             Config config = JsonUtility.FromJson<Config>(jsonFile.text);
-
+            Debug.Log(config.StartButton);
             // Set the UI elements with the values from the config
             if (StartButtonText != null)
             {
                 StartButtonText.text = config.StartButton;
             }
 
-            if (ExitButtonText != null)
+            if (EndButtonText != null)
             {
-                ExitButtonText.text = config.ExitButton;
+                EndButtonText.text = config.EndButton;
             }
         }
         else

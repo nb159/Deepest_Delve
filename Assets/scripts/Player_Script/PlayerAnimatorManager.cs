@@ -11,12 +11,17 @@ public class PlayerAnimatorManager : MonoBehaviour
     int verticle;
     public bool canAttack = true;
     public bool canDrinkPotion = true;
+    public bool isDashing = false;
     InputManager inputManager;
 
-    private void Awake(){
-        if(instance == null){
+    private void Awake()
+    {
+        if (instance == null)
+        {
             instance = this;
-        }else{
+        }
+        else
+        {
             Destroy(this);
         }
 
@@ -26,15 +31,17 @@ public class PlayerAnimatorManager : MonoBehaviour
         horzintall = Animator.StringToHash("Horizontal");
         verticle = Animator.StringToHash("Verticle");
     }
-    public void Update(){
+    public void Update()
+    {
         changeParameterOnAnimationEnd();
     }
-    public void updateAnimatorFreeRoamValues(float horizontalMovement, float verticleMovement){
+    public void updateAnimatorFreeRoamValues(float horizontalMovement, float verticleMovement)
+    {
 
         //animation Snapping
         float snappedHorizontal;
         float snappedVerticle;
-        
+
 
         snappedHorizontal = SnapHorizontalMovement(horizontalMovement);
         snappedVerticle = SnapVerticleMovement(verticleMovement);
@@ -74,41 +81,54 @@ public class PlayerAnimatorManager : MonoBehaviour
         float snappedVerticle;
 
         //the passed in parameter is an abs value of both X and Y inputs. for animation purposes we will need to know if the raw VerticleInput was  
-        if(verticleMovement >0 && inputManager.verticalInput > 0){
+        if (verticleMovement > 0 && inputManager.verticalInput > 0)
+        {
             snappedVerticle = 1;
-        }else if(verticleMovement > 0 && inputManager.verticalInput < 0){
+        }
+        else if (verticleMovement > 0 && inputManager.verticalInput < 0)
+        {
             snappedVerticle = -1;
-        }else{
+        }
+        else
+        {
             snappedVerticle = 0;
         }
         return snappedVerticle;
     }
 
-    public void LightAttackAnimation(){
-        
-        if(canAttack){
+    public void LightAttackAnimation()
+    {
+
+        if (canAttack)
+        {
             canAttack = false;
             animator.SetTrigger("LightAttack");
-        }        
+        }
     }
 
-    public void DrinkPotionAnimation(){
-        if(!canDrinkPotion) return;
-        GameManager.instance.playerSpeed /=2;
+    public void DrinkPotionAnimation()
+    {
+        if (!canDrinkPotion) return;
+        GameManager.instance.playerSpeed /= 2;
         canDrinkPotion = false;
         animator.SetTrigger("DrinkPotion");
     }
 
-    public void changeParameterOnAnimationEnd(){
-        if(animator.GetCurrentAnimatorStateInfo(0).IsName("LightAttack")){
+    public void changeParameterOnAnimationEnd()
+    {
+        if (animator.GetCurrentAnimatorStateInfo(0).IsName("LightAttack"))
+        {
             //animation ends on 0.98f. So for safety the threshhold will be 0.95f
-            if(animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.95f ) {
-                canAttack = true; 
+            if (animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.95f)
+            {
+                canAttack = true;
             }
         }
 
-        if(animator.GetCurrentAnimatorStateInfo(0).IsName("DrinkPotion")){
-            if(animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.95f && !canDrinkPotion){
+        if (animator.GetCurrentAnimatorStateInfo(0).IsName("DrinkPotion"))
+        {
+            if (animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.95f && !canDrinkPotion)
+            {
                 animator.ResetTrigger("DrinkPotion");
                 Debug.Log("DrinkPotion");
                 GameManager.instance.playerSpeed *= 2;
