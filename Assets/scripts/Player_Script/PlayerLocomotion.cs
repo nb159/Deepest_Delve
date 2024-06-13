@@ -18,7 +18,7 @@ public class PlayerLocomotion : MonoBehaviour
     [SerializeField] public float movementSpeed = 5;
     [SerializeField] public float rotationSpeed = 15;
     [SerializeField] private float dashSpeed = 10f; // Set this to the desired dash speed
-    [SerializeField]    private bool isDashing = false;
+    [SerializeField] private bool isDashing = false;
     [SerializeField]private float dashSmoothTime = 0.2f; // Set this to the desired smoothing time
     private Vector3 dashVelocity = Vector3.zero; // This will store the current velocity of the dash
     private Vector3 targetVelocity;
@@ -31,13 +31,9 @@ public class PlayerLocomotion : MonoBehaviour
     }
 
     public void HandleAllMovement(){
-        
         HandleMovement();
-        
         HandleDash();
-                
         HandleRotation();
-        Debug.Log(isDashing);
     }
 
     private void HandleMovement(){
@@ -51,14 +47,6 @@ public class PlayerLocomotion : MonoBehaviour
         if(isWalking){
             playerRigidbody.velocity = moveDirection;
         }
-        
-
-        // if(isWalking){
-            
-        // }else{
-        //     targetVelocity = moveDirection * dashSpeed;
-
-        // }
     }
 
     private void HandleRotation(){
@@ -78,15 +66,12 @@ public class PlayerLocomotion : MonoBehaviour
 
         // transform.rotation = playerRotation;
         transform.LookAt(bossenemy);
+        
     }
 
     private void HandleDash(){
         if(inputManager.dashInput && !isDashing && GameManager.instance.playerStamina >= GameManager.instance.playerStaminaDashCost ){
             StartCoroutine(dashRoutine()); 
-            //playerRigidbody.AddForce(moveDirection * dashSpeed, ForceMode.VelocityChange);
-            // playerRigidbody.velocity = moveDirection * dashSpeed;
-            //GameManager.instance.playerStamina -= GameManager.instance.playerStaminaDashCost;
-            // playerRigidbody.drag = 5;  
         }
     }
 
@@ -97,24 +82,18 @@ public class PlayerLocomotion : MonoBehaviour
         isWalking = false;
         playerRigidbody.drag  = 0;
         isDashing = true;
-        //to cancel out the move Speed from the direction of our player
-        //moveDirection /= 2;   
-        // Time.timeScale = 0.5f;
+        PlayerAnimatorManager.instance.DashAnimation();
         
         Vector3 targetDashPos = moveDirection + transform.position;
         targetDashPos *= dashSpeed;
-    
 
         Debug.Log(Vector3.Distance(transform.position, targetDashPos));
-        while(Vector3.Distance(transform.position, targetDashPos) > 4){
+        while(Vector3.Distance(transform.position, targetDashPos) > 3){
             playerRigidbody.velocity += moveDirection;
-            //Debug.Log("pos: " + transform.position +" targetPos" + targetDashPos + " dist:" +Vector3.Distance(transform.position, targetDashPos) + " " +moveDirection);
             Debug.DrawLine(transform.position + new Vector3(0,3,0), targetDashPos, Color.red);
-
             yield return new WaitForSeconds(0.1f); 
         }
 
-        // Time.timeScale = 1f;
         isWalking = true;
         isDashing = false;
         playerRigidbody.drag  = 5;
