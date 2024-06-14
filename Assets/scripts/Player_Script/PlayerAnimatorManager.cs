@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,12 +8,16 @@ public class PlayerAnimatorManager : MonoBehaviour
     public static PlayerAnimatorManager instance;
     Animator animator;
     PlayerLocomotion playerLocomotion;
+    InputManager inputManager;
     int horzintall;
     int verticle;
+    [Header("Can do's")]
     public bool canAttack = true;
     public bool canDrinkPotion = true;
     public bool isDashing = false;
-    InputManager inputManager;
+    public bool canMove = true;
+    public bool canInitateComboAttack = true;
+    
 
     private void Awake(){
         if(instance == null){
@@ -29,6 +34,7 @@ public class PlayerAnimatorManager : MonoBehaviour
     }
     public void Update(){
         changeParameterOnAnimationEnd();
+        
     }
     public void updateAnimatorFreeRoamValues(float horizontalMovement, float verticleMovement){
 
@@ -84,13 +90,19 @@ public class PlayerAnimatorManager : MonoBehaviour
     }
 
     public void LightAttackAnimation(){
-        
         if(canAttack){
             canAttack = false;
             canDrinkPotion = false;
+            canMove = false;
             animator.SetTrigger("LightAttack");
+          
         }        
     }
+
+    public void comboAttackInput(){
+        animator.SetTrigger("ComboAttack");
+    }
+
 
     public void DrinkPotionAnimation(){
         GameManager.instance.playerSpeed /=2;
@@ -104,19 +116,21 @@ public class PlayerAnimatorManager : MonoBehaviour
     }
 
     public void changeParameterOnAnimationEnd(){
-        if(animator.GetCurrentAnimatorStateInfo(0).IsName("LightAttack")){
+
+        if(animator.GetCurrentAnimatorStateInfo(0).IsTag("LightAttack")){
             //animation ends on 0.98f. So for safety the threshhold will be 0.95f
             if(animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.95f ) {
                 canAttack = true;
                 canDrinkPotion = true;
+                canMove = true;
             }
         }
 
         //TODO: normailized time ends at 0.9 for some reasion..
         if(animator.GetCurrentAnimatorStateInfo(0).IsName("DrinkPotion")){
-            Debug.Log(animator.GetCurrentAnimatorStateInfo(0).normalizedTime);
+            // Debug.Log(animator.GetCurrentAnimatorStateInfo(0).normalizedTime);
             if(animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.90f && canAttack == false && !canDrinkPotion){
-                Debug.Log("DrinkPotion");
+                
                 GameManager.instance.playerSpeed *= 2;
                 canDrinkPotion = true;
                 canAttack = true;
@@ -124,7 +138,47 @@ public class PlayerAnimatorManager : MonoBehaviour
         }
     }
 
+    //FUNCTION called through the animator
+    private void comboAttack(int currentAttack){
 
+        Debug.Log("bfr: " + inputManager.comboAttackArr[currentAttack] + " " +currentAttack );
+        switch(currentAttack){
+            case 0:
+                if(inputManager.comboAttackArr[currentAttack]){
+                    //inputManager.comboAttackArr[currentAttack] = false;
+                }else{
+                    animator.CrossFade("Locomotion", 0.1f);
+                    canInitateComboAttack = true;
+                    inputManager.comboAttackArr = new bool[3] {false, false, false};
+                }
+                break;
+            case 1:
+                if(inputManager.comboAttackArr[currentAttack]){
+                    //inputManager.comboAttackArr[currentAttack] = false;
+                }else{
+                    animator.CrossFade("Locomotion", 0.1f);
+                    canInitateComboAttack = true;
+                    inputManager.comboAttackArr = new bool[3] {false, false, false};
+
+                }
+                break;
+            case 2:
+                if(inputManager.comboAttackArr[currentAttack]){
+                    //inputManager.comboAttackArr[currentAttack] = false;
+                }else{
+                    animator.CrossFade("Locomotion", 0.1f);
+                    canInitateComboAttack = true;
+                    inputManager.comboAttackArr = new bool[3] {false, false, false};
+
+                }
+                break;
+
+        }
+        Debug.Log("afr: " + inputManager.comboAttackArr[currentAttack] + " " +currentAttack );
+
+        
+        
+    }
 
 
 

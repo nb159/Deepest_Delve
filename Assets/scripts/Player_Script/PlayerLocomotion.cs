@@ -43,18 +43,36 @@ public class PlayerLocomotion : MonoBehaviour
         moveDirection.Normalize();
         moveDirection.y = 0;
         moveDirection *= GameManager.instance.playerSpeed;
-     
-        if(isWalking){
+        if(PlayerAnimatorManager.instance.canMove){
+            //ebug.Log(moveDirection);
             playerRigidbody.velocity = moveDirection;
         }
     }
 
-    private void HandleRotation(){
-        Vector3 targetDirection = Vector3.zero;
+    // private void HandleRotation(){
+    //     Vector3 targetDirection = Vector3.zero;
 
-        targetDirection = cameraObject.forward * inputManager.verticalInput;
-        targetDirection += cameraObject.right * inputManager.horizontalInput;
-        targetDirection.Normalize();
+    //     targetDirection = cameraObject.forward * inputManager.verticalInput;
+    //     targetDirection += cameraObject.right * inputManager.horizontalInput;
+    //     targetDirection.Normalize();
+    //     targetDirection.y = 0;
+
+    //     if(targetDirection == Vector3.zero){
+    //         targetDirection = transform.forward;
+    //     }
+
+    //     Quaternion targetRotation = Quaternion.LookRotation(targetDirection);
+    //     Quaternion playerRotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+
+    //     // transform.rotation = playerRotation;
+    //     transform.LookAt(bossenemy);
+        
+    // }
+
+    private void HandleRotation(){
+        Vector3 targetDirection = bossenemy.position - transform.position;
+
+        // Zero out the y-component of the direction to prevent the player from tipping over
         targetDirection.y = 0;
 
         if(targetDirection == Vector3.zero){
@@ -62,10 +80,10 @@ public class PlayerLocomotion : MonoBehaviour
         }
 
         Quaternion targetRotation = Quaternion.LookRotation(targetDirection);
-        Quaternion playerRotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+        Quaternion playerRotation = Quaternion.Slerp(transform.rotation, targetRotation, GameManager.instance.playerRotationSpeed * Time.deltaTime);
 
-        // transform.rotation = playerRotation;
-        transform.LookAt(bossenemy);
+        transform.rotation = playerRotation;
+
         
     }
 
@@ -79,7 +97,7 @@ public class PlayerLocomotion : MonoBehaviour
         inputManager.dashInput = false;
 
         if(moveDirection == Vector3.zero) yield break;
-        isWalking = false;
+        PlayerAnimatorManager.instance.canMove = false;
         playerRigidbody.drag  = 0;
         PlayerAnimatorManager.instance.isDashing = true;
         PlayerAnimatorManager.instance.DashAnimation();
@@ -87,14 +105,14 @@ public class PlayerLocomotion : MonoBehaviour
         Vector3 targetDashPos = moveDirection + transform.position;
         targetDashPos *= dashSpeed;
 
-        Debug.Log(Vector3.Distance(transform.position, targetDashPos));
+        //Debug.Log(Vector3.Distance(transform.position, targetDashPos));
         while(Vector3.Distance(transform.position, targetDashPos) > 3){
             playerRigidbody.velocity += moveDirection;
             Debug.DrawLine(transform.position + new Vector3(0,3,0), targetDashPos, Color.red);
             yield return new WaitForSeconds(0.1f); 
         }
 
-        isWalking = true;
+        PlayerAnimatorManager.instance.canMove = true;
         PlayerAnimatorManager.instance.isDashing = false;
         playerRigidbody.drag  = 5;
         GameManager.instance.playerStamina -= GameManager.instance.playerStaminaDashCost;

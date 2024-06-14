@@ -22,6 +22,7 @@ public class PlayerCombat : MonoBehaviour
 
     public void HandleAllCombat(){
         HandleLightAttack();
+        HandleComboAttack();
         HandleStaminaRegen();
         HandlePotionDrink();
     }
@@ -29,12 +30,21 @@ public class PlayerCombat : MonoBehaviour
     private void HandleLightAttack(){
         if(inputManager.lightAttackInput && GameManager.instance.playerStamina >= GameManager.instance.playerStaminaLightAttackCost
         && playerAnimatorManager.canAttack){
-            playerAnimatorManager.LightAttackAnimation();
-            GameManager.instance.playerStamina -= GameManager.instance.playerStaminaLightAttackCost;
+            
             inputManager.lightAttackInput = false;
+            GameManager.instance.playerStamina -= GameManager.instance.playerStaminaLightAttackCost;
+
+            playerAnimatorManager.LightAttackAnimation();
         }
     }
 
+    private void HandleComboAttack(){
+        if(playerAnimatorManager.canInitateComboAttack && inputManager.comboAttackInput && GameManager.instance.playerStamina >= GameManager.instance.playerStaminaComboAttackCost ){
+            
+            playerAnimatorManager.comboAttackInput();
+        }
+    }
+    
     private void HandleStaminaRegen(){
         if(GameManager.instance.playerStamina < 100){
             GameManager.instance.playerStamina += GameManager.instance.playerStaminaRegen * Time.deltaTime;
@@ -44,7 +54,7 @@ public class PlayerCombat : MonoBehaviour
     }
 
     private void HandlePotionDrink(){
-        Debug.Log("input" + inputManager.drinkPotionInput + "amount: " + GameManager.instance.playerPotions+ " canDrink: " + playerAnimatorManager.canDrinkPotion);
+        //Debug.Log("input" + inputManager.drinkPotionInput + "amount: " + GameManager.instance.playerPotions+ " canDrink: " + playerAnimatorManager.canDrinkPotion);
         if(inputManager.drinkPotionInput && GameManager.instance.playerPotions > 0 && playerAnimatorManager.canDrinkPotion){
             inputManager.drinkPotionInput = false;
 

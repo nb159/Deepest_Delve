@@ -2,14 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Xml.Serialization;
 using Unity.VisualScripting;
+using Unity.VisualScripting.Antlr3.Runtime.Tree;
 using UnityEngine;
+using UnityEngine.InputSystem.Interactions;
 
 public class InputManager : MonoBehaviour
 {
     PlayerAnimatorManager playerAnimatorManager;
 
     public PlayerInput playerInput;
-    Vector2 movementInput;
+    public Vector2 movementInput;
 
     [Header("Movement Variables")]
     public float moveAmount;
@@ -18,6 +20,9 @@ public class InputManager : MonoBehaviour
     public bool lightAttackInput =  false;
     public bool dashInput = false;
     public bool drinkPotionInput = false;
+    public bool[] comboAttackArr = new bool[3] {false, false, false};
+    public bool comboAttackInput = false;
+    public int currentComboState = 1;
 
     private void Awake()
     {
@@ -37,6 +42,37 @@ public class InputManager : MonoBehaviour
             playerInput.Player.Dash.canceled += i => dashInput = false;
             playerInput.Player.DrinkPotion.performed += i => drinkPotionInput = true;
             playerInput.Player.DrinkPotion.canceled += i => drinkPotionInput = false;
+            playerInput.Player.ComboAttack.performed += context => {
+                var tapCount = context.interaction is MultiTapInteraction ? ((MultiTapInteraction)context.interaction).tapCount : 1;
+                
+                switch (tapCount)
+                {
+                    case 1:
+                        if(currentComboState == 1){
+                            currentComboState ++;
+                            comboAttackArr[0] = true;
+                        }
+                        break;
+                    
+                    case 2:
+                        if(currentComboState == 2){
+                            currentComboState ++;
+                            comboAttackArr[1] = true;
+                        }                    
+                        break;
+                    case 3:
+                        if(currentComboState == 3){
+                            currentComboState = 1;
+                            comboAttackArr[2] = true;
+                        }
+                        break;
+                   
+                }
+
+
+                
+            };
+            //playerInput.Player.ComboAttack.canceled += i => comboAttackInput = false;
         }
 
         playerInput.Enable();
@@ -59,13 +95,16 @@ public class InputManager : MonoBehaviour
 
     public void HandleAllInputs()
     {
-        if(playerAnimatorManager.canAttack){
+        if(playerAnimatorManager.canMove){
             HandleMovementInput();
         }else{
             verticalInput = 0;
             horizontalInput = 0;
         }
+        Debug.Log(comboAttackArr);
 
         //Debug.Log(dashInput+ " " + drinkPotionInput);       
     }
+
+   
 }

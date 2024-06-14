@@ -62,6 +62,15 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ComboAttack"",
+                    ""type"": ""Button"",
+                    ""id"": ""fc040993-47e9-4cd2-b68d-e5314da2ce69"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -207,6 +216,39 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""action"": ""DrinkPotion"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0bdd1547-7409-4735-a78e-292400e0346e"",
+                    ""path"": ""<Keyboard>/f"",
+                    ""interactions"": ""Tap"",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ComboAttack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""bd64b731-eaf4-4d09-90ed-646741545481"",
+                    ""path"": ""<Keyboard>/f"",
+                    ""interactions"": ""MultiTap"",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ComboAttack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""fe3ee51e-5ced-45ba-98f7-cac0f1d06bcb"",
+                    ""path"": ""<Keyboard>/f"",
+                    ""interactions"": ""MultiTap(tapCount=3)"",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ComboAttack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -219,6 +261,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         m_Player_Attacks = m_Player.FindAction("Attacks", throwIfNotFound: true);
         m_Player_Dash = m_Player.FindAction("Dash", throwIfNotFound: true);
         m_Player_DrinkPotion = m_Player.FindAction("DrinkPotion", throwIfNotFound: true);
+        m_Player_ComboAttack = m_Player.FindAction("ComboAttack", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -284,6 +327,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Attacks;
     private readonly InputAction m_Player_Dash;
     private readonly InputAction m_Player_DrinkPotion;
+    private readonly InputAction m_Player_ComboAttack;
     public struct PlayerActions
     {
         private @PlayerInput m_Wrapper;
@@ -292,6 +336,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         public InputAction @Attacks => m_Wrapper.m_Player_Attacks;
         public InputAction @Dash => m_Wrapper.m_Player_Dash;
         public InputAction @DrinkPotion => m_Wrapper.m_Player_DrinkPotion;
+        public InputAction @ComboAttack => m_Wrapper.m_Player_ComboAttack;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -313,6 +358,9 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @DrinkPotion.started += instance.OnDrinkPotion;
             @DrinkPotion.performed += instance.OnDrinkPotion;
             @DrinkPotion.canceled += instance.OnDrinkPotion;
+            @ComboAttack.started += instance.OnComboAttack;
+            @ComboAttack.performed += instance.OnComboAttack;
+            @ComboAttack.canceled += instance.OnComboAttack;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -329,6 +377,9 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @DrinkPotion.started -= instance.OnDrinkPotion;
             @DrinkPotion.performed -= instance.OnDrinkPotion;
             @DrinkPotion.canceled -= instance.OnDrinkPotion;
+            @ComboAttack.started -= instance.OnComboAttack;
+            @ComboAttack.performed -= instance.OnComboAttack;
+            @ComboAttack.canceled -= instance.OnComboAttack;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -352,5 +403,6 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         void OnAttacks(InputAction.CallbackContext context);
         void OnDash(InputAction.CallbackContext context);
         void OnDrinkPotion(InputAction.CallbackContext context);
+        void OnComboAttack(InputAction.CallbackContext context);
     }
 }

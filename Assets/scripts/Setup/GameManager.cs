@@ -16,6 +16,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] public float bossHealth = 100f;
     [SerializeField] public float bossAttackDelay = 1f;
 
+    [Header("Camera Settings")]
+    [SerializeField] public int cameraRotationSpeed = 15;
+
 
     [Header("Player Stats")]
     
@@ -27,9 +30,12 @@ public class GameManager : MonoBehaviour
     [SerializeField] public float playerStaminaRegen = 1f;
     [SerializeField] public float playerStaminaDashCost = 20f;
     [SerializeField] public float playerStaminaLightAttackCost = 10f;
+    [SerializeField] public float playerStaminaComboAttackCost = 10f;
+
     //movement
     [SerializeField] public float playerSpeed = 5f;
     [SerializeField] public float playerDashMultiplier = 10f;
+    [SerializeField] public float playerRotationSpeed = 15f;
 
     private void Awake()
     {

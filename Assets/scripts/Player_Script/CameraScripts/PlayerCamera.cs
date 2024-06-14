@@ -56,10 +56,27 @@ public class PlayerCamera : MonoBehaviour
         transform.position = targetCameraPosition;
     }
 
-    private void HandleRotations(){
+    // private void HandleRotations(){
+    //     //todo: fix rotation
+    //     //when close to the to the target, container X rotation changes to be able to look at the camera
+    //     transform.LookAt(targetToLookAt);
+        
+    // }
+    private void HandleRotations()
+    {
         //todo: fix rotation
         //when close to the to the target, container X rotation changes to be able to look at the camera
-        transform.LookAt(targetToLookAt);
+        Vector3 targetRotation = targetToLookAt.position - transform.position;
+        targetRotation.y = 0f; // Lock rotation on the Y axis
+        Quaternion targetQuaternion = Quaternion.LookRotation(targetRotation);
+        Quaternion clampedRotation = Quaternion.Slerp(transform.rotation, targetQuaternion, GameManager.instance.cameraRotationSpeed * Time.deltaTime);
+        // clampedRotation.eulerAngles = new Vector3(
+        //     Mathf.Clamp(clampedRotation.eulerAngles.x, 0    , 25),
+        //     clampedRotation.eulerAngles.y,
+        //     clampedRotation.eulerAngles.z
+        // );
+        transform.rotation = clampedRotation;
+        
     }
 
     private void HandleColisions(){
