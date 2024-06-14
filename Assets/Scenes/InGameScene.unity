@@ -629,6 +629,7 @@ MonoBehaviour:
   playerStaminaRegen: 50
   playerStaminaDashCost: 20
   playerStaminaLightAttackCost: 10
+  playerStaminaComboAttackCost: 10
   playerSpeed: 5
   playerDashMultiplier: 15
   playerRotationSpeed: 15
@@ -1105,6 +1106,7 @@ MonoBehaviour:
   canDrinkPotion: 1
   isDashing: 0
   canMove: 1
+  canInitateComboAttack: 1
 --- !u!114 &2091948253
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1124,6 +1126,7 @@ MonoBehaviour:
   lightAttackInput: 0
   dashInput: 0
   drinkPotionInput: 0
+  comboAttackInput: 0
 --- !u!114 &2091948254
 MonoBehaviour:
   m_ObjectHideFlags: 0
