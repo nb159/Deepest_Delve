@@ -1,31 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
-<WwiseDocument Type="WorkUnit" ID="{365FF771-D033-455A-9796-8DFABFEAE400}" SchemaVersion="110">
-	<AudioObjects>
-		<WorkUnit Name="Default Work Unit" ID="{365FF771-D033-455A-9796-8DFABFEAE400}" PersistMode="Standalone">
-			<ChildrenList>
-				<Sound Name="SancuatryOfDeathAmbience" ID="{02BB28BB-FD06-42F4-8E01-181771FE9696}" ShortID="199044735">
-					<ReferenceList>
-						<Reference Name="Conversion">
-							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{99481F6C-CE21-41EC-9DCE-83992DBB0A58}"/>
-						</Reference>
-						<Reference Name="OutputBus">
-							<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{89F9C875-614B-4448-87AC-F039FF56F9B4}"/>
-						</Reference>
-					</ReferenceList>
-					<ChildrenList>
-						<AudioFileSource Name="SancuatryOfDeathAmbience" ID="{BEBB891B-C16C-4145-9C83-87A8EF9EAC2D}">
-							<Language>SFX</Language>
-							<AudioFile>SancuatryOfDeathAmbience.wav</AudioFile>
-							<MediaIDList>
-								<MediaID ID="289292443"/>
-							</MediaIDList>
-						</AudioFileSource>
-					</ChildrenList>
-					<ActiveSourceList>
-						<ActiveSource Name="SancuatryOfDeathAmbience" ID="{BEBB891B-C16C-4145-9C83-87A8EF9EAC2D}" Platform="Linked"/>
-					</ActiveSourceList>
-				</Sound>
-			</ChildrenList>
-		</WorkUnit>
-	</AudioObjects>
-</WwiseDocument>
+version https://git-lfs.github.com/spec/v1
+oid sha256:380aa806c4572d44b4ca32e71b5d6a09aaecd560ccfbb544e3144bde14f1a29a
+size 1406
