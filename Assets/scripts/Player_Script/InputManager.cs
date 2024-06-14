@@ -18,7 +18,7 @@ public class InputManager : MonoBehaviour
     public bool lightAttackInput =  false;
     public bool dashInput = false;
     public bool drinkPotionInput = false;
-
+    [SerializeField] public bool comboAttackInput = false;
 
     private void Awake()
     {
@@ -39,7 +39,11 @@ public class InputManager : MonoBehaviour
             playerInput.Player.Dash.canceled += i => dashInput = false;
             playerInput.Player.DrinkPotion.performed += i => drinkPotionInput = true;
             playerInput.Player.DrinkPotion.canceled += i => drinkPotionInput = false;
-            
+            playerInput.Player.ComboAttack.performed += i => {
+                comboAttackInput = true;
+                StartCoroutine(resetcomboAttackInput());
+            };
+            //playerInput.Player.ComboAttack.canceled += i => comboAttackInput = false;
         }
 
         playerInput.Enable();
@@ -69,6 +73,13 @@ public class InputManager : MonoBehaviour
         }else{
             verticalInput = 0;
             horizontalInput = 0;
-        }       
+        }
+
+        //Debug.Log(dashInput+ " " + drinkPotionInput);       
+    }
+
+    public IEnumerator resetcomboAttackInput(){
+        yield return new WaitForSeconds(0.1f);
+        comboAttackInput = false;
     }
 }
