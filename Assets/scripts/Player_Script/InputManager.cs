@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Xml.Serialization;
 using Unity.VisualScripting;
-using Unity.VisualScripting.Antlr3.Runtime.Tree;
 using UnityEngine;
 using UnityEngine.InputSystem.Interactions;
 
@@ -17,17 +16,20 @@ public class InputManager : MonoBehaviour
     public float moveAmount;
     public float verticalInput;
     public float horizontalInput;
-    public bool lightAttackInput =  false;
+    public bool lightAttackInput = false;
     public bool dashInput = false;
     public bool drinkPotionInput = false;
     public bool[] comboAttackArr = new bool[3] {false, false, false};
     public bool comboAttackInput = false;
     public int currentComboState = 1;
+    // Event to notify when the player is drinking a potion
+    public delegate void DrinkPotionAction();
+    public static event DrinkPotionAction OnDrinkPotion;
 
     private void Awake()
     {
         playerAnimatorManager = GetComponent<PlayerAnimatorManager>();
-    }   
+    }
     private void OnEnable()
     {
         if (playerInput == null)
@@ -35,12 +37,14 @@ public class InputManager : MonoBehaviour
             playerInput = new PlayerInput();
 
             playerInput.Player.Movement.performed += i => movementInput = i.ReadValue<Vector2>();
-            
             playerInput.Player.Attacks.performed += i => lightAttackInput = true;
             playerInput.Player.Attacks.canceled += i => lightAttackInput = false;
             playerInput.Player.Dash.performed += i => dashInput = true;
             playerInput.Player.Dash.canceled += i => dashInput = false;
-            playerInput.Player.DrinkPotion.performed += i => drinkPotionInput = true;
+            playerInput.Player.DrinkPotion.performed += i => {
+                drinkPotionInput = true;
+                OnDrinkPotion?.Invoke(); // Invoking event when drinking potion
+            };
             playerInput.Player.DrinkPotion.canceled += i => drinkPotionInput = false;
             playerInput.Player.ComboAttack.performed += context => {
                 var tapCount = context.interaction is MultiTapInteraction ? ((MultiTapInteraction)context.interaction).tapCount : 1;
@@ -85,7 +89,6 @@ public class InputManager : MonoBehaviour
 
     private void HandleMovementInput()
     {
-        
         verticalInput = movementInput.y;
         horizontalInput = movementInput.x;
 
@@ -97,13 +100,12 @@ public class InputManager : MonoBehaviour
     {
         if(playerAnimatorManager.canMove){
             HandleMovementInput();
-        }else{
+        }
+        else
+        {
             verticalInput = 0;
             horizontalInput = 0;
-        }
-        Debug.Log(comboAttackArr);
-
-        //Debug.Log(dashInput+ " " + drinkPotionInput);       
+        }       
     }
 
    

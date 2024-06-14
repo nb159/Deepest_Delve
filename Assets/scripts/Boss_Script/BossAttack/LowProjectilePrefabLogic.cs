@@ -38,7 +38,7 @@ public class LowProjectilePrefabLogic : MonoBehaviour
         if (hitInfo.CompareTag("Player"))
         {
             CombatManager.instance.bossLowRangeAttackMethode();
-            // Debug.Log("player hit low");
+            Debug.Log("player hit low");
         }
 
         Destroy(gameObject);
