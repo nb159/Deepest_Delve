@@ -15,6 +15,7 @@ public class PlayerAnimatorManager : MonoBehaviour
     public bool canDrinkPotion = true;
     public bool isDashing = false;
     public bool canMove = true;
+    public bool canInitateComboAttack = true;
     
 
     private void Awake(){
@@ -88,16 +89,19 @@ public class PlayerAnimatorManager : MonoBehaviour
     }
 
     public void LightAttackAnimation(){
-        Debug.Log(canAttack);
         if(canAttack){
             canAttack = false;
             canDrinkPotion = false;
             canMove = false;
             animator.SetTrigger("LightAttack");
-            Debug.Log(animator.GetCurrentAnimatorStateInfo(0).IsTag("LightAttack"));
           
         }        
     }
+
+    public void comboAttackInput(){
+        animator.SetTrigger("ComboAttack");
+    }
+
 
     public void DrinkPotionAnimation(){
         GameManager.instance.playerSpeed /=2;
@@ -113,9 +117,7 @@ public class PlayerAnimatorManager : MonoBehaviour
     public void changeParameterOnAnimationEnd(){
 
         if(animator.GetCurrentAnimatorStateInfo(0).IsTag("LightAttack")){
-            Debug.Log("LightAttack");
             //animation ends on 0.98f. So for safety the threshhold will be 0.95f
-            Debug.Log(animator.GetCurrentAnimatorStateInfo(0).normalizedTime);
             if(animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.95f ) {
                 canAttack = true;
                 canDrinkPotion = true;
@@ -135,7 +137,15 @@ public class PlayerAnimatorManager : MonoBehaviour
         }
     }
 
+    //FUNCTION called through the animator
+    private void comboAttack(int currentAttack){
 
+        //Debug.Log(inputManager.comboAttackInput);
+        //if(!inputManager.comboAttackInput) animator.CrossFade("Locomotion", 0.1f);
+
+        if(currentAttack == 3) canInitateComboAttack = true;
+        
+    }
 
 
 
