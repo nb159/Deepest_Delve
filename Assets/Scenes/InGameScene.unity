@@ -782,8 +782,8 @@ MonoBehaviour:
   heavyAttackDamage: 20
   playerDefense: 10
   playerCritDamge: 1
-  bossProjectileSprayDamage: 20
-  bossStreamRayDamage: 10
+  bossHighRangeAttack: 10
+  bossLowRangeAttack: 20
   bossHealing: 10
   bossHealingDuration: 10
 --- !u!1 &1081497136 stripped
@@ -868,7 +868,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1103667833}
-  - component: {fileID: 1103667832}
+  - component: {fileID: 1103667834}
   m_Layer: 0
   m_Name: ---Game_Manager---
   m_TagString: Untagged
@@ -876,31 +876,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1103667832
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1103667831}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6d6f523900bb0e644b59c22498ccfadb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  GameSpeedtime: 1
-  bossHealth: 100
-  bossAttackDelay: 1
-  playerHealth: 100
-  playerPotions: 4
-  PotionHpRegenAmount: 30
-  playerStamina: 100
-  playerStaminaRegen: 1
-  playerStaminaDashCost: 20
-  playerStaminaLightAttackCost: 10
-  playerSpeed: 5
-  playerDashMultiplier: 15
-  currentScene: 0
 --- !u!4 &1103667833
 Transform:
   m_ObjectHideFlags: 0
@@ -916,6 +891,31 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1103667834
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1103667831}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d6f523900bb0e644b59c22498ccfadb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GameSpeedtime: 0
+  bossHealth: 0
+  bossAttackDelay: 0
+  playerHealth: 0
+  playerPotions: 0
+  PotionHpRegenAmount: 0
+  playerStamina: 0
+  playerStaminaRegen: 0
+  playerStaminaDashCost: 0
+  playerStaminaLightAttackCost: 0
+  playerSpeed: 0
+  playerDashMultiplier: 0
+  currentScene: 0
 --- !u!1 &1178625057
 GameObject:
   m_ObjectHideFlags: 0
@@ -1151,8 +1151,9 @@ GameObject:
   - component: {fileID: 1985377952}
   - component: {fileID: 1985377951}
   - component: {fileID: 1985377956}
-  - component: {fileID: 1985377955}
-  - component: {fileID: 1985377957}
+  - component: {fileID: 1985377959}
+  - component: {fileID: 1985377961}
+  - component: {fileID: 1985377960}
   m_Layer: 0
   m_Name: Boss
   m_TagString: Boss
@@ -1247,7 +1248,7 @@ Transform:
   - {fileID: 351709453}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
---- !u!114 &1985377955
+--- !u!114 &1985377956
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1256,46 +1257,59 @@ MonoBehaviour:
   m_GameObject: {fileID: 1985377950}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 63f1bdadf61de9f46ba972544fb55d12, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  projectilePrefab: {fileID: 4090044406767457404, guid: edf0baab95db9f14f835ecd4c975b8e5, type: 3}
-  firePoint: {fileID: 351709453}
-  player: {fileID: 184057526}
-  fireRate: 1
-  projectileSpeed: 20
-  projectileDamage: 20
---- !u!114 &1985377956
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1985377950}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 51dfae9a56d85264888b0a37908fa95f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 184057526}
---- !u!114 &1985377957
+--- !u!114 &1985377959
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1985377950}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b6f83a9983f23bb4a9b5630ff45b5107, type: 3}
+  m_Script: {fileID: 11500000, guid: 796cffe9d6594b348a7a5150a012aa81, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectilePrefab: {fileID: 3694503777809725590, guid: ee181625c4fd2fc4c8f88eb37a84fd74, type: 3}
-  fireRate: 3
-  projectileSpeed: 100
-  projectileDamage: 20
-  spawnAreaMin: {x: -100, y: 100, z: -100}
-  spawnAreaMax: {x: 100, y: 100, z: 100}
+  player: {fileID: 184057526}
+  attackRange: 20
+  lowAttackRange: 10
+  potionAttackChance: 0.5
+--- !u!114 &1985377960
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1985377950}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d93a178c7d45326459cef0d9ffbd1f2b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  projectilePrefab: {fileID: 6190194825629670988, guid: 6199943f687b6af46b9c9f3dbb3eaa2c, type: 3}
+  spawnHeight: 30
+  attackCooldown: 5
+  projectileCount: 300
+  attackRadius: 10
+  groundIndicatorPrefab: {fileID: 6489407593399305111, guid: 76f0f2cc274e64f4093d4828e2661347, type: 3}
+  indicatorLifetime: 3
+--- !u!114 &1985377961
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1985377950}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9a024a869588ed47b40d5e298076b2d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  trackingProjectilePrefab: {fileID: 4362197713740572662, guid: bcab78ff0f3cd4a47a0cf105a16c7eb7, type: 3}
+  attackCooldown: 5
 --- !u!4 &2003804975 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8447082967072642302, guid: 7c3fd35d6277cd24ba65c73861be9a32, type: 3}

@@ -1,7 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Xml.Serialization;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class InputManager : MonoBehaviour
@@ -15,15 +13,18 @@ public class InputManager : MonoBehaviour
     public float moveAmount;
     public float verticalInput;
     public float horizontalInput;
-    public bool lightAttackInput =  false;
+    public bool lightAttackInput = false;
     public bool dashInput = false;
     public bool drinkPotionInput = false;
 
+    // Event to notify when the player is drinking a potion
+    public delegate void DrinkPotionAction();
+    public static event DrinkPotionAction OnDrinkPotion;
 
     private void Awake()
     {
         playerAnimatorManager = GetComponent<PlayerAnimatorManager>();
-    }   
+    }
 
     private void OnEnable()
     {
@@ -32,18 +33,18 @@ public class InputManager : MonoBehaviour
             playerInput = new PlayerInput();
 
             playerInput.Player.Movement.performed += i => movementInput = i.ReadValue<Vector2>();
-            
             playerInput.Player.Attacks.performed += i => lightAttackInput = true;
             playerInput.Player.Attacks.canceled += i => lightAttackInput = false;
             playerInput.Player.Dash.performed += i => dashInput = true;
             playerInput.Player.Dash.canceled += i => dashInput = false;
-            playerInput.Player.DrinkPotion.performed += i => drinkPotionInput = true;
+            playerInput.Player.DrinkPotion.performed += i => {
+                drinkPotionInput = true;
+                OnDrinkPotion?.Invoke(); // Invoking event when drinking potion
+            };
             playerInput.Player.DrinkPotion.canceled += i => drinkPotionInput = false;
-            
         }
 
         playerInput.Enable();
-        
     }
 
     private void OnDisable()
@@ -53,10 +54,8 @@ public class InputManager : MonoBehaviour
 
     private void HandleMovementInput()
     {
-        
         verticalInput = movementInput.y;
         horizontalInput = movementInput.x;
-
 
         moveAmount = Mathf.Clamp01(Mathf.Abs(horizontalInput) + Mathf.Abs(verticalInput));
         playerAnimatorManager.updateAnimatorFreeRoamValues(0, moveAmount);
@@ -64,11 +63,14 @@ public class InputManager : MonoBehaviour
 
     public void HandleAllInputs()
     {
-        if(playerAnimatorManager.canAttack){
+        if (playerAnimatorManager.canAttack)
+        {
             HandleMovementInput();
-        }else{
+        }
+        else
+        {
             verticalInput = 0;
             horizontalInput = 0;
-        }       
+        }
     }
 }
