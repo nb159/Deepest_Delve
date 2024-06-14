@@ -19,8 +19,7 @@ public class InputManager : MonoBehaviour
     public bool lightAttackInput =  false;
     public bool dashInput = false;
     public bool drinkPotionInput = false;
-    public bool initiateComboAttack = false;
-    public bool[] continueComboAttacks = new bool[2] {false, false};
+    public bool[] comboAttackArr = new bool[3] {false, false, false};
 
     private void Awake()
     {
@@ -43,16 +42,22 @@ public class InputManager : MonoBehaviour
             playerInput.Player.ComboAttack.performed += context => {
                 
                 var tapCount = context.interaction is MultiTapInteraction ? ((MultiTapInteraction)context.interaction).tapCount : 1;
-                initiateComboAttack = true;
+                
                 switch (tapCount)
                 {
                     case 1:
-                        
-                        continueComboAttacks[0] = true;
+                        Debug.Log("Tap");
+                        comboAttackArr[0] = true;
                         break;
                     case 2:
-                        continueComboAttacks[1] = true;
+                        Debug.Log("triple Tap");
+                        comboAttackArr[1] = true;
                         // Handle double tap
+                        break;
+                    case 3:
+                        Debug.Log("triple Tap");
+                        comboAttackArr[2] = true;
+                        // Handle triple tap
                         break;
                    
                 }
@@ -89,6 +94,7 @@ public class InputManager : MonoBehaviour
             verticalInput = 0;
             horizontalInput = 0;
         }
+        Debug.Log(comboAttackArr);
 
         //Debug.Log(dashInput+ " " + drinkPotionInput);       
     }

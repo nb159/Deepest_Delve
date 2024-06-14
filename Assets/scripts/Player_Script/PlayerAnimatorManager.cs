@@ -142,29 +142,38 @@ public class PlayerAnimatorManager : MonoBehaviour
     private void comboAttack(int currentAttack){
 
         //Debug.Log(inputManager.comboAttackInput);
-        if(!inputManager.initiateComboAttack) animator.CrossFade("Locomotion", 0.1f);
+        if(!inputManager.comboAttackArr[0]) animator.CrossFade("Locomotion", 0.1f);
 
         switch(currentAttack){
             case 0:
-                if(inputManager.continueComboAttacks[currentAttack] == true){
-                    inputManager.continueComboAttacks[currentAttack] = false;
+                if(inputManager.comboAttackArr[currentAttack] == true){
+                    inputManager.comboAttackArr[currentAttack] = false;
                 }else{
                     animator.CrossFade("Locomotion", 0.1f);
-                    inputManager.initiateComboAttack = true;
+                    inputManager.comboAttackArr[0] = true;
                 }
                 break;
             case 1:
-                if(inputManager.continueComboAttacks[currentAttack] == true){
-                    inputManager.continueComboAttacks[currentAttack] = false;
+                if(inputManager.comboAttackArr[currentAttack] == true){
+                    inputManager.comboAttackArr[currentAttack] = false;
                 }else{
                     animator.CrossFade("Locomotion", 0.1f);
-                    inputManager.initiateComboAttack = true;
+                    inputManager.comboAttackArr[1] = true;
 
                 }
                 break;
+            case 2:
+                if(inputManager.comboAttackArr[currentAttack] == true){
+                    inputManager.comboAttackArr[currentAttack] = false;
+                }else{
+                    animator.CrossFade("Locomotion", 0.1f);
+                    inputManager.comboAttackArr[2] = true;
+                }
+                break;
+
         }
 
-        if(currentAttack == 3) inputManager.initiateComboAttack = true;
+        if(currentAttack == 2) inputManager.comboAttackArr[2] = true;
         
     }
 
