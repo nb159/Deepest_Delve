@@ -141,39 +141,42 @@ public class PlayerAnimatorManager : MonoBehaviour
     //FUNCTION called through the animator
     private void comboAttack(int currentAttack){
 
-        //Debug.Log(inputManager.comboAttackInput);
-        if(!inputManager.comboAttackArr[0]) animator.CrossFade("Locomotion", 0.1f);
-
+        Debug.Log("bfr: " + inputManager.comboAttackArr[currentAttack] + " " +currentAttack );
         switch(currentAttack){
             case 0:
-                if(inputManager.comboAttackArr[currentAttack] == true){
-                    inputManager.comboAttackArr[currentAttack] = false;
+                if(inputManager.comboAttackArr[currentAttack]){
+                    //inputManager.comboAttackArr[currentAttack] = false;
                 }else{
                     animator.CrossFade("Locomotion", 0.1f);
-                    inputManager.comboAttackArr[0] = true;
+                    canInitateComboAttack = true;
+                    inputManager.comboAttackArr = new bool[3] {false, false, false};
                 }
                 break;
             case 1:
-                if(inputManager.comboAttackArr[currentAttack] == true){
-                    inputManager.comboAttackArr[currentAttack] = false;
+                if(inputManager.comboAttackArr[currentAttack]){
+                    //inputManager.comboAttackArr[currentAttack] = false;
                 }else{
                     animator.CrossFade("Locomotion", 0.1f);
-                    inputManager.comboAttackArr[1] = true;
+                    canInitateComboAttack = true;
+                    inputManager.comboAttackArr = new bool[3] {false, false, false};
 
                 }
                 break;
             case 2:
-                if(inputManager.comboAttackArr[currentAttack] == true){
-                    inputManager.comboAttackArr[currentAttack] = false;
+                if(inputManager.comboAttackArr[currentAttack]){
+                    //inputManager.comboAttackArr[currentAttack] = false;
                 }else{
                     animator.CrossFade("Locomotion", 0.1f);
-                    inputManager.comboAttackArr[2] = true;
+                    canInitateComboAttack = true;
+                    inputManager.comboAttackArr = new bool[3] {false, false, false};
+
                 }
                 break;
 
         }
+        Debug.Log("afr: " + inputManager.comboAttackArr[currentAttack] + " " +currentAttack );
 
-        if(currentAttack == 2) inputManager.comboAttackArr[2] = true;
+        
         
     }
 
