@@ -11,6 +11,7 @@ public class PlayerAnimatorManager : MonoBehaviour
     int verticle;
     public bool canAttack = true;
     public bool canDrinkPotion = true;
+    public bool isDashing = false;
     InputManager inputManager;
 
     private void Awake(){
