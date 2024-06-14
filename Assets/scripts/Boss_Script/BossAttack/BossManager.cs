@@ -1,17 +1,28 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class BossManager : MonoBehaviour
 {
-    private enum BossAttackState { Idle, HighAttack, LowAttack }
+    private enum BossAttackState { Idle, HighAttack, LowAttack, ArmAttack, Enraged }
+
+    //enraged gets enabled when boss reaches approx half hp 
     private BossAttackState currentState;
 
     public Transform player;
     public float attackRange = 50f;
     public float lowAttackRange = 10f;
-    public float potionAttackChance = 0.5f; 
+    public float ArmAttackRange = 5f;
+    public float potionAttackChance = 0.5f;
 
     private HighRangeAttack highRangeAttack;
     private LowRangeAttack lowRangeAttack;
+    private ArmAttack armAttack;
+    public float bossHp = GameManager.instance.bossHealth;
+
+
+
+    //private EnragedAttack enragedAttack;
+
 
     void Start()
     {
@@ -19,12 +30,12 @@ public class BossManager : MonoBehaviour
         lowRangeAttack = GetComponent<LowRangeAttack>();
         currentState = BossAttackState.Idle;
 
-        InputManager.OnDrinkPotion += TryLowRangeAttack; 
+        InputManager.OnDrinkPotion += TryLowRangeAttackState;
     }
 
     void OnDestroy()
     {
-        InputManager.OnDrinkPotion -= TryLowRangeAttack; 
+        InputManager.OnDrinkPotion -= TryLowRangeAttackState;
     }
 
     void Update()
@@ -40,8 +51,15 @@ public class BossManager : MonoBehaviour
                 HandleHighAttackState(distanceToPlayer);
                 break;
             case BossAttackState.LowAttack:
-                TryLowRangeAttack();
+                TryLowRangeAttackState();
                 break;
+
+            case BossAttackState.ArmAttack:
+                HandelArmAttackState(distanceToPlayer);
+                break;
+                // case BossAttackState.EnragedAttack:
+                //     HandelEnragedAttackState(bossHp);
+                //     break;
         }
     }
 
@@ -53,6 +71,10 @@ public class BossManager : MonoBehaviour
             {
                 currentState = BossAttackState.HighAttack;
             }
+            if (distanceToPlayer < ArmAttackRange)
+            {
+                currentState = BossAttackState.ArmAttack;
+            }
             else
             {
                 currentState = BossAttackState.LowAttack;
@@ -60,6 +82,16 @@ public class BossManager : MonoBehaviour
         }
     }
 
+    private void HandelArmAttackState(float distanceToPlayer)
+    {
+
+        if (distanceToPlayer < ArmAttackRange)
+        {
+            currentState = BossAttackState.ArmAttack;
+            armAttack.ExecuteAttack(player);
+
+        }
+    }
     private void HandleHighAttackState(float distanceToPlayer)
     {
         if (distanceToPlayer > attackRange)
@@ -76,32 +108,47 @@ public class BossManager : MonoBehaviour
         }
     }
 
-    private void HandleLowAttackState(float distanceToPlayer)
+
+
+    private void HandeleEnragedAttackState(float bossHp) // pass boss hp as param. 
     {
-        if (distanceToPlayer > attackRange)
-        {
-            currentState = BossAttackState.Idle;
-        }
-        else if (distanceToPlayer > lowAttackRange)
-        {
-            currentState = BossAttackState.HighAttack;
-        }
-        else
-        {
-            lowRangeAttack.ExecuteAttack(player);
-        }
+
+
     }
 
 
-//random low attack on drinking potion ... but maybe i change it to a different attack later 
-    private void TryLowRangeAttack()
+
+    // private void HandleLowAttackState(float distanceToPlayer)
+    // {
+    //     if (distanceToPlayer > attackRange)
+    //     {
+    //         currentState = BossAttackState.Idle;
+    //     }
+    //     else if (distanceToPlayer > lowAttackRange)
+    //     {
+    //         currentState = BossAttackState.HighAttack;
+    //     }
+    //     else
+    //     {
+    //         lowRangeAttack.ExecuteAttack(player);
+    //     }
+    // }
+
+
+    //random low attack on drinking potion ... but maybe i change it to a different attack later 
+    private void TryLowRangeAttackState()
     {
-        if (Random.value< potionAttackChance)
+        if (Random.value < potionAttackChance)
         {
-            
-           
-                lowRangeAttack.ExecuteAttack(player);
-            
+
+
+            lowRangeAttack.ExecuteAttack(player);
+
         }
     }
 }
+
+
+
+
+

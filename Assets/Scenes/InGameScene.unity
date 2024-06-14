@@ -365,37 +365,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17bc298eae84ad44a991526b2ecae026, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &351709452
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 351709453}
-  m_Layer: 0
-  m_Name: FirePoint
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &351709453
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 351709452}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: -0.04, y: 0.023, z: 0.883}
-  m_LocalScale: {x: 0.032880522, y: 0.032880522, z: 0.032880522}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1985377954}
-  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!1001 &387850665
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1152,8 +1121,8 @@ GameObject:
   - component: {fileID: 1985377951}
   - component: {fileID: 1985377956}
   - component: {fileID: 1985377959}
-  - component: {fileID: 1985377961}
   - component: {fileID: 1985377960}
+  - component: {fileID: 1985377961}
   m_Layer: 0
   m_Name: Boss
   m_TagString: Boss
@@ -1241,11 +1210,10 @@ Transform:
   m_GameObject: {fileID: 1985377950}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: 0, y: 1.52, z: 12.96}
-  m_LocalScale: {x: 3.1508, y: 3.1508, z: 3.1508}
+  m_LocalPosition: {x: 0, y: 2.15, z: 12.96}
+  m_LocalScale: {x: 4, y: 4, z: 4}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 351709453}
+  m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!114 &1985377956
@@ -1294,7 +1262,7 @@ MonoBehaviour:
   attackCooldown: 5
   projectileCount: 300
   attackRadius: 10
-  groundIndicatorPrefab: {fileID: 6489407593399305111, guid: 76f0f2cc274e64f4093d4828e2661347, type: 3}
+  groundIndicatorPrefab: {fileID: 8526346965446256756, guid: 1d9292e46cbf03244983120178db8982, type: 3}
   indicatorLifetime: 3
 --- !u!114 &1985377961
 MonoBehaviour:
