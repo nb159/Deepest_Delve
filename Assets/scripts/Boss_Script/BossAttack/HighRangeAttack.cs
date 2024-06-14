@@ -7,7 +7,7 @@ public class HighRangeAttack : MonoBehaviour, IBossAttack
     public float attackCooldown = 5f;
     public int projectileCount = 30;
 
-    // i need to find another better methode of randmizing the projectile distribution, individually.
+   
     public float attackRadius = 20f;
       public GameObject groundIndicatorPrefab;
 

@@ -9,21 +9,21 @@ public class CombatManager : MonoBehaviour
 {
     public static CombatManager instance;
 
-    [SerializeField] private GameObject Boss;
-    [SerializeField] private GameObject Player;
+    [SerializeField] public GameObject Boss;
+    [SerializeField] public GameObject Player;
 
     [Header("Player Stats")]
-    [SerializeField] private float lightAttackDamage = 10f;
-    [SerializeField] private float heavyAttackDamage = 20f;
-    [SerializeField] private float playerDefense = 10f;
-    [SerializeField] private float playerCritDamge = 1f;
+    [SerializeField] public float lightAttackDamage ;
+    [SerializeField] public float heavyAttackDamage;
+    [SerializeField] public float playerDefense;
+    [SerializeField] public float playerCritDamge ;
 
 
     [Header("Boss Stats")]
-    [SerializeField] private float bossHighRangeAttack = 10f;
-    [SerializeField] private float bossLowRangeAttack = 20f;
-    [SerializeField] private float bossHealing = 10f;
-    [SerializeField] private float bossHealingDuration = 10f;
+    [SerializeField] public float bossHighRangeAttack ;
+    [SerializeField] public float bossLowRangeAttack ;
+    [SerializeField] public float bossHealing ;
+    [SerializeField] public float bossHealingDuration ;
 
     // Start is called before the first frame update
 

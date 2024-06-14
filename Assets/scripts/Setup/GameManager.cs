@@ -8,24 +8,24 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
 
     [Header("Game Stats")]
-    public float GameSpeedtime ;
+    public float GameSpeedtime;
 
     [Header("Boss Stats")]
-    public float bossHealth ;
+    public float bossHealth;
     public float bossAttackDelay;
 
     [Header("Player Stats")]
-    public float playerHealth ;
+    public float playerHealth;
     public int playerPotions;
     public int PotionHpRegenAmount;
     // Stamina
-    public float playerStamina ;
-    public float playerStaminaRegen ;
-    public float playerStaminaDashCost ;
-    public float playerStaminaLightAttackCost ;
+    public float playerStamina;
+    public float playerStaminaRegen;
+    public float playerStaminaDashCost;
+    public float playerStaminaLightAttackCost;
     // Movement
-    public float playerSpeed ;
-    public float playerDashMultiplier ;
+    public float playerSpeed;
+    public float playerDashMultiplier;
 
     public enum GameScene { MainMenuScene, InGameScene, PlayerDeathScene, WinScene }
     public GameScene currentScene;
@@ -68,13 +68,13 @@ public class GameManager : MonoBehaviour
         {
             //Debug.Log("GameSettings.json file found in Resources.");
             string json = jsonFile.text;
-           // Debug.Log($"GameSettings.json content: {json}");
+            // Debug.Log($"GameSettings.json content: {json}");
 
             GameSettings settings = JsonUtility.FromJson<GameSettings>(json);
 
             if (settings != null)
             {
-               // Debug.Log("Game settings loaded successfully.");
+                // Debug.Log("Game settings loaded successfully.");
                 ApplyGameSettings(settings);
             }
             else
@@ -90,7 +90,7 @@ public class GameManager : MonoBehaviour
 
     private void ApplyGameSettings(GameSettings settings)
     {
-       // Debug.Log("Applying game settings...");
+        // Debug.Log("Applying game settings...");
         GameSpeedtime = settings.GameSpeedtime;
         bossHealth = settings.bossHealth;
         bossAttackDelay = settings.bossAttackDelay;
@@ -103,8 +103,15 @@ public class GameManager : MonoBehaviour
         playerStaminaLightAttackCost = settings.playerStaminaLightAttackCost;
         playerSpeed = settings.playerSpeed;
         playerDashMultiplier = settings.playerDashMultiplier;
+        // CombatManager.instance.pl = settings.playerSpeed;
+        // heavyAttackDamage = settings.playerSpeed;
+        // playerDefense = settings.playerSpeed;
+        // playerCritDamage = settings.playerSpeed;
+        // bossHighRangeAttack = settings.playerSpeed;
+        // bossLowRangeAttack = settings.playerSpeed;
+        // bossHealing = settings.playerSpeed;
+        // bossHealingDuration = settings.playerSpeed;
 
-        
     }
 
     void Start()
