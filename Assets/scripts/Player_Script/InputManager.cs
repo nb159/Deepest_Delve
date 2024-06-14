@@ -9,7 +9,7 @@ public class InputManager : MonoBehaviour
     PlayerAnimatorManager playerAnimatorManager;
 
     public PlayerInput playerInput;
-    public Vector2 movementInput;
+    Vector2 movementInput;
 
     [Header("Movement Variables")]
     public float moveAmount;
@@ -19,10 +19,12 @@ public class InputManager : MonoBehaviour
     public bool dashInput = false;
     public bool drinkPotionInput = false;
 
+
     private void Awake()
     {
         playerAnimatorManager = GetComponent<PlayerAnimatorManager>();
     }   
+
     private void OnEnable()
     {
         if (playerInput == null)
@@ -37,9 +39,11 @@ public class InputManager : MonoBehaviour
             playerInput.Player.Dash.canceled += i => dashInput = false;
             playerInput.Player.DrinkPotion.performed += i => drinkPotionInput = true;
             playerInput.Player.DrinkPotion.canceled += i => drinkPotionInput = false;
+            
         }
 
         playerInput.Enable();
+        
     }
 
     private void OnDisable()
@@ -53,19 +57,18 @@ public class InputManager : MonoBehaviour
         verticalInput = movementInput.y;
         horizontalInput = movementInput.x;
 
+
         moveAmount = Mathf.Clamp01(Mathf.Abs(horizontalInput) + Mathf.Abs(verticalInput));
-        playerAnimatorManager.updateAnimatorFreeRoamValues(horizontalInput, moveAmount);
+        playerAnimatorManager.updateAnimatorFreeRoamValues(0, moveAmount);
     }
 
     public void HandleAllInputs()
     {
-        if(playerAnimatorManager.canMove){
+        if(playerAnimatorManager.canAttack){
             HandleMovementInput();
         }else{
             verticalInput = 0;
             horizontalInput = 0;
-        }
-
-        //Debug.Log(dashInput+ " " + drinkPotionInput);       
+        }       
     }
 }
