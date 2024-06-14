@@ -1,6 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
-<WwiseDocument Type="WorkUnit" ID="{7435FE8E-DBC0-45CC-9925-6EFE5902B8BC}" SchemaVersion="110">
-	<Attenuations>
-		<WorkUnit Name="Default Work Unit" ID="{7435FE8E-DBC0-45CC-9925-6EFE5902B8BC}" PersistMode="Standalone"/>
-	</Attenuations>
-</WwiseDocument>
+version https://git-lfs.github.com/spec/v1
+oid sha256:51db53b90ee324c5f9aceb0c911d9f31897609d7341820458b5bf743bd53748a
+size 3321

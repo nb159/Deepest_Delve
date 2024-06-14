@@ -1,6 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
-<WwiseDocument Type="WorkUnit" ID="{9A28911E-92C2-410A-B68F-64B66B835DB0}" SchemaVersion="110">
-	<SoundBanks>
-		<WorkUnit Name="Default Work Unit" ID="{9A28911E-92C2-410A-B68F-64B66B835DB0}" PersistMode="Standalone"/>
-	</SoundBanks>
-</WwiseDocument>
+version https://git-lfs.github.com/spec/v1
+oid sha256:43f179646d986ac5b866de4ac8c41e14c19e1301d17794681447740cd6b4d7c9
+size 720
