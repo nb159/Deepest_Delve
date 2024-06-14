@@ -1,6 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <WwiseDocument Type="WorkUnit" ID="{CFBF7944-FB05-410F-93B8-0EED81B3DA5F}" SchemaVersion="110">
 	<Events>
-		<WorkUnit Name="Default Work Unit" ID="{CFBF7944-FB05-410F-93B8-0EED81B3DA5F}" PersistMode="Standalone"/>
+		<WorkUnit Name="Default Work Unit" ID="{CFBF7944-FB05-410F-93B8-0EED81B3DA5F}" PersistMode="Standalone">
+			<ChildrenList>
+				<Event Name="Play_SancuatryOfDeathAmbience" ID="{0DC5A094-585A-4E28-B84E-57C67F9C6292}">
+					<ChildrenList>
+						<Action Name="" ID="{CE3133A0-5B6C-427F-BBC2-D0FB1E09FAC6}" ShortID="615666703">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="SancuatryOfDeathAmbience" ID="{02BB28BB-FD06-42F4-8E01-181771FE9696}" WorkUnitID="{365FF771-D033-455A-9796-8DFABFEAE400}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+			</ChildrenList>
+		</WorkUnit>
 	</Events>
 </WwiseDocument>

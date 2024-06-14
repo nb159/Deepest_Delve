@@ -1,0 +1,6 @@
+Event	ID	Name			Wwise Object Path	Notes
+	3092969983	Play_SancuatryOfDeathAmbience			\Default Work Unit\Play_SancuatryOfDeathAmbience	
+
+In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
+	289292443	SancuatryOfDeathAmbience	Y:\Repos\Deepest_Delve\5_vs_40_WwiseProject\.cache\Windows\SFX\SancuatryOfDeathAmbience_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\SancuatryOfDeathAmbience		28840732
+
