@@ -7,17 +7,18 @@ public class PlayerAnimatorManager : MonoBehaviour
     public static PlayerAnimatorManager instance;
     Animator animator;
     PlayerLocomotion playerLocomotion;
+    InputManager inputManager;
     int horzintall;
     int verticle;
+    [Header("Can do's")]
     public bool canAttack = true;
     public bool canDrinkPotion = true;
     public bool isDashing = false;
-    InputManager inputManager;
+    public bool canMove = true;
+    
 
-    private void Awake()
-    {
-        if (instance == null)
-        {
+    private void Awake(){
+        if(instance == null){
             instance = this;
         }
         else
@@ -34,6 +35,7 @@ public class PlayerAnimatorManager : MonoBehaviour
     public void Update()
     {
         changeParameterOnAnimationEnd();
+        
     }
     public void updateAnimatorFreeRoamValues(float horizontalMovement, float verticleMovement)
     {
@@ -42,10 +44,8 @@ public class PlayerAnimatorManager : MonoBehaviour
         float snappedHorizontal;
         float snappedVerticle;
 
-
         snappedHorizontal = SnapHorizontalMovement(horizontalMovement);
         snappedVerticle = SnapVerticleMovement(verticleMovement);
-
 
         animator.SetFloat(horzintall, snappedHorizontal, 0.1f, Time.deltaTime);
         animator.SetFloat(verticle, snappedVerticle, 0.01f, Time.deltaTime);
@@ -96,43 +96,50 @@ public class PlayerAnimatorManager : MonoBehaviour
         return snappedVerticle;
     }
 
-    public void LightAttackAnimation()
-    {
-
-        if (canAttack)
-        {
+    public void LightAttackAnimation(){
+        Debug.Log(canAttack);
+        if(canAttack){
             canAttack = false;
+            canDrinkPotion = false;
+            canMove = false;
             animator.SetTrigger("LightAttack");
-        }
+            Debug.Log(animator.GetCurrentAnimatorStateInfo(0).IsTag("LightAttack"));
+          
+        }        
     }
 
-    public void DrinkPotionAnimation()
-    {
-        if (!canDrinkPotion) return;
-        GameManager.instance.playerSpeed /= 2;
+    public void DrinkPotionAnimation(){
+        GameManager.instance.playerSpeed /=2;
         canDrinkPotion = false;
+        canAttack = false;
         animator.SetTrigger("DrinkPotion");
     }
 
-    public void changeParameterOnAnimationEnd()
-    {
-        if (animator.GetCurrentAnimatorStateInfo(0).IsName("LightAttack"))
-        {
+    public void DashAnimation(){
+        animator.SetTrigger("DashTrigger");
+    }
+
+    public void changeParameterOnAnimationEnd(){
+
+        if(animator.GetCurrentAnimatorStateInfo(0).IsTag("LightAttack")){
+            Debug.Log("LightAttack");
             //animation ends on 0.98f. So for safety the threshhold will be 0.95f
-            if (animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.95f)
-            {
+            Debug.Log(animator.GetCurrentAnimatorStateInfo(0).normalizedTime);
+            if(animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.95f ) {
                 canAttack = true;
+                canDrinkPotion = true;
+                canMove = true;
             }
         }
 
-        if (animator.GetCurrentAnimatorStateInfo(0).IsName("DrinkPotion"))
-        {
-            if (animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.95f && !canDrinkPotion)
-            {
-                animator.ResetTrigger("DrinkPotion");
-                Debug.Log("DrinkPotion");
+        //TODO: normailized time ends at 0.9 for some reasion..
+        if(animator.GetCurrentAnimatorStateInfo(0).IsName("DrinkPotion")){
+            // Debug.Log(animator.GetCurrentAnimatorStateInfo(0).normalizedTime);
+            if(animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.90f && canAttack == false && !canDrinkPotion){
+                
                 GameManager.instance.playerSpeed *= 2;
                 canDrinkPotion = true;
+                canAttack = true;
             }
         }
     }
