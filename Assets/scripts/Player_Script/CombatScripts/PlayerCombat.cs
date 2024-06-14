@@ -25,6 +25,7 @@ public class PlayerCombat : MonoBehaviour
 
     public void HandleAllCombat(){
         HandleLightAttack();
+        HandleComboAttack();
         HandleStaminaRegen();
         HandlePotionDrink();
     }
@@ -38,6 +39,14 @@ public class PlayerCombat : MonoBehaviour
         }
     }
 
+    private void HandleComboAttack(){
+        if(inputManager.comboAttackInput && GameManager.instance.playerStamina >= GameManager.instance.playerStaminaComboAttackCost && playerAnimatorManager.canInitateComboAttack){
+            playerAnimatorManager.comboAttackInput();
+        
+        }
+    }
+    
+    
     private void HandleStaminaRegen(){
         if(GameManager.instance.playerStamina < 100){
             GameManager.instance.playerStamina += GameManager.instance.playerStaminaRegen * Time.deltaTime;

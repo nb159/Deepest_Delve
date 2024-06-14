@@ -12,12 +12,12 @@ public class PlayerAnimatorManager : MonoBehaviour
     public bool canAttack = true;
     public bool canDrinkPotion = true;
     public bool isDashing = false;
-    InputManager inputManager;
+    public bool canMove = true;
+    public bool canInitateComboAttack = true;
+    
 
-    private void Awake()
-    {
-        if (instance == null)
-        {
+    private void Awake(){
+        if(instance == null){
             instance = this;
         }
         else
@@ -96,31 +96,34 @@ public class PlayerAnimatorManager : MonoBehaviour
         return snappedVerticle;
     }
 
-    public void LightAttackAnimation()
-    {
-
-        if (canAttack)
-        {
+    public void LightAttackAnimation(){
+        if(canAttack){
             canAttack = false;
             animator.SetTrigger("LightAttack");
-        }
+          
+        }        
     }
 
-    public void DrinkPotionAnimation()
-    {
-        if (!canDrinkPotion) return;
-        GameManager.instance.playerSpeed /= 2;
+    public void comboAttackInput(){
+        animator.SetTrigger("ComboAttack");
+    }
+
+
+    public void DrinkPotionAnimation(){
+        GameManager.instance.playerSpeed /=2;
         canDrinkPotion = false;
         animator.SetTrigger("DrinkPotion");
     }
 
-    public void changeParameterOnAnimationEnd()
-    {
-        if (animator.GetCurrentAnimatorStateInfo(0).IsName("LightAttack"))
-        {
+    public void DashAnimation(){
+        animator.SetTrigger("DashTrigger");
+    }
+
+    public void changeParameterOnAnimationEnd(){
+
+        if(animator.GetCurrentAnimatorStateInfo(0).IsTag("LightAttack")){
             //animation ends on 0.98f. So for safety the threshhold will be 0.95f
-            if (animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.95f)
-            {
+            if(animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.95f ) {
                 canAttack = true;
             }
         }
@@ -137,7 +140,15 @@ public class PlayerAnimatorManager : MonoBehaviour
         }
     }
 
+    //FUNCTION called through the animator
+    private void comboAttack(int currentAttack){
 
+        //Debug.Log(inputManager.comboAttackInput);
+        //if(!inputManager.comboAttackInput) animator.CrossFade("Locomotion", 0.1f);
+
+        if(currentAttack == 3) canInitateComboAttack = true;
+        
+    }
 
 
 
