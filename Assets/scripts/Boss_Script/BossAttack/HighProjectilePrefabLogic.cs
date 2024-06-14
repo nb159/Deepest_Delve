@@ -17,6 +17,13 @@ public class HighProjectilePrefabLogic : MonoBehaviour
         {
             return;
         }
+          
+        if (hitInfo.CompareTag("Projectile"))
+        {
+//solving missing prjectiles issue
+           // Debug.Log("hitting projectiles");
+            return;
+        }
 
        
         if (hitInfo.CompareTag("Player"))

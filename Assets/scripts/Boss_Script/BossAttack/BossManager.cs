@@ -9,7 +9,7 @@ public class BossManager : MonoBehaviour
     private BossAttackState currentState;
 
     public Transform player;
-    public float attackRange = 50f;
+    public float attackRange = 20f;
     public float lowAttackRange = 10f;
     public float ArmAttackRange = 5f;
     public float potionAttackChance = 0.5f;
@@ -41,6 +41,7 @@ public class BossManager : MonoBehaviour
     void Update()
     {
         float distanceToPlayer = Vector3.Distance(transform.position, player.position);
+       // Debug.Log(distanceToPlayer);
 
         switch (currentState)
         {
@@ -71,14 +72,14 @@ public class BossManager : MonoBehaviour
             {
                 currentState = BossAttackState.HighAttack;
             }
-            if (distanceToPlayer < ArmAttackRange)
-            {
-                currentState = BossAttackState.ArmAttack;
-            }
-            else
-            {
-                currentState = BossAttackState.LowAttack;
-            }
+            // if (distanceToPlayer < ArmAttackRange)
+            // {
+            //     currentState = BossAttackState.ArmAttack;
+            // }
+            // else
+            // {
+            //     currentState = BossAttackState.LowAttack;
+            // }
         }
     }
 
@@ -92,16 +93,18 @@ public class BossManager : MonoBehaviour
 
         }
     }
+
+
     private void HandleHighAttackState(float distanceToPlayer)
     {
         if (distanceToPlayer > attackRange)
         {
             currentState = BossAttackState.Idle;
         }
-        else if (distanceToPlayer <= lowAttackRange)
-        {
-            currentState = BossAttackState.LowAttack;
-        }
+        // else if (distanceToPlayer <= lowAttackRange)
+        // {
+        //     currentState = BossAttackState.LowAttack;
+        // }
         else
         {
             highRangeAttack.ExecuteAttack(player);
@@ -110,11 +113,11 @@ public class BossManager : MonoBehaviour
 
 
 
-    private void HandeleEnragedAttackState(float bossHp) // pass boss hp as param. 
-    {
+    // private void HandeleEnragedAttackState(float bossHp) // pass boss hp as param. 
+    // {
 
 
-    }
+    // }
 
 
 
