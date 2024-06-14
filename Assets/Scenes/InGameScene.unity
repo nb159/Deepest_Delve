@@ -1042,7 +1042,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: fd6e3095e2bd6724f9401e62461b1468, type: 3}
       propertyPath: m_LocalScale.z
-      value: 4.028142
+      value: 4.3842297
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: fd6e3095e2bd6724f9401e62461b1468, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1244,7 +1244,9 @@ MonoBehaviour:
   player: {fileID: 184057526}
   attackRange: 20
   lowAttackRange: 10
+  ArmAttackRange: 5
   potionAttackChance: 0.5
+  bossHp: 0
 --- !u!114 &1985377960
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1260,7 +1262,7 @@ MonoBehaviour:
   projectilePrefab: {fileID: 6190194825629670988, guid: 6199943f687b6af46b9c9f3dbb3eaa2c, type: 3}
   spawnHeight: 30
   attackCooldown: 5
-  projectileCount: 300
+  projectileCount: 50
   attackRadius: 10
   groundIndicatorPrefab: {fileID: 8526346965446256756, guid: 1d9292e46cbf03244983120178db8982, type: 3}
   indicatorLifetime: 3

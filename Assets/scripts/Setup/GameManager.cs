@@ -104,7 +104,7 @@ public class GameManager : MonoBehaviour
         playerSpeed = settings.playerSpeed;
         playerDashMultiplier = settings.playerDashMultiplier;
 
-     
+        
     }
 
     void Start()
