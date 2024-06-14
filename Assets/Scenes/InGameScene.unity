@@ -1126,7 +1126,8 @@ MonoBehaviour:
   lightAttackInput: 0
   dashInput: 0
   drinkPotionInput: 0
-  comboAttackInput: 0
+  initiateComboAttack: 0
+  continueComboAttacks: 0000
 --- !u!114 &2091948254
 MonoBehaviour:
   m_ObjectHideFlags: 0

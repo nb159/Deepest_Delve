@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Xml.Serialization;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.InputSystem.Interactions;
 
 public class InputManager : MonoBehaviour
 {
@@ -18,7 +19,8 @@ public class InputManager : MonoBehaviour
     public bool lightAttackInput =  false;
     public bool dashInput = false;
     public bool drinkPotionInput = false;
-    [SerializeField] public bool comboAttackInput = false;
+    public bool initiateComboAttack = false;
+    public bool[] continueComboAttacks = new bool[2] {false, false};
 
     private void Awake()
     {
@@ -38,9 +40,25 @@ public class InputManager : MonoBehaviour
             playerInput.Player.Dash.canceled += i => dashInput = false;
             playerInput.Player.DrinkPotion.performed += i => drinkPotionInput = true;
             playerInput.Player.DrinkPotion.canceled += i => drinkPotionInput = false;
-            playerInput.Player.ComboAttack.performed += i => {
-                comboAttackInput = true;
-                StartCoroutine(resetcomboAttackInput());
+            playerInput.Player.ComboAttack.performed += context => {
+                
+                var tapCount = context.interaction is MultiTapInteraction ? ((MultiTapInteraction)context.interaction).tapCount : 1;
+                initiateComboAttack = true;
+                switch (tapCount)
+                {
+                    case 1:
+                        
+                        continueComboAttacks[0] = true;
+                        break;
+                    case 2:
+                        continueComboAttacks[1] = true;
+                        // Handle double tap
+                        break;
+                   
+                }
+
+
+                
             };
             //playerInput.Player.ComboAttack.canceled += i => comboAttackInput = false;
         }
@@ -75,8 +93,5 @@ public class InputManager : MonoBehaviour
         //Debug.Log(dashInput+ " " + drinkPotionInput);       
     }
 
-    public IEnumerator resetcomboAttackInput(){
-        yield return new WaitForSeconds(0.1f);
-        comboAttackInput = false;
-    }
+   
 }

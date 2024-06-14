@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -141,9 +142,29 @@ public class PlayerAnimatorManager : MonoBehaviour
     private void comboAttack(int currentAttack){
 
         //Debug.Log(inputManager.comboAttackInput);
-        //if(!inputManager.comboAttackInput) animator.CrossFade("Locomotion", 0.1f);
+        if(!inputManager.initiateComboAttack) animator.CrossFade("Locomotion", 0.1f);
 
-        if(currentAttack == 3) canInitateComboAttack = true;
+        switch(currentAttack){
+            case 0:
+                if(inputManager.continueComboAttacks[currentAttack] == true){
+                    inputManager.continueComboAttacks[currentAttack] = false;
+                }else{
+                    animator.CrossFade("Locomotion", 0.1f);
+                    inputManager.initiateComboAttack = true;
+                }
+                break;
+            case 1:
+                if(inputManager.continueComboAttacks[currentAttack] == true){
+                    inputManager.continueComboAttacks[currentAttack] = false;
+                }else{
+                    animator.CrossFade("Locomotion", 0.1f);
+                    inputManager.initiateComboAttack = true;
+
+                }
+                break;
+        }
+
+        if(currentAttack == 3) inputManager.initiateComboAttack = true;
         
     }
 
