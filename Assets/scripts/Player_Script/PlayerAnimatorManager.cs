@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -143,10 +144,42 @@ public class PlayerAnimatorManager : MonoBehaviour
     //FUNCTION called through the animator
     private void comboAttack(int currentAttack){
 
-        //Debug.Log(inputManager.comboAttackInput);
-        //if(!inputManager.comboAttackInput) animator.CrossFade("Locomotion", 0.1f);
+        Debug.Log("bfr: " + inputManager.comboAttackArr[currentAttack] + " " +currentAttack );
+        switch(currentAttack){
+            case 0:
+                if(inputManager.comboAttackArr[currentAttack]){
+                    //inputManager.comboAttackArr[currentAttack] = false;
+                }else{
+                    animator.CrossFade("Locomotion", 0.1f);
+                    canInitateComboAttack = true;
+                    inputManager.comboAttackArr = new bool[3] {false, false, false};
+                }
+                break;
+            case 1:
+                if(inputManager.comboAttackArr[currentAttack]){
+                    //inputManager.comboAttackArr[currentAttack] = false;
+                }else{
+                    animator.CrossFade("Locomotion", 0.1f);
+                    canInitateComboAttack = true;
+                    inputManager.comboAttackArr = new bool[3] {false, false, false};
 
-        if(currentAttack == 3) canInitateComboAttack = true;
+                }
+                break;
+            case 2:
+                if(inputManager.comboAttackArr[currentAttack]){
+                    //inputManager.comboAttackArr[currentAttack] = false;
+                }else{
+                    animator.CrossFade("Locomotion", 0.1f);
+                    canInitateComboAttack = true;
+                    inputManager.comboAttackArr = new bool[3] {false, false, false};
+
+                }
+                break;
+
+        }
+        Debug.Log("afr: " + inputManager.comboAttackArr[currentAttack] + " " +currentAttack );
+
+        
         
     }
 

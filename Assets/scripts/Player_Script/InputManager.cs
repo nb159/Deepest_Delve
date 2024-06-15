@@ -3,28 +3,33 @@ using System.Collections.Generic;
 using System.Xml.Serialization;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.InputSystem.Interactions;
 
 public class InputManager : MonoBehaviour
 {
     PlayerAnimatorManager playerAnimatorManager;
 
     public PlayerInput playerInput;
-    Vector2 movementInput;
+    public Vector2 movementInput;
 
     [Header("Movement Variables")]
     public float moveAmount;
     public float verticalInput;
     public float horizontalInput;
-    public bool lightAttackInput =  false;
+    public bool lightAttackInput = false;
     public bool dashInput = false;
     public bool drinkPotionInput = false;
-    [SerializeField] public bool comboAttackInput = false;
+    public bool[] comboAttackArr = new bool[3] {false, false, false};
+    public bool comboAttackInput = false;
+    public int currentComboState = 1;
+    // Event to notify when the player is drinking a potion
+    public delegate void DrinkPotionAction();
+    public static event DrinkPotionAction OnDrinkPotion;
 
     private void Awake()
     {
         playerAnimatorManager = GetComponent<PlayerAnimatorManager>();
-    }   
-
+    }
     private void OnEnable()
     {
         if (playerInput == null)
@@ -32,22 +37,49 @@ public class InputManager : MonoBehaviour
             playerInput = new PlayerInput();
 
             playerInput.Player.Movement.performed += i => movementInput = i.ReadValue<Vector2>();
-            
             playerInput.Player.Attacks.performed += i => lightAttackInput = true;
             playerInput.Player.Attacks.canceled += i => lightAttackInput = false;
             playerInput.Player.Dash.performed += i => dashInput = true;
             playerInput.Player.Dash.canceled += i => dashInput = false;
-            playerInput.Player.DrinkPotion.performed += i => drinkPotionInput = true;
+            playerInput.Player.DrinkPotion.performed += i => {
+                drinkPotionInput = true;
+                OnDrinkPotion?.Invoke(); // Invoking event when drinking potion
+            };
             playerInput.Player.DrinkPotion.canceled += i => drinkPotionInput = false;
-            playerInput.Player.ComboAttack.performed += i => {
-                comboAttackInput = true;
-                StartCoroutine(resetcomboAttackInput());
+            playerInput.Player.ComboAttack.performed += context => {
+                var tapCount = context.interaction is MultiTapInteraction ? ((MultiTapInteraction)context.interaction).tapCount : 1;
+                
+                switch (tapCount)
+                {
+                    case 1:
+                        if(currentComboState == 1){
+                            currentComboState ++;
+                            comboAttackArr[0] = true;
+                        }
+                        break;
+                    
+                    case 2:
+                        if(currentComboState == 2){
+                            currentComboState ++;
+                            comboAttackArr[1] = true;
+                        }                    
+                        break;
+                    case 3:
+                        if(currentComboState == 3){
+                            currentComboState = 1;
+                            comboAttackArr[2] = true;
+                        }
+                        break;
+                   
+                }
+
+
+                
             };
             //playerInput.Player.ComboAttack.canceled += i => comboAttackInput = false;
         }
 
         playerInput.Enable();
-        
     }
 
     private void OnDisable()
@@ -57,29 +89,24 @@ public class InputManager : MonoBehaviour
 
     private void HandleMovementInput()
     {
-        
         verticalInput = movementInput.y;
         horizontalInput = movementInput.x;
 
-
         moveAmount = Mathf.Clamp01(Mathf.Abs(horizontalInput) + Mathf.Abs(verticalInput));
-        playerAnimatorManager.updateAnimatorFreeRoamValues(0, moveAmount);
+        playerAnimatorManager.updateAnimatorFreeRoamValues(horizontalInput, moveAmount);
     }
 
     public void HandleAllInputs()
     {
-        if(playerAnimatorManager.canAttack){
+        if(playerAnimatorManager.canMove){
             HandleMovementInput();
-        }else{
+        }
+        else
+        {
             verticalInput = 0;
             horizontalInput = 0;
-        }
-
-        //Debug.Log(dashInput+ " " + drinkPotionInput);       
+        }       
     }
 
-    public IEnumerator resetcomboAttackInput(){
-        yield return new WaitForSeconds(0.1f);
-        comboAttackInput = false;
-    }
+   
 }

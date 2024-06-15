@@ -1,6 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
-<WwiseDocument Type="WorkUnit" ID="{CFBF7944-FB05-410F-93B8-0EED81B3DA5F}" SchemaVersion="110">
-	<Events>
-		<WorkUnit Name="Default Work Unit" ID="{CFBF7944-FB05-410F-93B8-0EED81B3DA5F}" PersistMode="Standalone"/>
-	</Events>
-</WwiseDocument>
+version https://git-lfs.github.com/spec/v1
+oid sha256:a9f77a082205bfaded4553179156cbc55e012f95a2378c5a6dc243249c6940e2
+size 1311
