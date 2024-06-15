@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Unity.VisualScripting;
+using UnityEngine.SceneManagement;
+
 
 public class GameManager : MonoBehaviour
 {
@@ -114,18 +116,18 @@ public class GameManager : MonoBehaviour
 
     private void LoadScene(string sceneName, bool showCursor)
     {
-        //StartCoroutine(LoadSceneAsync(sceneName, showCursor));
+        StartCoroutine(LoadSceneAsync(sceneName, showCursor));
     }
 
-    // private IEnumerator LoadSceneAsync(string sceneName, bool showCursor)
-    // {
-    //     AsyncOperation asyncLoad =  SceneManager.LoadSceneAsync(sceneName);
-    //     while (!asyncLoad.isDone)
-    //     {
-    //         yield return null;
-    //     }
-    //     ShowCursor(showCursor);
-    // }
+    private IEnumerator LoadSceneAsync(string sceneName, bool showCursor)
+    {
+        AsyncOperation asyncLoad =  SceneManager.LoadSceneAsync(sceneName);
+        while (!asyncLoad.isDone)
+        {
+            yield return null;
+        }
+        ShowCursor(showCursor);
+    }
 
     private void ShowCursor(bool isVisible)
     {
