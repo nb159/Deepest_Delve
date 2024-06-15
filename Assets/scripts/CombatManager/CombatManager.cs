@@ -46,18 +46,18 @@ public class CombatManager : MonoBehaviour
 
     
 
-    public void bossHighRangeAttackMethode(){
-        //Debug.Log(GameManager.instance.bossHealth+" " + lightAttackDamage);
-        GameManager.instance.playerHealth -= bossHighRangeAttack;
-              Debug.Log(  GameManager.instance.playerHealth);
+    // public void bossHighRangeAttackMethode(){
+    //     //Debug.Log(GameManager.instance.bossHealth+" " + lightAttackDamage);
+    //     GameManager.instance.playerHealth -= bossHighRangeAttack;
+    //           Debug.Log(  GameManager.instance.playerHealth);
   
-    }
-      public void bossLowRangeAttackMethode(){
-        //Debug.Log(GameManager.instance.bossHealth+" " + lightAttackDamage);
-        GameManager.instance.playerHealth -= bossLowRangeAttack;
-              Debug.Log(  GameManager.instance.playerHealth);
+    // }
+    //   public void bossLowRangeAttackMethode(){
+    //     //Debug.Log(GameManager.instance.bossHealth+" " + lightAttackDamage);
+    //     GameManager.instance.playerHealth -= bossLowRangeAttack;
+    //           Debug.Log(  GameManager.instance.playerHealth);
   
-    }
+    // }
 
     public void bossHighRangeAttackMethode(){
         Debug.Log( bossHighRangeAttack +" " + GameManager.instance.playerHealth);
