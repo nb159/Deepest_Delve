@@ -37,13 +37,15 @@ public class PlayerManager : MonoBehaviour
     {
         playerLocomotion.HandleAllMovement();
         playerCombat.HandleAllCombat();
+        //Usually camera is handled in late update but since player is being moved by  phbyics, we need to put camera on fixed update -> still wondering why :)
+        PlayerCamera.instance.HandleAllCameraActions();
+
 
     }
 
     //calle donce per frame after all the updates are done
     private void LateUpdate()
     {
-        PlayerCamera.instance.HandleAllCameraActions();
     }
 
     
