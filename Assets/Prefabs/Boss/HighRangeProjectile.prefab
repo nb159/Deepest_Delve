@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3220392423600093029}
   - component: {fileID: 8097672118757460540}
   - component: {fileID: 2847898145360035340}
-  - component: {fileID: -6878104750088413271}
+  - component: {fileID: 3452137970947121062}
   m_Layer: 0
   m_Name: HighRangeProjectile
   m_TagString: Projectile
@@ -134,7 +134,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &-6878104750088413271
+--- !u!114 &3452137970947121062
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -143,7 +143,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 6190194825629670988}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ca4d9cdcd76962a4ca1299489ea229a8, type: 3}
+  m_Script: {fileID: 11500000, guid: c60b30e72d34c0d4dac5158501d75cb7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   lifetime: 10
