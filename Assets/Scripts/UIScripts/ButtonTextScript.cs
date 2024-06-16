@@ -9,10 +9,16 @@ public class ButtonTextScript : MonoBehaviour
     {
         public string StartButton;
         public string EndButton;
+        public string OptionsButton;
+        public string RestartButton;
+        public string ContinueButton;
     }
 
     public TMP_Text StartButtonText;
     public TMP_Text EndButtonText;
+    public TMP_Text OptionsButtonText;
+    public TMP_Text RestartButtonText;
+    public TMP_Text ContinueButtonText;
 
     private void Start()
     {
@@ -29,7 +35,7 @@ public class ButtonTextScript : MonoBehaviour
         {
             // Deserialize the JSON file to Config object
             Config config = JsonUtility.FromJson<Config>(jsonFile.text);
-            Debug.Log(config.StartButton);
+            // Debug.Log(config.StartButton);
             // Set the UI elements with the values from the config
             if (StartButtonText != null)
             {
@@ -39,6 +45,21 @@ public class ButtonTextScript : MonoBehaviour
             if (EndButtonText != null)
             {
                 EndButtonText.text = config.EndButton;
+            }
+
+            if (OptionsButtonText != null)
+            {
+                OptionsButtonText.text = config.OptionsButton;
+            }
+
+            if (ContinueButtonText != null)
+            {
+                ContinueButtonText.text = config.ContinueButton;
+            }
+
+            if (RestartButtonText != null)
+            {
+                RestartButtonText.text = config.RestartButton;
             }
         }
         else
