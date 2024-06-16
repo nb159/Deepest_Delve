@@ -1,0 +1,8 @@
+{
+  "StartButton": "Start Game",
+  "EndButton": "Quit Game",
+  "OptionsButton": "Options",
+  "RestartButton": "Restart",
+  "ContinueButton": "Continue",
+  "testValue": "This is a test value"
+}

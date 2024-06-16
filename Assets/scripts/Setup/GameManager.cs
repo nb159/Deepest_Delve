@@ -1,32 +1,41 @@
+using System;
 using System.Collections;
-using System.Collections.Generic;
-using UnityEngine.SceneManagement;
 using UnityEngine;
-using Unity.VisualScripting;
+using UnityEngine.SceneManagement;
+
+public enum GameScene
+{
+    MainMenuScene,
+    InGameScene,
+    PlayerDeathScene,
+    WinScene,
+    SettingsScene
+}
 
 public class GameManager : MonoBehaviour
 {
-
-
     public static GameManager instance;
     public CombatManager combatManager;
 
-    [Header("Game Stats")]
-    [SerializeField] public float  GameSpeedtime = 1;
+    [Header("Game Stats")] [SerializeField]
+    public float GameSpeedtime = 1;
 
-    [Header("Boss Stats")]
-    [SerializeField] public float bossHealth = 100f;
+    [Header("Boss Stats")] [SerializeField]
+    public float bossHealth = 100f;
+
     [SerializeField] public float bossAttackDelay = 1f;
 
-    [Header("Camera Settings")]
-    [SerializeField] public int cameraRotationSpeed = 15;
+    [Header("Camera Settings")] [SerializeField]
+    public int cameraRotationSpeed = 15;
 
 
-    [Header("Player Stats")]
-    
-    [SerializeField] public float playerHealth = 100;
+    [Header("Player Stats")] [SerializeField]
+    public float playerHealth = 100;
+
     [SerializeField] public int playerPotions = 4;
+
     [SerializeField] public int PotionHpRegenAmount = 30;
+
     //Stamina
     [SerializeField] public float playerStamina = 100;
     [SerializeField] public float playerStaminaRegen = 1f;
@@ -38,29 +47,29 @@ public class GameManager : MonoBehaviour
     [SerializeField] public float playerSpeed = 5f;
     [SerializeField] public float playerDashMultiplier = 10f;
     [SerializeField] public float playerRotationSpeed = 15f;
+    public GameScene currentScene;
+
 
     private void Awake()
     {
         if (instance != null && instance != this)
         {
-            Destroy(this.gameObject);
+            Destroy(gameObject);
         }
         else
         {
             instance = this;
-            DontDestroyOnLoad(this.gameObject);
+            DontDestroyOnLoad(gameObject);
             LoadGameSettings();
         }
     }
 
-    void Start()
+    private void Start()
     {
-        ChangeScene(GameScene.MainMenuScene);
+        // TODO: figure out what the fuck you want. This will relocate to MainMenuScene from the start
+        // ChangeScene(GameScene.MainMenuScene);
     }
 
-    public enum GameScene { MainMenuScene, InGameScene, PlayerDeathScene, WinScene }
-    public GameScene currentScene;
- 
 
     public void ChangeScene(GameScene newScene)
     {
@@ -70,13 +79,17 @@ public class GameManager : MonoBehaviour
         HandleSceneChange();
     }
 
-        private void HandleSceneChange()
+
+    private void HandleSceneChange()
     {
-        switch (currentScene)
+        HandleSceneChange(currentScene);
+    }
+
+    private void HandleSceneChange(GameScene newScene)
+    {
+        currentScene = newScene;
+        switch (newScene)
         {
-            case GameScene.MainMenuScene:
-                LoadScene("MainMenu", true);
-                break;
             case GameScene.InGameScene:
                 LoadScene("InGameScene", true);
                 break;
@@ -86,8 +99,13 @@ public class GameManager : MonoBehaviour
             case GameScene.WinScene:
                 LoadScene("WinScene", true);
                 break;
+            case GameScene.MainMenuScene:
+            default:
+                LoadScene("MainMenu", true);
+                break;
         }
     }
+
 
     private void LoadScene(string sceneName, bool showCursor)
     {
@@ -96,11 +114,8 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator LoadSceneAsync(string sceneName, bool showCursor)
     {
-        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(sceneName);
-        while (!asyncLoad.isDone)
-        {
-            yield return null;
-        }
+        var asyncLoad = SceneManager.LoadSceneAsync(sceneName);
+        while (!asyncLoad.isDone) yield return null;
         ShowCursor(showCursor);
     }
 
@@ -110,52 +125,23 @@ public class GameManager : MonoBehaviour
         Cursor.lockState = isVisible ? CursorLockMode.None : CursorLockMode.Locked;
     }
 
-
-    [System.Serializable]
-    public class GameSettings
-    {
-        public float GameSpeedtime;
-        public float bossHealth;
-        public float bossAttackDelay;
-        public float playerHealth;
-        public int playerPotions;
-        public int PotionHpRegenAmount;
-        public float playerStamina;
-        public float playerStaminaRegen;
-        public float playerStaminaDashCost;
-        public float playerStaminaLightAttackCost;
-        public float playerSpeed;
-        public float playerDashMultiplier;
-        public float bossHighRangeAttack;
-        public float bossLowRangeAttack;
-
-    }
-
     private void LoadGameSettings()
     {
-        TextAsset jsonFile = Resources.Load<TextAsset>("GameSettings");
+        var jsonFile = Resources.Load<TextAsset>("GameSettings");
         if (jsonFile != null)
         {
             //Debug.Log("GameSettings.json file found in Resources.");
-            string json = jsonFile.text;
+            var json = jsonFile.text;
             // Debug.Log($"GameSettings.json content: {json}");
 
-            GameSettings settings = JsonUtility.FromJson<GameSettings>(json);
+            var settings = JsonUtility.FromJson<GameSettings>(json);
 
             if (settings != null)
-            {
                 // Debug.Log("Game settings loaded successfully.");
                 ApplyGameSettings(settings);
-            }
-            else
-            {
-                //Debug.LogError("Failed to parse game settings from JSON.");
-            }
+            //Debug.LogError("Failed to parse game settings from JSON.");
         }
-        else
-        {
-            //Debug.LogError("Cannot find GameSettings.json file in Resources.");
-        }
+        //Debug.LogError("Cannot find GameSettings.json file in Resources.");
     }
 
     private void ApplyGameSettings(GameSettings settings)
@@ -183,9 +169,25 @@ public class GameManager : MonoBehaviour
         combatManager.tesy1();
         // bossHealing = settings.playerSpeed;
         // bossHealingDuration = settings.playerSpeed;
-
     }
 
 
-
+    [Serializable]
+    public class GameSettings
+    {
+        public float GameSpeedtime;
+        public float bossHealth;
+        public float bossAttackDelay;
+        public float playerHealth;
+        public int playerPotions;
+        public int PotionHpRegenAmount;
+        public float playerStamina;
+        public float playerStaminaRegen;
+        public float playerStaminaDashCost;
+        public float playerStaminaLightAttackCost;
+        public float playerSpeed;
+        public float playerDashMultiplier;
+        public float bossHighRangeAttack;
+        public float bossLowRangeAttack;
+    }
 }
