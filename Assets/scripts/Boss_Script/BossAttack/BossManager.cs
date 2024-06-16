@@ -17,6 +17,7 @@ public class BossManager : MonoBehaviour
     private HighRangeAttack highRangeAttack;
     private LowRangeAttack lowRangeAttack;
     private ArmAttack armAttack;
+     private Animator animator;
    // public float bossHp = GameManager.instance.bossHealth;
 
 
@@ -29,7 +30,7 @@ public class BossManager : MonoBehaviour
         highRangeAttack = GetComponent<HighRangeAttack>();
         lowRangeAttack = GetComponent<LowRangeAttack>();
         currentState = BossAttackState.Idle;
-
+animator = GetComponent<Animator>();
         InputManager.OnDrinkPotion += TryLowRangeAttackState;
     }
 
