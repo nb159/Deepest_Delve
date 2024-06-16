@@ -1,3 +1,6 @@
+
+
+
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -5,32 +8,29 @@ public class BossManager : MonoBehaviour
 {
     private enum BossAttackState { Idle, HighAttack, LowAttack, ArmAttack, Enraged }
 
-    //enraged gets enabled when boss reaches approx half hp 
     private BossAttackState currentState;
 
     public Transform player;
     public float attackRange = 20f;
     public float lowAttackRange = 10f;
-    public float ArmAttackRange = 5f;
+    public float armAttackRange = 5f;
     public float potionAttackChance = 0.5f;
+    public float bossHealth = 100f; // Assume some health value
+    public float enragedHealthThreshold = 50f; // Threshold for enraged state
 
     private HighRangeAttack highRangeAttack;
     private LowRangeAttack lowRangeAttack;
     private ArmAttack armAttack;
-     private Animator animator;
-   // public float bossHp = GameManager.instance.bossHealth;
-
-
-
-    //private EnragedAttack enragedAttack;
-
+    private BossAnimatorManager bossAnimatorManager;
 
     void Start()
     {
         highRangeAttack = GetComponent<HighRangeAttack>();
         lowRangeAttack = GetComponent<LowRangeAttack>();
+        armAttack = GetComponent<ArmAttack>();
+        bossAnimatorManager = GetComponent<BossAnimatorManager>();
         currentState = BossAttackState.Idle;
-animator = GetComponent<Animator>();
+
         InputManager.OnDrinkPotion += TryLowRangeAttackState;
     }
 
@@ -42,7 +42,11 @@ animator = GetComponent<Animator>();
     void Update()
     {
         float distanceToPlayer = Vector3.Distance(transform.position, player.position);
-       // Debug.Log(distanceToPlayer);
+
+        if (bossHealth <= enragedHealthThreshold)
+        {
+            currentState = BossAttackState.Enraged;
+        }
 
         switch (currentState)
         {
@@ -53,106 +57,96 @@ animator = GetComponent<Animator>();
                 HandleHighAttackState(distanceToPlayer);
                 break;
             case BossAttackState.LowAttack:
-                TryLowRangeAttackState();
+                HandleLowAttackState(distanceToPlayer);
                 break;
-
             case BossAttackState.ArmAttack:
-                HandelArmAttackState(distanceToPlayer);
+                HandleArmAttackState(distanceToPlayer);
                 break;
-                // case BossAttackState.EnragedAttack:
-                //     HandelEnragedAttackState(bossHp);
-                //     break;
+            case BossAttackState.Enraged:
+                HandleEnragedState();
+                break;
         }
     }
 
     private void HandleIdleState(float distanceToPlayer)
     {
+        //bossAnimatorManager.SetIdle();
+
         if (distanceToPlayer < attackRange)
         {
             if (distanceToPlayer > lowAttackRange)
             {
                 currentState = BossAttackState.HighAttack;
             }
-            // if (distanceToPlayer < ArmAttackRange)
-            // {
-            //     currentState = BossAttackState.ArmAttack;
-            // }
-            // else
-            // {
-            //     currentState = BossAttackState.LowAttack;
-            // }
+            else if (distanceToPlayer < armAttackRange)
+            {
+                currentState = BossAttackState.ArmAttack;
+            }
+            else
+            {
+                currentState = BossAttackState.LowAttack;
+            }
         }
     }
-
-    private void HandelArmAttackState(float distanceToPlayer)
-    {
-
-        if (distanceToPlayer < ArmAttackRange)
-        {
-            currentState = BossAttackState.ArmAttack;
-            armAttack.ExecuteAttack(player);
-
-        }
-    }
-
 
     private void HandleHighAttackState(float distanceToPlayer)
     {
+       //bossAnimatorManager.TriggerLowAttack();
+
         if (distanceToPlayer > attackRange)
         {
             currentState = BossAttackState.Idle;
         }
-        // else if (distanceToPlayer <= lowAttackRange)
-        // {
-        //     currentState = BossAttackState.LowAttack;
-        // }
         else
         {
             highRangeAttack.ExecuteAttack(player);
         }
     }
 
-
-
-    // private void HandeleEnragedAttackState(float bossHp) // pass boss hp as param. 
-    // {
-
-
-    // }
-
-
-
-    // private void HandleLowAttackState(float distanceToPlayer)
-    // {
-    //     if (distanceToPlayer > attackRange)
-    //     {
-    //         currentState = BossAttackState.Idle;
-    //     }
-    //     else if (distanceToPlayer > lowAttackRange)
-    //     {
-    //         currentState = BossAttackState.HighAttack;
-    //     }
-    //     else
-    //     {
-    //         lowRangeAttack.ExecuteAttack(player);
-    //     }
-    // }
-
-
-    //random low attack on drinking potion ... but maybe i change it to a different attack later 
-    private void TryLowRangeAttackState()
+     private void HandleLowAttackState(float distanceToPlayer)
     {
-        if (Random.value < potionAttackChance)
+      
+
+        if (distanceToPlayer > attackRange)
         {
-
-
+            currentState = BossAttackState.Idle;
+        }
+        else if (distanceToPlayer > lowAttackRange)
+        {
+            currentState = BossAttackState.HighAttack;
+        }
+        else
+        {
             lowRangeAttack.ExecuteAttack(player);
-
         }
     }
+
+    private void HandleArmAttackState(float distanceToPlayer)
+    {
+        
+
+        if (distanceToPlayer > armAttackRange)
+        {
+            currentState = BossAttackState.Idle;
+        }
+        else
+        {
+            armAttack.ExecuteAttack(player);
+        }
+    }
+
+    private void HandleEnragedState()
+    {
+       
+    }
+
+    private void TryLowRangeAttackState()
+    {
+       if (Random.value < potionAttackChance)
+       {
+           bossAnimatorManager.TriggerLowAttack();
+            lowRangeAttack.ExecuteAttack(player);
+           // Debug.Log("hiiii");
+       }
+    }
 }
-
-
-
-
-
