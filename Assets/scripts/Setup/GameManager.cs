@@ -175,10 +175,10 @@ public class GameManager : MonoBehaviour
         // heavyAttackDamage = settings.playerSpeed;
         // playerDefense = settings.playerSpeed;
         // playerCritDamage = settings.playerSpeed;
-        Debug.Log(settings.bossHighRangeAttack);
-        combatManager.bossHighRangeAttack = settings.bossHighRangeAttack;
-        combatManager.bossLowRangeAttack = settings.bossLowRangeAttack;
-        combatManager.tesy1();
+        // Debug.Log(settings.bossHighRangeAttack);
+        // combatManager.bossHighRangeAttack = settings.bossHighRangeAttack;
+        // combatManager.bossLowRangeAttack = settings.bossLowRangeAttack;
+        // combatManager.tesy1();
         // bossHealing = settings.playerSpeed;
         // bossHealingDuration = settings.playerSpeed;
 

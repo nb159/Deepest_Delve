@@ -17,7 +17,7 @@ public class BossManager : MonoBehaviour
     private HighRangeAttack highRangeAttack;
     private LowRangeAttack lowRangeAttack;
     private ArmAttack armAttack;
-    public float bossHp = GameManager.instance.bossHealth;
+   // public float bossHp = GameManager.instance.bossHealth;
 
 
 
