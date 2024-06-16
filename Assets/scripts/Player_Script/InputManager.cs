@@ -13,6 +13,7 @@ public class InputManager : MonoBehaviour
     public Vector2 movementInput;
 
     [Header("Movement Variables")]
+    //TODO: ADD Inventory Button
     public float moveAmount;
     public float verticalInput;
     public float horizontalInput;

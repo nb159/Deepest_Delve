@@ -65,6 +65,8 @@ public class GameManager : MonoBehaviour
     public void ChangeScene(GameScene newScene)
     {
         currentScene = newScene;
+        //UIScripts.StageCounterScript.StageCount += 1;
+        //TODO: Add scene count to SceneCounterConfig Script
         HandleSceneChange();
     }
 

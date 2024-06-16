@@ -64,7 +64,7 @@ public class ButtonTextScript : MonoBehaviour
         }
         else
         {
-            Debug.LogError("Config file not found!");
+            Debug.LogError("Button Text Config file not found!");
         }
     }
 }
