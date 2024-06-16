@@ -1003,6 +1003,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2007219598112408857, guid: e6e517a5bbd5ae74a83e441551c8d820, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2750702078430079173, guid: e6e517a5bbd5ae74a83e441551c8d820, type: 3}
       propertyPath: m_Name
       value: Player (1)
@@ -1599,6 +1603,7 @@ MonoBehaviour:
   lightAttackInput: 0
   dashInput: 0
   drinkPotionInput: 0
+  inventoryInput: 0
   comboAttackArr: 000000
   comboAttackInput: 0
   currentComboState: 1
