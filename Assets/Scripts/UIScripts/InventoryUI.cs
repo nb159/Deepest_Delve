@@ -3,15 +3,19 @@ using UnityEngine;
 /* This object updates the inventory UI. */
 
 public class InventoryUI : MonoBehaviour {
-
+    private InputManager inputManager;
 	public Transform itemsParent;	// The parent object of all the items
 	public GameObject inventoryUI;	// The entire UI
+
+    [SerializeField]
+    private bool inventoryInput = false;
 
 	Inventory inventory;	// Our current inventory
 
 	InventorySlot[] slots;	// List of all the slots
 
 	void Start () {
+        inputManager = GetComponent<InputManager>();
 		inventory = Inventory.instance;
 		inventory.onItemChangedCallback += UpdateUI;	// Subscribe to the onItemChanged callback
 
@@ -21,10 +25,15 @@ public class InventoryUI : MonoBehaviour {
 	
 	void Update () {
 		// TODO: Refactor this to use the new input system
-		// if (playerInput.Player.Inventory("Inventory"))
-		// {
-		// 	inventoryUI.SetActive(!inventoryUI.activeSelf);
-		// }
+		if (/*inputManager.InventoryInput*/ inventoryInput && !inventoryUI.activeSelf)
+		{
+			inventoryUI.SetActive(!inventoryUI.activeSelf);
+		}
+        else if (!inventoryInput && inventoryUI.activeSelf)
+        {
+            inventoryUI.SetActive(false);
+
+        }
 	}
 
 	// Update the inventory UI by:
