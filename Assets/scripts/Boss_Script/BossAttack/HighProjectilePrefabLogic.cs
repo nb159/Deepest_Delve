@@ -3,7 +3,7 @@ using UnityEngine;
 public class HighProjectilePrefabLogic : MonoBehaviour
 {
     public float lifetime = 10f; 
-    public float targetHeight = 5f; 
+    public float showIndicatorThreshhold = 5f;  /// this is the thr
     public GameObject groundIndicatorPrefab; 
 
     private GameObject indicator; 
@@ -16,7 +16,7 @@ public class HighProjectilePrefabLogic : MonoBehaviour
 
     void Update()
     {
-        if (!indicatorInstantiated && transform.position.y <= targetHeight)
+        if (!indicatorInstantiated && transform.position.y <= showIndicatorThreshhold)
         {
             InstantiateIndicator();
         }
