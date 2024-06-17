@@ -47,7 +47,7 @@ public class BossManager : MonoBehaviour
         if (player == null) return; 
 
         float distanceToPlayer = Vector3.Distance(transform.position, player.position);
-        //Debug.Log($"Current State: {currentState}, Distance to Player: {distanceToPlayer}");
+       // Debug.Log($"Current State: {currentState}, Distance to Player: {distanceToPlayer}");
 
         if (bossHealth <= enragedHealthThreshold)
         {
