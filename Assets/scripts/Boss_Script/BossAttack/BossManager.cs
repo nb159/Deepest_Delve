@@ -1,7 +1,3 @@
-
-
-
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class BossManager : MonoBehaviour
@@ -15,22 +11,27 @@ public class BossManager : MonoBehaviour
     public float lowAttackRange = 10f;
     public float armAttackRange = 5f;
     public float potionAttackChance = 0.5f;
-    public float bossHealth = 100f; // Assume some health value
-    public float enragedHealthThreshold = 50f; // Threshold for enraged state
+    public float bossHealth = 100f;
+    public float enragedHealthThreshold = 50f;
 
     private HighRangeAttack highRangeAttack;
     private LowRangeAttack lowRangeAttack;
-    private ArmAttack armAttack;
     private BossAnimatorManager bossAnimatorManager;
 
     void Start()
     {
         highRangeAttack = GetComponent<HighRangeAttack>();
         lowRangeAttack = GetComponent<LowRangeAttack>();
-        armAttack = GetComponent<ArmAttack>();
         bossAnimatorManager = GetComponent<BossAnimatorManager>();
-        currentState = BossAttackState.Idle;
 
+        if (highRangeAttack == null || lowRangeAttack == null || bossAnimatorManager == null)
+        {
+            Debug.LogError("Essential components are missing.");
+            enabled = false;
+            return;
+        }
+
+        currentState = BossAttackState.Idle;
         InputManager.OnDrinkPotion += TryLowRangeAttackState;
     }
 
@@ -41,58 +42,68 @@ public class BossManager : MonoBehaviour
 
     void Update()
     {
+        if (player == null) return; 
+
         float distanceToPlayer = Vector3.Distance(transform.position, player.position);
+        //Debug.Log($"Current State: {currentState}, Distance to Player: {distanceToPlayer}");
 
         if (bossHealth <= enragedHealthThreshold)
         {
             currentState = BossAttackState.Enraged;
         }
+        else
+        {
+            DetermineAttackState(distanceToPlayer);
+        }
 
+        ExecuteCurrentState(distanceToPlayer);
+    }
+
+    private void DetermineAttackState(float distanceToPlayer)
+    {
+        if (distanceToPlayer <= armAttackRange)
+        {
+            currentState = BossAttackState.ArmAttack;
+        }
+        else if (distanceToPlayer <= lowAttackRange)
+        {
+            currentState = BossAttackState.LowAttack;
+        }
+        else if (distanceToPlayer <= attackRange)
+        {
+            currentState = BossAttackState.HighAttack;
+        }
+        else
+        {
+            currentState = BossAttackState.Idle;
+        }
+    }
+
+    private void ExecuteCurrentState(float distanceToPlayer)
+    {
         switch (currentState)
         {
             case BossAttackState.Idle:
-                HandleIdleState(distanceToPlayer);
+                bossAnimatorManager.SetIdle();
                 break;
             case BossAttackState.HighAttack:
-                HandleHighAttackState(distanceToPlayer);
+                ExecuteHighAttackState(distanceToPlayer);
                 break;
             case BossAttackState.LowAttack:
-                HandleLowAttackState(distanceToPlayer);
+                ExecuteLowAttackState();
                 break;
             case BossAttackState.ArmAttack:
-                HandleArmAttackState(distanceToPlayer);
+                ExecuteArmAttackState();
                 break;
             case BossAttackState.Enraged:
-                HandleEnragedState();
+                ExecuteEnragedState();
                 break;
         }
     }
 
-    private void HandleIdleState(float distanceToPlayer)
+    private void ExecuteHighAttackState(float distanceToPlayer)
     {
-        //bossAnimatorManager.SetIdle();
-
-        if (distanceToPlayer < attackRange)
-        {
-            if (distanceToPlayer > lowAttackRange)
-            {
-                currentState = BossAttackState.HighAttack;
-            }
-            else if (distanceToPlayer < armAttackRange)
-            {
-                currentState = BossAttackState.ArmAttack;
-            }
-            else
-            {
-                currentState = BossAttackState.LowAttack;
-            }
-        }
-    }
-
-    private void HandleHighAttackState(float distanceToPlayer)
-    {
-       //bossAnimatorManager.TriggerLowAttack();
-
+        bossAnimatorManager.TriggerHighAttack();
         if (distanceToPlayer > attackRange)
         {
             currentState = BossAttackState.Idle;
@@ -103,50 +114,33 @@ public class BossManager : MonoBehaviour
         }
     }
 
-     private void HandleLowAttackState(float distanceToPlayer)
+    private void ExecuteLowAttackState()
     {
-      
+        bossAnimatorManager.TriggerLowAttack();
+        lowRangeAttack.ExecuteAttack(player);
+    }
 
-        if (distanceToPlayer > attackRange)
+    private void ExecuteArmAttackState()
+    {
+        bossAnimatorManager.TriggerArmAttack();
+        if (CombatManager.instance != null)
         {
-            currentState = BossAttackState.Idle;
-        }
-        else if (distanceToPlayer > lowAttackRange)
-        {
-            currentState = BossAttackState.HighAttack;
-        }
-        else
-        {
-            lowRangeAttack.ExecuteAttack(player);
+            CombatManager.instance.bossArmAttackMethode();
         }
     }
 
-    private void HandleArmAttackState(float distanceToPlayer)
+    private void ExecuteEnragedState()
     {
-        
-
-        if (distanceToPlayer > armAttackRange)
-        {
-            currentState = BossAttackState.Idle;
-        }
-        else
-        {
-            armAttack.ExecuteAttack(player);
-        }
-    }
-
-    private void HandleEnragedState()
-    {
-       
+        bossAnimatorManager.TriggerEnraged();
+        // Add logic for enraged state attacks
     }
 
     private void TryLowRangeAttackState()
     {
-       if (Random.value < potionAttackChance)
-       {
-           bossAnimatorManager.TriggerLowAttack();
-            lowRangeAttack.ExecuteAttack(player);
-           // Debug.Log("hiiii");
-       }
+        if (Random.value < potionAttackChance)
+        {
+            ExecuteLowAttackState();
+            Debug.Log("Executing Low Range Attack due to potion drink");
+        }
     }
 }

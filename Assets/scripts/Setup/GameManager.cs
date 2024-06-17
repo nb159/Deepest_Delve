@@ -180,6 +180,7 @@ public class GameManager : MonoBehaviour
         public float playerDashMultiplier;
         public float bossHighRangeAttack;
         public float bossLowRangeAttack;
+        public float bossArmAttack;
 
     }
 
@@ -205,6 +206,7 @@ public class GameManager : MonoBehaviour
         // Debug.Log(settings.bossHighRangeAttack);
         combatManager.bossHighRangeAttack = settings.bossHighRangeAttack;
         combatManager.bossLowRangeAttack = settings.bossLowRangeAttack;
+        combatManager.bossArmAttack= settings.bossArmAttack;
         // combatManager.tesy1();
         // bossHealing = settings.playerSpeed;
         // bossHealingDuration = settings.playerSpeed;

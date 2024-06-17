@@ -47,7 +47,7 @@ public class HighProjectilePrefabLogic : MonoBehaviour
         if (hitInfo.CompareTag("Player"))
         {
             CombatManager.instance.bossHighRangeAttackMethode();
-            Debug.Log("Player hit by highrange attack");
+            //Debug.Log("Player hit by highrange attack");
         }
 
         Destroy(gameObject);
