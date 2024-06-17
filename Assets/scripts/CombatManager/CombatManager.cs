@@ -74,7 +74,7 @@ public class CombatManager : MonoBehaviour
 
     public void bossLowRangeAttackMethode()
     {
-       // Debug.Log("low: " + bossLowRangeAttack + " " + GameManager.instance.playerHealth);
+        Debug.Log("low: " + bossLowRangeAttack + " " + GameManager.instance.playerHealth);
 
         GameManager.instance.playerHealth -= bossLowRangeAttack;
      //   Debug.Log(GameManager.instance.playerHealth);

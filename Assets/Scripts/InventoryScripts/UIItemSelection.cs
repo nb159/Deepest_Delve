@@ -9,7 +9,7 @@ public class UIItemSelection : MonoBehaviour
     public void ShowRandomItems()
     {
         // Get a random set of items
-        // List<Item> randomItems = itemDatabase.GetRandomItems(3);
+        // TODO> List<Item> randomItems = itemDatabase.GetRandomItems(3);
 
         // Display the random items in the item selection UI
         // This will depend on your game's specific requirements

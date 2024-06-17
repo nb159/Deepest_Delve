@@ -3,7 +3,7 @@ using UnityEngine;
 public class LowProjectilePrefabLogic : MonoBehaviour
 {
     public float speed = 40f;
-    public float lifetime = 10f;
+    public float lifetime = 2f;
     public float minYPosition = 2f; // Set your desired minimum y position
 
     private Transform target;

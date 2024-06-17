@@ -14,25 +14,25 @@ public class BossAnimatorManager : MonoBehaviour
 
     public void TriggerHighAttack()
     {
-        animator.SetTrigger("HighAttackTrigger");
+        animator.SetTrigger("isHighAttacking");
     }
 
     public void TriggerLowAttack()
     {
-        animator.SetTrigger("low");
+        animator.SetTrigger("isLowAttacking");
     }
 
     public void TriggerArmAttack()
     {
-        animator.SetTrigger("ArmAttackTrigger");
+        animator.SetTrigger("isArmAttacking");
     }
 
     public void TriggerEnraged()
     {
-        animator.SetTrigger("EnragedTrigger");
+        animator.SetTrigger("isEnraged");
     }
      public void SetIdle()
     {
-        animator.SetTrigger("IdleTrigger");
+        animator.SetTrigger("isIdle");
     }
 }

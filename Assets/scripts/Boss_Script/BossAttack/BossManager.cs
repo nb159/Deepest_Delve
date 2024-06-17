@@ -16,12 +16,14 @@ public class BossManager : MonoBehaviour
 
     private HighRangeAttack highRangeAttack;
     private LowRangeAttack lowRangeAttack;
+    
     private BossAnimatorManager bossAnimatorManager;
 
     void Start()
     {
         highRangeAttack = GetComponent<HighRangeAttack>();
         lowRangeAttack = GetComponent<LowRangeAttack>();
+      
         bossAnimatorManager = GetComponent<BossAnimatorManager>();
 
         if (highRangeAttack == null || lowRangeAttack == null || bossAnimatorManager == null)
@@ -123,10 +125,7 @@ public class BossManager : MonoBehaviour
     private void ExecuteArmAttackState()
     {
         bossAnimatorManager.TriggerArmAttack();
-        if (CombatManager.instance != null)
-        {
-            CombatManager.instance.bossArmAttackMethode();
-        }
+       
     }
 
     private void ExecuteEnragedState()
