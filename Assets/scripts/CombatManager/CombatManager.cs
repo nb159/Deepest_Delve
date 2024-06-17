@@ -21,6 +21,7 @@ public class CombatManager : MonoBehaviour
     [Header("Boss Stats")]
     [SerializeField] public float bossHighRangeAttack;
     [SerializeField] public float bossLowRangeAttack;
+        [SerializeField] public float bossArmAttack;
     [SerializeField] public float bossHealing;
     [SerializeField] public float bossHealingDuration;
 
@@ -67,11 +68,12 @@ public class CombatManager : MonoBehaviour
 
     public void bossHighRangeAttackMethode()
     {
-        Debug.Log(bossHighRangeAttack + " " + GameManager.instance.playerHealth);
+        //Debug.Log(bossHighRangeAttack + " " + GameManager.instance.playerHealth);
 
         // Debug.Log(GameManager.instance.bossHealth+" " + lightAttackDamage);
         GameManager.instance.playerHealth -= bossHighRangeAttack;
-        Debug.Log(GameManager.instance.playerHealth);
+        //Debug.Log(GameManager.instance.playerHealth);
+        
         if (GameManager.instance.playerHealth <= 0)
         {
             GameManager.instance.ChangeScene(GameScene.PlayerDeathScene);
@@ -80,10 +82,12 @@ public class CombatManager : MonoBehaviour
     }
     public void bossLowRangeAttackMethode()
     {
-        Debug.Log("low: " + bossLowRangeAttack + " " + GameManager.instance.playerHealth);
+       // Debug.Log("low: " + bossLowRangeAttack + " " + GameManager.instance.playerHealth);
 
         GameManager.instance.playerHealth -= bossLowRangeAttack;
-        Debug.Log(GameManager.instance.playerHealth);
+     //   Debug.Log(GameManager.instance.playerHealth);
+
+    
         if (GameManager.instance.playerHealth <= 0)
         {
             GameManager.instance.ChangeScene(GameScene.PlayerDeathScene);
@@ -92,6 +96,22 @@ public class CombatManager : MonoBehaviour
 
     }
 
+
+ public void bossArmAttackMethode()
+    {
+       // Debug.Log("low: " + bossArmAttack + " " + GameManager.instance.playerHealth);
+
+        GameManager.instance.playerHealth -= bossArmAttack;
+       // Debug.Log(GameManager.instance.playerHealth);
+
+     //Debug.Log("testing if armattack methode works");
+        if (GameManager.instance.playerHealth <= 0)
+        {
+            GameManager.instance.ChangeScene(GameScene.PlayerDeathScene);
+        }
+
+
+    }
     public void tesy1()
     {
         Debug.Log("test1");

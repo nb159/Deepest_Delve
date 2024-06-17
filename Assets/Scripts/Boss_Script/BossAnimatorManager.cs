@@ -31,4 +31,8 @@ public class BossAnimatorManager : MonoBehaviour
     {
         animator.SetTrigger("EnragedTrigger");
     }
+     public void SetIdle()
+    {
+        animator.SetTrigger("IdleTrigger");
+    }
 }
