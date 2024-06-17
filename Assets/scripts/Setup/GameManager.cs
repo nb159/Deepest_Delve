@@ -18,6 +18,7 @@ public class GameManager : MonoBehaviour
     public CombatManager combatManager;
 
     [Header("Game Stats")]
+    public float bossHealth = 100;
     public float GameSpeedtime;
 
     [SerializeField] public float bossAttackDelay = 1f;
