@@ -132,7 +132,7 @@ public class BossManager : MonoBehaviour
     private void ExecuteEnragedState()
     {
         bossAnimatorManager.TriggerEnraged();
-        // Add logic for enraged state attacks
+        // i will add logic for enraged state attacks
     }
 
     private void TryLowRangeAttackState()
@@ -140,7 +140,7 @@ public class BossManager : MonoBehaviour
         if (Random.value < potionAttackChance)
         {
             ExecuteLowAttackState();
-            Debug.Log("Executing Low Range Attack due to potion drink");
+           // Debug.Log("Executing Low Range Attack due to potion drink");
         }
     }
 }

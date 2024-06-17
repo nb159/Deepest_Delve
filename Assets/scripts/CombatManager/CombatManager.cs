@@ -68,11 +68,11 @@ public class CombatManager : MonoBehaviour
 
     public void bossHighRangeAttackMethode()
     {
-        Debug.Log(bossHighRangeAttack + " " + GameManager.instance.playerHealth);
+        //Debug.Log(bossHighRangeAttack + " " + GameManager.instance.playerHealth);
 
         // Debug.Log(GameManager.instance.bossHealth+" " + lightAttackDamage);
         GameManager.instance.playerHealth -= bossHighRangeAttack;
-        Debug.Log(GameManager.instance.playerHealth);
+        //Debug.Log(GameManager.instance.playerHealth);
         
         if (GameManager.instance.playerHealth <= 0)
         {
@@ -82,10 +82,10 @@ public class CombatManager : MonoBehaviour
     }
     public void bossLowRangeAttackMethode()
     {
-        Debug.Log("low: " + bossLowRangeAttack + " " + GameManager.instance.playerHealth);
+       // Debug.Log("low: " + bossLowRangeAttack + " " + GameManager.instance.playerHealth);
 
         GameManager.instance.playerHealth -= bossLowRangeAttack;
-        Debug.Log(GameManager.instance.playerHealth);
+     //   Debug.Log(GameManager.instance.playerHealth);
 
     
         if (GameManager.instance.playerHealth <= 0)
@@ -99,12 +99,12 @@ public class CombatManager : MonoBehaviour
 
  public void bossArmAttackMethode()
     {
-        Debug.Log("low: " + bossArmAttack + " " + GameManager.instance.playerHealth);
+       // Debug.Log("low: " + bossArmAttack + " " + GameManager.instance.playerHealth);
 
         GameManager.instance.playerHealth -= bossArmAttack;
-        Debug.Log(GameManager.instance.playerHealth);
+       // Debug.Log(GameManager.instance.playerHealth);
 
-     Debug.Log("testing if armattack methode works");
+     //Debug.Log("testing if armattack methode works");
         if (GameManager.instance.playerHealth <= 0)
         {
             GameManager.instance.ChangeScene(GameScene.PlayerDeathScene);
