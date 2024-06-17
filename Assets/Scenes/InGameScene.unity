@@ -451,6 +451,7 @@ MonoBehaviour:
   playerCritDamge: 1
   bossHighRangeAttack: 0
   bossLowRangeAttack: 0
+  bossArmAttack: 0
   bossHealing: 10
   bossHealingDuration: 10
 --- !u!1001 &1010804102
@@ -643,6 +644,7 @@ MonoBehaviour:
   playerSltaminaComboAttackCost: 10
   playerSpeed: 5
   playerDashMultiplier: 2
+  dashTime: 0.6
   playerRotationSpeed: 15
   currentScene: 0
 --- !u!4 &1103667833
@@ -670,26 +672,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 209146003422919309, guid: 64f81057a5bacf745a60a02ee945a23a, type: 3}
   m_PrefabInstance: {fileID: 1165906494936729990}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1985377963
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1558046534}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d93a178c7d45326459cef0d9ffbd1f2b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  projectilePrefab: {fileID: 6190194825629670988, guid: 6199943f687b6af46b9c9f3dbb3eaa2c, type: 3}
-  spawnHeight: 50
-  attackCooldown: 10
-  projectileCount: 30
-  attackDuration: 20
-  attackRadius: 20
-  groundIndicatorPrefab: {fileID: 8526346965446256756, guid: 1d9292e46cbf03244983120178db8982, type: 3}
-  indicatorLifetime: 2
 --- !u!114 &2008284313 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5936915007190738196, guid: e6e517a5bbd5ae74a83e441551c8d820, type: 3}
@@ -1832,7 +1814,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6208693282485239630, guid: 90e4b32d562cc164d8483db3241f4d50, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6326169326136726736, guid: 90e4b32d562cc164d8483db3241f4d50, type: 3}
       propertyPath: m_AnchorMax.y
@@ -2529,6 +2511,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 668444256321039244, guid: 64f81057a5bacf745a60a02ee945a23a, type: 3}
+      propertyPath: spawnHeight
+      value: 200
+      objectReference: {fileID: 0}
     - target: {fileID: 6668695404619906180, guid: 64f81057a5bacf745a60a02ee945a23a, type: 3}
       propertyPath: m_Name
       value: Boss
@@ -2544,10 +2530,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 6668695404619906180, guid: 64f81057a5bacf745a60a02ee945a23a, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1985377963}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 64f81057a5bacf745a60a02ee945a23a, type: 3}
 --- !u!1001 &5578204021568366561
 PrefabInstance:
