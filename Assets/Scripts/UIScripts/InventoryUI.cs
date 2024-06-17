@@ -25,11 +25,11 @@ public class InventoryUI : MonoBehaviour {
 	
 	void Update () {
 		// TODO: Refactor this to use the new input system
-		if (/*inputManager.InventoryInput*/ inventoryInput && !inventoryUI.activeSelf)
+		if (/*inputManager.InventoryInput*/ InputManager.instance.openInventoryInput && !inventoryUI.activeSelf)
 		{
 			inventoryUI.SetActive(!inventoryUI.activeSelf);
 		}
-        else if (!inventoryInput && inventoryUI.activeSelf)
+        else if (!InputManager.instance.openInventoryInput && inventoryUI.activeSelf)
         {
             inventoryUI.SetActive(false);
 
