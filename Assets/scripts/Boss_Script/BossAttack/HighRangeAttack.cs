@@ -4,6 +4,8 @@ public class HighRangeAttack : MonoBehaviour, IBossAttack
 {
     public GameObject projectilePrefab;
     public float spawnHeight = 200f;
+    
+    public float HeightOffset = 100f;
     public float attackCooldown = 10f;
     public int projectileCount = 30;
     public float attackDuration = 20;
@@ -17,7 +19,7 @@ public class HighRangeAttack : MonoBehaviour, IBossAttack
         {
             for (int i = 0; i < projectileCount; i++)
             {
-                Vector3 spawnPosition = new Vector3(Random.Range(-attackRadius, attackRadius), Random.Range(spawnHeight - 100, spawnHeight), Random.Range(-attackRadius, attackRadius));
+                Vector3 spawnPosition = new Vector3(Random.Range(-attackRadius, attackRadius), Random.Range(spawnHeight - HeightOffset, spawnHeight), Random.Range(-attackRadius, attackRadius));
                 GameObject projectile = Instantiate(projectilePrefab, spawnPosition, Quaternion.identity);
 
               
