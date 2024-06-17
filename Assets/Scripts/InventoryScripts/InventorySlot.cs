@@ -3,46 +3,43 @@ using UnityEngine.UI;
 
 /* Sits on all InventorySlots. */
 
-public class InventorySlot : MonoBehaviour {
+public class InventorySlot : MonoBehaviour
+{
+    public Image icon; // Reference to the Icon image
+    public Button removeButton; // Reference to the remove button
 
-	public Image icon;			// Reference to the Icon image
-	public Button removeButton;	// Reference to the remove button
+    private Item item; // Current item in the slot
 
-	Item item;  // Current item in the slot
+    // Add item to the slot
+    public void AddItem(Item newItem)
+    {
+        item = newItem;
 
-	// Add item to the slot
-	public void AddItem (Item newItem)
-	{
-		item = newItem;
+        icon.sprite = item.icon;
+        icon.enabled = true;
+        // removeButton.interactable = true;
+        Inventory.instance.Add(item);
+    }
 
-		icon.sprite = item.icon;
-		icon.enabled = true;
-		removeButton.interactable = true;
-	}
+    // Clear the slot
+    public void ClearSlot()
+    {
+        item = null;
 
-	// Clear the slot
-	public void ClearSlot ()
-	{
-		item = null;
+        icon.sprite = null;
+        icon.enabled = false;
+        removeButton.interactable = false;
+    }
 
-		icon.sprite = null;
-		icon.enabled = false;
-		removeButton.interactable = false;
-	}
+    // Called when the remove button is pressed
+    public void OnRemoveButton()
+    {
+        Inventory.instance.Remove(item);
+    }
 
-	// Called when the remove button is pressed
-	public void OnRemoveButton ()
-	{
-		Inventory.instance.Remove(item);
-	}
-
-	// Called when the item is pressed
-	public void UseItem ()
-	{
-		if (item != null)
-		{
-			item.Use();
-		}
-	}
-
+    // Called when the item is pressed
+    public void UseItem()
+    {
+        if (item != null) item.Use();
+    }
 }
