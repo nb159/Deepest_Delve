@@ -6,6 +6,8 @@ namespace UIScripts
 {
     public class PotionsScript : MonoBehaviour
     {
+        public static PotionsScript instance;
+        
         [SerializeField] private Image[] image;
 
         [SerializeField] private bool drinkPotion;
@@ -15,6 +17,18 @@ namespace UIScripts
         // public int potions;
         //public float PotionsFloat;
 
+
+                private void Awake()
+                {
+                    if (instance != null && instance != this)
+                    {
+                        Destroy(this.gameObject);
+                    }
+                    else
+                    {
+                        instance = this;
+                    }
+                }
         private void Start()
         {
             // TODO:  Potions = GameManager.instance.playerPotions;
@@ -34,7 +48,7 @@ namespace UIScripts
             }
         }
 
-        private void OnPotionDrink()
+        public void OnPotionDrink()
         {
             if (_potions > 0)
             {

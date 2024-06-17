@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UIScripts;
 using UnityEngine;
 
 public class PlayerCombat : MonoBehaviour
@@ -62,6 +63,7 @@ public class PlayerCombat : MonoBehaviour
             playerAnimatorManager.DrinkPotionAnimation();
             GameManager.instance.playerHealth += GameManager.instance.PotionHpRegenAmount;
             GameManager.instance.playerPotions -= 1;
+            PotionsScript.instance.OnPotionDrink();
         }
     }
 }
