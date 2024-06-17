@@ -94,12 +94,13 @@ public class CombatManager : MonoBehaviour
        // Debug.Log("low: " + bossArmAttack + " " + GameManager.instance.playerHealth);
 
         GameManager.instance.playerHealth -= bossArmAttack;
-       // Debug.Log(GameManager.instance.playerHealth);
+       Debug.Log(GameManager.instance.playerHealth+"hit by arm");
 
      //Debug.Log("testing if armattack methode works");
         if (GameManager.instance.playerHealth <= 0)
         {
             GameManager.instance.ChangeScene(GameScene.PlayerDeathScene);
+            
         }
 
 

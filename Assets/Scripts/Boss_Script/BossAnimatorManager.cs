@@ -33,6 +33,7 @@ public class BossAnimatorManager : MonoBehaviour
     }
      public void SetIdle()
     {
-        animator.SetTrigger("isIdle");
+        //animator.SetTrigger("isIdle");
+        animator.SetBool("isIdle",true);
     }
 }
