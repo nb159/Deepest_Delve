@@ -1,4 +1,7 @@
 {
     "StartButton": "Start Game",
-    "EndButton": "Quit Game"
+    "EndButton": "Quit Game",
+    "OptionsButton": "Options",
+    "RestartButton": "Restart",
+    "ContinueButton": "Continue"
 }

@@ -1,9 +1,16 @@
+using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using Unity.VisualScripting;
 using UnityEngine.SceneManagement;
 
+public enum GameScene
+{
+    MainMenuScene,
+    InGameScene,
+    PlayerDeathScene,
+    WinScene,
+    SettingsScene
+}
 
 public class GameManager : MonoBehaviour
 {
@@ -13,19 +20,19 @@ public class GameManager : MonoBehaviour
     [Header("Game Stats")]
     public float GameSpeedtime;
 
-    [Header("Boss Stats")]
-    [SerializeField] public float bossHealth = 100f;
     [SerializeField] public float bossAttackDelay = 1f;
 
-    [Header("Camera Settings")]
-    [SerializeField] public int cameraRotationSpeed = 15;
+    [Header("Camera Settings")] [SerializeField]
+    public int cameraRotationSpeed = 15;
 
 
-    [Header("Player Stats")]
-    
-    [SerializeField] public float playerHealth = 100;
+    [Header("Player Stats")] [SerializeField]
+    public float playerHealth = 100;
+
     [SerializeField] public int playerPotions = 4;
+
     [SerializeField] public int PotionHpRegenAmount = 30;
+
     //Stamina
     [SerializeField] public float playerStamina = 100;
     [SerializeField] public float playerStaminaRegen = 1f;
@@ -37,17 +44,19 @@ public class GameManager : MonoBehaviour
     [SerializeField] public float playerSpeed = 5f;
     [SerializeField] public float playerDashMultiplier = 10f;
     [SerializeField] public float playerRotationSpeed = 15f;
+    public GameScene currentScene;
+
 
     private void Awake()
     {
         if (instance != null && instance != this)
         {
-            Destroy(this.gameObject);
+            Destroy(gameObject);
         }
         else
         {
             instance = this;
-            DontDestroyOnLoad(this.gameObject);
+            DontDestroyOnLoad(gameObject);
             LoadGameSettings();
         }
     }
@@ -82,26 +91,30 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        ChangeScene(GameScene.MainMenuScene);
+        // TODO: figure out what the fuck you want. This will relocate to MainMenuScene from the start
+        // ChangeScene(GameScene.MainMenuScene);
     }
 
-    public enum GameScene { MainMenuScene, InGameScene, PlayerDeathScene, WinScene }
-    public GameScene currentScene;
- 
 
     public void ChangeScene(GameScene newScene)
     {
         currentScene = newScene;
+        //UIScripts.StageCounterScript.StageCount += 1;
+        //TODO: Add scene count to SceneCounterConfig Script
         HandleSceneChange();
     }
 
-        private void HandleSceneChange()
+
+    private void HandleSceneChange()
     {
-        switch (currentScene)
+        HandleSceneChange(currentScene);
+    }
+
+    private void HandleSceneChange(GameScene newScene)
+    {
+        currentScene = newScene;
+        switch (newScene)
         {
-            case GameScene.MainMenuScene:
-                LoadScene("MainMenu", true);
-                break;
             case GameScene.InGameScene:
                 LoadScene("InGameScene", true);
                 break;
@@ -111,8 +124,13 @@ public class GameManager : MonoBehaviour
             case GameScene.WinScene:
                 LoadScene("WinScene", true);
                 break;
+            case GameScene.MainMenuScene:
+            default:
+                LoadScene("MainMenu", true);
+                break;
         }
     }
+
 
     private void LoadScene(string sceneName, bool showCursor)
     {
@@ -181,7 +199,6 @@ public class GameManager : MonoBehaviour
         // combatManager.tesy1();
         // bossHealing = settings.playerSpeed;
         // bossHealingDuration = settings.playerSpeed;
-
     }
 
 

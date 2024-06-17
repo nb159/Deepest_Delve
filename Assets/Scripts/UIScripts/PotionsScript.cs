@@ -5,7 +5,7 @@ using UnityEngine.UI;
 public class PotionsScript : MonoBehaviour
 {
     public Image PotionBarViz;
-    public double Potions;
+    public int Potions;
     public float PotionsFloat;
     void Update()
     {
@@ -16,16 +16,18 @@ public class PotionsScript : MonoBehaviour
     void Start()
     {
         Potions = GameManager.instance.playerPotions;
-        PotionsFloat = (float)Potions;
-       // PotionBarViz.fillAmount = PotionsFloat;
+        Debug.Log(Potions);
+        PotionsFloat = (float) Potions;
+        Debug.Log(PotionsFloat);
+        PotionBarViz.fillAmount = PotionsFloat;
     }
 
     void OnPotionDrink()
     {
-        if (PlayerAnimatorManager.instance.canDrinkPotion = false)
-        {
+        if (!PlayerAnimatorManager.instance.canDrinkPotion)
+        { 
             Potions = GameManager.instance.playerPotions;
-           // PotionBarViz.fillAmount = PotionsFloat;
+            PotionBarViz.fillAmount = PotionsFloat;
         }
     }
 }

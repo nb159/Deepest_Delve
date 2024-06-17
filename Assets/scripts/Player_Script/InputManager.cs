@@ -11,12 +11,14 @@ public class InputManager : MonoBehaviour
     public Vector2 movementInput;
 
     [Header("Movement Variables")]
+    //TODO: ADD Inventory Button
     public float moveAmount;
     public float verticalInput;
     public float horizontalInput;
     public bool lightAttackInput = false;
     public bool dashInput = false;
     public bool drinkPotionInput = false;
+    public bool inventoryInput = false;
     public bool[] comboAttackArr = new bool[3] {false, false, false};
     public bool comboAttackInput = false;
     public int currentComboState = 1;
@@ -43,6 +45,7 @@ public class InputManager : MonoBehaviour
                 drinkPotionInput = true;
                 OnDrinkPotion?.Invoke(); // Invoking event when drinking potion
             };
+            playerInput.Player.Inventory.performed += i => inventoryInput = true;
             playerInput.Player.DrinkPotion.canceled += i => drinkPotionInput = false;
             playerInput.Player.ComboAttack.performed += context => {
                 var tapCount = context.interaction is MultiTapInteraction ? ((MultiTapInteraction)context.interaction).tapCount : 1;
