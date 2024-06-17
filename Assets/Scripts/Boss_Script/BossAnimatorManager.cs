@@ -22,6 +22,24 @@ public class BossAnimatorManager : MonoBehaviour
         animator.SetTrigger("isLowAttacking");
     }
 
+      public bool IsLowAttackPlaying()
+    {
+        return animator.GetCurrentAnimatorStateInfo(0).IsName("fireBall");
+    }
+
+     public float GetAnimationLength(string animationName)
+    {
+        RuntimeAnimatorController ac = animator.runtimeAnimatorController;
+        foreach (var clip in ac.animationClips)
+        {
+            if (clip.name == animationName)
+            {
+                return clip.length;
+            }
+        }
+        return 0f;
+    }
+
     public void TriggerArmAttack()
     {
         animator.SetTrigger("isArmAttacking");

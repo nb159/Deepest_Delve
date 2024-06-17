@@ -118,7 +118,7 @@ public class BossManager : MonoBehaviour
 
     private void ExecuteLowAttackState()
     {
-        bossAnimatorManager.TriggerLowAttack();
+       // bossAnimatorManager.TriggerLowAttack();
         lowRangeAttack.ExecuteAttack(player);
     }
 
