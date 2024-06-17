@@ -1,33 +1,53 @@
+using System;
 using UnityEngine;
-using System.Collections;
 using UnityEngine.UI;
 
-public class PotionsScript : MonoBehaviour
+namespace UIScripts
 {
-    public Image PotionBarViz;
-    public int Potions;
-    public float PotionsFloat;
-    void Update()
+    public class PotionsScript : MonoBehaviour
     {
-        OnPotionDrink();
-        
-    }
+        [SerializeField] private Image[] image;
 
-    void Start()
-    {
-        Potions = GameManager.instance.playerPotions;
-        Debug.Log(Potions);
-        PotionsFloat = (float) Potions;
-        Debug.Log(PotionsFloat);
-        PotionBarViz.fillAmount = PotionsFloat;
-    }
+        [SerializeField] private bool drinkPotion;
 
-    void OnPotionDrink()
-    {
-        if (!PlayerAnimatorManager.instance.canDrinkPotion)
-        { 
-            Potions = GameManager.instance.playerPotions;
-            PotionBarViz.fillAmount = PotionsFloat;
+        private int _potions;
+        // public Image PotionBarViz;
+        // public int potions;
+        //public float PotionsFloat;
+
+        private void Start()
+        {
+            // TODO:  Potions = GameManager.instance.playerPotions;
+            // Debug.Log(Potions);
+            _potions = 3;
+            // PotionsFloat = (float) Potions;
+            //Debug.Log(PotionsFloat);
+            //PotionBarViz.fillAmount = PotionsFloat;
+        }
+
+        private void Update()
+        {
+            if (drinkPotion)
+            {
+                OnPotionDrink();
+                drinkPotion = false; // Reset drinkPotion to false after drinking
+            }
+        }
+
+        private void OnPotionDrink()
+        {
+            if (_potions > 0)
+            {
+                _potions--;
+
+                if (image.Length > 0)
+                {
+                    image[^1].gameObject.SetActive(false); // Deactivate the last image object
+                    var newImageArray = new Image[image.Length - 1];
+                    Array.Copy(image, newImageArray, newImageArray.Length);
+                    image = newImageArray;
+                }
+            }
         }
     }
 }
