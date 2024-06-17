@@ -10,7 +10,7 @@
   "playerStaminaDashCost": 20.0,
   "playerStaminaLightAttackCost": 10.0,
   "playerSpeed": 5.0,
-  "playerDashMultiplier": 10.0,
+  "playerDashMultiplier": 0.1,
   "lightAttackDamage": 10,
   "heavyAttackDamage": 20,
   "playerDefense": 10,

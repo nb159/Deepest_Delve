@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public enum GameScene
 {
@@ -43,7 +44,8 @@ public class GameManager : MonoBehaviour
 
     //movement
     [SerializeField] public float playerSpeed = 5f;
-    [SerializeField] public float playerDashMultiplier = 10f;
+    [SerializeField] public float playerDashMultiplier = 1.3f; //ideal number is 1.3
+    [SerializeField] public float dashTime = 0.6f; //TODO: add this to the JSON
     [SerializeField] public float playerRotationSpeed = 15f;
     public GameScene currentScene;
 
@@ -52,7 +54,6 @@ public class GameManager : MonoBehaviour
     {
         if (instance != null)
         {
-            Debug.LogWarning("More than one instance of GameManager found!");
             Destroy(gameObject);
         }
         else

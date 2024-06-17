@@ -31,6 +31,7 @@ public class PlayerCombat : MonoBehaviour
         if(inputManager.lightAttackInput && GameManager.instance.playerStamina >= GameManager.instance.playerStaminaLightAttackCost
         && playerAnimatorManager.canAttack){
             
+            
             inputManager.lightAttackInput = false;
             GameManager.instance.playerStamina -= GameManager.instance.playerStaminaLightAttackCost;
 

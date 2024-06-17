@@ -524,7 +524,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1692096990935138913, guid: e6e517a5bbd5ae74a83e441551c8d820, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.09
       objectReference: {fileID: 0}
     - target: {fileID: 1692096990935138913, guid: e6e517a5bbd5ae74a83e441551c8d820, type: 3}
       propertyPath: m_LocalPosition.z
@@ -578,6 +578,10 @@ PrefabInstance:
       propertyPath: cameraObject
       value: 
       objectReference: {fileID: 417723713}
+    - target: {fileID: 7814360061251538339, guid: e6e517a5bbd5ae74a83e441551c8d820, type: 3}
+      propertyPath: m_Constraints
+      value: 116
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -626,7 +630,7 @@ MonoBehaviour:
   playerStaminaLightAttackCost: 10
   playerSltaminaComboAttackCost: 10
   playerSpeed: 5
-  playerDashMultiplier: 15
+  playerDashMultiplier: 2
   playerRotationSpeed: 15
   currentScene: 0
 --- !u!4 &1103667833

@@ -9,10 +9,12 @@ public class PlayerAnimatorManager : MonoBehaviour
     Animator animator;
     PlayerLocomotion playerLocomotion;
     InputManager inputManager;
+    [SerializeField] private Collider swordCollider;
     int horzintall;
     int verticle;
     [Header("Can do's")]
     public bool canAttack = true;
+    public bool hasHit = false;
     public bool canDrinkPotion = true;
     public bool isDashing = false;
     public bool canMove = true;
@@ -32,10 +34,7 @@ public class PlayerAnimatorManager : MonoBehaviour
         horzintall = Animator.StringToHash("Horizontal");
         verticle = Animator.StringToHash("Verticle");
     }
-    public void Update(){
-        changeParameterOnAnimationEnd();
-        
-    }
+    
     public void updateAnimatorFreeRoamValues(float horizontalMovement, float verticleMovement){
 
         //animation Snapping
@@ -88,57 +87,43 @@ public class PlayerAnimatorManager : MonoBehaviour
         }
         return snappedVerticle;
     }
-
     public void LightAttackAnimation(){
         if(canAttack){
+            hasHit = false;
             canAttack = false;
             canDrinkPotion = false;
             canMove = false;
-            animator.SetTrigger("LightAttack");
-          
+            animator.SetTrigger("LightAttack");    
         }        
     }
-
     public void comboAttackInput(){
         animator.SetTrigger("ComboAttack");
     }
-
-
     public void DrinkPotionAnimation(){
         GameManager.instance.playerSpeed /=2;
         canDrinkPotion = false;
         canAttack = false;
         animator.SetTrigger("DrinkPotion");
     }
-
     public void DashAnimation(){
         animator.SetTrigger("DashTrigger");
     }
 
-    public void changeParameterOnAnimationEnd(){
 
-        if(animator.GetCurrentAnimatorStateInfo(0).IsTag("LightAttack")){
-            //animation ends on 0.98f. So for safety the threshhold will be 0.95f
-            if(animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.95f ) {
-                canAttack = true;
-                canDrinkPotion = true;
-                canMove = true;
-            }
-        }
 
-        //TODO: normailized time ends at 0.9 for some reasion..
-        if(animator.GetCurrentAnimatorStateInfo(0).IsName("DrinkPotion")){
-            // Debug.Log(animator.GetCurrentAnimatorStateInfo(0).normalizedTime);
-            if(animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.90f && canAttack == false && !canDrinkPotion){
-                
-                GameManager.instance.playerSpeed *= 2;
-                canDrinkPotion = true;
-                canAttack = true;
-            }
-        }
+    //-----------FUNCTIONs called through the animator-------------
+
+    private void endLightAttack(){
+        canAttack = true;
+        canDrinkPotion = true;
+        canMove = true;
     }
-
-    //FUNCTION called through the animator
+    
+    private void endPotionDrinking(){
+        GameManager.instance.playerSpeed *= 2;
+        canDrinkPotion = true;
+        canAttack = true;
+    }
     private void comboAttack(int currentAttack){
 
         Debug.Log("bfr: " + inputManager.comboAttackArr[currentAttack] + " " +currentAttack );
@@ -180,6 +165,17 @@ public class PlayerAnimatorManager : MonoBehaviour
         
     }
 
+    
 
+    private void SwordCollider(int ColliderActivation){
+
+        Debug.Log("ColliderActivation: " + ColliderActivation);
+        if(ColliderActivation == 1){
+            swordCollider.enabled = true;
+            
+        }else{
+            swordCollider.enabled = false;
+        }
+    }
 
 }
