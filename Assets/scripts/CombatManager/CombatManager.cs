@@ -20,17 +20,19 @@ public class CombatManager : MonoBehaviour
 
     [Header("Boss Stats")]
     [SerializeField] public float bossHighRangeAttack;
-    [SerializeField] public float bossLowRangeAttack ;
-    [SerializeField] public float bossHealing ;
-    [SerializeField] public float bossHealingDuration ;
+    [SerializeField] public float bossLowRangeAttack;
+    [SerializeField] public float bossHealing;
+    [SerializeField] public float bossHealingDuration;
 
     // Start is called before the first frame update
 
-    private void Start(){
+    private void Start()
+    {
         if (instance == null)
         {
             instance = this;
-        }else if (instance != this)
+        }
+        else if (instance != this)
         {
             Destroy(gameObject);
         }
@@ -39,43 +41,56 @@ public class CombatManager : MonoBehaviour
 
     }
 
-    public void playerLightAttack(){
-        //Debug.Log(GameManager.instance.bossHealth+" " + lightAttackDamage);
+    public void playerLightAttack()
+    {
+        // Debug.Log(GameManager.instance.bossHealth+" " + lightAttackDamage);
         GameManager.instance.bossHealth -= lightAttackDamage;
     }
 
-    
+
 
     // public void bossHighRangeAttackMethode(){
     //     //Debug.Log(GameManager.instance.bossHealth+" " + lightAttackDamage);
     //     GameManager.instance.playerHealth -= bossHighRangeAttack;
     //           Debug.Log(  GameManager.instance.playerHealth);
-  
+
     // }
     //   public void bossLowRangeAttackMethode(){
     //     //Debug.Log(GameManager.instance.bossHealth+" " + lightAttackDamage);
     //     GameManager.instance.playerHealth -= bossLowRangeAttack;
     //           Debug.Log(  GameManager.instance.playerHealth);
-  
+
     // }
 
-    public void bossHighRangeAttackMethode(){
-        Debug.Log( bossHighRangeAttack +" " + GameManager.instance.playerHealth);
+    public void bossHighRangeAttackMethode()
+    {
+        Debug.Log(bossHighRangeAttack + " " + GameManager.instance.playerHealth);
 
-       // Debug.Log(GameManager.instance.bossHealth+" " + lightAttackDamage);
+        // Debug.Log(GameManager.instance.bossHealth+" " + lightAttackDamage);
         GameManager.instance.playerHealth -= bossHighRangeAttack;
-              Debug.Log(  GameManager.instance.playerHealth);
-  
+        Debug.Log(GameManager.instance.playerHealth);
+        if (GameManager.instance.playerHealth <= 0)
+        {
+            GameManager.instance.ChangeScene(GameScene.PlayerDeathScene);
+        }
+
     }
-      public void bossLowRangeAttackMethode(){
-        Debug.Log("low: "+ bossLowRangeAttack +" " + GameManager.instance.playerHealth);
+    public void bossLowRangeAttackMethode()
+    {
+        Debug.Log("low: " + bossLowRangeAttack + " " + GameManager.instance.playerHealth);
 
         GameManager.instance.playerHealth -= bossLowRangeAttack;
-              Debug.Log(  GameManager.instance.playerHealth);
-  
+        Debug.Log(GameManager.instance.playerHealth);
+        if (GameManager.instance.playerHealth <= 0)
+        {
+            GameManager.instance.ChangeScene(GameScene.PlayerDeathScene);
+        }
+
+
     }
 
-    public void tesy1(){
+    public void tesy1()
+    {
         Debug.Log("test1");
     }
 
