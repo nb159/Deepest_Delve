@@ -42,6 +42,9 @@ public class CombatManager : MonoBehaviour
     public void playerLightAttack(){
         //Debug.Log(GameManager.instance.bossHealth+" " + lightAttackDamage);
         GameManager.instance.bossHealth -= lightAttackDamage;
+        if(GameManager.instance.bossHealth <= 0){
+            GameManager.instance.nextLevel();
+        }
     }
 
     

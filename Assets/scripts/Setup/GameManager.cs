@@ -50,8 +50,9 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        if (instance != null && instance != this)
+        if (instance != null)
         {
+            Debug.LogWarning("More than one instance of GameManager found!");
             Destroy(gameObject);
         }
         else
@@ -104,6 +105,13 @@ public class GameManager : MonoBehaviour
         //TODO: Add scene count to SceneCounterConfig Script
         HandleSceneChange();
     }
+
+    public void nextLevel(){
+        //logic for changing scenes
+        HandleSceneChange(GameScene.WinScene);
+    }
+
+    
 
 
     private void HandleSceneChange()
