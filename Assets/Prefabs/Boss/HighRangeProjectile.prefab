@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3220392423600093029}
   - component: {fileID: 8097672118757460540}
   - component: {fileID: 2847898145360035340}
-  - component: {fileID: 3452137970947121062}
+  - component: {fileID: 3740790432715540303}
   m_Layer: 0
   m_Name: HighRangeProjectile
   m_TagString: Projectile
@@ -134,7 +134,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &3452137970947121062
+--- !u!114 &3740790432715540303
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -147,3 +147,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lifetime: 10
+  targetHeight: 50
+  groundIndicatorPrefab: {fileID: 8526346965446256756, guid: 1d9292e46cbf03244983120178db8982, type: 3}
+  indicatorLifetime: 1

@@ -644,11 +644,36 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1558046534 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6668695404619906180, guid: 64f81057a5bacf745a60a02ee945a23a, type: 3}
+  m_PrefabInstance: {fileID: 1165906494936729990}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1985377954 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 209146003422919309, guid: 64f81057a5bacf745a60a02ee945a23a, type: 3}
   m_PrefabInstance: {fileID: 1165906494936729990}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1985377963
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1558046534}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d93a178c7d45326459cef0d9ffbd1f2b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  projectilePrefab: {fileID: 6190194825629670988, guid: 6199943f687b6af46b9c9f3dbb3eaa2c, type: 3}
+  spawnHeight: 50
+  attackCooldown: 10
+  projectileCount: 30
+  attackDuration: 20
+  attackRadius: 20
+  groundIndicatorPrefab: {fileID: 8526346965446256756, guid: 1d9292e46cbf03244983120178db8982, type: 3}
+  indicatorLifetime: 2
 --- !u!114 &2008284313 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5936915007190738196, guid: e6e517a5bbd5ae74a83e441551c8d820, type: 3}
@@ -810,7 +835,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6668695404619906180, guid: 64f81057a5bacf745a60a02ee945a23a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1985377963}
   m_SourcePrefab: {fileID: 100100000, guid: 64f81057a5bacf745a60a02ee945a23a, type: 3}
 --- !u!1001 &5516783513230642074
 PrefabInstance:

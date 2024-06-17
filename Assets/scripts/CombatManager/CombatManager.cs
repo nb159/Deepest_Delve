@@ -72,6 +72,7 @@ public class CombatManager : MonoBehaviour
         // Debug.Log(GameManager.instance.bossHealth+" " + lightAttackDamage);
         GameManager.instance.playerHealth -= bossHighRangeAttack;
         Debug.Log(GameManager.instance.playerHealth);
+        
         if (GameManager.instance.playerHealth <= 0)
         {
             GameManager.instance.ChangeScene(GameScene.PlayerDeathScene);
@@ -84,6 +85,8 @@ public class CombatManager : MonoBehaviour
 
         GameManager.instance.playerHealth -= bossLowRangeAttack;
         Debug.Log(GameManager.instance.playerHealth);
+
+    
         if (GameManager.instance.playerHealth <= 0)
         {
             GameManager.instance.ChangeScene(GameScene.PlayerDeathScene);
