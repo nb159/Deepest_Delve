@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using UnityEngine;
+using UnityEngine.PlayerLoop;
 using UnityEngine.UIElements;
 
 public class CombatManager : MonoBehaviour
@@ -43,11 +44,25 @@ public class CombatManager : MonoBehaviour
         GameManager.instance.bossHealth -= lightAttackDamage;
     }
 
+    
+
+    // public void bossHighRangeAttackMethode(){
+    //     //Debug.Log(GameManager.instance.bossHealth+" " + lightAttackDamage);
+    //     GameManager.instance.playerHealth -= bossHighRangeAttack;
+    //           Debug.Log(  GameManager.instance.playerHealth);
+  
+    // }
+    //   public void bossLowRangeAttackMethode(){
+    //     //Debug.Log(GameManager.instance.bossHealth+" " + lightAttackDamage);
+    //     GameManager.instance.playerHealth -= bossLowRangeAttack;
+    //           Debug.Log(  GameManager.instance.playerHealth);
+  
+    // }
 
     public void bossHighRangeAttackMethode(){
         Debug.Log( bossHighRangeAttack +" " + GameManager.instance.playerHealth);
 
-        //Debug.Log(GameManager.instance.bossHealth+" " + lightAttackDamage);
+       // Debug.Log(GameManager.instance.bossHealth+" " + lightAttackDamage);
         GameManager.instance.playerHealth -= bossHighRangeAttack;
               Debug.Log(  GameManager.instance.playerHealth);
   

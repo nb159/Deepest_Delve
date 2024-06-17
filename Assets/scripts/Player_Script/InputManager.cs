@@ -1,7 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Xml.Serialization;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem.Interactions;
 
@@ -105,7 +103,7 @@ public class InputManager : MonoBehaviour
         {
             verticalInput = 0;
             horizontalInput = 0;
-        }       
+        }
     }
 
    

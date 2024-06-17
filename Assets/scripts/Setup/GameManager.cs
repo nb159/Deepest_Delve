@@ -1,18 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine.SceneManagement;
 using UnityEngine;
 using Unity.VisualScripting;
+using UnityEngine.SceneManagement;
+
 
 public class GameManager : MonoBehaviour
 {
-
-
     public static GameManager instance;
     public CombatManager combatManager;
 
     [Header("Game Stats")]
-    [SerializeField] public float  GameSpeedtime = 1;
+    public float GameSpeedtime;
 
     [Header("Boss Stats")]
     [SerializeField] public float bossHealth = 100f;
@@ -52,6 +51,34 @@ public class GameManager : MonoBehaviour
             LoadGameSettings();
         }
     }
+
+    private void LoadGameSettings()
+    {
+        TextAsset jsonFile = Resources.Load<TextAsset>("GameSettings");
+        if (jsonFile != null)
+        {
+            //Debug.Log("GameSettings.json file found in Resources.");
+            string json = jsonFile.text;
+            // Debug.Log($"GameSettings.json content: {json}");
+
+            GameSettings settings = JsonUtility.FromJson<GameSettings>(json);
+
+            if (settings != null)
+            {
+                // Debug.Log("Game settings loaded successfully.");
+                ApplyGameSettings(settings);
+            }
+            else
+            {
+                //Debug.LogError("Failed to parse game settings from JSON.");
+            }
+        }
+        else
+        {
+            //Debug.LogError("Cannot find GameSettings.json file in Resources.");
+        }
+    }
+
 
     void Start()
     {
@@ -94,7 +121,7 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator LoadSceneAsync(string sceneName, bool showCursor)
     {
-        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(sceneName);
+        AsyncOperation asyncLoad =  SceneManager.LoadSceneAsync(sceneName);
         while (!asyncLoad.isDone)
         {
             yield return null;
@@ -129,33 +156,6 @@ public class GameManager : MonoBehaviour
 
     }
 
-    private void LoadGameSettings()
-    {
-        TextAsset jsonFile = Resources.Load<TextAsset>("GameSettings");
-        if (jsonFile != null)
-        {
-            //Debug.Log("GameSettings.json file found in Resources.");
-            string json = jsonFile.text;
-            // Debug.Log($"GameSettings.json content: {json}");
-
-            GameSettings settings = JsonUtility.FromJson<GameSettings>(json);
-
-            if (settings != null)
-            {
-                // Debug.Log("Game settings loaded successfully.");
-                ApplyGameSettings(settings);
-            }
-            else
-            {
-                //Debug.LogError("Failed to parse game settings from JSON.");
-            }
-        }
-        else
-        {
-            //Debug.LogError("Cannot find GameSettings.json file in Resources.");
-        }
-    }
-
     private void ApplyGameSettings(GameSettings settings)
     {
         // Debug.Log("Applying game settings...");
@@ -175,10 +175,10 @@ public class GameManager : MonoBehaviour
         // heavyAttackDamage = settings.playerSpeed;
         // playerDefense = settings.playerSpeed;
         // playerCritDamage = settings.playerSpeed;
-        Debug.Log(settings.bossHighRangeAttack);
-        combatManager.bossHighRangeAttack = settings.bossHighRangeAttack;
-        combatManager.bossLowRangeAttack = settings.bossLowRangeAttack;
-        combatManager.tesy1();
+        // Debug.Log(settings.bossHighRangeAttack);
+        // combatManager.bossHighRangeAttack = settings.bossHighRangeAttack;
+        // combatManager.bossLowRangeAttack = settings.bossLowRangeAttack;
+        // combatManager.tesy1();
         // bossHealing = settings.playerSpeed;
         // bossHealingDuration = settings.playerSpeed;
 
