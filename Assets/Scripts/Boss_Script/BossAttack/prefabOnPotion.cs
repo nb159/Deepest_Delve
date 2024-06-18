@@ -35,14 +35,14 @@ public class prefabOnpotion : MonoBehaviour
     void OnTriggerEnter(Collider hitInfo)
     {
         if (hitInfo.CompareTag("Boss"))
-        {        Debug.Log("boss hit onPotion");
+        {      //  Debug.Log("boss hit onPotion");
             return;
         }
 
         if (hitInfo.CompareTag("Player"))
         {
             CombatManager.instance.bossLowRangeAttackMethode();
-            Debug.Log("player hit low");
+           // Debug.Log("player hit low");
         }
 
         Destroy(gameObject);

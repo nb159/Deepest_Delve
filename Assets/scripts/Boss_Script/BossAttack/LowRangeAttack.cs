@@ -4,7 +4,7 @@ using UnityEngine;
 public class LowRangeAttack : MonoBehaviour, IBossAttack
 {
     public GameObject trackingProjectilePrefab;
-    public float attackCooldown = 5f;
+    public float attackCooldown = 3f;
 
 
     private BossAnimatorManager bossAnimatorManager;
