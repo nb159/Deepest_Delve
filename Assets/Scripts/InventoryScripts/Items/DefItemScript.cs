@@ -5,7 +5,7 @@ public class DefItemScript : MonoBehaviour
 {
     public float modifier;
     public string imagePath = "Assets/Sprites/Items/21.png";
-
+    public string itemName = "Defense Buff";
     public Image image;
 
     // Constructor

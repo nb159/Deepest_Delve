@@ -5,7 +5,7 @@ public class SpeedItemScript : MonoBehaviour
 {
     public float modifier;
     public string imagePath = "Assets/Sprites/Items/3.png";
-
+    public string itemName = "Speed Buff";
     public Image image;
 
     // Constructor
@@ -17,7 +17,6 @@ public class SpeedItemScript : MonoBehaviour
     // Start is called before the first frame update
     private void Start()
     {
-        
     }
 
     // Update is called once per frame
