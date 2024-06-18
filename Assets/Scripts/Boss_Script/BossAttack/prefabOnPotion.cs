@@ -1,6 +1,10 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
-public class LowProjectilePrefabLogic : MonoBehaviour
+
+
+public class prefabOnpotion : MonoBehaviour
 {
     public float speed = 40f;
     public float lifetime = 3f;
@@ -28,12 +32,10 @@ public class LowProjectilePrefabLogic : MonoBehaviour
         }
     }
 
-    
-
     void OnTriggerEnter(Collider hitInfo)
     {
         if (hitInfo.CompareTag("Boss"))
-        {        Debug.Log("boss hit low");
+        {        Debug.Log("boss hit onPotion");
             return;
         }
 
@@ -46,3 +48,4 @@ public class LowProjectilePrefabLogic : MonoBehaviour
         Destroy(gameObject);
     }
 }
+

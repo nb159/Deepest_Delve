@@ -22,12 +22,16 @@ public class BossAnimatorManager : MonoBehaviour
         animator.SetTrigger("isLowAttacking");
     }
 
-      public bool IsLowAttackPlaying()
+    public void TriggerOnPotionAttack()
+    {
+        animator.SetTrigger("isOnPotion");
+    }
+    public bool IsOnPotionPlaying()
     {
         return animator.GetCurrentAnimatorStateInfo(0).IsName("fireBall");
     }
 
-     public float GetAnimationLength(string animationName)
+    public float GetAnimationLength(string animationName)
     {
         RuntimeAnimatorController ac = animator.runtimeAnimatorController;
         foreach (var clip in ac.animationClips)
@@ -49,9 +53,14 @@ public class BossAnimatorManager : MonoBehaviour
     {
         animator.SetTrigger("isEnraged");
     }
-     public void SetIdle()
+
+    public void SetDeathAnimation()
+    {
+        animator.SetBool("isDead", true);
+    }
+    public void SetIdle()
     {
         //animator.SetTrigger("isIdle");
-        animator.SetBool("isIdle",true);
+        animator.SetBool("isIdle", true);
     }
 }
