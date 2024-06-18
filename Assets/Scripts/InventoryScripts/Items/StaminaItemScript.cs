@@ -8,7 +8,7 @@ public class StaminaItemScript : MonoBehaviour
     // Constructor
     /* public StamItem()
      {
-         modifier = 2f;
+         this.modifier = 2f;
          CombatManager.instance.staminaRecovery *= modifier;
      } */
 
