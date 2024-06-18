@@ -11,11 +11,11 @@ public class TestItemScript : MonoBehaviour
     public string ImagePath = "Assets/Sprites/Items/pngwing.com.png";
 
     // Constructor
-    public TestItem()
+   /* public TestItem()
     {
         this.modifier = 1.2f;
         CombatManager.instance.lightAttackDamage *= modifier;
-    }
+    } */
     // Start is called before the first frame update
     void Start()
     {
