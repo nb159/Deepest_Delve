@@ -4,20 +4,40 @@ using UnityEngine;
 
 public class PortalManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+
+    public static PortalManager instance;
+
+    private void Awake()
     {
-        
+        gameObject.SetActive(false);
+
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else
+        {
+            Destroy(this);
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+
+    private void OnCollisionEnter(Collision collision)
     {
-        
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            //switch game Scene
+            GameManager.instance.ChangeScene(GameScene.MainMenuScene);  
+        }
     }
 
     public void togglePortal(bool state)
     {
+        //TODO: SFX TOGGLEABLE 
+        //maybe make it fade instead of setting active
         gameObject.SetActive(state);
+        PlayerLocomotion.instance.toggleTargetToLockOn(state);
+        PlayerCamera.instance.toggleTargetToLockOn(state);
+        
     }
 }

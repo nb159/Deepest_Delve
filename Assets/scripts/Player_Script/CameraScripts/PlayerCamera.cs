@@ -13,7 +13,11 @@ public class PlayerCamera : MonoBehaviour
     //this parameter is fed from the playerManager Awake function
 
     public PlayerManager player;
-    [SerializeField] Transform targetToLookAt;
+
+    [Header("Camera Target")]
+    [SerializeField] Transform bossEnemeyTransform;
+    [SerializeField] Transform portalTransform;
+    Transform targetToLockOn;
     [SerializeField] Transform cameraPivotTransform;
 
     [Header("Camera Settings")]
@@ -36,6 +40,9 @@ public class PlayerCamera : MonoBehaviour
         }else{
             Destroy(gameObject);
         }
+
+        toggleTargetToLockOn(false);
+
     }
 
     private void Start(){
@@ -64,9 +71,9 @@ public class PlayerCamera : MonoBehaviour
     // }
     private void HandleRotations()
     {
-        //todo: fix rotation
+        
         //when close to the to the target, container X rotation changes to be able to look at the camera
-        Vector3 targetRotation = targetToLookAt.position - transform.position;
+        Vector3 targetRotation = targetToLockOn.position - transform.position;
         targetRotation.y = 0f; // Lock rotation on the Y axis
         Quaternion targetQuaternion = Quaternion.LookRotation(targetRotation);
         Quaternion clampedRotation = Quaternion.Slerp(transform.rotation, targetQuaternion, GameManager.instance.cameraRotationSpeed * Time.deltaTime);
@@ -77,6 +84,13 @@ public class PlayerCamera : MonoBehaviour
         // );
         transform.rotation = clampedRotation;
         
+    }
+    public void toggleTargetToLockOn(bool isPortalActive = false){
+    if(isPortalActive){
+        targetToLockOn = portalTransform;
+    }else{
+        targetToLockOn = bossEnemeyTransform;
+    }
     }
 
     private void HandleColisions(){

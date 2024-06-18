@@ -7,6 +7,7 @@ public class PlayerCombat : MonoBehaviour
 {
     PlayerAnimatorManager playerAnimatorManager;
     InputManager inputManager;
+    [SerializeField] public bool toggledeath = false;
 
 
     private void Awake(){
@@ -26,7 +27,7 @@ public class PlayerCombat : MonoBehaviour
         HandleComboAttack();
         HandleStaminaRegen();
         HandlePotionDrink();
-        HandleDeath();
+        HandleDeath();   
     }
     
     private void HandleLightAttack(){
@@ -43,7 +44,7 @@ public class PlayerCombat : MonoBehaviour
 
     private void HandleComboAttack(){
         if(playerAnimatorManager.canInitateComboAttack && inputManager.comboAttackInput && GameManager.instance.playerStamina >= GameManager.instance.playerSltaminaComboAttackCost ){
-            
+            playerAnimatorManager.canInitateComboAttack = false;
             playerAnimatorManager.comboAttackInput();
         }
     }
@@ -57,13 +58,19 @@ public class PlayerCombat : MonoBehaviour
     }
 
     private void HandlePotionDrink(){
-        //Debug.Log("input" + inputManager.drinkPotionInput + "amount: " + GameManager.instance.playerPotions+ " canDrink: " + playerAnimatorManager.canDrinkPotion);
-        if(inputManager.drinkPotionInput && GameManager.instance.playerPotions > 0 && playerAnimatorManager.canDrinkPotion){
+        //Debug.Log("input" + inputManager.drinkPotionInput +  " canDrink: " + playerAnimatorManager.canDrinkPotion + " has potions: "+  (GameManager.instance.playerPotions > 0) + " low health: " +  (GameManager.instance.playerHealth < GameManager.instance.playerMaxHealth));
+        if(inputManager.drinkPotionInput && GameManager.instance.playerPotions > 0 && playerAnimatorManager.canDrinkPotion 
+        && GameManager.instance.playerHealth < GameManager.instance.playerMaxHealth){
             inputManager.drinkPotionInput = false;
+            Debug.Log("Drinking Potion");
 
             playerAnimatorManager.DrinkPotionAnimation();
             GameManager.instance.playerHealth += GameManager.instance.PotionHpRegenAmount;
             GameManager.instance.playerPotions -= 1;
+            
+            if(GameManager.instance.playerHealth > GameManager.instance.playerMaxHealth){
+                GameManager.instance.playerHealth = GameManager.instance.playerMaxHealth;
+            }
             PotionsScript.instance.OnPotionDrink();
         }
     }

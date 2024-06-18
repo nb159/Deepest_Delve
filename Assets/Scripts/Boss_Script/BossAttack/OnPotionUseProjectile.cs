@@ -30,7 +30,7 @@ public class OnPotionUseProjectile : MonoBehaviour, IBossAttack
 
        
         float totalAnimationTime = bossAnimatorManager.GetAnimationLength("fireBall");
-        Debug.Log("Fireball Animation Time: " + totalAnimationTime);
+        // Debug.Log("Fireball Animation Time: " + totalAnimationTime);
         float delay = totalAnimationTime * fireDelayFactor;
         yield return new WaitForSeconds(delay);
 

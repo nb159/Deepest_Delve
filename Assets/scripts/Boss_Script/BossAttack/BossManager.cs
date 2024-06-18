@@ -30,7 +30,7 @@ public class BossManager : MonoBehaviour
 
         if (highRangeAttack == null || lowRangeAttack == null || bossAnimatorManager == null || onPotionUseProjectile == null)
         {
-            Debug.LogError("Essential components are missing.");
+            // Debug.LogError("Essential components are missing.");
             enabled = false;
             return;
         }
@@ -149,7 +149,7 @@ public class BossManager : MonoBehaviour
 
     private void TryOnPotionUseAttack()
     {
-  if (Random.value < potionAttackChance)
+        if (Random.value < potionAttackChance)
         {
                onPotionUseProjectile.ExecuteAttack(player);
 

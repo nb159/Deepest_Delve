@@ -22,6 +22,7 @@ public class InputManager : MonoBehaviour
     public bool openInventoryInput = false;
     public bool[] comboAttackArr = new bool[3] {false, false, false};
     public bool comboAttackInput = false;
+    public bool portalInScene = false;
     public int currentComboState = 1;
     // Event to notify when the player is drinking a potion
     public delegate void DrinkPotionAction();
@@ -51,30 +52,39 @@ public class InputManager : MonoBehaviour
                 drinkPotionInput = true;
                 OnDrinkPotion?.Invoke(); // Invoking event when drinking potion
             };
+            playerInput.Player.ToggleCameraControl.performed += i => {
+                
+                portalInScene = !portalInScene;
+                // Debug.Log(portalInScene);
+                PortalManager.instance.togglePortal(portalInScene); // Toggle portal
+            };
             playerInput.Player.Inventory.performed += i => openInventoryInput = !openInventoryInput; // Toggle inventory
             playerInput.Player.DrinkPotion.canceled += i => drinkPotionInput = false;
             playerInput.Player.ComboAttack.performed += context => {
+                comboAttackInput = true;
                 var tapCount = context.interaction is MultiTapInteraction ? ((MultiTapInteraction)context.interaction).tapCount : 1;
                 
                 switch (tapCount)
                 {
-                    case 1:
+                    // case 1:
+                    //     if(currentComboState == 1){
+                    //         currentComboState ++;
+                    //         comboAttackArr[0] = true;
+                    //         //Debug.Log("Combo 1");
+                    //     }
+                    //     break;
+                    case 2:
                         if(currentComboState == 1){
                             currentComboState ++;
-                            comboAttackArr[0] = true;
-                        }
-                        break;
-                    
-                    case 2:
-                        if(currentComboState == 2){
-                            currentComboState ++;
                             comboAttackArr[1] = true;
+                            //Debug.Log("Combo 2");
                         }                    
                         break;
                     case 3:
-                        if(currentComboState == 3){
+                        if(currentComboState == 2){
                             currentComboState = 1;
                             comboAttackArr[2] = true;
+                            //Debug.Log("Combo 3");
                         }
                         break;
                    

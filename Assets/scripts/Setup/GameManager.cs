@@ -29,6 +29,7 @@ public class GameManager : MonoBehaviour
 
 
     [Header("Player Stats")] [SerializeField]
+    public float playerMaxHealth = 100; //TODO: add this to the JSON
     public float playerHealth = 100;
 
     [SerializeField] public int playerPotions = 4;

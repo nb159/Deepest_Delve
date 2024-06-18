@@ -80,6 +80,15 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ToggleCameraControl"",
+                    ""type"": ""Button"",
+                    ""id"": ""bd4c3b53-44bc-414d-ab93-1aa486874189"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -269,6 +278,17 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""action"": ""Inventory"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""de646f41-c366-47ee-8d48-46018d18b678"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ToggleCameraControl"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -283,6 +303,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         m_Player_DrinkPotion = m_Player.FindAction("DrinkPotion", throwIfNotFound: true);
         m_Player_ComboAttack = m_Player.FindAction("ComboAttack", throwIfNotFound: true);
         m_Player_Inventory = m_Player.FindAction("Inventory", throwIfNotFound: true);
+        m_Player_ToggleCameraControl = m_Player.FindAction("ToggleCameraControl", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -350,6 +371,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_DrinkPotion;
     private readonly InputAction m_Player_ComboAttack;
     private readonly InputAction m_Player_Inventory;
+    private readonly InputAction m_Player_ToggleCameraControl;
     public struct PlayerActions
     {
         private @PlayerInput m_Wrapper;
@@ -360,6 +382,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         public InputAction @DrinkPotion => m_Wrapper.m_Player_DrinkPotion;
         public InputAction @ComboAttack => m_Wrapper.m_Player_ComboAttack;
         public InputAction @Inventory => m_Wrapper.m_Player_Inventory;
+        public InputAction @ToggleCameraControl => m_Wrapper.m_Player_ToggleCameraControl;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -387,6 +410,9 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @Inventory.started += instance.OnInventory;
             @Inventory.performed += instance.OnInventory;
             @Inventory.canceled += instance.OnInventory;
+            @ToggleCameraControl.started += instance.OnToggleCameraControl;
+            @ToggleCameraControl.performed += instance.OnToggleCameraControl;
+            @ToggleCameraControl.canceled += instance.OnToggleCameraControl;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -409,6 +435,9 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @Inventory.started -= instance.OnInventory;
             @Inventory.performed -= instance.OnInventory;
             @Inventory.canceled -= instance.OnInventory;
+            @ToggleCameraControl.started -= instance.OnToggleCameraControl;
+            @ToggleCameraControl.performed -= instance.OnToggleCameraControl;
+            @ToggleCameraControl.canceled -= instance.OnToggleCameraControl;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -434,5 +463,6 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         void OnDrinkPotion(InputAction.CallbackContext context);
         void OnComboAttack(InputAction.CallbackContext context);
         void OnInventory(InputAction.CallbackContext context);
+        void OnToggleCameraControl(InputAction.CallbackContext context);
     }
 }

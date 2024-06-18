@@ -57,33 +57,40 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
-      - time: 0.28251475
-        functionName: NewEvent
+      - time: 0.026836189
+        functionName: SwordCollider
         data: 
         objectReferenceParameter: {fileID: 11500000, guid: 4b150669467e10d46a4812433c5d45b0, type: 3}
         floatParameter: 0
         intParameter: 1
         messageOptions: 0
-      - time: 0.28346443
-        functionName: comboAttack
+      - time: 0.1428572
+        functionName: SwordCollider
         data: 
-        objectReferenceParameter: {instanceID: 0}
+        objectReferenceParameter: {fileID: 11500000, guid: 4b150669467e10d46a4812433c5d45b0, type: 3}
         floatParameter: 0
-        intParameter: 0
+        intParameter: 1
         messageOptions: 0
-      - time: 0.39695087
+      - time: 0.27311248
         functionName: comboAttack
         data: 
         objectReferenceParameter: {fileID: 11500000, guid: 4b150669467e10d46a4812433c5d45b0, type: 3}
         floatParameter: 0
         intParameter: 1
         messageOptions: 0
-      - time: 0.75606996
+      - time: 0.38452852
         functionName: comboAttack
         data: 
         objectReferenceParameter: {fileID: 11500000, guid: 4b150669467e10d46a4812433c5d45b0, type: 3}
         floatParameter: 0
         intParameter: 2
+        messageOptions: 0
+      - time: 0.6577709
+        functionName: SwordCollider
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: 4b150669467e10d46a4812433c5d45b0, type: 3}
+        floatParameter: 0
+        intParameter: 0
         messageOptions: 0
       transformMask: []
       maskType: 3

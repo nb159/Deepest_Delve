@@ -16,7 +16,7 @@ public class CombatManager : MonoBehaviour
     public float bossHighRangeAttack;
 
     [SerializeField] public float bossLowRangeAttack;
-        [SerializeField] public float bossArmAttack;
+    [SerializeField] public float bossArmAttack;
     [SerializeField] public float bossHealing;
     [SerializeField] public float bossHealingDuration;
 
@@ -62,7 +62,7 @@ public class CombatManager : MonoBehaviour
         //Debug.Log(bossHighRangeAttack + " " + GameManager.instance.playerHealth);
 
         // Debug.Log(GameManager.instance.bossHealth+" " + lightAttackDamage);
-        GameManager.instance.playerHealth -= bossHighRangeAttack;
+        if(!PlayerLocomotion.instance.isInvulnerable) GameManager.instance.playerHealth -= bossHighRangeAttack;
         //Debug.Log(GameManager.instance.playerHealth);
         
         if (GameManager.instance.playerHealth <= 0)
@@ -74,9 +74,9 @@ public class CombatManager : MonoBehaviour
 
     public void bossLowRangeAttackMethode()
     {
-        Debug.Log("low: " + bossLowRangeAttack + " " + GameManager.instance.playerHealth);
+        //Debug.Log("low: " + bossLowRangeAttack + " " + GameManager.instance.playerHealth);
 
-        GameManager.instance.playerHealth -= bossLowRangeAttack;
+        if(!PlayerLocomotion.instance.isInvulnerable) GameManager.instance.playerHealth -= bossLowRangeAttack;
      //   Debug.Log(GameManager.instance.playerHealth);
 
     
@@ -94,7 +94,7 @@ public class CombatManager : MonoBehaviour
     {
        // Debug.Log("low: " + bossArmAttack + " " + GameManager.instance.playerHealth);
 
-        GameManager.instance.playerHealth -= bossArmAttack;
+        if(!PlayerLocomotion.instance.isInvulnerable) GameManager.instance.playerHealth -= bossArmAttack;
       // Debug.Log(GameManager.instance.playerHealth+"hit by arm");
 
      //Debug.Log("testing if armattack methode works");

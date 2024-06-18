@@ -389,6 +389,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!4 &792527300 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2523613303037959073, guid: 2af8b06eaaf82d4499f6b5a49e40e9be, type: 3}
+  m_PrefabInstance: {fileID: 5578204021568366561}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &799979525 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4570554847619253724, guid: 90e4b32d562cc164d8483db3241f4d50, type: 3}
@@ -472,6 +477,14 @@ PrefabInstance:
       objectReference: {fileID: 2008284313}
     - target: {fileID: 4303450925659622921, guid: df1a8f46361cff2449d1ca2e989e3e43, type: 3}
       propertyPath: targetToLookAt
+      value: 
+      objectReference: {fileID: 1353658145002582795}
+    - target: {fileID: 4303450925659622921, guid: df1a8f46361cff2449d1ca2e989e3e43, type: 3}
+      propertyPath: portalTransform
+      value: 
+      objectReference: {fileID: 792527300}
+    - target: {fileID: 4303450925659622921, guid: df1a8f46361cff2449d1ca2e989e3e43, type: 3}
+      propertyPath: bossEnemeyTransform
       value: 
       objectReference: {fileID: 1353658145002582795}
     - target: {fileID: 4303450925659622921, guid: df1a8f46361cff2449d1ca2e989e3e43, type: 3}
@@ -591,6 +604,22 @@ PrefabInstance:
       propertyPath: cameraObject
       value: 
       objectReference: {fileID: 417723713}
+    - target: {fileID: 5992551190473079158, guid: e6e517a5bbd5ae74a83e441551c8d820, type: 3}
+      propertyPath: portalTransform
+      value: 
+      objectReference: {fileID: 792527300}
+    - target: {fileID: 5992551190473079158, guid: e6e517a5bbd5ae74a83e441551c8d820, type: 3}
+      propertyPath: bossEnemyTransform
+      value: 
+      objectReference: {fileID: 1353658145002582795}
+    - target: {fileID: 7237035333904919276, guid: e6e517a5bbd5ae74a83e441551c8d820, type: 3}
+      propertyPath: swordCollider
+      value: 
+      objectReference: {fileID: 1301475835}
+    - target: {fileID: 7734974900953191904, guid: e6e517a5bbd5ae74a83e441551c8d820, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7814360061251538339, guid: e6e517a5bbd5ae74a83e441551c8d820, type: 3}
       propertyPath: m_Constraints
       value: 116
@@ -634,6 +663,7 @@ MonoBehaviour:
   GameSpeedtime: 1
   bossAttackDelay: 1
   cameraRotationSpeed: 100
+  playerMaxHealth: 100
   playerHealth: 100
   playerPotions: 100
   PotionHpRegenAmount: 0
@@ -666,6 +696,11 @@ Transform:
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6208693282485239630, guid: 90e4b32d562cc164d8483db3241f4d50, type: 3}
   m_PrefabInstance: {fileID: 2071208641}
+  m_PrefabAsset: {fileID: 0}
+--- !u!136 &1301475835 stripped
+CapsuleCollider:
+  m_CorrespondingSourceObject: {fileID: 7734974900953191904, guid: e6e517a5bbd5ae74a83e441551c8d820, type: 3}
+  m_PrefabInstance: {fileID: 1086497774}
   m_PrefabAsset: {fileID: 0}
 --- !u!114 &2008284313 stripped
 MonoBehaviour:
@@ -2595,6 +2630,10 @@ PrefabInstance:
     - target: {fileID: 6841317871663903287, guid: 2af8b06eaaf82d4499f6b5a49e40e9be, type: 3}
       propertyPath: m_Enabled
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6978053656940414245, guid: 2af8b06eaaf82d4499f6b5a49e40e9be, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7073105094542036623, guid: 2af8b06eaaf82d4499f6b5a49e40e9be, type: 3}
       propertyPath: m_Name

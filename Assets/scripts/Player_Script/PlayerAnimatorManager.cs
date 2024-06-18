@@ -97,6 +97,7 @@ public class PlayerAnimatorManager : MonoBehaviour
         }        
     }
     public void comboAttackInput(){
+        
         animator.SetTrigger("ComboAttack");
     }
     public void DrinkPotionAnimation(){
@@ -115,68 +116,83 @@ public class PlayerAnimatorManager : MonoBehaviour
         canDrinkPotion = false;
         canMove = false;
         
-        //StartCoroutine(afterPlayerDeathLogic());
+        StartCoroutine(afterPlayerDeathLogic());
+    }
+
+    private IEnumerator afterPlayerDeathLogic(){
+        yield return new WaitForSeconds(3f);
+        GameManager.instance.ChangeScene(GameScene.PlayerDeathScene);
+    }
+
+    private void endComboAttack(){
+        animator.CrossFade("Locomotion", 0.1f);
+        canInitateComboAttack = true;
+        inputManager.comboAttackInput = false;
+        inputManager.currentComboState = 1;
+        inputManager.comboAttackArr = new bool[3] {false, false, false};
     }
 
     //-----------FUNCTIONs called through the animator-------------
 
-    private void endLightAttack(){
+    public void endLightAttack(){
         canAttack = true;
         canDrinkPotion = true;
         canMove = true;
+        Debug.Log("can attack now" +  canAttack);
+        return;
     }
     
-    private void endPotionDrinking(){
+    public void endPotionDrinking(){
         GameManager.instance.playerSpeed *= 2;
+        Debug.Log("can drink now" +  canDrinkPotion);
+
         canDrinkPotion = true;
         canAttack = true;
     }
-    private void comboAttack(int currentAttack){
+    public void comboAttack(int currentAttack){
 
         Debug.Log("bfr: " + inputManager.comboAttackArr[currentAttack] + " " +currentAttack );
         switch(currentAttack){
             case 0:
                 if(inputManager.comboAttackArr[currentAttack]){
-                    //inputManager.comboAttackArr[currentAttack] = false;
+                    inputManager.comboAttackArr[currentAttack] = false;
+                    hasHit = false;
                 }else{
-                    animator.CrossFade("Locomotion", 0.1f);
-                    canInitateComboAttack = true;
-                    inputManager.comboAttackArr = new bool[3] {false, false, false};
+                    endComboAttack();
+                    Debug.Log("i tried to end on the 1st");
+                    return;
                 }
                 break;
             case 1:
                 if(inputManager.comboAttackArr[currentAttack]){
-                    //inputManager.comboAttackArr[currentAttack] = false;
+                    inputManager.comboAttackArr[currentAttack] = false;
+                    hasHit = false;
                 }else{
-                    animator.CrossFade("Locomotion", 0.1f);
-                    canInitateComboAttack = true;
-                    inputManager.comboAttackArr = new bool[3] {false, false, false};
+                    endComboAttack();
+                    Debug.Log("i tried to end on the 2nd");
 
+                    return;
                 }
                 break;
             case 2:
                 if(inputManager.comboAttackArr[currentAttack]){
-                    //inputManager.comboAttackArr[currentAttack] = false;
+                    inputManager.comboAttackArr[currentAttack] = false;
+                    hasHit = false;
                 }else{
-                    animator.CrossFade("Locomotion", 0.1f);
-                    canInitateComboAttack = true;
-                    inputManager.comboAttackArr = new bool[3] {false, false, false};
-
+                   endComboAttack();
+                    Debug.Log("i tried to end on the 3rd");
+                    return;
                 }
                 break;
-
         }
         Debug.Log("afr: " + inputManager.comboAttackArr[currentAttack] + " " +currentAttack );
 
         
         
     }
+    public void SwordCollider(int ColliderActivation){
 
-    
-
-    private void SwordCollider(int ColliderActivation){
-
-        Debug.Log("ColliderActivation: " + ColliderActivation);
+        // Debug.Log("ColliderActivation: " + ColliderActivation);
         if(ColliderActivation == 1){
             swordCollider.enabled = true;
             
@@ -185,4 +201,5 @@ public class PlayerAnimatorManager : MonoBehaviour
         }
     }
 
+    
 }
