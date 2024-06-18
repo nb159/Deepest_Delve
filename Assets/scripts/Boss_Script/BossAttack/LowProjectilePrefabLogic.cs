@@ -57,6 +57,12 @@ public class LowProjectilePrefabLogic : MonoBehaviour
            // Debug.Log("boss hit low");
             return;
         }
+   if (hitInfo.CompareTag("highRangeProjectile"))
+        {
+           // Debug.Log("boss hit low");
+            return;
+        }
+
 
         if (hitInfo.CompareTag("Player"))
         {
