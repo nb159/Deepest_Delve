@@ -111,6 +111,10 @@ public class PlayerAnimatorManager : MonoBehaviour
 
     public void PlayerDeathAnimation(){
         animator.SetTrigger("DeathTrigger");
+        canAttack = false;
+        canDrinkPotion = false;
+        canMove = false;
+        
         //StartCoroutine(afterPlayerDeathLogic());
     }
 
