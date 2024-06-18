@@ -1,15 +1,15 @@
 using UnityEngine;
 
-public class DefItemScript : MonoBehaviour
+public class SpeedItemScript : MonoBehaviour
 {
     public float modifier;
-    public string ImagePath = "Assets/Sprites/Items/21.png";
+    public string ImagePath = "Assets/Sprites/Items/3.png";
 
     // Constructor
-    /* public DefItem()
+    /* public SpdItem()
      {
          this.modifier = 1.2f;
-         CombatManager.instance.playerDefense *= modifier;
+         CombatManager.instance.playerSpeed *= modifier;
      } */
 
     // Start is called before the first frame update

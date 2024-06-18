@@ -11,6 +11,7 @@ public class AtkItemScript : MonoBehaviour
          this.modifier = 1.2f;
          CombatManager.instance.lightAttackDamage *= modifier;
      } */
+
     // Start is called before the first frame update
     private void Start()
     {

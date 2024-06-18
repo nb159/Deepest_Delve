@@ -1,15 +1,15 @@
 using UnityEngine;
 
-public class DefItemScript : MonoBehaviour
+public class StaminaItemScript : MonoBehaviour
 {
     public float modifier;
-    public string ImagePath = "Assets/Sprites/Items/21.png";
+    public string ImagePath = "Assets/Sprites/Items/empty.png";
 
     // Constructor
-    /* public DefItem()
+    /* public StamItem()
      {
-         this.modifier = 1.2f;
-         CombatManager.instance.playerDefense *= modifier;
+         modifier = 2f;
+         CombatManager.instance.staminaRecovery *= modifier;
      } */
 
     // Start is called before the first frame update

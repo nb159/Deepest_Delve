@@ -681,15 +681,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7244400169707725184, guid: 501663226ed50cf459514cb5bb91bf2f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -11.092701
+      value: -10
       objectReference: {fileID: 0}
     - target: {fileID: 7244400169707725184, guid: 501663226ed50cf459514cb5bb91bf2f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 10.544689
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7244400169707725184, guid: 501663226ed50cf459514cb5bb91bf2f, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 1.7690945
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7244400169707725184, guid: 501663226ed50cf459514cb5bb91bf2f, type: 3}
       propertyPath: m_LocalRotation.w
@@ -719,13 +719,15 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 8924331029372255237, guid: 501663226ed50cf459514cb5bb91bf2f, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 8129657470892852533, guid: 501663226ed50cf459514cb5bb91bf2f, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 23490211066748099, guid: 501663226ed50cf459514cb5bb91bf2f, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 2095503620}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 501663226ed50cf459514cb5bb91bf2f, type: 3}
 --- !u!114 &2008284313 stripped
 MonoBehaviour:
@@ -2440,27 +2442,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 90e4b32d562cc164d8483db3241f4d50, type: 3}
---- !u!1 &2095503618 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 23490211066748099, guid: 501663226ed50cf459514cb5bb91bf2f, type: 3}
-  m_PrefabInstance: {fileID: 1740258177}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &2095503620
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2095503618}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2ebf7a5e46a6c264fb5e5125510d473a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 0
-  damage: 0
-  modifier: 1.2
-  ImagePath: Assets/Sprites/Items/pngwing.com.png
 --- !u!1 &2121294135
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,15 +1,15 @@
 using UnityEngine;
 
-public class DefItemScript : MonoBehaviour
+public class HealthItemScript : MonoBehaviour
 {
     public float modifier;
-    public string ImagePath = "Assets/Sprites/Items/21.png";
+    public string ImagePath = "Assets/Sprites/Items/Item 3-1.png.png";
 
     // Constructor
-    /* public DefItem()
+    /* public HpItem()
      {
          this.modifier = 1.2f;
-         CombatManager.instance.playerDefense *= modifier;
+         CombatManager.instance.playerHealth *= modifier;
      } */
 
     // Start is called before the first frame update
