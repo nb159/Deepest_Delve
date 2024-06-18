@@ -9,6 +9,7 @@ TagManager:
   - Projectile
   - GroundIndicator
   - Portal
+  - Indicator
   layers:
   - Default
   - TransparentFX
