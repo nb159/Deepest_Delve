@@ -327,6 +327,18 @@ PrefabInstance:
       value: ArmAttack
       objectReference: {fileID: 0}
     - target: {fileID: 5535698253524667395, guid: a3bc5af88b485d44b838af67190ed6fb, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5535698253524667395, guid: a3bc5af88b485d44b838af67190ed6fb, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5535698253524667395, guid: a3bc5af88b485d44b838af67190ed6fb, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5535698253524667395, guid: a3bc5af88b485d44b838af67190ed6fb, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0
       objectReference: {fileID: 0}
@@ -387,6 +399,18 @@ PrefabInstance:
     - target: {fileID: 2671875630569520714, guid: a3bc5af88b485d44b838af67190ed6fb, type: 3}
       propertyPath: m_Name
       value: ArmAttack
+      objectReference: {fileID: 0}
+    - target: {fileID: 5535698253524667395, guid: a3bc5af88b485d44b838af67190ed6fb, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5535698253524667395, guid: a3bc5af88b485d44b838af67190ed6fb, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5535698253524667395, guid: a3bc5af88b485d44b838af67190ed6fb, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5535698253524667395, guid: a3bc5af88b485d44b838af67190ed6fb, type: 3}
       propertyPath: m_LocalPosition.x
