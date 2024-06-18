@@ -32,6 +32,7 @@ public class MeleeAttack : MonoBehaviour
             if (CombatManager.instance != null)
             {
                 CombatManager.instance.bossArmAttackMethode();
+                
             }
             Debug.Log("player hit arm");
         }

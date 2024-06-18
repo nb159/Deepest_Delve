@@ -128,11 +128,11 @@ public class BossManager : MonoBehaviour
         lowRangeAttack.ExecuteAttack(player);
     }
 
-   private void ExecuteOnPotionAttackState()
-    {
-        // bossAnimatorManager.TriggerLowAttack();
-        lowRangeAttack.ExecuteAttack(player);
-    }
+//    private void ExecuteOnPotionAttackState()
+//     {
+//         // bossAnimatorManager.TriggerLowAttack();
+//         lowRangeAttack.ExecuteAttack(player);
+//     }
 
 
     private void ExecuteArmAttackState()
