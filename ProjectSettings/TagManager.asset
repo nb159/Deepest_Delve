@@ -10,6 +10,8 @@ TagManager:
   - GroundIndicator
   - Portal
   - Indicator
+  - highRangeProjectile
+  - lowRangeProjectile
   layers:
   - Default
   - TransparentFX

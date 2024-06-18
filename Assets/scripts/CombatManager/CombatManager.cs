@@ -94,7 +94,7 @@ public class CombatManager : MonoBehaviour
     {
        // Debug.Log("low: " + bossArmAttack + " " + GameManager.instance.playerHealth);
 
-        GameManager.instance.playerHealth -= bossArmAttack;
+    if(!PlayerLocomotion.instance.isInvulnerable) GameManager.instance.playerHealth -= bossArmAttack;
       Debug.Log(bossArmAttack+"hit by arm");
       Debug.Log("arm: " + bossArmAttack + " " + GameManager.instance.playerHealth);
 

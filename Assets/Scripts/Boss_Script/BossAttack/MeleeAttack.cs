@@ -22,11 +22,11 @@ public void ExecuteAttack(Transform player)
    
 
 //   player.position += new Vector3(12, 0, 0);
-    Rigidbody playerRb = player.GetComponent<Rigidbody>();
-    if (playerRb != null)
-    {
-        //playerRb.AddForce(new Vector3(10, 0, 0) * 10, ForceMode.VelocityChange); 
-    }
+    // Rigidbody playerRb = player.GetComponent<Rigidbody>();
+    // if (playerRb != null)
+    // {
+    //     //playerRb.AddForce(new Vector3(10, 0, 0) * 10, ForceMode.VelocityChange); 
+    // }
 }
 
 
@@ -45,8 +45,8 @@ public void ExecuteAttack(Transform player)
                 
             }
 
-          ExecuteAttack(hitInfo.transform);
-            Debug.Log("player hit arm");
+        //   ExecuteAttack(hitInfo.transform);
+        //     Debug.Log("player hit arm");
         }
 
 
