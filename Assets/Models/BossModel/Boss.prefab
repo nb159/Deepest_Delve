@@ -147,7 +147,7 @@ MonoBehaviour:
   attackCooldown: 5
   projectileCount: 30
   attackDuration: 20
-  attackRadius: 20
+  attackRadius: 10
   groundIndicatorPrefab: {fileID: 8526346965446256756, guid: 1d9292e46cbf03244983120178db8982, type: 3}
 --- !u!136 &148333924812856964
 CapsuleCollider:

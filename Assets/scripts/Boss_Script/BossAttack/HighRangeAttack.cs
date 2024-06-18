@@ -4,12 +4,11 @@ public class HighRangeAttack : MonoBehaviour, IBossAttack
 {
     public GameObject projectilePrefab;
     public float spawnHeight = 200f;
-    
     public float HeightOffset = 100f;
     public float attackCooldown = 10f;
     public int projectileCount = 30;
     public float attackDuration = 20;
-    public float attackRadius = 17f;
+    public float attackRadius = 10f;
     public GameObject groundIndicatorPrefab;
     private float lastAttackTime;
 
@@ -17,11 +16,15 @@ public class HighRangeAttack : MonoBehaviour, IBossAttack
     {
         if (Time.time > lastAttackTime + attackCooldown)
         {
+            Vector3 playerPosition = player.position; 
             for (int i = 0; i < projectileCount; i++)
             {
-                Vector3 spawnPosition = new Vector3(Random.Range(-attackRadius, attackRadius), Random.Range(spawnHeight - HeightOffset, spawnHeight), Random.Range(-attackRadius, attackRadius));
-                GameObject projectile = Instantiate(projectilePrefab, spawnPosition, Quaternion.identity);
+              
+                float offsetX = Random.Range(-attackRadius, attackRadius);
+                float offsetZ = Random.Range(-attackRadius, attackRadius);// trying to make the position of projectiles relative to the player
+                Vector3 spawnPosition = new Vector3(playerPosition.x + offsetX, Random.Range(spawnHeight - HeightOffset, spawnHeight), playerPosition.z + offsetZ);
 
+                GameObject projectile = Instantiate(projectilePrefab, spawnPosition, Quaternion.identity);
               
                 HighProjectilePrefabLogic projectileLogic = projectile.GetComponent<HighProjectilePrefabLogic>();
                 if (projectileLogic != null)
