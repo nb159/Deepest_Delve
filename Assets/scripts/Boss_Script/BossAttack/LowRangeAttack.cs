@@ -1,10 +1,19 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class LowRangeAttack : MonoBehaviour, IBossAttack
 {
     public GameObject trackingProjectilePrefab;
-    public float attackCooldown = 5f;
-  
+    public float attackCooldown = 3f;
+
+
+    private BossAnimatorManager bossAnimatorManager;
+
+    void Start()
+    {
+        bossAnimatorManager = GetComponent<BossAnimatorManager>();
+
+    }
 
     private float lastAttackTime;
 
@@ -12,6 +21,8 @@ public class LowRangeAttack : MonoBehaviour, IBossAttack
     {
         if (Time.time > lastAttackTime + attackCooldown)
         {
+            bossAnimatorManager.TriggerLowAttack();
+
             GameObject projectile = Instantiate(trackingProjectilePrefab, transform.position, Quaternion.identity);
             LowProjectilePrefabLogic trackingProjectile = projectile.GetComponent<LowProjectilePrefabLogic>();
             if (trackingProjectile != null)

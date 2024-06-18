@@ -14,25 +14,53 @@ public class BossAnimatorManager : MonoBehaviour
 
     public void TriggerHighAttack()
     {
-        animator.SetTrigger("HighAttackTrigger");
+        animator.SetTrigger("isHighAttacking");
     }
 
     public void TriggerLowAttack()
     {
-        animator.SetTrigger("low");
+        animator.SetTrigger("isLowAttacking");
+    }
+
+    public void TriggerOnPotionAttack()
+    {
+        animator.SetTrigger("isOnPotion");
+    }
+    public bool IsOnPotionPlaying()
+    {
+        return animator.GetCurrentAnimatorStateInfo(0).IsName("fireBall");
+    }
+
+    public float GetAnimationLength(string animationName)
+    {
+        RuntimeAnimatorController ac = animator.runtimeAnimatorController;
+        foreach (var clip in ac.animationClips)
+        {
+            if (clip.name == animationName)
+            {
+                return clip.length;
+            }
+        }
+        return 0f;
     }
 
     public void TriggerArmAttack()
     {
-        animator.SetTrigger("ArmAttackTrigger");
+        animator.SetTrigger("isArmAttacking");
     }
 
     public void TriggerEnraged()
     {
-        animator.SetTrigger("EnragedTrigger");
+        animator.SetTrigger("isEnraged");
     }
-     public void SetIdle()
+
+    public void SetDeathAnimation()
     {
-        animator.SetTrigger("IdleTrigger");
+        animator.SetBool("isDead", true);
+    }
+    public void SetIdle()
+    {
+        //animator.SetTrigger("isIdle");
+        animator.SetBool("isIdle", true);
     }
 }

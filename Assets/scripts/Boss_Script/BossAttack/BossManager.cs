@@ -16,15 +16,19 @@ public class BossManager : MonoBehaviour
 
     private HighRangeAttack highRangeAttack;
     private LowRangeAttack lowRangeAttack;
+    private OnPotionUseProjectile onPotionUseProjectile;
+
     private BossAnimatorManager bossAnimatorManager;
 
     void Start()
     {
         highRangeAttack = GetComponent<HighRangeAttack>();
         lowRangeAttack = GetComponent<LowRangeAttack>();
+        onPotionUseProjectile = GetComponent<OnPotionUseProjectile>();
+
         bossAnimatorManager = GetComponent<BossAnimatorManager>();
 
-        if (highRangeAttack == null || lowRangeAttack == null || bossAnimatorManager == null)
+        if (highRangeAttack == null || lowRangeAttack == null || bossAnimatorManager == null || onPotionUseProjectile == null)
         {
             Debug.LogError("Essential components are missing.");
             enabled = false;
@@ -32,20 +36,20 @@ public class BossManager : MonoBehaviour
         }
 
         currentState = BossAttackState.Idle;
-        InputManager.OnDrinkPotion += TryLowRangeAttackState;
+        InputManager.OnDrinkPotion += TryOnPotionUseAttack;
     }
 
     void OnDestroy()
     {
-        InputManager.OnDrinkPotion -= TryLowRangeAttackState;
+        InputManager.OnDrinkPotion -= TryOnPotionUseAttack;
     }
 
     void Update()
     {
-        if (player == null) return; 
+        if (player == null) return;
 
         float distanceToPlayer = Vector3.Distance(transform.position, player.position);
-        //Debug.Log($"Current State: {currentState}, Distance to Player: {distanceToPlayer}");
+       // Debug.Log($"Current State: {currentState}, Distance to Player: {distanceToPlayer}");
 
         if (bossHealth <= enragedHealthThreshold)
         {
@@ -65,6 +69,7 @@ public class BossManager : MonoBehaviour
         {
             currentState = BossAttackState.ArmAttack;
         }
+      
         else if (distanceToPlayer <= lowAttackRange)
         {
             currentState = BossAttackState.LowAttack;
@@ -92,6 +97,9 @@ public class BossManager : MonoBehaviour
             case BossAttackState.LowAttack:
                 ExecuteLowAttackState();
                 break;
+            // case BossAttackState.OnPotionUseAttack:
+            //     ExecuteOnPotionAttackState();
+            //     break;
             case BossAttackState.ArmAttack:
                 ExecuteArmAttackState();
                 break;
@@ -116,17 +124,21 @@ public class BossManager : MonoBehaviour
 
     private void ExecuteLowAttackState()
     {
-        bossAnimatorManager.TriggerLowAttack();
+        // bossAnimatorManager.TriggerLowAttack();
         lowRangeAttack.ExecuteAttack(player);
     }
+
+//    private void ExecuteOnPotionAttackState()
+//     {
+//         // bossAnimatorManager.TriggerLowAttack();
+//         lowRangeAttack.ExecuteAttack(player);
+//     }
+
 
     private void ExecuteArmAttackState()
     {
         bossAnimatorManager.TriggerArmAttack();
-        if (CombatManager.instance != null)
-        {
-            CombatManager.instance.bossArmAttackMethode();
-        }
+
     }
 
     private void ExecuteEnragedState()
@@ -135,12 +147,13 @@ public class BossManager : MonoBehaviour
         // i will add logic for enraged state attacks
     }
 
-    private void TryLowRangeAttackState()
+    private void TryOnPotionUseAttack()
     {
-        if (Random.value < potionAttackChance)
+  if (Random.value < potionAttackChance)
         {
-            ExecuteLowAttackState();
-           // Debug.Log("Executing Low Range Attack due to potion drink");
+               onPotionUseProjectile.ExecuteAttack(player);
+
+           
         }
     }
 }
