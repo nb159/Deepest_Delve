@@ -1,24 +1,36 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class AtkItemScript : MonoBehaviour
 {
     public float modifier;
-    public string ImagePath = "Assets/Sprites/Items/pngwing.com.png";
+    public string imagePath = "Assets/Sprites/Items/pngwing.com.png";
+    public Image image;
 
     // Constructor
-    /* public AtkItem()
-     {
-         this.modifier = 1.2f;
-         CombatManager.instance.lightAttackDamage *= modifier;
-     } */
+    public AtkItemScript()
+    {
+        ApplyStats();
+    }
 
     // Start is called before the first frame update
     private void Start()
     {
+        ChangeStats();
     }
 
     // Update is called once per frame
     private void Update()
     {
+    }
+
+    private void ChangeStats()
+    {
+        modifier = 1.2f;
+    }
+
+    private void ApplyStats()
+    {
+        CombatManager.instance.lightAttackDamage *= modifier;
     }
 }
