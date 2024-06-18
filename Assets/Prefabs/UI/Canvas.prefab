@@ -954,6 +954,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inventorySlot: {fileID: 0}
   itemDatabase: {fileID: 0}
+  itemSelectionUI: {fileID: 0}
 --- !u!1 &3256510563127068331
 GameObject:
   m_ObjectHideFlags: 0
@@ -1102,6 +1103,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inventorySlot: {fileID: 0}
   itemDatabase: {fileID: 0}
+  itemSelectionUI: {fileID: 0}
 --- !u!1 &3963537279129312574
 GameObject:
   m_ObjectHideFlags: 0
@@ -1685,6 +1687,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inventorySlot: {fileID: 0}
   itemDatabase: {fileID: 0}
+  itemSelectionUI: {fileID: 0}
 --- !u!1 &8583691081178255493
 GameObject:
   m_ObjectHideFlags: 0
@@ -3069,6 +3072,14 @@ PrefabInstance:
     - target: {fileID: 6830549875176117005, guid: 9f5b7a6572a66d149bd5c39aa564f1c4, type: 3}
       propertyPath: m_Name
       value: PlayerPreviewRealtimeRender
+      objectReference: {fileID: 0}
+    - target: {fileID: 6982269522573951968, guid: 9f5b7a6572a66d149bd5c39aa564f1c4, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 80
+      objectReference: {fileID: 0}
+    - target: {fileID: 6982269522573951968, guid: 9f5b7a6572a66d149bd5c39aa564f1c4, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -10
       objectReference: {fileID: 0}
     - target: {fileID: 8683500997261108643, guid: 9f5b7a6572a66d149bd5c39aa564f1c4, type: 3}
       propertyPath: m_LocalScale.x
