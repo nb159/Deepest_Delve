@@ -16,6 +16,7 @@ public class BossManager : MonoBehaviour
 
     private HighRangeAttack highRangeAttack;
     private LowRangeAttack lowRangeAttack;
+
     private OnPotionUseProjectile onPotionUseProjectile;
 
     private BossAnimatorManager bossAnimatorManager;
@@ -23,6 +24,7 @@ public class BossManager : MonoBehaviour
     void Start()
     {
         highRangeAttack = GetComponent<HighRangeAttack>();
+    
         lowRangeAttack = GetComponent<LowRangeAttack>();
         onPotionUseProjectile = GetComponent<OnPotionUseProjectile>();
 
@@ -49,7 +51,7 @@ public class BossManager : MonoBehaviour
         if (player == null) return;
 
         float distanceToPlayer = Vector3.Distance(transform.position, player.position);
-       // Debug.Log($"Current State: {currentState}, Distance to Player: {distanceToPlayer}");
+        // Debug.Log($"Current State: {currentState}, Distance to Player: {distanceToPlayer}");
 
         if (bossHealth <= enragedHealthThreshold)
         {
@@ -69,7 +71,7 @@ public class BossManager : MonoBehaviour
         {
             currentState = BossAttackState.ArmAttack;
         }
-      
+
         else if (distanceToPlayer <= lowAttackRange)
         {
             currentState = BossAttackState.LowAttack;
@@ -128,16 +130,17 @@ public class BossManager : MonoBehaviour
         lowRangeAttack.ExecuteAttack(player);
     }
 
-//    private void ExecuteOnPotionAttackState()
-//     {
-//         // bossAnimatorManager.TriggerLowAttack();
-//         lowRangeAttack.ExecuteAttack(player);
-//     }
+    //    private void ExecuteOnPotionAttackState()
+    //     {
+    //         // bossAnimatorManager.TriggerLowAttack();
+    //         lowRangeAttack.ExecuteAttack(player);
+    //     }
 
 
     private void ExecuteArmAttackState()
     {
         bossAnimatorManager.TriggerArmAttack();
+     
 
     }
 
@@ -151,9 +154,9 @@ public class BossManager : MonoBehaviour
     {
         if (Random.value < potionAttackChance)
         {
-               onPotionUseProjectile.ExecuteAttack(player);
+            onPotionUseProjectile.ExecuteAttack(player);
 
-           
+
         }
     }
 }

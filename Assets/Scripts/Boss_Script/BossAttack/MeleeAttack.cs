@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MeleeAttack : MonoBehaviour
+public class MeleeAttack : MonoBehaviour, IBossAttack
 {
     // Start is called before the first frame update
     void Start()
@@ -17,7 +17,17 @@ public class MeleeAttack : MonoBehaviour
     }
 
  
+public void ExecuteAttack(Transform player)
+{
+   
 
+//   player.position += new Vector3(12, 0, 0);
+    Rigidbody playerRb = player.GetComponent<Rigidbody>();
+    if (playerRb != null)
+    {
+        playerRb.AddForce(new Vector3(10, 0, 0) * 10, ForceMode.VelocityChange); 
+    }
+}
 
 
     void OnTriggerEnter(Collider hitInfo)
@@ -34,6 +44,8 @@ public class MeleeAttack : MonoBehaviour
                 CombatManager.instance.bossArmAttackMethode();
                 
             }
+
+          ExecuteAttack(hitInfo.transform);
             Debug.Log("player hit arm");
         }
 

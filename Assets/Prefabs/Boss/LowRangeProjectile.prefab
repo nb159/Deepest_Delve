@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 1766803725162941944}
   m_Layer: 0
   m_Name: LowRangeProjectile
-  m_TagString: Projectile
+  m_TagString: lowRangeProjectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
