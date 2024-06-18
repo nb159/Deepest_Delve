@@ -3,8 +3,8 @@ using UnityEngine;
 public class LowProjectilePrefabLogic : MonoBehaviour
 {
     public float speed = 40f;
-    public float lifetime = 2f;
-    public float minYPosition = 2f; // Set your desired minimum y position
+    public float lifetime = 3f;
+    public float minYPosition = 4f; // Set your desired minimum y position
 
     private Transform target;
 
@@ -31,7 +31,7 @@ public class LowProjectilePrefabLogic : MonoBehaviour
     void OnTriggerEnter(Collider hitInfo)
     {
         if (hitInfo.CompareTag("Boss"))
-        {
+        {        Debug.Log("boss hit low");
             return;
         }
 

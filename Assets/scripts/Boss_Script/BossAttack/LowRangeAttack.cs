@@ -4,11 +4,10 @@ using UnityEngine;
 public class LowRangeAttack : MonoBehaviour, IBossAttack
 {
     public GameObject trackingProjectilePrefab;
-    public float attackCooldown = 5f;
-    public float fireDelayFactor = 0.4f; 
+    public float fireDelayFactor = 0.7f; 
 
     private BossAnimatorManager bossAnimatorManager;
-    private float lastAttackTime;
+    private Vector3 projectileSpawnOffset = new Vector3(0f, 0f, 2f); //to controll where projectiles are
 
     void Start()
     {
@@ -17,26 +16,26 @@ public class LowRangeAttack : MonoBehaviour, IBossAttack
 
     public void ExecuteAttack(Transform player)
     {
-        if (Time.time > lastAttackTime + attackCooldown)
-        {
-            bossAnimatorManager.TriggerLowAttack();
-            StartCoroutine(WaitAndShoot(player));
-            lastAttackTime = Time.time;
-        }
+        bossAnimatorManager.TriggerLowAttack();
+        StartCoroutine(WaitAndShoot(player));
     }
 
     private IEnumerator WaitAndShoot(Transform player)
     {
        
-        yield return new WaitUntil(() => bossAnimatorManager.IsLowAttackPlaying());
+        yield return new WaitUntil(() => !bossAnimatorManager.IsLowAttackPlaying());
 
-      
+       
         float totalAnimationTime = bossAnimatorManager.GetAnimationLength("fireBall");
-        Debug.Log("firball"+totalAnimationTime);
+        Debug.Log("Fireball Animation Time: " + totalAnimationTime);
         float delay = totalAnimationTime * fireDelayFactor;
         yield return new WaitForSeconds(delay);
 
-        GameObject projectile = Instantiate(trackingProjectilePrefab, transform.position, Quaternion.identity);
+     
+        Vector3 spawnPosition = transform.position + transform.TransformDirection(projectileSpawnOffset);
+
+       
+        GameObject projectile = Instantiate(trackingProjectilePrefab, spawnPosition, Quaternion.identity);
         LowProjectilePrefabLogic trackingProjectile = projectile.GetComponent<LowProjectilePrefabLogic>();
         if (trackingProjectile != null)
         {
