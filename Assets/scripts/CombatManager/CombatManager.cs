@@ -67,7 +67,7 @@ public class CombatManager : MonoBehaviour
         
         if (GameManager.instance.playerHealth <= 0)
         {
-            GameManager.instance.ChangeScene(GameScene.PlayerDeathScene);
+            //GameManager.instance.ChangeScene(GameScene.PlayerDeathScene);
         }
 
     }
@@ -82,7 +82,8 @@ public class CombatManager : MonoBehaviour
     
         if (GameManager.instance.playerHealth <= 0)
         {
-            GameManager.instance.ChangeScene(GameScene.PlayerDeathScene);
+            
+            //GameManager.instance.ChangeScene(GameScene.PlayerDeathScene);
         }
 
 

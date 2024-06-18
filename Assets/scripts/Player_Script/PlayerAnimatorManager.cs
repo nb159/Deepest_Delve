@@ -109,7 +109,10 @@ public class PlayerAnimatorManager : MonoBehaviour
         animator.SetTrigger("DashTrigger");
     }
 
-
+    public void PlayerDeathAnimation(){
+        animator.SetTrigger("DeathTrigger");
+        //StartCoroutine(afterPlayerDeathLogic());
+    }
 
     //-----------FUNCTIONs called through the animator-------------
 

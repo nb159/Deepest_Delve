@@ -26,6 +26,7 @@ public class PlayerCombat : MonoBehaviour
         HandleComboAttack();
         HandleStaminaRegen();
         HandlePotionDrink();
+        HandleDeath();
     }
     
     private void HandleLightAttack(){
@@ -66,4 +67,12 @@ public class PlayerCombat : MonoBehaviour
             PotionsScript.instance.OnPotionDrink();
         }
     }
+
+    private void HandleDeath(){
+        if(GameManager.instance.playerHealth <= 0){
+            playerAnimatorManager.PlayerDeathAnimation();
+            //GameManager.instance.ChangeScene(GameScene.PlayerDeathScene);
+        }
+    }
+
 }
