@@ -25,7 +25,7 @@ public void ExecuteAttack(Transform player)
     Rigidbody playerRb = player.GetComponent<Rigidbody>();
     if (playerRb != null)
     {
-        playerRb.AddForce(new Vector3(10, 0, 0) * 10, ForceMode.VelocityChange); 
+        //playerRb.AddForce(new Vector3(10, 0, 0) * 10, ForceMode.VelocityChange); 
     }
 }
 
