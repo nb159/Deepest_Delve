@@ -54,6 +54,7 @@ public class GameManager : MonoBehaviour
     {
         if (instance != null)
         {
+            refreshGameManagerBossStats();
             Destroy(gameObject);
         }
         else
@@ -62,6 +63,9 @@ public class GameManager : MonoBehaviour
             DontDestroyOnLoad(gameObject);
             LoadGameSettings();
         }
+    }
+    private void refreshGameManagerBossStats(){
+        GameManager.instance.bossHealth = bossHealth;
     }
 
     private void LoadGameSettings()
