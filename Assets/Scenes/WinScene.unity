@@ -233,9 +233,45 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1228771397405523727, guid: ad40169d6b04f3a4c88941820925c9e7, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.1099854
+      objectReference: {fileID: 0}
+    - target: {fileID: 1228771397405523727, guid: ad40169d6b04f3a4c88941820925c9e7, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -2.3900003
+      objectReference: {fileID: 0}
+    - target: {fileID: 1228771397405523727, guid: ad40169d6b04f3a4c88941820925c9e7, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.9998317
+      objectReference: {fileID: 0}
+    - target: {fileID: 1228771397405523727, guid: ad40169d6b04f3a4c88941820925c9e7, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.018349068
+      objectReference: {fileID: 0}
+    - target: {fileID: 1228771397405523727, guid: ad40169d6b04f3a4c88941820925c9e7, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1228771397405523727, guid: ad40169d6b04f3a4c88941820925c9e7, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1228771397405523727, guid: ad40169d6b04f3a4c88941820925c9e7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 2.103
+      objectReference: {fileID: 0}
+    - target: {fileID: 1228771397405523727, guid: ad40169d6b04f3a4c88941820925c9e7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4165107643579170596, guid: ad40169d6b04f3a4c88941820925c9e7, type: 3}
       propertyPath: m_Name
       value: RenderTextureModels
+      objectReference: {fileID: 0}
+    - target: {fileID: 4195112149486423242, guid: ad40169d6b04f3a4c88941820925c9e7, type: 3}
+      propertyPath: far clip plane
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 5587471703977339888, guid: ad40169d6b04f3a4c88941820925c9e7, type: 3}
       propertyPath: m_Controller

@@ -131,6 +131,38 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 588634231829577581, guid: ad40169d6b04f3a4c88941820925c9e7, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 588634231829577581, guid: ad40169d6b04f3a4c88941820925c9e7, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.101
+      objectReference: {fileID: 0}
+    - target: {fileID: 588634231829577581, guid: ad40169d6b04f3a4c88941820925c9e7, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 1.362
+      objectReference: {fileID: 0}
+    - target: {fileID: 588634231829577581, guid: ad40169d6b04f3a4c88941820925c9e7, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: -1.3003604e-13
+      objectReference: {fileID: 0}
+    - target: {fileID: 588634231829577581, guid: ad40169d6b04f3a4c88941820925c9e7, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 6.535878e-11
+      objectReference: {fileID: 0}
+    - target: {fileID: 588634231829577581, guid: ad40169d6b04f3a4c88941820925c9e7, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.99941486
+      objectReference: {fileID: 0}
+    - target: {fileID: 588634231829577581, guid: ad40169d6b04f3a4c88941820925c9e7, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.03420409
+      objectReference: {fileID: 0}
+    - target: {fileID: 588634231829577581, guid: ad40169d6b04f3a4c88941820925c9e7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 3.92
+      objectReference: {fileID: 0}
     - target: {fileID: 4165107643579170596, guid: ad40169d6b04f3a4c88941820925c9e7, type: 3}
       propertyPath: m_Name
       value: RenderTextureModels
