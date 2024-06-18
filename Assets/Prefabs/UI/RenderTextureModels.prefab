@@ -45,7 +45,7 @@ GameObject:
   - component: {fileID: 4195112149486423242}
   - component: {fileID: 986137526130334759}
   m_Layer: 0
-  m_Name: Camera
+  m_Name: RealTimeBossTextureRenderer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -152,7 +152,7 @@ Transform:
   m_GameObject: {fileID: 6090495205924035290}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: -0, y: 0.04, z: 1.3}
+  m_LocalPosition: {x: 0, y: 0.28, z: 1.296}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -764,7 +764,7 @@ Animator:
   m_GameObject: {fileID: 499742906603556501}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 569579ae84af5424584fde04fc34b0a7, type: 2}
+  m_Controller: {fileID: 9100000, guid: 291bacabf7563224aabb7c3b2370bf0c, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

@@ -237,6 +237,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: RenderTextureModels
       objectReference: {fileID: 0}
+    - target: {fileID: 5587471703977339888, guid: ad40169d6b04f3a4c88941820925c9e7, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 16081938e7ec3af41a90d6f582ceee1e, type: 2}
     - target: {fileID: 8290303153343363424, guid: ad40169d6b04f3a4c88941820925c9e7, type: 3}
       propertyPath: m_LocalPosition.x
       value: 478.96997
@@ -536,6 +540,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 120865498}
     m_Modifications:
+    - target: {fileID: 485888691374351790, guid: b7f38168d4260874da047231d5b485b7, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 485888691374351790, guid: b7f38168d4260874da047231d5b485b7, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 485888691374351790, guid: b7f38168d4260874da047231d5b485b7, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 600
+      objectReference: {fileID: 0}
+    - target: {fileID: 485888691374351790, guid: b7f38168d4260874da047231d5b485b7, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -300
+      objectReference: {fileID: 0}
     - target: {fileID: 3488351930551768336, guid: b7f38168d4260874da047231d5b485b7, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -615,6 +635,10 @@ PrefabInstance:
     - target: {fileID: 3488351930551768336, guid: b7f38168d4260874da047231d5b485b7, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3952955685321517344, guid: b7f38168d4260874da047231d5b485b7, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -300
       objectReference: {fileID: 0}
     - target: {fileID: 4321126080383135281, guid: b7f38168d4260874da047231d5b485b7, type: 3}
       propertyPath: m_IsActive
