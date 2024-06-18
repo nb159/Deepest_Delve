@@ -94,7 +94,7 @@ MonoBehaviour:
     ParentPath: Events\Default Work Unit
     guid: 4479bfcf05fb0f4193b80eed81b3da5f
     GuidInternal: 
-    m_lastTime: -8584828920836933812
+    m_lastTime: -8584828817631844429
     List:
     - name: Play_BossAttackBase
       guid: aa03ee4c9459464db1e0cb4e1be4853d
@@ -109,7 +109,7 @@ MonoBehaviour:
       - ElementName: Play_BossAttackBase
         ObjectType: 3
         guid: aa03ee4c9459464db1e0cb4e1be4853d
-      Path: Events/Default Work Unit/Play_BossAttackBase
+      Path: Events\Default Work Unit\Play_BossAttackBase
       maxAttenuation: 0
       maxDuration: -1
       minDuration: -1
@@ -126,7 +126,7 @@ MonoBehaviour:
       - ElementName: Play_playerAttack
         ObjectType: 3
         guid: 4ffa32b935478944ba503e7c08d98188
-      Path: Events/Default Work Unit/Play_playerAttack
+      Path: Events\Default Work Unit\Play_playerAttack
       maxAttenuation: 0
       maxDuration: -1
       minDuration: -1
@@ -143,7 +143,7 @@ MonoBehaviour:
       - ElementName: Play_PlayerAttack_01
         ObjectType: 3
         guid: 2a045ab0100ea54e9439c46df9592147
-      Path: Events/Default Work Unit/Play_PlayerAttack_01
+      Path: Events\Default Work Unit\Play_PlayerAttack_01
       maxAttenuation: 0
       maxDuration: -1
       minDuration: -1
@@ -160,7 +160,7 @@ MonoBehaviour:
       - ElementName: Play_PlayerHit
         ObjectType: 3
         guid: 003eaa1aa7c16a4294d32189774f234c
-      Path: Events/Default Work Unit/Play_PlayerHit
+      Path: Events\Default Work Unit\Play_PlayerHit
       maxAttenuation: 0
       maxDuration: -1
       minDuration: -1
@@ -194,7 +194,7 @@ MonoBehaviour:
       - ElementName: Play_Steps
         ObjectType: 3
         guid: 0f2b053fbcafcf498614f9304dd45b74
-      Path: Events/Default Work Unit/Play_Steps
+      Path: Events\Default Work Unit\Play_Steps
       maxAttenuation: 0
       maxDuration: -1
       minDuration: -1

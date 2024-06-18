@@ -11,13 +11,12 @@ public class StaminaItemScript : MonoBehaviour
     // Constructor
     public StaminaItemScript()
     {
-        ApplyStats();
+        ChangeStats();
     }
 
     // Start is called before the first frame update
     private void Start()
     {
-        ChangeStats();
     }
 
     // Update is called once per frame

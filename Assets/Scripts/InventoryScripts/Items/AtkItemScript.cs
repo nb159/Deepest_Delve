@@ -10,13 +10,12 @@ public class AtkItemScript : MonoBehaviour
     // Constructor
     public AtkItemScript()
     {
-        ApplyStats();
+        ChangeStats();
     }
 
     // Start is called before the first frame update
     private void Start()
     {
-        ChangeStats();
     }
 
     // Update is called once per frame

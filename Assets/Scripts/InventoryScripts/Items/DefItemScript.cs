@@ -11,13 +11,12 @@ public class DefItemScript : MonoBehaviour
     // Constructor
     public DefItemScript()
     {
-        ApplyStats();
+        ChangeStats();
     }
 
     // Start is called before the first frame update
     private void Start()
     {
-        ChangeStats();
     }
 
     // Update is called once per frame
