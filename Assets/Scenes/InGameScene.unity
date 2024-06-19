@@ -216,6 +216,17 @@ Animator:
   m_CorrespondingSourceObject: {fileID: 3943665125734302066, guid: 2af8b06eaaf82d4499f6b5a49e40e9be, type: 3}
   m_PrefabInstance: {fileID: 5578204021568366561}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &570995684 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6744791091002290629, guid: 501663226ed50cf459514cb5bb91bf2f, type: 3}
+  m_PrefabInstance: {fileID: 1740258177}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &652058217 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5701167671235607172, guid: 7b9c6c2d6330075448e7c8891abaeebf, type: 3}
@@ -655,7 +666,7 @@ PrefabInstance:
     - target: {fileID: 7237035333904919276, guid: e6e517a5bbd5ae74a83e441551c8d820, type: 3}
       propertyPath: swordCollider
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1817989149}
     - target: {fileID: 7734974900953191904, guid: e6e517a5bbd5ae74a83e441551c8d820, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -777,11 +788,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1139103907882016862, guid: 501663226ed50cf459514cb5bb91bf2f, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1985983977566486777, guid: 501663226ed50cf459514cb5bb91bf2f, type: 3}
       propertyPath: m_Name
       value: ItemSelectObj
+      objectReference: {fileID: 0}
+    - target: {fileID: 3439406658825258073, guid: 501663226ed50cf459514cb5bb91bf2f, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3482493294735822299, guid: 501663226ed50cf459514cb5bb91bf2f, type: 3}
       propertyPath: m_Camera
@@ -789,7 +804,7 @@ PrefabInstance:
       objectReference: {fileID: 1348184395}
     - target: {fileID: 4171184503530831470, guid: 501663226ed50cf459514cb5bb91bf2f, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6397766314789976814, guid: 501663226ed50cf459514cb5bb91bf2f, type: 3}
       propertyPath: m_Enabled
@@ -801,7 +816,7 @@ PrefabInstance:
       objectReference: {fileID: 2800000, guid: cbc56c88ec74c684f96f48654e1ea68b, type: 3}
     - target: {fileID: 6675149282494594833, guid: 501663226ed50cf459514cb5bb91bf2f, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6744791091002290629, guid: 501663226ed50cf459514cb5bb91bf2f, type: 3}
       propertyPath: m_Enabled
@@ -855,6 +870,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7621934795795040893, guid: 501663226ed50cf459514cb5bb91bf2f, type: 3}
+      propertyPath: itemDisplay
+      value: 
+      objectReference: {fileID: 570995684}
     - target: {fileID: 7992478329922031481, guid: 501663226ed50cf459514cb5bb91bf2f, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -873,6 +892,11 @@ PrefabInstance:
 Animator:
   m_CorrespondingSourceObject: {fileID: 6013858615522845013, guid: 2af8b06eaaf82d4499f6b5a49e40e9be, type: 3}
   m_PrefabInstance: {fileID: 5578204021568366561}
+  m_PrefabAsset: {fileID: 0}
+--- !u!136 &1817989149 stripped
+CapsuleCollider:
+  m_CorrespondingSourceObject: {fileID: 2148072956649772149, guid: e6e517a5bbd5ae74a83e441551c8d820, type: 3}
+  m_PrefabInstance: {fileID: 1086497774}
   m_PrefabAsset: {fileID: 0}
 --- !u!114 &2008284313 stripped
 MonoBehaviour:
