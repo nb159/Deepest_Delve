@@ -48,11 +48,13 @@ public class GameManager : MonoBehaviour
     [SerializeField] public float dashTime = 0.6f; //TODO: add this to the JSON
     [SerializeField] public float playerRotationSpeed = 15f;
 
-    [Space(10)] 
+    [Space(10)]
     [SerializeField] public List<PowerUp> playerSelectedBuffs;
     public GameScene currentScene;
 
- [Header("Level Management")]
+
+
+    [Header("Level Management")]
     public int currentLevel = 1;
     private int maxLevel = 2;
     public string[] levelFiles = { "Level1Settings", "Level2Settings" };
@@ -73,7 +75,7 @@ public class GameManager : MonoBehaviour
             DontDestroyOnLoad(gameObject);
             SceneManager.sceneLoaded += OnSceneLoaded;
             // LoadGameSettings();
-             LoadGameSettings(levelFiles[currentLevel - 1]);
+            LoadGameSettings(levelFiles[currentLevel - 1]);
         }
     }
 
@@ -99,7 +101,7 @@ public class GameManager : MonoBehaviour
             else
             {
                 // Debug.Log(  "this should be a proof that there is cmanager" +combatManager.bossArmAttack);
-              LoadGameSettings(levelFiles[currentLevel - 1]);
+                LoadGameSettings(levelFiles[currentLevel - 1]);
             }
         }
         else
@@ -108,17 +110,24 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void LoadGameSettings(string filename) {
+    public void LoadGameSettings(string filename)
+    {
         TextAsset jsonFile = Resources.Load<TextAsset>(filename);
-        if (jsonFile != null) {
+        if (jsonFile != null)
+        {
             string json = jsonFile.text;
             GameSettings settings = JsonUtility.FromJson<GameSettings>(json);
-            if (settings != null) {
+            if (settings != null)
+            {
                 ApplyGameSettings(settings);
-            } else {
+            }
+            else
+            {
                 Debug.LogError("Failed to parse game settings from JSON.");
             }
-        } else {
+        }
+        else
+        {
             Debug.LogError("Cannot find JSON file: " + filename);
         }
     }
@@ -146,19 +155,19 @@ public class GameManager : MonoBehaviour
         playerSpeed = settings.playerSpeed;
         playerDashMultiplier = settings.playerDashMultiplier;
 
-         // CombatManager.instance.pl = settings.playerSpeed;
-    // heavyAttackDamage = settings.playerSpeed;
-    // playerDefense = settings.playerSpeed;
-    // playerCritDamage = settings.playerSpeed;
-    // Debug.Log(settings.bossHighRangeAttack);
+        // CombatManager.instance.pl = settings.playerSpeed;
+        // heavyAttackDamage = settings.playerSpeed;
+        // playerDefense = settings.playerSpeed;
+        // playerCritDamage = settings.playerSpeed;
+        // Debug.Log(settings.bossHighRangeAttack);
 
-    combatManager.bossHighRangeAttack = settings.bossHighRangeAttack;
-    combatManager.bossLowRangeAttack = settings.bossLowRangeAttack;
-    combatManager.bossArmAttack = settings.bossArmAttack;
+        combatManager.bossHighRangeAttack = settings.bossHighRangeAttack;
+        combatManager.bossLowRangeAttack = settings.bossLowRangeAttack;
+        combatManager.bossArmAttack = settings.bossArmAttack;
 
-     // combatManager.tesy1();
-    // bossHealing = settings.playerSpeed;
-    // bossHealingDuration = settings.playerSpeed;
+        // combatManager.tesy1();
+        // bossHealing = settings.playerSpeed;
+        // bossHealingDuration = settings.playerSpeed;
     }
 
 
@@ -174,9 +183,22 @@ public class GameManager : MonoBehaviour
     {
         currentScene = newScene;
         SceneManager.LoadScene(GameSceneToSceneName(newScene));
+        currentLevel = 1;
+        LoadGameSettings(levelFiles[currentLevel - 1]);
+
         resetStats();
+
     }
 
+
+
+
+
+    // Reset the level to the first level and load the first JSON file
+    private void ResetLevelToFirst()
+    {
+
+    }
 
     // i return here names of scenes cause i want to check on which scene we are to initialize combatmanager
     private string GameSceneToSceneName(GameScene gameScene)
@@ -198,20 +220,25 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void resetStats(){
+    public void resetStats()
+    {
 
-        playerHealth=100;
-        playerPotions=3;
-        playerStamina=100;
+        playerHealth = 100;
+        playerPotions = 3;
+        playerStamina = 100;
     }
 
-    public void BossDefeated() {
-        if (currentLevel >= maxLevel) {
+    public void BossDefeated()
+    {
+        if (currentLevel >= maxLevel)
+        {
             SceneManager.LoadScene("WinScene");
-        } else {
+        }
+        else
+        {
             currentLevel++;
-            SceneManager.LoadScene("InGameScene");  
-            LoadGameSettings(levelFiles[currentLevel - 1]);  
+            SceneManager.LoadScene("InGameScene");
+            LoadGameSettings(levelFiles[currentLevel - 1]);
         }
     }
     [System.Serializable]
