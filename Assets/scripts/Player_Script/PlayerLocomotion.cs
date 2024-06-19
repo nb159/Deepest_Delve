@@ -84,7 +84,8 @@ public class PlayerLocomotion : MonoBehaviour
     }
 
     private void HandleDash(){
-        if(inputManager.dashInput && !PlayerAnimatorManager.instance.isDashing && GameManager.instance.playerStamina >= GameManager.instance.playerStaminaDashCost ){
+        if(inputManager.dashInput && !PlayerAnimatorManager.instance.isDashing && GameManager.instance.playerStamina >= GameManager.instance.playerStaminaDashCost
+        && PlayerAnimatorManager.instance.canDash){
             StartCoroutine(dashRoutine()); 
         }
     }

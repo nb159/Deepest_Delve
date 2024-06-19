@@ -21,7 +21,7 @@ public class indicatorProjectile : MonoBehaviour
     void OnTriggerEnter(Collider hitInfo)
     {
 
-Debug.Log(" indicator hit");
+        //Debug.Log(" indicator hit");
         if (hitInfo.CompareTag("Boss") || hitInfo.CompareTag("Player") || hitInfo.CompareTag("Indicator"))
         {
             return;

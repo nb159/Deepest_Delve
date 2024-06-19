@@ -169,7 +169,7 @@ public class BossManager : MonoBehaviour
         if (Random.value < potionAttackChance)
         {
 
-            Debug.Log("hello from keyframe");
+            //Debug.Log("hello from keyframe");
             onPotionUseProjectile.ExecuteAttack(player);
 
 //   bossAnimatorManager.TriggerOnPotionAttack();

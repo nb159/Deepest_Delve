@@ -5,8 +5,7 @@ using UnityEngine;
 public class ItemDisplaySelector : MonoBehaviour
 {
     public PowerUp AssignedItem;
-
-
+ 
 
     void OnCollisionEnter(Collision other)
     {

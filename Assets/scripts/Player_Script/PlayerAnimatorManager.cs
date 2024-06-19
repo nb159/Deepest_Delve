@@ -17,6 +17,7 @@ public class PlayerAnimatorManager : MonoBehaviour
     public bool hasHit = false;
     public bool canDrinkPotion = true;
     public bool isDashing = false;
+    public bool canDash = true;
     public bool canMove = true;
     public bool canInitateComboAttack = true;
     
@@ -93,6 +94,7 @@ public class PlayerAnimatorManager : MonoBehaviour
             canAttack = false;
             canDrinkPotion = false;
             canMove = false;
+            canDash = false;
             animator.SetTrigger("LightAttack");    
         }        
     }
@@ -104,6 +106,7 @@ public class PlayerAnimatorManager : MonoBehaviour
         GameManager.instance.playerSpeed /=2;
         canDrinkPotion = false;
         canAttack = false;
+        canDash = false;
         animator.SetTrigger("DrinkPotion");
     }
     public void DashAnimation(){
@@ -115,6 +118,7 @@ public class PlayerAnimatorManager : MonoBehaviour
         canAttack = false;
         canDrinkPotion = false;
         canMove = false;
+        canDash = false;
         
         StartCoroutine(afterPlayerDeathLogic());
     }
@@ -124,13 +128,7 @@ public class PlayerAnimatorManager : MonoBehaviour
         GameManager.instance.ChangeScene(GameScene.PlayerDeathScene);
     }
 
-    private void endComboAttack(){
-        animator.CrossFade("Locomotion", 0.1f);
-        canInitateComboAttack = true;
-        inputManager.comboAttackInput = false;
-        inputManager.currentComboState = 1;
-        inputManager.comboAttackArr = new bool[3] {false, false, false};
-    }
+  
 
     //-----------FUNCTIONs called through the animator-------------
 
@@ -138,14 +136,16 @@ public class PlayerAnimatorManager : MonoBehaviour
         canAttack = true;
         canDrinkPotion = true;
         canMove = true;
+        canDash = true;
         Debug.Log("can attack now" +  canAttack);
         return;
     }
     
     public void endPotionDrinking(){
         GameManager.instance.playerSpeed *= 2;
-        Debug.Log("can drink now" +  canDrinkPotion);
+        //Debug.Log("can drink now" +  canDrinkPotion);
 
+        canDash = true;
         canDrinkPotion = true;
         canAttack = true;
     }
@@ -159,7 +159,7 @@ public class PlayerAnimatorManager : MonoBehaviour
                     hasHit = false;
                 }else{
                     endComboAttack();
-                    Debug.Log("i tried to end on the 1st");
+                    // Debug.Log("i tried to end before the 1st");
                     return;
                 }
                 break;
@@ -169,7 +169,7 @@ public class PlayerAnimatorManager : MonoBehaviour
                     hasHit = false;
                 }else{
                     endComboAttack();
-                    Debug.Log("i tried to end on the 2nd");
+                    //Debug.Log("i tried to end before the 2nd");
 
                     return;
                 }
@@ -180,15 +180,20 @@ public class PlayerAnimatorManager : MonoBehaviour
                     hasHit = false;
                 }else{
                    endComboAttack();
-                    Debug.Log("i tried to end on the 3rd");
+                    //Debug.Log("i tried to end before the 3rd");
                     return;
                 }
                 break;
         }
-        Debug.Log("afr: " + inputManager.comboAttackArr[currentAttack] + " " +currentAttack );
-
-        
-        
+        Debug.Log("afr: " + inputManager.comboAttackArr[currentAttack] + " " +currentAttack );       
+    }
+    public void endComboAttack(){
+        animator.CrossFade("Locomotion", 0.1f);
+        canInitateComboAttack = true;
+        inputManager.comboAttackInput = false;
+        inputManager.currentComboState = 1;
+        inputManager.comboAttackArr = new bool[3] {false, false, false};
+        Debug.Log("i ended the combo");
     }
     public void SwordCollider(int ColliderActivation){
 

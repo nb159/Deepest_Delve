@@ -62,7 +62,6 @@ public class PlayerCombat : MonoBehaviour
         if(inputManager.drinkPotionInput && GameManager.instance.playerPotions > 0 && playerAnimatorManager.canDrinkPotion 
         && GameManager.instance.playerHealth < GameManager.instance.playerMaxHealth){
             inputManager.drinkPotionInput = false;
-            Debug.Log("Drinking Potion");
 
             playerAnimatorManager.DrinkPotionAnimation();
             GameManager.instance.playerHealth += GameManager.instance.PotionHpRegenAmount;
