@@ -3,15 +3,14 @@
     "bossHealth": 100.0,
     "bossAttackDelay": 1.0,
   
-   
     "PotionHpRegenAmount": 30,
-   
+    "playerStamina": 100.0,
     "playerStaminaRegen": 1.0,
     "playerStaminaDashCost": 20.0,
     "playerStaminaLightAttackCost": 10.0,
     "playerSpeed": 5.0,
     "playerDashMultiplier": 0.1,
-
+    "lightAttackDamage": 10,
     "heavyAttackDamage": 20,
     "playerDefense": 10,
     "playerCritDamage": 1,

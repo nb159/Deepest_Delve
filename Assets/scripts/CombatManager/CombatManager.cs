@@ -23,7 +23,8 @@ public class CombatManager : MonoBehaviour
     [SerializeField] public float bossArmAttack = 20f;
     [SerializeField] public float bossHealing;
     [SerializeField] public float bossHealingDuration;
-
+    
+   private BossAnimatorManager bossAnimatorManager;
     private GameObject Boss;
     private GameObject Player;
 
@@ -43,12 +44,15 @@ public class CombatManager : MonoBehaviour
     void Start()
     {
         InitializeReferences();
+
     }
 
     private void InitializeReferences()
     {
+         bossAnimatorManager = GetComponent<BossAnimatorManager>();
         Boss = GameObject.FindWithTag("Boss");
         Player = GameObject.FindWithTag("Player");
+
 
         if (Boss == null)
         {
@@ -69,9 +73,14 @@ public class CombatManager : MonoBehaviour
 
         if (GameManager.instance.bossHealth <= 0)
         {
+             
             // GameManager.instance.BossDefeated();
+         
+            //   bossAnimatorManager.SetDeathAnimation();
+               // Destroy(Boss);
             PortalManager.instance.togglePortal(true);
-
+         
+             
         }
 
         // if (GameManager.instance.bossHealth <= 0)
@@ -100,28 +109,28 @@ public class CombatManager : MonoBehaviour
         // Debug.Log(GameManager.instance.bossHealth+" " + lightAttackDamage);
         // Debug.Log(PlayerLocomotion.instance.isInvulnerable+"this should be false");
 
-        if (!PlayerLocomotion.instance.isInvulnerable) GameManager.instance.playerHealth -= bossHighRangeAttack;
+        // if (!PlayerLocomotion.instance.isInvulnerable) GameManager.instance.playerHealth -= bossHighRangeAttack;
 
-        // Debug.Log(GameManager.instance.playerHealth);
+        // // Debug.Log(GameManager.instance.playerHealth);
 
-        if (GameManager.instance.playerHealth <= 0)
-        {
-            //GameManager.instance.ChangeScene(GameScene.PlayerDeathScene);
-        }
+        // if (GameManager.instance.playerHealth <= 0)
+        // {
+        //     //GameManager.instance.ChangeScene(GameScene.PlayerDeathScene);
+        // }
 
         ///////////////////////////////////////////////////////////////////////////////////////////////
 
         //----- this is just for debugging cause i cannot deal damage to the boss with players sword----//
 
 
-        //   GameManager.instance.bossHealth -= bossHighRangeAttack;
+          GameManager.instance.bossHealth -= bossHighRangeAttack;
 
-        // if (GameManager.instance.bossHealth <= 0)
-        // {
-        //    // GameManager.instance.BossDefeated();
-        //     PortalManager.instance.togglePortal(true);
+        if (GameManager.instance.bossHealth <= 0)
+        {
+           // GameManager.instance.BossDefeated();
+            PortalManager.instance.togglePortal(true);
 
-        // }
+        }
 
 
 
