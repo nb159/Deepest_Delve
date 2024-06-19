@@ -1,8 +1,9 @@
-using System;
+
+
+
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 
 public enum GameScene
 {
@@ -24,32 +25,25 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] public float bossAttackDelay = 1f;
 
-    [Header("Camera Settings")] [SerializeField]
-    public int cameraRotationSpeed = 15;
+    [Header("Camera Settings")]
+    [SerializeField] public int cameraRotationSpeed = 15;
 
-
-    [Header("Player Stats")] [SerializeField]
-    public float playerMaxHealth = 100; //TODO: add this to the JSON
-    public float playerHealth = 100;
-
+    [Header("Player Stats")]
+    [SerializeField] public float playerMaxHealth = 100; //TODO: add this to the JSON
+    [SerializeField] public float playerHealth = 100;
     [SerializeField] public int playerPotions = 4;
-
     [SerializeField] public int PotionHpRegenAmount = 30;
-
-    //Stamina
     [SerializeField] public float playerStamina = 100;
     [SerializeField] public float playerStaminaRegen = 1f;
     [SerializeField] public float playerStaminaDashCost = 20f;
     [SerializeField] public float playerStaminaLightAttackCost = 10f;
-    [SerializeField] public float playerSltaminaComboAttackCost = 10f;
-
-    //movement
+    [SerializeField] public float playerStaminaComboAttackCost = 10f;
     [SerializeField] public float playerSpeed = 5f;
     [SerializeField] public float playerDashMultiplier = 1.3f; //ideal number is 1.3
     [SerializeField] public float dashTime = 0.6f; //TODO: add this to the JSON
     [SerializeField] public float playerRotationSpeed = 15f;
-    public GameScene currentScene;
 
+    public GameScene currentScene;
 
     private void Awake()
     {
@@ -62,11 +56,40 @@ public class GameManager : MonoBehaviour
         {
             instance = this;
             DontDestroyOnLoad(gameObject);
+            SceneManager.sceneLoaded += OnSceneLoaded;
             LoadGameSettings();
         }
     }
-    private void refreshGameManagerBossStats(){
+
+    private void OnDestroy()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    private void refreshGameManagerBossStats()
+    {
         GameManager.instance.bossHealth = bossHealth;
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        if (scene.name == "InGameScene")
+        {
+            combatManager = FindObjectOfType<CombatManager>();
+            if (combatManager == null)
+            {
+                Debug.LogError("CombatManager not found in the InGameScene!");
+            }
+            else
+            {
+                // Debug.Log(  "this should be a proof that there is cmanager" +combatManager.bossArmAttack);
+                LoadGameSettings();
+            }
+        }
+        else
+        {
+            combatManager = null;
+        }
     }
 
     private void LoadGameSettings()
@@ -74,15 +97,10 @@ public class GameManager : MonoBehaviour
         TextAsset jsonFile = Resources.Load<TextAsset>("GameSettings");
         if (jsonFile != null)
         {
-            //Debug.Log("GameSettings.json file found in Resources.");
             string json = jsonFile.text;
-            // Debug.Log($"GameSettings.json content: {json}");
-
             GameSettings settings = JsonUtility.FromJson<GameSettings>(json);
-
             if (settings != null)
             {
-                // Debug.Log("Game settings loaded successfully.");
                 ApplyGameSettings(settings);
             }
             else
@@ -92,9 +110,48 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            //Debug.LogError("Cannot find GameSettings.json file in Resources.");
+            //  Debug.LogError("Cannot find GameSettings.json file in Resources.");
         }
     }
+
+
+
+    private void ApplyGameSettings(GameSettings settings)
+    {
+        if (combatManager == null)
+        {
+            // Debug.LogError("CombatManager not initialized.");
+            return;
+        }
+
+        GameSpeedtime = settings.GameSpeedtime;
+        bossHealth = settings.bossHealth;
+        bossAttackDelay = settings.bossAttackDelay;
+        playerHealth = settings.playerHealth;
+        playerPotions = settings.playerPotions;
+        PotionHpRegenAmount = settings.PotionHpRegenAmount;
+        playerStamina = settings.playerStamina;
+        playerStaminaRegen = settings.playerStaminaRegen;
+        playerStaminaDashCost = settings.playerStaminaDashCost;
+        playerStaminaLightAttackCost = settings.playerStaminaLightAttackCost;
+        playerSpeed = settings.playerSpeed;
+        playerDashMultiplier = settings.playerDashMultiplier;
+
+         // CombatManager.instance.pl = settings.playerSpeed;
+    // heavyAttackDamage = settings.playerSpeed;
+    // playerDefense = settings.playerSpeed;
+    // playerCritDamage = settings.playerSpeed;
+    // Debug.Log(settings.bossHighRangeAttack);
+
+    combatManager.bossHighRangeAttack = settings.bossHighRangeAttack;
+    combatManager.bossLowRangeAttack = settings.bossLowRangeAttack;
+    combatManager.bossArmAttack = settings.bossArmAttack;
+
+     // combatManager.tesy1();
+    // bossHealing = settings.playerSpeed;
+    // bossHealingDuration = settings.playerSpeed;
+    }
+
 
 
     void Start()
@@ -107,67 +164,29 @@ public class GameManager : MonoBehaviour
     public void ChangeScene(GameScene newScene)
     {
         currentScene = newScene;
-        //UIScripts.StageCounterScript.StageCount += 1;
-        //TODO: Add scene count to SceneCounterConfig Script
-        HandleSceneChange();
+        SceneManager.LoadScene(GameSceneToSceneName(newScene));
     }
 
-    public void nextLevel(){
-        //logic for changing scenes
-        HandleSceneChange(GameScene.WinScene);
-    }
 
-    
-
-
-    private void HandleSceneChange()
+    // i return here names of scenes cause i want to check on which scene we are to initialize combatmanager
+    private string GameSceneToSceneName(GameScene gameScene)
     {
-        HandleSceneChange(currentScene);
-    }
-
-    private void HandleSceneChange(GameScene newScene)
-    {
-        currentScene = newScene;
-        switch (newScene)
+        switch (gameScene)
         {
             case GameScene.InGameScene:
-                LoadScene("InGameScene", true);
-                break;
+                return "InGameScene";
             case GameScene.PlayerDeathScene:
-                LoadScene("DeathScene", true);
-                break;
+                return "DeathScene";
             case GameScene.WinScene:
-                LoadScene("WinScene", true);
-                break;
+                return "WinScene";
             case GameScene.MainMenuScene:
+                return "MainMenu";
+            case GameScene.SettingsScene:
+                return "SettingsScene";
             default:
-                LoadScene("MainMenu", true);
-                break;
+                return "MainMenu";
         }
     }
-
-
-    private void LoadScene(string sceneName, bool showCursor)
-    {
-        StartCoroutine(LoadSceneAsync(sceneName, showCursor));
-    }
-
-    private IEnumerator LoadSceneAsync(string sceneName, bool showCursor)
-    {
-        AsyncOperation asyncLoad =  SceneManager.LoadSceneAsync(sceneName);
-        while (!asyncLoad.isDone)
-        {
-            yield return null;
-        }
-        ShowCursor(showCursor);
-    }
-
-    private void ShowCursor(bool isVisible)
-    {
-        Cursor.visible = isVisible;
-        Cursor.lockState = isVisible ? CursorLockMode.None : CursorLockMode.Locked;
-    }
-
 
     [System.Serializable]
     public class GameSettings
@@ -187,37 +206,5 @@ public class GameManager : MonoBehaviour
         public float bossHighRangeAttack;
         public float bossLowRangeAttack;
         public float bossArmAttack;
-
     }
-
-    private void ApplyGameSettings(GameSettings settings)
-    {
-        // Debug.Log("Applying game settings...");
-        GameSpeedtime = settings.GameSpeedtime;
-        bossHealth = settings.bossHealth;
-        bossAttackDelay = settings.bossAttackDelay;
-        playerHealth = settings.playerHealth;
-        playerPotions = settings.playerPotions;
-        PotionHpRegenAmount = settings.PotionHpRegenAmount;
-        playerStamina = settings.playerStamina;
-        playerStaminaRegen = settings.playerStaminaRegen;
-        playerStaminaDashCost = settings.playerStaminaDashCost;
-        playerStaminaLightAttackCost = settings.playerStaminaLightAttackCost;
-        playerSpeed = settings.playerSpeed;
-        playerDashMultiplier = settings.playerDashMultiplier;
-        // CombatManager.instance.pl = settings.playerSpeed;
-        // heavyAttackDamage = settings.playerSpeed;
-        // playerDefense = settings.playerSpeed;
-        // playerCritDamage = settings.playerSpeed;
-        // Debug.Log(settings.bossHighRangeAttack);
-        combatManager.bossHighRangeAttack = settings.bossHighRangeAttack;
-        combatManager.bossLowRangeAttack = settings.bossLowRangeAttack;
-        combatManager.bossArmAttack= settings.bossArmAttack;
-        // combatManager.tesy1();
-        // bossHealing = settings.playerSpeed;
-        // bossHealingDuration = settings.playerSpeed;
-    }
-
-
-
 }

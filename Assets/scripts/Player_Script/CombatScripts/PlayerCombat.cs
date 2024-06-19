@@ -43,7 +43,7 @@ public class PlayerCombat : MonoBehaviour
     }
 
     private void HandleComboAttack(){
-        if(playerAnimatorManager.canInitateComboAttack && inputManager.comboAttackInput && GameManager.instance.playerStamina >= GameManager.instance.playerSltaminaComboAttackCost ){
+        if(playerAnimatorManager.canInitateComboAttack && inputManager.comboAttackInput && GameManager.instance.playerStamina >= GameManager.instance.playerStaminaComboAttackCost ){
             playerAnimatorManager.canInitateComboAttack = false;
             playerAnimatorManager.comboAttackInput();
         }

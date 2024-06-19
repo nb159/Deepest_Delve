@@ -52,17 +52,10 @@ public class LowProjectilePrefabLogic : MonoBehaviour
 
     void OnTriggerEnter(Collider hitInfo)
     {
-        if (hitInfo.CompareTag("Boss"))
+        if (hitInfo.CompareTag("Boss") || hitInfo.CompareTag("highRangeProjectile")|| hitInfo.CompareTag("lowRangeProjectile") || hitInfo.CompareTag("onPotionProjectile"))
         {
-           // Debug.Log("boss hit low");
             return;
         }
-   if (hitInfo.CompareTag("highRangeProjectile"))
-        {
-           // Debug.Log("boss hit low");
-            return;
-        }
-
 
         if (hitInfo.CompareTag("Player"))
         {

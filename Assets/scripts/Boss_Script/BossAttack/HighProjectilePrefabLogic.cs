@@ -39,15 +39,11 @@ public class HighProjectilePrefabLogic : MonoBehaviour
 
     void OnTriggerEnter(Collider hitInfo)
     {
-        if (hitInfo.CompareTag("Boss") || hitInfo.CompareTag("Projectile"))
+        if (hitInfo.CompareTag("Boss") || hitInfo.CompareTag("highRangeProjectile")|| hitInfo.CompareTag("lowRangeProjectile") || hitInfo.CompareTag("onPotionProjectile"))
         {
             return;
         }
-  if (hitInfo.CompareTag("lowRangeProjectile"))
-        {
-           // Debug.Log("boss hit low");
-            return;
-        }
+
         if (hitInfo.CompareTag("Player"))
         {
             CombatManager.instance.bossHighRangeAttackMethode();

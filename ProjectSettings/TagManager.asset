@@ -12,6 +12,7 @@ TagManager:
   - Indicator
   - highRangeProjectile
   - lowRangeProjectile
+  - onPotionProjectile
   layers:
   - Default
   - TransparentFX

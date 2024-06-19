@@ -148,4 +148,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lifetime: 10
   showIndicatorThreshhold: 50
-  groundIndicatorPrefab: {fileID: 8526346965446256756, guid: 1d9292e46cbf03244983120178db8982, type: 3}
+  groundIndicatorPrefab: {fileID: 8331984113264592325, guid: e4bd16b4b46740b4cbb906748f172d10, type: 3}
