@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42c075d8980344a4396a92aa423cca1f, type: 3}
+  m_Name: SpeedItem
+  m_EditorClassIdentifier: 
+  powerUpType: 0
+  itemName: 
+  itemDescribtion: 
+  itemImage: {fileID: 21300000, guid: 4e320cb82c869d34d916403fd4dd54cf, type: 3}
+  modifier: 1.2

@@ -25,15 +25,22 @@ public class CombatManager : MonoBehaviour
 
     // Start is called before the first frame update
 
-    private void Start()
+    private void Awake()
     {
         if (instance == null)
+        {
             instance = this;
-        else if (instance != this) Destroy(gameObject);
+        }else{
+            Destroy(this);
+        
+        }
+    }
+    private void Start()
+    {
+  
         Boss = GameObject.FindWithTag("Boss");
         Player = GameObject.FindWithTag("Player");
     }
-
     public void playerLightAttack()
     {
         // Debug.Log(GameManager.instance.bossHealth+" " + lightAttackDamage);

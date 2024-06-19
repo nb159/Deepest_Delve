@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -32,22 +33,26 @@ public class GameManager : MonoBehaviour
     public float playerMaxHealth = 100; //TODO: add this to the JSON
     public float playerHealth = 100;
 
-    [SerializeField] public int playerPotions = 4;
 
+    [Space(10)]
+    [SerializeField] public int playerPotions = 4;
     [SerializeField] public int PotionHpRegenAmount = 30;
 
-    //Stamina
+    [Space(10)]
     [SerializeField] public float playerStamina = 100;
     [SerializeField] public float playerStaminaRegen = 1f;
     [SerializeField] public float playerStaminaDashCost = 20f;
     [SerializeField] public float playerStaminaLightAttackCost = 10f;
     [SerializeField] public float playerSltaminaComboAttackCost = 10f;
 
-    //movement
+    [Space(10)]
     [SerializeField] public float playerSpeed = 5f;
     [SerializeField] public float playerDashMultiplier = 1.3f; //ideal number is 1.3
     [SerializeField] public float dashTime = 0.6f; //TODO: add this to the JSON
     [SerializeField] public float playerRotationSpeed = 15f;
+
+    [Space(10)] 
+    [SerializeField] public List<PowerUp> playerSelectedBuffs;
     public GameScene currentScene;
 
 
