@@ -66,13 +66,7 @@ public class BossManager : MonoBehaviour
         {
             DetermineAttackState(distanceToPlayer);
         }
-        // if (isArmColliding)
-        // {
-        //     armCollider.enabled = false;
-
-        // }
-
-        //checking if boss is dead so that he does not act once dead
+       
         if (GameManager.instance.bossHealth > 0) { ExecuteCurrentState(distanceToPlayer); }
 
     }
@@ -112,9 +106,7 @@ public class BossManager : MonoBehaviour
             case BossAttackState.LowAttack:
                 ExecuteLowAttackState();
                 break;
-            // case BossAttackState.OnPotionUseAttack:
-            //     ExecuteOnPotionAttackState();
-            //     break;
+      
             case BossAttackState.ArmAttack:
                 ExecuteArmAttackState();
                 break;
@@ -142,15 +134,11 @@ public class BossManager : MonoBehaviour
 
     private void ExecuteLowAttackState()
     {
-        // bossAnimatorManager.TriggerLowAttack();
+        
         lowRangeAttack.ExecuteAttack(player);
     }
 
-    //    private void ExecuteOnPotionAttackState()
-    //     {
-    //         // bossAnimatorManager.TriggerLowAttack();
-    //         lowRangeAttack.ExecuteAttack(player);
-    //     }
+    //  
 
 
     private void ExecuteArmAttackState()
