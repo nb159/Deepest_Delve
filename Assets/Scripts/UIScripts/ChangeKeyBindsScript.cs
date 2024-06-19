@@ -43,7 +43,7 @@ public class ChangeKeyBindsScript : MonoBehaviour
         bindingDisplayNameText.text = InputControlPath.ToHumanReadableString(
             dashAction.action.bindings[0].effectivePath,
             InputControlPath.HumanReadableStringOptions.OmitDevice);
-        //TODO: rebindingOperation.Dispose();
+        //TODO: Uncomment this <- rebindingOperation.Dispose();
         startRebindObject.SetActive(true);
         waitingForInputObject.SetActive(false);
         //TODO: inputManager.playerInput.SwitchCurrentActionMap("SettingsPanel");
