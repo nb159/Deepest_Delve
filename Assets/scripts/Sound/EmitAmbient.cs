@@ -1,6 +1,6 @@
 using UnityEngine;
 using AK.Wwise;  // Make sure to import the Wwise namespace
-
+    
 public class PlayEvent : MonoBehaviour
 {
     public AK.Wwise.Event wwiseEvent;  // Assign your Wwise event in the inspector
