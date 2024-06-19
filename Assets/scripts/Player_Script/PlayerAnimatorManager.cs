@@ -143,15 +143,13 @@ public class PlayerAnimatorManager : MonoBehaviour
     
     public void endPotionDrinking(){
         GameManager.instance.playerSpeed *= 2;
-        //Debug.Log("can drink now" +  canDrinkPotion);
-
         canDash = true;
         canDrinkPotion = true;
         canAttack = true;
     }
+    
     public void comboAttack(int currentAttack){
         hasHit = false;
-        //Debug.Log("bfr: " + inputManager.comboAttackArr[currentAttack] + " " +currentAttack );
         switch(currentAttack){
             case 0:
                 if(inputManager.comboAttackArr[currentAttack]){
@@ -159,33 +157,26 @@ public class PlayerAnimatorManager : MonoBehaviour
                     
                 }else{
                     endComboAttack();
-                    // Debug.Log("i tried to end before the 1st");
                     return;
                 }
                 break;
             case 1:
                 if(inputManager.comboAttackArr[currentAttack]){
                     inputManager.comboAttackArr[currentAttack] = false;
-                    //hasHit = false;
                 }else{
                     endComboAttack();
-                    //Debug.Log("i tried to end before the 2nd");
-
                     return;
                 }
                 break;
             case 2:
                 if(inputManager.comboAttackArr[currentAttack]){
                     inputManager.comboAttackArr[currentAttack] = false;
-                    //hasHit = false;
                 }else{
                    endComboAttack();
-                    //Debug.Log("i tried to end before the 3rd");
                     return;
                 }
                 break;
         }
-        //Debug.Log("afr: " + inputManager.comboAttackArr[currentAttack] + " " +currentAttack );       
     }
     public void endComboAttack(){
         SwordCollider(0);

@@ -2,7 +2,7 @@
     "GameSpeedtime": 1.0,
     "bossHealth": 100.0,
     "bossAttackDelay": 1.0,
-    "playerHealth": 120.0,
+    "playerHealth": 100.0,
     "playerPotions": 3,
     "PotionHpRegenAmount": 30,
     "playerStamina": 100.0,
