@@ -30,6 +30,5 @@ public class AtkItemScript : MonoBehaviour
 
     private void ApplyStats()
     {
-        CombatManager.instance.lightAttackDamage *= modifier;
-    }
+     }
 }
