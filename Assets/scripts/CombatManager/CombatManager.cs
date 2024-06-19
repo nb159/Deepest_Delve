@@ -24,19 +24,19 @@ public class CombatManager : MonoBehaviour
     [SerializeField] public float bossHealing;
     [SerializeField] public float bossHealingDuration;
 
-   private GameObject Boss;
+    private GameObject Boss;
     private GameObject Player;
 
     void Awake()
     {
         if (instance != null && instance != this)
         {
-            Destroy(gameObject); 
+            Destroy(gameObject);
         }
         else
         {
             instance = this;
-            DontDestroyOnLoad(gameObject);  
+            DontDestroyOnLoad(gameObject);
         }
     }
 
@@ -63,11 +63,17 @@ public class CombatManager : MonoBehaviour
 
     public void playerLightAttack()
     {
-        Debug.Log(GameManager.instance.bossHealth+"  " + lightAttackDamage);
+        Debug.Log(GameManager.instance.bossHealth + "  " + lightAttackDamage);
         GameManager.instance.bossHealth -= lightAttackDamage;
-       // if (GameManager.instance.bossHealth <= 0)
-            // TODO: itemSelectionUI.GetComponent<UIItemSelection>().ShowRandomItems();
-           // GameManager.instance.nextLevel();
+
+        if (GameManager.instance.bossHealth <= 0)
+        {
+            GameManager.instance.BossDefeated();
+        }
+
+        // if (GameManager.instance.bossHealth <= 0)
+        // TODO: itemSelectionUI.GetComponent<UIItemSelection>().ShowRandomItems();
+        // GameManager.instance.nextLevel();
     }
 
 
@@ -90,6 +96,7 @@ public class CombatManager : MonoBehaviour
 
         // Debug.Log(GameManager.instance.bossHealth+" " + lightAttackDamage);
         // Debug.Log(PlayerLocomotion.instance.isInvulnerable+"this should be false");
+
         if (!PlayerLocomotion.instance.isInvulnerable) GameManager.instance.playerHealth -= bossHighRangeAttack;
 
         // Debug.Log(GameManager.instance.playerHealth);
@@ -98,6 +105,20 @@ public class CombatManager : MonoBehaviour
         {
             //GameManager.instance.ChangeScene(GameScene.PlayerDeathScene);
         }
+
+        ///////////////////////////////////////////////////////////////////////////////////////////////
+        
+        //----- this is just for debugging cause i cannot deal damage to the boss with players sword----//
+
+
+        //   GameManager.instance.bossHealth -= bossHighRangeAttack;
+
+        // if (GameManager.instance.bossHealth <= 0)
+        // {
+        //     GameManager.instance.BossDefeated();
+        // }
+
+
 
     }
 

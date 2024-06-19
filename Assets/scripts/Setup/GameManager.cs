@@ -45,6 +45,14 @@ public class GameManager : MonoBehaviour
 
     public GameScene currentScene;
 
+ [Header("Level Management")]
+    public int currentLevel = 1;
+    private int maxLevel = 2;
+    public string[] levelFiles = { "Level1Settings", "Level2Settings" };
+
+
+
+
     private void Awake()
     {
         if (instance != null)
@@ -57,7 +65,8 @@ public class GameManager : MonoBehaviour
             instance = this;
             DontDestroyOnLoad(gameObject);
             SceneManager.sceneLoaded += OnSceneLoaded;
-            LoadGameSettings();
+            // LoadGameSettings();
+             LoadGameSettings(levelFiles[currentLevel - 1]);
         }
     }
 
@@ -83,7 +92,7 @@ public class GameManager : MonoBehaviour
             else
             {
                 // Debug.Log(  "this should be a proof that there is cmanager" +combatManager.bossArmAttack);
-                LoadGameSettings();
+              LoadGameSettings(levelFiles[currentLevel - 1]);
             }
         }
         else
@@ -92,25 +101,18 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private void LoadGameSettings()
-    {
-        TextAsset jsonFile = Resources.Load<TextAsset>("GameSettings");
-        if (jsonFile != null)
-        {
+    public void LoadGameSettings(string filename) {
+        TextAsset jsonFile = Resources.Load<TextAsset>(filename);
+        if (jsonFile != null) {
             string json = jsonFile.text;
             GameSettings settings = JsonUtility.FromJson<GameSettings>(json);
-            if (settings != null)
-            {
+            if (settings != null) {
                 ApplyGameSettings(settings);
+            } else {
+                Debug.LogError("Failed to parse game settings from JSON.");
             }
-            else
-            {
-                //Debug.LogError("Failed to parse game settings from JSON.");
-            }
-        }
-        else
-        {
-            //  Debug.LogError("Cannot find GameSettings.json file in Resources.");
+        } else {
+            Debug.LogError("Cannot find JSON file: " + filename);
         }
     }
 
@@ -188,6 +190,15 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void BossDefeated() {
+        if (currentLevel >= maxLevel) {
+            SceneManager.LoadScene("WinScene");
+        } else {
+            currentLevel++;
+            SceneManager.LoadScene("InGameScene");  
+            LoadGameSettings(levelFiles[currentLevel - 1]);  
+        }
+    }
     [System.Serializable]
     public class GameSettings
     {
