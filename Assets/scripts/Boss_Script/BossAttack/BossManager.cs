@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class BossManager : MonoBehaviour
 {
-    private enum BossAttackState { Idle, HighAttack, LowAttack, ArmAttack, Enraged }
+    private enum BossAttackState { Idle, HighAttack, LowAttack, ArmAttack, Enraged, Dead }
 
     private BossAttackState currentState;
 
@@ -15,7 +15,7 @@ public class BossManager : MonoBehaviour
     public float bossHealth = 100f;
     public float enragedHealthThreshold = 50f;
     public Collider armCollider;
- public Collider armCollider2;
+    public Collider armCollider2;
 
     private HighRangeAttack highRangeAttack;
     private LowRangeAttack lowRangeAttack;
@@ -57,9 +57,10 @@ public class BossManager : MonoBehaviour
         float distanceToPlayer = Vector3.Distance(transform.position, player.position);
         // Debug.Log($"Current State: {currentState}, Distance to Player: {distanceToPlayer}");
 
-        if (bossHealth <= enragedHealthThreshold)
+        Debug.Log(GameManager.instance.bossHealth + "deaddddddddddd");
+        if (GameManager.instance.bossHealth <= 0)
         {
-            currentState = BossAttackState.Enraged;
+            currentState = BossAttackState.Dead;
         }
         else
         {
@@ -71,7 +72,9 @@ public class BossManager : MonoBehaviour
 
         // }
 
-        ExecuteCurrentState(distanceToPlayer);
+        //checking if boss is dead so that he does not act once dead
+        if (GameManager.instance.bossHealth > 0) { ExecuteCurrentState(distanceToPlayer); }
+
     }
 
     private void DetermineAttackState(float distanceToPlayer)
@@ -95,6 +98,7 @@ public class BossManager : MonoBehaviour
         }
     }
 
+
     private void ExecuteCurrentState(float distanceToPlayer)
     {
         switch (currentState)
@@ -116,6 +120,9 @@ public class BossManager : MonoBehaviour
                 break;
             case BossAttackState.Enraged:
                 ExecuteEnragedState();
+                break;
+            case BossAttackState.Dead:
+                ExecuteDeath();
                 break;
         }
     }
@@ -152,18 +159,26 @@ public class BossManager : MonoBehaviour
 
 
     }
-    private void ToggleArmCollider( int conditionCollider)
+
+    private void ExecuteDeath()
     {
-        if (conditionCollider==1){
-      armCollider.enabled = true;
+        bossAnimatorManager.SetDeathAnimation();
+
+    }
+    private void ToggleArmCollider(int conditionCollider)
+    {
+        if (conditionCollider == 1)
+        {
+            armCollider.enabled = true;
 
         }
-         else {
-      armCollider.enabled = false;
+        else
+        {
+            armCollider.enabled = false;
 
         }
 
-  
+
         Debug.Log("hello toggle arm collider");
     }
 

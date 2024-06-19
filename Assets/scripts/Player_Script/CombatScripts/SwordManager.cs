@@ -8,6 +8,7 @@ public class SwordManager : MonoBehaviour
 
     [SerializeField] InputManager inputManager;
     private Collider SwordCollider;
+ 
     private void Awake()
     {
         SwordCollider = GetComponent<Collider>();

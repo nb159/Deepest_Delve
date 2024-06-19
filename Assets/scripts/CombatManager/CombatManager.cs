@@ -23,7 +23,8 @@ public class CombatManager : MonoBehaviour
     [SerializeField] public float bossArmAttack = 20f;
     [SerializeField] public float bossHealing;
     [SerializeField] public float bossHealingDuration;
-
+    
+   private BossAnimatorManager bossAnimatorManager;
     private GameObject Boss;
     private GameObject Player;
 
@@ -43,12 +44,15 @@ public class CombatManager : MonoBehaviour
     void Start()
     {
         InitializeReferences();
+
     }
 
     private void InitializeReferences()
     {
+         bossAnimatorManager = GetComponent<BossAnimatorManager>();
         Boss = GameObject.FindWithTag("Boss");
         Player = GameObject.FindWithTag("Player");
+
 
         if (Boss == null)
         {
@@ -69,9 +73,14 @@ public class CombatManager : MonoBehaviour
 
         if (GameManager.instance.bossHealth <= 0)
         {
+             
             // GameManager.instance.BossDefeated();
+         
+            //   bossAnimatorManager.SetDeathAnimation();
+               // Destroy(Boss);
             PortalManager.instance.togglePortal(true);
-
+         
+             
         }
 
         // if (GameManager.instance.bossHealth <= 0)
