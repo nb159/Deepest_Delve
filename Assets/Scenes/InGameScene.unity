@@ -702,6 +702,11 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 6208693282485239630, guid: 90e4b32d562cc164d8483db3241f4d50, type: 3}
   m_PrefabInstance: {fileID: 2071208641}
   m_PrefabAsset: {fileID: 0}
+--- !u!20 &1348184395 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 1856248940449713208, guid: df1a8f46361cff2449d1ca2e989e3e43, type: 3}
+  m_PrefabInstance: {fileID: 1010804102}
+  m_PrefabAsset: {fileID: 0}
 --- !u!136 &1606951210 stripped
 CapsuleCollider:
   m_CorrespondingSourceObject: {fileID: 7734974900953191904, guid: e6e517a5bbd5ae74a83e441551c8d820, type: 3}
@@ -715,9 +720,21 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1139103907882016862, guid: 501663226ed50cf459514cb5bb91bf2f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1985983977566486777, guid: 501663226ed50cf459514cb5bb91bf2f, type: 3}
       propertyPath: m_Name
       value: ItemSelectObj
+      objectReference: {fileID: 0}
+    - target: {fileID: 3482493294735822299, guid: 501663226ed50cf459514cb5bb91bf2f, type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 1348184395}
+    - target: {fileID: 4171184503530831470, guid: 501663226ed50cf459514cb5bb91bf2f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6397766314789976814, guid: 501663226ed50cf459514cb5bb91bf2f, type: 3}
       propertyPath: m_Enabled
@@ -727,6 +744,14 @@ PrefabInstance:
       propertyPath: m_Texture
       value: 
       objectReference: {fileID: 2800000, guid: cbc56c88ec74c684f96f48654e1ea68b, type: 3}
+    - target: {fileID: 6675149282494594833, guid: 501663226ed50cf459514cb5bb91bf2f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6744791091002290629, guid: 501663226ed50cf459514cb5bb91bf2f, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6772494854600718806, guid: 501663226ed50cf459514cb5bb91bf2f, type: 3}
       propertyPath: m_Enabled
       value: 0
