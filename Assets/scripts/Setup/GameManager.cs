@@ -136,8 +136,8 @@ public class GameManager : MonoBehaviour
         GameSpeedtime = settings.GameSpeedtime;
         bossHealth = settings.bossHealth;
         bossAttackDelay = settings.bossAttackDelay;
-        playerHealth = settings.playerHealth;
-        playerPotions = settings.playerPotions;
+        // playerHealth = settings.playerHealth;
+        // playerPotions = settings.playerPotions;
         PotionHpRegenAmount = settings.PotionHpRegenAmount;
         playerStamina = settings.playerStamina;
         playerStaminaRegen = settings.playerStaminaRegen;
@@ -174,6 +174,7 @@ public class GameManager : MonoBehaviour
     {
         currentScene = newScene;
         SceneManager.LoadScene(GameSceneToSceneName(newScene));
+        resetStats();
     }
 
 
@@ -197,6 +198,13 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void resetStats(){
+
+        playerHealth=100;
+        playerPotions=3;
+        playerStamina=100;
+    }
+
     public void BossDefeated() {
         if (currentLevel >= maxLevel) {
             SceneManager.LoadScene("WinScene");
@@ -212,8 +220,8 @@ public class GameManager : MonoBehaviour
         public float GameSpeedtime;
         public float bossHealth;
         public float bossAttackDelay;
-        public float playerHealth;
-        public int playerPotions;
+        // public float playerHealth;
+        // public int playerPotions;
         public int PotionHpRegenAmount;
         public float playerStamina;
         public float playerStaminaRegen;
