@@ -7,6 +7,17 @@ public class MenuButtonController : MonoBehaviour
         GameManager.instance.ChangeScene(GameScene.InGameScene);
     }
 
+    public void ContinueGame()
+    {
+        //TODO: save player & items into JSON
+        GameManager.instance.ChangeScene(GameScene.InGameScene);
+    }
+
+    public void RestartGame()
+    {
+        GameManager.instance.ChangeScene(GameScene.InGameScene);
+    }
+
     public void Settings()
     {
         GameManager.instance.ChangeScene(GameScene.SettingsScene);
