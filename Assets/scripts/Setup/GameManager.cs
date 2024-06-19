@@ -1,6 +1,3 @@
-
-
-
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -23,12 +20,10 @@ public class GameManager : MonoBehaviour
     [Header("Game Stats")]
     public float bossHealth = 100;
     public float GameSpeedtime;
-
     [SerializeField] public float bossAttackDelay = 1f;
 
     [Header("Camera Settings")]
     [SerializeField] public int cameraRotationSpeed = 15;
-
 
     [Space(10)]
     [SerializeField] public int playerPotions = 3;
@@ -52,15 +47,13 @@ public class GameManager : MonoBehaviour
     [SerializeField] public List<PowerUp> playerSelectedBuffs;
     public GameScene currentScene;
 
-
-
     [Header("Level Management")]
     public int currentLevel = 1;
     private int maxLevel = 2;
     public string[] levelFiles = { "Level1Settings", "Level2Settings" };
 
-
-
+    private int playCount;
+    private const string PlayCountKey = "PlayCount";
 
     private void Awake()
     {
@@ -74,7 +67,7 @@ public class GameManager : MonoBehaviour
             instance = this;
             DontDestroyOnLoad(gameObject);
             SceneManager.sceneLoaded += OnSceneLoaded;
-            // LoadGameSettings();
+            LoadPlayCount();
             LoadGameSettings(levelFiles[currentLevel - 1]);
         }
     }
@@ -100,7 +93,6 @@ public class GameManager : MonoBehaviour
             }
             else
             {
-                // Debug.Log(  "this should be a proof that there is cmanager" +combatManager.bossArmAttack);
                 LoadGameSettings(levelFiles[currentLevel - 1]);
             }
         }
@@ -108,6 +100,16 @@ public class GameManager : MonoBehaviour
         {
             combatManager = null;
         }
+    }
+
+    private void LoadPlayCount()
+    {
+        playCount = PlayerPrefs.GetInt(PlayCountKey, 0);
+    }
+
+    private void SavePlayCount()
+    {
+        PlayerPrefs.SetInt(PlayCountKey, playCount);
     }
 
     public void LoadGameSettings(string filename)
@@ -132,8 +134,6 @@ public class GameManager : MonoBehaviour
         }
     }
 
-
-
     private void ApplyGameSettings(GameSettings settings)
     {
         if (combatManager == null)
@@ -142,35 +142,23 @@ public class GameManager : MonoBehaviour
             return;
         }
 
+        float difficultyMultiplier = 1 + (playCount * 0.1f);  
+
         GameSpeedtime = settings.GameSpeedtime;
         bossHealth = settings.bossHealth;
-        bossAttackDelay = settings.bossAttackDelay;
-        // playerHealth = settings.playerHealth;
-        // playerPotions = settings.playerPotions;
+        bossAttackDelay = settings.bossAttackDelay / difficultyMultiplier; 
         PotionHpRegenAmount = settings.PotionHpRegenAmount;
         playerStamina = settings.playerStamina;
         playerStaminaRegen = settings.playerStaminaRegen;
-        playerStaminaDashCost = settings.playerStaminaDashCost;
-        playerStaminaLightAttackCost = settings.playerStaminaLightAttackCost;
+        playerStaminaDashCost = settings.playerStaminaDashCost * difficultyMultiplier;
+        playerStaminaLightAttackCost = settings.playerStaminaLightAttackCost * difficultyMultiplier;
         playerSpeed = settings.playerSpeed;
-        playerDashMultiplier = settings.playerDashMultiplier;
+        playerDashMultiplier = settings.playerDashMultiplier  * difficultyMultiplier;
 
-        // CombatManager.instance.pl = settings.playerSpeed;
-        // heavyAttackDamage = settings.playerSpeed;
-        // playerDefense = settings.playerSpeed;
-        // playerCritDamage = settings.playerSpeed;
-        // Debug.Log(settings.bossHighRangeAttack);
-
-        combatManager.bossHighRangeAttack = settings.bossHighRangeAttack;
-        combatManager.bossLowRangeAttack = settings.bossLowRangeAttack;
-        combatManager.bossArmAttack = settings.bossArmAttack;
-
-        // combatManager.tesy1();
-        // bossHealing = settings.playerSpeed;
-        // bossHealingDuration = settings.playerSpeed;
+        combatManager.bossHighRangeAttack = settings.bossHighRangeAttack * difficultyMultiplier;
+        combatManager.bossLowRangeAttack = settings.bossLowRangeAttack * difficultyMultiplier;
+        combatManager.bossArmAttack = settings.bossArmAttack * difficultyMultiplier;
     }
-
-
 
     void Start()
     {
@@ -178,29 +166,31 @@ public class GameManager : MonoBehaviour
         // ChangeScene(GameScene.MainMenuScene);
     }
 
-
     public void ChangeScene(GameScene newScene)
     {
         currentScene = newScene;
         SceneManager.LoadScene(GameSceneToSceneName(newScene));
-        currentLevel = 1;
-        LoadGameSettings(levelFiles[currentLevel - 1]);
+        if (newScene == GameScene.InGameScene)
+        {
+            IncrementPlayCount(); 
+            currentLevel = 1;
+            LoadGameSettings(levelFiles[currentLevel - 1]);
+        }
+        else
+        {
+            currentLevel = 1;
+            LoadGameSettings(levelFiles[currentLevel - 1]);
+        }
 
         resetStats();
-
     }
 
-
-
-
-
-    // Reset the level to the first level and load the first JSON file
-    private void ResetLevelToFirst()
+    private void IncrementPlayCount()
     {
-
+        playCount++;
+        SavePlayCount();
     }
 
-    // i return here names of scenes cause i want to check on which scene we are to initialize combatmanager
     private string GameSceneToSceneName(GameScene gameScene)
     {
         switch (gameScene)
@@ -222,7 +212,6 @@ public class GameManager : MonoBehaviour
 
     public void resetStats()
     {
-
         playerHealth = 100;
         playerPotions = 3;
         playerStamina = 100;
@@ -241,6 +230,7 @@ public class GameManager : MonoBehaviour
             LoadGameSettings(levelFiles[currentLevel - 1]);
         }
     }
+
     [System.Serializable]
     public class GameSettings
     {

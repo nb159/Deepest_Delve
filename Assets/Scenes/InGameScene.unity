@@ -673,7 +673,7 @@ MonoBehaviour:
   GameSpeedtime: 1
   bossAttackDelay: 1
   cameraRotationSpeed: 100
-  playerPotions: 100
+  playerPotions: 3
   PotionHpRegenAmount: 0
   playerMaxHealth: 100
   playerHealth: 100
