@@ -50,14 +50,17 @@ namespace UIScripts
         public void OnPotionDrink()
         {
     
-    
-            var color = image[^1].color;
-            color.a = 100f / 255f; // Alpha value is between 0 and 1, so we divide by 255
-            image[^1].color = color;
-            //image[^1].gameObject.SetActive(false); // Deactivate the last image object
-            var newImageArray = new Image[image.Length - 1];
-            Array.Copy(image, newImageArray, newImageArray.Length);
-            image = newImageArray;
+
+            if(GameManager.instance.playerPotions >= 0 && GameManager.instance.playerPotions <= 3)
+            {
+                var color = image[^1].color;
+                color.a = 100f / 255f; // Alpha value is between 0 and 1, so we divide by 255
+                image[^1].color = color;
+                //image[^1].gameObject.SetActive(false); // Deactivate the last image object
+                var newImageArray = new Image[image.Length - 1];
+                Array.Copy(image, newImageArray, newImageArray.Length);
+                image = newImageArray;
+            }
             
             
         }
