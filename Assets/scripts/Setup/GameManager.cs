@@ -1,9 +1,10 @@
-using System;
+
+
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 
 public enum GameScene
 {
@@ -25,13 +26,8 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] public float bossAttackDelay = 1f;
 
-    [Header("Camera Settings")] [SerializeField]
-    public int cameraRotationSpeed = 15;
-
-
-    [Header("Player Stats")] [SerializeField]
-    public float playerMaxHealth = 100; //TODO: add this to the JSON
-    public float playerHealth = 100;
+    [Header("Camera Settings")]
+    [SerializeField] public int cameraRotationSpeed = 15;
 
 
     [Space(10)]
@@ -39,13 +35,16 @@ public class GameManager : MonoBehaviour
     [SerializeField] public int PotionHpRegenAmount = 30;
 
     [Space(10)]
+    [Header("Player Stats")]
+    [SerializeField] public float playerMaxHealth = 100; //TODO: add this to the JSON
+    [SerializeField] public float playerHealth = 100;
+    [SerializeField] public int playerPotions = 4;
+    [SerializeField] public int PotionHpRegenAmount = 30;
     [SerializeField] public float playerStamina = 100;
     [SerializeField] public float playerStaminaRegen = 1f;
     [SerializeField] public float playerStaminaDashCost = 20f;
     [SerializeField] public float playerStaminaLightAttackCost = 10f;
-    [SerializeField] public float playerSltaminaComboAttackCost = 10f;
-
-    [Space(10)]
+    [SerializeField] public float playerStaminaComboAttackCost = 10f;
     [SerializeField] public float playerSpeed = 5f;
     [SerializeField] public float playerDashMultiplier = 1.3f; //ideal number is 1.3
     [SerializeField] public float dashTime = 0.6f; //TODO: add this to the JSON
@@ -54,6 +53,13 @@ public class GameManager : MonoBehaviour
     [Space(10)] 
     [SerializeField] public List<PowerUp> playerSelectedBuffs;
     public GameScene currentScene;
+
+ [Header("Level Management")]
+    public int currentLevel = 1;
+    private int maxLevel = 2;
+    public string[] levelFiles = { "Level1Settings", "Level2Settings" };
+
+
 
 
     private void Awake()
@@ -67,39 +73,96 @@ public class GameManager : MonoBehaviour
         {
             instance = this;
             DontDestroyOnLoad(gameObject);
-            LoadGameSettings();
+            SceneManager.sceneLoaded += OnSceneLoaded;
+            // LoadGameSettings();
+             LoadGameSettings(levelFiles[currentLevel - 1]);
         }
     }
-    private void refreshGameManagerBossStats(){
+
+    private void OnDestroy()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    private void refreshGameManagerBossStats()
+    {
         GameManager.instance.bossHealth = bossHealth;
     }
 
-    private void LoadGameSettings()
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        TextAsset jsonFile = Resources.Load<TextAsset>("GameSettings");
-        if (jsonFile != null)
+        if (scene.name == "InGameScene")
         {
-            //Debug.Log("GameSettings.json file found in Resources.");
-            string json = jsonFile.text;
-            // Debug.Log($"GameSettings.json content: {json}");
-
-            GameSettings settings = JsonUtility.FromJson<GameSettings>(json);
-
-            if (settings != null)
+            combatManager = FindObjectOfType<CombatManager>();
+            if (combatManager == null)
             {
-                // Debug.Log("Game settings loaded successfully.");
-                ApplyGameSettings(settings);
+                Debug.LogError("CombatManager not found in the InGameScene!");
             }
             else
             {
-                //Debug.LogError("Failed to parse game settings from JSON.");
+                // Debug.Log(  "this should be a proof that there is cmanager" +combatManager.bossArmAttack);
+              LoadGameSettings(levelFiles[currentLevel - 1]);
             }
         }
         else
         {
-            //Debug.LogError("Cannot find GameSettings.json file in Resources.");
+            combatManager = null;
         }
     }
+
+    public void LoadGameSettings(string filename) {
+        TextAsset jsonFile = Resources.Load<TextAsset>(filename);
+        if (jsonFile != null) {
+            string json = jsonFile.text;
+            GameSettings settings = JsonUtility.FromJson<GameSettings>(json);
+            if (settings != null) {
+                ApplyGameSettings(settings);
+            } else {
+                Debug.LogError("Failed to parse game settings from JSON.");
+            }
+        } else {
+            Debug.LogError("Cannot find JSON file: " + filename);
+        }
+    }
+
+
+
+    private void ApplyGameSettings(GameSettings settings)
+    {
+        if (combatManager == null)
+        {
+            // Debug.LogError("CombatManager not initialized.");
+            return;
+        }
+
+        GameSpeedtime = settings.GameSpeedtime;
+        bossHealth = settings.bossHealth;
+        bossAttackDelay = settings.bossAttackDelay;
+        playerHealth = settings.playerHealth;
+        playerPotions = settings.playerPotions;
+        PotionHpRegenAmount = settings.PotionHpRegenAmount;
+        playerStamina = settings.playerStamina;
+        playerStaminaRegen = settings.playerStaminaRegen;
+        playerStaminaDashCost = settings.playerStaminaDashCost;
+        playerStaminaLightAttackCost = settings.playerStaminaLightAttackCost;
+        playerSpeed = settings.playerSpeed;
+        playerDashMultiplier = settings.playerDashMultiplier;
+
+         // CombatManager.instance.pl = settings.playerSpeed;
+    // heavyAttackDamage = settings.playerSpeed;
+    // playerDefense = settings.playerSpeed;
+    // playerCritDamage = settings.playerSpeed;
+    // Debug.Log(settings.bossHighRangeAttack);
+
+    combatManager.bossHighRangeAttack = settings.bossHighRangeAttack;
+    combatManager.bossLowRangeAttack = settings.bossLowRangeAttack;
+    combatManager.bossArmAttack = settings.bossArmAttack;
+
+     // combatManager.tesy1();
+    // bossHealing = settings.playerSpeed;
+    // bossHealingDuration = settings.playerSpeed;
+    }
+
 
 
     void Start()
@@ -112,68 +175,39 @@ public class GameManager : MonoBehaviour
     public void ChangeScene(GameScene newScene)
     {
         currentScene = newScene;
-        //UIScripts.StageCounterScript.StageCount += 1;
-        //TODO: Add scene count to SceneCounterConfig Script
-        HandleSceneChange();
+        SceneManager.LoadScene(GameSceneToSceneName(newScene));
     }
 
-    public void nextLevel(){
-        //logic for changing scenes
-        HandleSceneChange(GameScene.WinScene);
-    }
 
-    
-
-
-    private void HandleSceneChange()
+    // i return here names of scenes cause i want to check on which scene we are to initialize combatmanager
+    private string GameSceneToSceneName(GameScene gameScene)
     {
-        HandleSceneChange(currentScene);
-    }
-
-    private void HandleSceneChange(GameScene newScene)
-    {
-        currentScene = newScene;
-        switch (newScene)
+        switch (gameScene)
         {
             case GameScene.InGameScene:
-                LoadScene("InGameScene", true);
-                break;
+                return "InGameScene";
             case GameScene.PlayerDeathScene:
-                LoadScene("DeathScene", true);
-                break;
+                return "DeathScene";
             case GameScene.WinScene:
-                LoadScene("WinScene", true);
-                break;
+                return "WinScene";
             case GameScene.MainMenuScene:
+                return "MainMenu";
+            case GameScene.SettingsScene:
+                return "SettingsScene";
             default:
-                LoadScene("MainMenu", true);
-                break;
+                return "MainMenu";
         }
     }
 
-
-    private void LoadScene(string sceneName, bool showCursor)
-    {
-        StartCoroutine(LoadSceneAsync(sceneName, showCursor));
-    }
-
-    private IEnumerator LoadSceneAsync(string sceneName, bool showCursor)
-    {
-        AsyncOperation asyncLoad =  SceneManager.LoadSceneAsync(sceneName);
-        while (!asyncLoad.isDone)
-        {
-            yield return null;
+    public void BossDefeated() {
+        if (currentLevel >= maxLevel) {
+            SceneManager.LoadScene("WinScene");
+        } else {
+            currentLevel++;
+            SceneManager.LoadScene("InGameScene");  
+            LoadGameSettings(levelFiles[currentLevel - 1]);  
         }
-        ShowCursor(showCursor);
     }
-
-    private void ShowCursor(bool isVisible)
-    {
-        Cursor.visible = isVisible;
-        Cursor.lockState = isVisible ? CursorLockMode.None : CursorLockMode.Locked;
-    }
-
-
     [System.Serializable]
     public class GameSettings
     {
@@ -192,37 +226,5 @@ public class GameManager : MonoBehaviour
         public float bossHighRangeAttack;
         public float bossLowRangeAttack;
         public float bossArmAttack;
-
     }
-
-    private void ApplyGameSettings(GameSettings settings)
-    {
-        // Debug.Log("Applying game settings...");
-        GameSpeedtime = settings.GameSpeedtime;
-        bossHealth = settings.bossHealth;
-        bossAttackDelay = settings.bossAttackDelay;
-        playerHealth = settings.playerHealth;
-        playerPotions = settings.playerPotions;
-        PotionHpRegenAmount = settings.PotionHpRegenAmount;
-        playerStamina = settings.playerStamina;
-        playerStaminaRegen = settings.playerStaminaRegen;
-        playerStaminaDashCost = settings.playerStaminaDashCost;
-        playerStaminaLightAttackCost = settings.playerStaminaLightAttackCost;
-        playerSpeed = settings.playerSpeed;
-        playerDashMultiplier = settings.playerDashMultiplier;
-        // CombatManager.instance.pl = settings.playerSpeed;
-        // heavyAttackDamage = settings.playerSpeed;
-        // playerDefense = settings.playerSpeed;
-        // playerCritDamage = settings.playerSpeed;
-        // Debug.Log(settings.bossHighRangeAttack);
-        combatManager.bossHighRangeAttack = settings.bossHighRangeAttack;
-        combatManager.bossLowRangeAttack = settings.bossLowRangeAttack;
-        combatManager.bossArmAttack= settings.bossArmAttack;
-        // combatManager.tesy1();
-        // bossHealing = settings.playerSpeed;
-        // bossHealingDuration = settings.playerSpeed;
-    }
-
-
-
 }

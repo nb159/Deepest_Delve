@@ -454,9 +454,9 @@ MonoBehaviour:
   heavyAttackDamage: 20
   playerDefense: 10
   playerCritDamge: 1
-  bossHighRangeAttack: 0
-  bossLowRangeAttack: 0
-  bossArmAttack: 0
+  bossHighRangeAttack: 10
+  bossLowRangeAttack: 20
+  bossArmAttack: 20
   bossHealing: 10
   bossHealingDuration: 10
 --- !u!1001 &1010804102
@@ -671,7 +671,7 @@ MonoBehaviour:
   playerStaminaRegen: 50
   playerStaminaDashCost: 20
   playerStaminaLightAttackCost: 10
-  playerSltaminaComboAttackCost: 10
+  playerStaminaComboAttackCost: 10
   playerSpeed: 5
   playerDashMultiplier: 2
   dashTime: 0.6

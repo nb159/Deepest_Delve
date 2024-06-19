@@ -34,8 +34,8 @@ public class prefabOnpotion : MonoBehaviour
 
     void OnTriggerEnter(Collider hitInfo)
     {
-        if (hitInfo.CompareTag("Boss"))
-        {      //  Debug.Log("boss hit onPotion");
+       if (hitInfo.CompareTag("Boss") || hitInfo.CompareTag("highRangeProjectile")|| hitInfo.CompareTag("lowRangeProjectile") || hitInfo.CompareTag("onPotionProjectile"))
+        {
             return;
         }
 

@@ -5,49 +5,78 @@ public class CombatManager : MonoBehaviour
     public static CombatManager instance;
     public GameObject itemSelectionUI;
 
-    [Header("Player Stats")] [SerializeField]
+    [Header("Player Stats")]
+    [SerializeField]
     public float lightAttackDamage = 10f;
 
     [SerializeField] public float heavyAttackDamage = 20f;
     [SerializeField] public float playerDefense = 10f;
     [SerializeField] public float playerCritDamge = 1f;
 
-    [Header("Boss Stats")] [SerializeField]
-    public float bossHighRangeAttack;
+    [Header("Boss Stats")]
+    // [SerializeField]
+    [SerializeField] public float bossHighRangeAttack = 10f;
 
-    [SerializeField] public float bossLowRangeAttack;
-    [SerializeField] public float bossArmAttack;
+    [SerializeField] public float bossLowRangeAttack = 20f;
+
+
+    [SerializeField] public float bossArmAttack = 20f;
     [SerializeField] public float bossHealing;
     [SerializeField] public float bossHealingDuration;
 
     private GameObject Boss;
     private GameObject Player;
 
-    // Start is called before the first frame update
-
-    private void Awake()
+    void Awake()
     {
-        if (instance == null)
+        if (instance != null && instance != this)
+        {
+            Destroy(gameObject);
+        }
+        else
         {
             instance = this;
-        }else{
-            Destroy(this);
-        
+            DontDestroyOnLoad(gameObject);
         }
     }
-    private void Start()
+
+    void Start()
     {
-  
+        InitializeReferences();
+    }
+
+    private void InitializeReferences()
+    {
         Boss = GameObject.FindWithTag("Boss");
         Player = GameObject.FindWithTag("Player");
+
+        if (Boss == null)
+        {
+            Debug.LogError("Boss object not found in the scene.");
+        }
+
+        if (Player == null)
+        {
+            Debug.LogError("Player object not found in the scene.");
+        }
     }
     public void playerLightAttack()
     {
-        // Debug.Log(GameManager.instance.bossHealth+" " + lightAttackDamage);
+        Debug.Log(GameManager.instance.bossHealth + "  " + lightAttackDamage);
         GameManager.instance.bossHealth -= lightAttackDamage;
+
+// from here the porta should be toggled
+
         if (GameManager.instance.bossHealth <= 0)
-            // TODO: itemSelectionUI.GetComponent<UIItemSelection>().ShowRandomItems();
-            GameManager.instance.nextLevel();
+        {
+            // GameManager.instance.BossDefeated();
+            PortalManager.instance.togglePortal(true);
+
+        }
+
+        // if (GameManager.instance.bossHealth <= 0)
+        // TODO: itemSelectionUI.GetComponent<UIItemSelection>().ShowRandomItems();
+        // GameManager.instance.nextLevel();
     }
 
 
@@ -69,13 +98,32 @@ public class CombatManager : MonoBehaviour
         //Debug.Log(bossHighRangeAttack + " " + GameManager.instance.playerHealth);
 
         // Debug.Log(GameManager.instance.bossHealth+" " + lightAttackDamage);
-        if(!PlayerLocomotion.instance.isInvulnerable) GameManager.instance.playerHealth -= bossHighRangeAttack;
-        //Debug.Log(GameManager.instance.playerHealth);
-        
+        // Debug.Log(PlayerLocomotion.instance.isInvulnerable+"this should be false");
+
+        if (!PlayerLocomotion.instance.isInvulnerable) GameManager.instance.playerHealth -= bossHighRangeAttack;
+
+        // Debug.Log(GameManager.instance.playerHealth);
+
         if (GameManager.instance.playerHealth <= 0)
         {
             //GameManager.instance.ChangeScene(GameScene.PlayerDeathScene);
         }
+
+        ///////////////////////////////////////////////////////////////////////////////////////////////
+
+        //----- this is just for debugging cause i cannot deal damage to the boss with players sword----//
+
+
+        //   GameManager.instance.bossHealth -= bossHighRangeAttack;
+
+        // if (GameManager.instance.bossHealth <= 0)
+        // {
+        //    // GameManager.instance.BossDefeated();
+        //     PortalManager.instance.togglePortal(true);
+
+        // }
+
+
 
     }
 
@@ -83,13 +131,13 @@ public class CombatManager : MonoBehaviour
     {
         //Debug.Log("low: " + bossLowRangeAttack + " " + GameManager.instance.playerHealth);
 
-        if(!PlayerLocomotion.instance.isInvulnerable) GameManager.instance.playerHealth -= bossLowRangeAttack;
-     //   Debug.Log(GameManager.instance.playerHealth);
+        if (!PlayerLocomotion.instance.isInvulnerable) GameManager.instance.playerHealth -= bossLowRangeAttack;
+        // Debug.Log(GameManager.instance.playerHealth);
 
-    
+
         if (GameManager.instance.playerHealth <= 0)
         {
-            
+
             //GameManager.instance.ChangeScene(GameScene.PlayerDeathScene);
         }
 
@@ -97,19 +145,19 @@ public class CombatManager : MonoBehaviour
     }
 
 
- public void bossArmAttackMethode()
+    public void bossArmAttackMethode()
     {
-       // Debug.Log("low: " + bossArmAttack + " " + GameManager.instance.playerHealth);
+        // Debug.Log("low: " + bossArmAttack + " " + GameManager.instance.playerHealth);
 
-        GameManager.instance.playerHealth -= bossArmAttack;
-      Debug.Log(bossArmAttack+"hit by arm");
-      Debug.Log("arm: " + bossArmAttack + " " + GameManager.instance.playerHealth);
+        if (!PlayerLocomotion.instance.isInvulnerable) GameManager.instance.playerHealth -= bossArmAttack;
+        //Debug.Log(bossArmAttack+"hit by arm");
+        //Debug.Log("arm: " + bossArmAttack + " " + GameManager.instance.playerHealth);
 
-     //Debug.Log("testing if armattack methode works");
+        //Debug.Log("testing if armattack methode works");
         if (GameManager.instance.playerHealth <= 0)
         {
             GameManager.instance.ChangeScene(GameScene.PlayerDeathScene);
-            
+
         }
 
 

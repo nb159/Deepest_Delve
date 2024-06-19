@@ -150,13 +150,29 @@ public class BossManager : MonoBehaviour
         // i will add logic for enraged state attacks
     }
 
+
+
     private void TryOnPotionUseAttack()
     {
         if (Random.value < potionAttackChance)
         {
+            // onPotionUseProjectile.ExecuteAttack(player);
+
+  bossAnimatorManager.TriggerOnPotionAttack();
+        }
+    }
+
+
+//used this in fireBall event
+      private void fireOnPotionEvent()
+    {
+        if (Random.value < potionAttackChance)
+        {
+
+            Debug.Log("hello from keyframe");
             onPotionUseProjectile.ExecuteAttack(player);
 
-
+//   bossAnimatorManager.TriggerOnPotionAttack();
         }
     }
 }

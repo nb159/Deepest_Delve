@@ -22,14 +22,28 @@ public class PortalManager : MonoBehaviour
     }
 
 
-    private void OnCollisionEnter(Collision collision)
+ 
+
+ private void OnTriggerEnter(Collider hitInfo)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        if (hitInfo.CompareTag("Boss") || hitInfo.CompareTag("highRangeProjectile")|| hitInfo.CompareTag("lowRangeProjectile") || hitInfo.CompareTag("onPotionProjectile"))
         {
-            //switch game Scene
-            GameManager.instance.ChangeScene(GameScene.MainMenuScene);  
+            return;
         }
+
+        if (hitInfo.CompareTag("Player"))
+        {
+
+             //switch game Scene
+          //  GameManager.instance.ChangeScene(GameScene.MainMenuScene);
+             GameManager.instance.BossDefeated();  
+              Debug.Log("hy portal");
+          
+        }
+
+        Destroy(gameObject); 
     }
+
 
     public void togglePortal(bool state)
     {
