@@ -30,7 +30,7 @@ namespace UIScripts
         {
             // TODO:  Potions = GameManager.instance.playerPotions;
             // Debug.Log(Potions);
-            _potions = 3;
+            _potions = GameManager.instance.playerPotions;
             // PotionsFloat = (float) Potions;
             //Debug.Log(PotionsFloat);
             //PotionBarViz.fillAmount = PotionsFloat;
@@ -39,23 +39,18 @@ namespace UIScripts
         private void Update()
         {
             if (_potions > 0)
-                if (Input.GetKeyDown(KeyCode.Q))
-                {
                     drinkPotion = true;
                     if (drinkPotion)
                     {
                         OnPotionDrink();
                         drinkPotion = false; // Reset drinkPotion to false after drinking
                     }
-                }
         }
 
         public void OnPotionDrink()
         {
             if (_potions > 0)
             {
-                _potions--;
-
                 if (image.Length > 0)
                 {
                     var color = image[^1].color;

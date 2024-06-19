@@ -3,7 +3,7 @@
     "bossHealth": 100.0,
     "bossAttackDelay": 1.0,
     "playerHealth": 120.0,
-    "playerPotions": 4,
+    "playerPotions": 3,
     "PotionHpRegenAmount": 30,
     "playerStamina": 100.0,
     "playerStaminaRegen": 1.0,

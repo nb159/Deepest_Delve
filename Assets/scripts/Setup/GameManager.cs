@@ -31,7 +31,7 @@ public class GameManager : MonoBehaviour
 
 
     [Space(10)]
-    [SerializeField] public int playerPotions = 4;
+    [SerializeField] public int playerPotions = 3;
     [SerializeField] public int PotionHpRegenAmount = 30;
 
     [Space(10)]
