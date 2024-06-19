@@ -165,7 +165,22 @@ public class GameManager : MonoBehaviour
     {
         currentScene = newScene;
         SceneManager.LoadScene(GameSceneToSceneName(newScene));
+        // resetStats();
+    }
+
+    public void RestartGame(GameScene newScene)
+    {
+        SceneManager.LoadScene("InGameScene");
         resetStats();
+        LoadGameSettings(levelFiles[currentLevel - 1]);
+    }
+
+    public void ContinueGame(GameScene newScene)
+    {
+        SceneManager.LoadScene("InGameScene");
+        resetStats();
+        //TODO: LOAD THE FUCKING ITEMS OR WHATEVER IS GOING ON AFTER THE PLAYER WON FFS
+        LoadGameSettings(levelFiles[currentLevel - 1]);
     }
 
 
@@ -189,15 +204,18 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void resetStats(){
-
-        playerHealth=100;
-        playerPotions=3;
-        playerStamina=100;
+    public void resetStats()
+    {
+        // ????????? PLEASE EXPLAIN
+        playerHealth = 100;
+        playerPotions = 3;
+        playerStamina = 100;
     }
 
-    public void BossDefeated() {
-        if (currentLevel >= maxLevel) {
+    public void BossDefeated()
+    {
+        if (currentLevel >= maxLevel)
+        {
             SceneManager.LoadScene("WinScene");
         }
         else
@@ -213,7 +231,9 @@ public class GameManager : MonoBehaviour
     {
         public float GameSpeedtime;
         public float bossHealth;
+
         public float bossAttackDelay;
+
         // public float playerHealth;
         // public int playerPotions;
         public int PotionHpRegenAmount;

@@ -123,7 +123,7 @@ public class CombatManager : MonoBehaviour
         //----- this is just for debugging cause i cannot deal damage to the boss with players sword----//
 
 
-          GameManager.instance.bossHealth -= bossHighRangeAttack;
+          GameManager.instance.playerHealth -= bossHighRangeAttack;
 
         if (GameManager.instance.bossHealth <= 0)
         {

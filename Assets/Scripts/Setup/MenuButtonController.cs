@@ -15,7 +15,7 @@ public class MenuButtonController : MonoBehaviour
 
     public void RestartGame()
     {
-        GameManager.instance.ChangeScene(GameScene.InGameScene);
+        GameManager.instance.RestartGame(GameScene.InGameScene);
     }
 
     public void Settings()
