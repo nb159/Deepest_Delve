@@ -52,6 +52,7 @@ public class PortalManager : MonoBehaviour
         gameObject.SetActive(state);
         PlayerLocomotion.instance.toggleTargetToLockOn(state);
         PlayerCamera.instance.toggleTargetToLockOn(state);
+        ItemsManager.instance.togglItemsSelector(state);
         
     }
 }

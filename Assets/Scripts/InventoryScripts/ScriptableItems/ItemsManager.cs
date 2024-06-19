@@ -5,11 +5,27 @@ using UnityEngine;
 
 public class ItemsManager : MonoBehaviour
 {
+
+    public static ItemsManager instance;
     public PowerUp[] selectableItems;
 
     public static bool userSelected = false;
 
     public GameObject[] itemDisplayObject;
+
+    void Awake()
+    {
+        gameObject.SetActive(false);
+
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else
+        {
+            Destroy(this);
+        }
+    }
 
     void OnTriggerEnter(Collider other)
     {
@@ -37,5 +53,10 @@ public class ItemsManager : MonoBehaviour
             itemDisplayObject[i].GetComponent<ItemDisplaySelector>().AssignedItem = item;
             Debug.Log(item);
         }
+    }
+
+    public void  togglItemsSelector(bool state){
+        gameObject.SetActive(state);
+        gameObject.GetComponent<Collider>().enabled = state;
     }
 }
