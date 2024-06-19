@@ -57,7 +57,7 @@ public class BossManager : MonoBehaviour
         float distanceToPlayer = Vector3.Distance(transform.position, player.position);
         // Debug.Log($"Current State: {currentState}, Distance to Player: {distanceToPlayer}");
 
-        Debug.Log(GameManager.instance.bossHealth + "deaddddddddddd");
+    ///    Debug.Log(GameManager.instance.bossHealth + "deaddddddddddd");
         if (GameManager.instance.bossHealth <= 0)
         {
             currentState = BossAttackState.Dead;
@@ -162,7 +162,7 @@ public class BossManager : MonoBehaviour
 
     private void ExecuteDeath()
     {
-        bossAnimatorManager.SetDeathAnimation();
+        bossAnimatorManager.TriggerDeath();
 
     }
     private void ToggleArmCollider(int conditionCollider)
