@@ -66,9 +66,13 @@ public class CombatManager : MonoBehaviour
         Debug.Log(GameManager.instance.bossHealth + "  " + lightAttackDamage);
         GameManager.instance.bossHealth -= lightAttackDamage;
 
+// from here the porta should be toggled
+
         if (GameManager.instance.bossHealth <= 0)
         {
-            GameManager.instance.BossDefeated();
+            // GameManager.instance.BossDefeated();
+            PortalManager.instance.togglePortal(true);
+
         }
 
         // if (GameManager.instance.bossHealth <= 0)
@@ -107,7 +111,7 @@ public class CombatManager : MonoBehaviour
         }
 
         ///////////////////////////////////////////////////////////////////////////////////////////////
-        
+
         //----- this is just for debugging cause i cannot deal damage to the boss with players sword----//
 
 
@@ -115,7 +119,9 @@ public class CombatManager : MonoBehaviour
 
         // if (GameManager.instance.bossHealth <= 0)
         // {
-        //     GameManager.instance.BossDefeated();
+        //    // GameManager.instance.BossDefeated();
+        //     PortalManager.instance.togglePortal(true);
+
         // }
 
 
