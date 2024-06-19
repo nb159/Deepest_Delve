@@ -1,42 +1,41 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem.Interactions;
 
 public class InputManager : MonoBehaviour
 {
-    public static InputManager instance;
-    PlayerAnimatorManager playerAnimatorManager;
+    // Event to notify when the player is drinking a potion
+    public delegate void DrinkPotionAction();
 
-    public PlayerInput playerInput;
+    public static InputManager instance;
     public Vector2 movementInput;
 
     [Header("Movement Variables")]
     //TODO: ADD Inventory Button
     public float moveAmount;
+
     public float verticalInput;
     public float horizontalInput;
-    public bool lightAttackInput = false;
-    public bool dashInput = false;
-    public bool drinkPotionInput = false;
-    public bool openInventoryInput = false;
-    public bool[] comboAttackArr = new bool[3] {false, false, false};
-    public bool comboAttackInput = false;
-    public bool portalInScene = false;
+    public bool lightAttackInput;
+    public bool dashInput;
+    public bool drinkPotionInput;
+    public bool openInventoryInput;
+    public bool[] comboAttackArr = new bool[3] { false, false, false };
+    public bool comboAttackInput;
+    public bool portalInScene;
     public int currentComboState = 1;
-    // Event to notify when the player is drinking a potion
-    public delegate void DrinkPotionAction();
-    public static event DrinkPotionAction OnDrinkPotion;
+    private PlayerAnimatorManager playerAnimatorManager;
+
+    public PlayerInput playerInput;
 
     private void Awake()
     {
-        if(instance == null){
+        if (instance == null)
             instance = this;
-        }else{
+        else
             Destroy(this);
-        }
         playerAnimatorManager = GetComponent<PlayerAnimatorManager>();
     }
+
     private void OnEnable()
     {
         if (playerInput == null)
@@ -48,22 +47,26 @@ public class InputManager : MonoBehaviour
             playerInput.Player.Attacks.canceled += i => lightAttackInput = false;
             playerInput.Player.Dash.performed += i => dashInput = true;
             playerInput.Player.Dash.canceled += i => dashInput = false;
-            playerInput.Player.DrinkPotion.performed += i => {
+            playerInput.Player.DrinkPotion.performed += i =>
+            {
                 drinkPotionInput = true;
                 OnDrinkPotion?.Invoke(); // Invoking event when drinking potion
             };
-            playerInput.Player.ToggleCameraControl.performed += i => {
-                
+            playerInput.Player.ToggleCameraControl.performed += i =>
+            {
                 portalInScene = !portalInScene;
                 // Debug.Log(portalInScene);
                 PortalManager.instance.togglePortal(portalInScene); // Toggle portal
             };
             playerInput.Player.Inventory.performed += i => openInventoryInput = !openInventoryInput; // Toggle inventory
             playerInput.Player.DrinkPotion.canceled += i => drinkPotionInput = false;
-            playerInput.Player.ComboAttack.performed += context => {
+            playerInput.Player.ComboAttack.performed += context =>
+            {
                 comboAttackInput = true;
-                var tapCount = context.interaction is MultiTapInteraction ? ((MultiTapInteraction)context.interaction).tapCount : 1;
-                
+                var tapCount = context.interaction is MultiTapInteraction
+                    ? ((MultiTapInteraction)context.interaction).tapCount
+                    : 1;
+
                 switch (tapCount)
                 {
                     // case 1:
@@ -74,24 +77,24 @@ public class InputManager : MonoBehaviour
                     //     }
                     //     break;
                     case 2:
-                        if(currentComboState == 1){
-                            currentComboState ++;
+                        if (currentComboState == 1)
+                        {
+                            currentComboState++;
                             comboAttackArr[1] = true;
                             //Debug.Log("Combo 2");
-                        }                    
+                        }
+
                         break;
                     case 3:
-                        if(currentComboState == 2){
+                        if (currentComboState == 2)
+                        {
                             currentComboState = 1;
                             comboAttackArr[2] = true;
                             //Debug.Log("Combo 3");
                         }
+
                         break;
-                   
                 }
-
-
-                
             };
             //playerInput.Player.ComboAttack.canceled += i => comboAttackInput = false;
         }
@@ -104,6 +107,8 @@ public class InputManager : MonoBehaviour
         playerInput.Disable();
     }
 
+    public static event DrinkPotionAction OnDrinkPotion;
+
     private void HandleMovementInput()
     {
         verticalInput = movementInput.y;
@@ -115,7 +120,8 @@ public class InputManager : MonoBehaviour
 
     public void HandleAllInputs()
     {
-        if(playerAnimatorManager.canMove){
+        if (playerAnimatorManager.canMove)
+        {
             HandleMovementInput();
         }
         else
@@ -124,6 +130,4 @@ public class InputManager : MonoBehaviour
             horizontalInput = 0;
         }
     }
-
-   
 }

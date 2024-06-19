@@ -5,7 +5,7 @@ public class StaminaItemScript : MonoBehaviour
 {
     public float modifier;
     public string imagePath = "Assets/Sprites/Items/empty.png";
-
+    public string itemName = "Stamina Recovery Buff";
     public Image image;
 
     // Constructor

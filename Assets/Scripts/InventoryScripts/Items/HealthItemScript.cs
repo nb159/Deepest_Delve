@@ -5,7 +5,7 @@ public class HealthItemScript : MonoBehaviour
 {
     public float modifier;
     public string imagePath = "Assets/Sprites/Items/Item 3-1.png.png";
-
+    public string itemName = "Health Buff";
     public Image image;
 
     // Constructor

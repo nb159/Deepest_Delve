@@ -5,6 +5,7 @@ public class AtkItemScript : MonoBehaviour
 {
     public float modifier;
     public string imagePath = "Assets/Sprites/Items/pngwing.com.png";
+    public string itemName = "Attack Buff";
     public Image image;
 
     // Constructor
