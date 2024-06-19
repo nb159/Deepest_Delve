@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class BossManager : MonoBehaviour
@@ -13,6 +14,8 @@ public class BossManager : MonoBehaviour
     public float potionAttackChance = 0.5f;
     public float bossHealth = 100f;
     public float enragedHealthThreshold = 50f;
+    public Collider armCollider;
+ public Collider armCollider2;
 
     private HighRangeAttack highRangeAttack;
     private LowRangeAttack lowRangeAttack;
@@ -24,7 +27,7 @@ public class BossManager : MonoBehaviour
     void Start()
     {
         highRangeAttack = GetComponent<HighRangeAttack>();
-    
+
         lowRangeAttack = GetComponent<LowRangeAttack>();
         onPotionUseProjectile = GetComponent<OnPotionUseProjectile>();
 
@@ -36,6 +39,7 @@ public class BossManager : MonoBehaviour
             enabled = false;
             return;
         }
+        armCollider.enabled = false;
 
         currentState = BossAttackState.Idle;
         InputManager.OnDrinkPotion += TryOnPotionUseAttack;
@@ -61,6 +65,11 @@ public class BossManager : MonoBehaviour
         {
             DetermineAttackState(distanceToPlayer);
         }
+        // if (isArmColliding)
+        // {
+        //     armCollider.enabled = false;
+
+        // }
 
         ExecuteCurrentState(distanceToPlayer);
     }
@@ -140,8 +149,22 @@ public class BossManager : MonoBehaviour
     private void ExecuteArmAttackState()
     {
         bossAnimatorManager.TriggerArmAttack();
-     
 
+
+    }
+    private void ToggleArmCollider( int conditionCollider)
+    {
+        if (conditionCollider==1){
+      armCollider.enabled = true;
+
+        }
+         else {
+      armCollider.enabled = false;
+
+        }
+
+  
+        Debug.Log("hello toggle arm collider");
     }
 
     private void ExecuteEnragedState()
@@ -158,13 +181,13 @@ public class BossManager : MonoBehaviour
         {
             // onPotionUseProjectile.ExecuteAttack(player);
 
-  bossAnimatorManager.TriggerOnPotionAttack();
+            bossAnimatorManager.TriggerOnPotionAttack();
         }
     }
 
 
-//used this in fireBall event
-      private void fireOnPotionEvent()
+    //used this in fireBall event
+    private void fireOnPotionEvent()
     {
         if (Random.value < potionAttackChance)
         {
@@ -172,7 +195,7 @@ public class BossManager : MonoBehaviour
             Debug.Log("hello from keyframe");
             onPotionUseProjectile.ExecuteAttack(player);
 
-//   bossAnimatorManager.TriggerOnPotionAttack();
+            //   bossAnimatorManager.TriggerOnPotionAttack();
         }
     }
 }
