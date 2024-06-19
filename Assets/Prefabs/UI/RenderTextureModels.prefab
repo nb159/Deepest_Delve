@@ -46,7 +46,7 @@ GameObject:
   - component: {fileID: 986137526130334759}
   m_Layer: 0
   m_Name: RealTimeBossTextureRenderer
-  m_TagString: Untagged
+  m_TagString: RenderTexture
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -138,7 +138,7 @@ GameObject:
   - component: {fileID: 6631439181577579382}
   m_Layer: 3
   m_Name: RealTimePlayerTextureRender
-  m_TagString: Untagged
+  m_TagString: RenderTexture
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
