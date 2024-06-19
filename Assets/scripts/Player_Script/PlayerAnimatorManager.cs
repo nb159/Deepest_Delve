@@ -150,13 +150,13 @@ public class PlayerAnimatorManager : MonoBehaviour
         canAttack = true;
     }
     public void comboAttack(int currentAttack){
-
-        Debug.Log("bfr: " + inputManager.comboAttackArr[currentAttack] + " " +currentAttack );
+        hasHit = false;
+        //Debug.Log("bfr: " + inputManager.comboAttackArr[currentAttack] + " " +currentAttack );
         switch(currentAttack){
             case 0:
                 if(inputManager.comboAttackArr[currentAttack]){
                     inputManager.comboAttackArr[currentAttack] = false;
-                    hasHit = false;
+                    
                 }else{
                     endComboAttack();
                     // Debug.Log("i tried to end before the 1st");
@@ -166,7 +166,7 @@ public class PlayerAnimatorManager : MonoBehaviour
             case 1:
                 if(inputManager.comboAttackArr[currentAttack]){
                     inputManager.comboAttackArr[currentAttack] = false;
-                    hasHit = false;
+                    //hasHit = false;
                 }else{
                     endComboAttack();
                     //Debug.Log("i tried to end before the 2nd");
@@ -177,7 +177,7 @@ public class PlayerAnimatorManager : MonoBehaviour
             case 2:
                 if(inputManager.comboAttackArr[currentAttack]){
                     inputManager.comboAttackArr[currentAttack] = false;
-                    hasHit = false;
+                    //hasHit = false;
                 }else{
                    endComboAttack();
                     //Debug.Log("i tried to end before the 3rd");
@@ -185,9 +185,12 @@ public class PlayerAnimatorManager : MonoBehaviour
                 }
                 break;
         }
-        Debug.Log("afr: " + inputManager.comboAttackArr[currentAttack] + " " +currentAttack );       
+        //Debug.Log("afr: " + inputManager.comboAttackArr[currentAttack] + " " +currentAttack );       
     }
     public void endComboAttack(){
+        SwordCollider(0);
+
+
         animator.CrossFade("Locomotion", 0.1f);
         canInitateComboAttack = true;
         inputManager.comboAttackInput = false;
@@ -197,7 +200,7 @@ public class PlayerAnimatorManager : MonoBehaviour
     }
     public void SwordCollider(int ColliderActivation){
 
-        // Debug.Log("ColliderActivation: " + ColliderActivation);
+        Debug.Log("ColliderActivation: " + ColliderActivation);
         if(ColliderActivation == 1){
             swordCollider.enabled = true;
             

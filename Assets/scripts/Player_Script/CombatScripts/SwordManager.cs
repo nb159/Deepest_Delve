@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SwordManager : MonoBehaviour
 {
@@ -25,7 +26,10 @@ public class SwordManager : MonoBehaviour
             //TODO: play Enemey damage animation 
             
             CombatManager.instance.playerLightAttack();
-            PlayerAnimatorManager.instance.hasHit = true; // Set the flag to true because damage has been dealt
+            PlayerAnimatorManager.instance.hasHit = true;
+
         }
     }
+
+   
 }

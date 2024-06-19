@@ -64,13 +64,6 @@ ModelImporter:
         floatParameter: 0
         intParameter: 1
         messageOptions: 0
-      - time: 0.1428572
-        functionName: SwordCollider
-        data: 
-        objectReferenceParameter: {fileID: 11500000, guid: 4b150669467e10d46a4812433c5d45b0, type: 3}
-        floatParameter: 0
-        intParameter: 1
-        messageOptions: 0
       - time: 0.27311248
         functionName: comboAttack
         data: 

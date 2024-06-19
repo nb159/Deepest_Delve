@@ -62,7 +62,7 @@ public class CombatManager : MonoBehaviour
     }
     public void playerLightAttack()
     {
-        Debug.Log(GameManager.instance.bossHealth + "  " + lightAttackDamage);
+        //Debug.Log(GameManager.instance.bossHealth + "  " + lightAttackDamage);
         GameManager.instance.bossHealth -= lightAttackDamage;
 
 // from here the porta should be toggled
