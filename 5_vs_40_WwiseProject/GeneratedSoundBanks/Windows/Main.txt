@@ -1,6 +1,20 @@
 Event	ID	Name			Wwise Object Path	Notes
+	514211712	Play_PlayerHit			\Default Work Unit\Play_PlayerHit	
+	1891302665	Play_PlayerAttack_01			\Default Work Unit\Play_PlayerAttack_01	
+	2600469463	Play_Steps			\Default Work Unit\Play_Steps	
 	3092969983	Play_SancuatryOfDeathAmbience			\Default Work Unit\Play_SancuatryOfDeathAmbience	
+	3271307334	Play_BossAttackBase			\Default Work Unit\Play_BossAttackBase	
+	3703766381	Play_playerAttack			\Default Work Unit\Play_playerAttack	
 
 In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
+	8219551	walking6	Y:\Repos\Deepest_Delve\5_vs_40_WwiseProject\.cache\Windows\SFX\walking6_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Steps\walking6		21944
+	46945262	walking1	Y:\Repos\Deepest_Delve\5_vs_40_WwiseProject\.cache\Windows\SFX\walking1_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Steps\walking1		21944
+	161345788	walking2	Y:\Repos\Deepest_Delve\5_vs_40_WwiseProject\.cache\Windows\SFX\walking2_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Steps\walking2		21944
+	165976889	player_hit-004	Y:\Repos\Deepest_Delve\5_vs_40_WwiseProject\.cache\Windows\SFX\player_hit-004_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\PlayerHit\player_hit-004		131072
+	217982125	BossAttackBase	Y:\Repos\Deepest_Delve\5_vs_40_WwiseProject\.cache\Windows\SFX\BossAttackBase_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\BossAttackBase\BossAttackBase		372756
+	258359096	walking3	Y:\Repos\Deepest_Delve\5_vs_40_WwiseProject\.cache\Windows\SFX\walking3_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Steps\walking3		21944
 	289292443	SancuatryOfDeathAmbience	Y:\Repos\Deepest_Delve\5_vs_40_WwiseProject\.cache\Windows\SFX\SancuatryOfDeathAmbience_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\SancuatryOfDeathAmbience		28840732
+	656241488	walking5	Y:\Repos\Deepest_Delve\5_vs_40_WwiseProject\.cache\Windows\SFX\walking5_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Steps\walking5		21944
+	755609739	walking4	Y:\Repos\Deepest_Delve\5_vs_40_WwiseProject\.cache\Windows\SFX\walking4_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Steps\walking4		21944
+	803933684	playerAttack	Y:\Repos\Deepest_Delve\5_vs_40_WwiseProject\.cache\Windows\SFX\playerAttack_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\PlayerAttack\playerAttack		92772
 
