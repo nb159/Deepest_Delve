@@ -59,7 +59,7 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        if (instance != null)
+        if (instance != null )
         {
             refreshGameManagerBossStats();
             Destroy(gameObject);
@@ -190,6 +190,7 @@ public class GameManager : MonoBehaviour
         {
             IncrementPlayCount(); 
             currentLevel = 1;
+            
             LoadGameSettings(levelFiles[currentLevel - 1]);
         }
         else

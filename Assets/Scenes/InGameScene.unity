@@ -988,7 +988,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   combatManager: {fileID: 865314104}
-  bossHealth: 100
+  bossHealth: 1
   GameSpeedtime: 1
   bossAttackDelay: 1
   cameraRotationSpeed: 100

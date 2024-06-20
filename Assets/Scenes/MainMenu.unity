@@ -721,6 +721,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: RenderTextureModels
       objectReference: {fileID: 0}
+    - target: {fileID: 4195112149486423242, guid: ad40169d6b04f3a4c88941820925c9e7, type: 3}
+      propertyPath: far clip plane
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 8290303153343363424, guid: ad40169d6b04f3a4c88941820925c9e7, type: 3}
       propertyPath: m_LocalPosition.x
       value: 478.96997
