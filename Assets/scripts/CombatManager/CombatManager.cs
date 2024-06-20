@@ -15,6 +15,7 @@ public class CombatManager : MonoBehaviour
     [SerializeField] public float heavyAttackDamage = 20f;
     [SerializeField] public float playerDefense = 10f;
     [SerializeField] public float playerCritDamge = 1f;
+    [SerializeField] public float playerCritChance = 0.2f;
 
     [Header("Boss Stats")]
     // [SerializeField]
@@ -73,14 +74,41 @@ public class CombatManager : MonoBehaviour
 
     public void playerLightAttack()
     {
-        GameManager.instance.bossHealth -= lightAttackDamage;
+        //Debug.Log(GameManager.instance.bossHealth + "  " + lightAttackDamage);
+        float damage = lightAttackDamage;
+        float rand = UnityEngine.Random.value;
 
-      if (GameManager.instance.bossHealth <= 0)
+        if (rand <= playerCritChance)
         {
-            PortalManager.instance.togglePortal(true);
-
+            damage += playerCritDamge;
         }
 
+        applyDamageToBoss(damage);
+
+
+        if (GameManager.instance.bossHealth <= 0)
+        {
+            PortalManager.instance.togglePortal(true);
+        }
+
+    }
+
+    public void playerComboAttack(){
+        float damage = heavyAttackDamage;
+        float rand = UnityEngine.Random.value;
+
+        if (rand <= playerCritChance)
+        {
+            damage += playerCritDamge;
+        }
+
+        applyDamageToBoss(damage);
+    }
+
+    public void applyDamageToBoss(float damage)
+    {
+        Debug.Log(damage);
+        GameManager.instance.bossHealth -= damage;
     }
 
 
