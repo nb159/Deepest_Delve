@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerLocomotion : MonoBehaviour
@@ -54,9 +55,18 @@ public class PlayerLocomotion : MonoBehaviour
             moveDirection += cameraObject.right * inputManager.horizontalInput;
             moveDirection.Normalize();
             moveDirection.y = 0;
+            
+            StartCoroutine(walkingSounds());
         
             moveDirection *= GameManager.instance.playerSpeed;
             playerRigidbody.velocity = moveDirection;
+        }
+    }
+
+    IEnumerator walkingSounds(){
+        while(isWalking && inputManager.horizontalInput != 0 || inputManager.verticalInput != 0){
+            PlayerAnimatorManager.instance.singleFootstep.Post(gameObject);
+            yield return new WaitForSeconds(0.2f);
         }
     }
 

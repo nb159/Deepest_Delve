@@ -21,6 +21,11 @@ public class PlayerAnimatorManager : MonoBehaviour
     public bool canDash = true;
     public bool canMove = true;
     public bool canInitateComboAttack = true;
+
+
+    //wwise defs
+    public AK.Wwise.Event swordSwing;
+    public AK.Wwise.Event singleFootstep;
     
 
     private void Awake(){
@@ -98,6 +103,7 @@ public class PlayerAnimatorManager : MonoBehaviour
             canDash = false;
             attackType = 0;
             animator.SetTrigger("LightAttack");    
+            swordSwing.Post(gameObject);
         }        
     }
     public void comboAttackInput(){
@@ -202,5 +208,8 @@ public class PlayerAnimatorManager : MonoBehaviour
         }
     }
 
+    public void playerStep(){
+        singleFootstep.Post(gameObject);
+    }
     
 }
