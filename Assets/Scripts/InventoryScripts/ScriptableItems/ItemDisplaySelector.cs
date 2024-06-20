@@ -31,6 +31,7 @@ public class ItemDisplaySelector : MonoBehaviour
     }
 
     void Update(){
+        // NULL reference here --> Obj reference is not set to an instance of an object
         itemDisplay.sprite = AssignedItem.itemImage;
 
         transform.position = startPos + new Vector3(0, Mathf.Sin((Time.time + timeOffset) * speed) * height, 0);
