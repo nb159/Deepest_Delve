@@ -22,7 +22,7 @@
 				<Bus Id="3803692087" Name="Master Audio Bus"/>
 			</Busses>
 		</SoundBank>
-		<SoundBank Id="3161908922" Type="User" Language="SFX" Hash="{97E9E48C-C93B-97AE-1B80-B70CC82DB3F2}">
+		<SoundBank Id="3161908922" Type="User" Language="SFX" Hash="{AC47EF40-9203-5F34-D960-F8D6F3C577EB}">
 			<ShortName>Main</ShortName>
 			<Path>Main.bnk</Path>
 			<Media>
@@ -54,9 +54,17 @@
 					<ShortName>SancuatryOfDeathAmbience.wav</ShortName>
 					<CachePath>SFX/SancuatryOfDeathAmbience_10C4C929.wem</CachePath>
 				</File>
+				<File Id="355927837" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>PlayerDeath.wav</ShortName>
+					<CachePath>SFX/PlayerDeath_10C4C929.wem</CachePath>
+				</File>
 				<File Id="656241488" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>walking5.wav</ShortName>
 					<CachePath>SFX/walking5_10C4C929.wem</CachePath>
+				</File>
+				<File Id="697562291" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>boos_death.wav</ShortName>
+					<CachePath>SFX/boos_death_10C4C929.wem</CachePath>
 				</File>
 				<File Id="755609739" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>walking4.wav</ShortName>
@@ -73,14 +81,19 @@
 						<MediaRef Id="217982125"/>
 					</MediaRefs>
 				</Event>
+				<Event Id="694925737" Name="Play_BossDeath" DurationType="OneShot" DurationMin="5.266871" DurationMax="5.266871">
+					<MediaRefs>
+						<MediaRef Id="697562291"/>
+					</MediaRefs>
+				</Event>
 				<Event Id="3703766381" Name="Play_playerAttack" DurationType="OneShot" DurationMin="0.523859" DurationMax="0.5268937">
 					<MediaRefs>
 						<MediaRef Id="803933684"/>
 					</MediaRefs>
 				</Event>
-				<Event Id="1891302665" Name="Play_PlayerAttack_01" DurationType="OneShot" DurationMin="0.523859" DurationMax="0.5268937">
+				<Event Id="910581297" Name="Play_PlayerDeath" DurationType="OneShot" DurationMin="2.8914058" DurationMax="2.8914058">
 					<MediaRefs>
-						<MediaRef Id="803933684"/>
+						<MediaRef Id="355927837"/>
 					</MediaRefs>
 				</Event>
 				<Event Id="514211712" Name="Play_PlayerHit" DurationType="OneShot" DurationMin="0.7008213" DurationMax="0.7870999">
@@ -106,5 +119,5 @@
 			</Events>
 		</SoundBank>
 	</SoundBanks>
-	<FileHash>{9024B588-22D5-CA9F-16E0-21022FFDDFA3}</FileHash>
+	<FileHash>{7732E953-AFCF-D613-C3BA-7897D5D7F925}</FileHash>
 </SoundBanksInfo>

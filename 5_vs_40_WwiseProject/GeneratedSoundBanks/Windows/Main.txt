@@ -1,6 +1,7 @@
 Event	ID	Name			Wwise Object Path	Notes
 	514211712	Play_PlayerHit			\Default Work Unit\Play_PlayerHit	
-	1891302665	Play_PlayerAttack_01			\Default Work Unit\Play_PlayerAttack_01	
+	694925737	Play_BossDeath			\Default Work Unit\Play_BossDeath	
+	910581297	Play_PlayerDeath			\Default Work Unit\Play_PlayerDeath	
 	2600469463	Play_Steps			\Default Work Unit\Play_Steps	
 	3092969983	Play_SancuatryOfDeathAmbience			\Default Work Unit\Play_SancuatryOfDeathAmbience	
 	3271307334	Play_BossAttackBase			\Default Work Unit\Play_BossAttackBase	
@@ -14,7 +15,9 @@ In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	217982125	BossAttackBase	Y:\Repos\Deepest_Delve\5_vs_40_WwiseProject\.cache\Windows\SFX\BossAttackBase_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\BossAttackBase\BossAttackBase		372756
 	258359096	walking3	Y:\Repos\Deepest_Delve\5_vs_40_WwiseProject\.cache\Windows\SFX\walking3_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Steps\walking3		21944
 	289292443	SancuatryOfDeathAmbience	Y:\Repos\Deepest_Delve\5_vs_40_WwiseProject\.cache\Windows\SFX\SancuatryOfDeathAmbience_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\SancuatryOfDeathAmbience		28840732
+	355927837	PlayerDeath	Y:\Repos\Deepest_Delve\5_vs_40_WwiseProject\.cache\Windows\SFX\PlayerDeath_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\PlayerDeath		510140
 	656241488	walking5	Y:\Repos\Deepest_Delve\5_vs_40_WwiseProject\.cache\Windows\SFX\walking5_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Steps\walking5		21944
+	697562291	BossDeath	Y:\Repos\Deepest_Delve\5_vs_40_WwiseProject\.cache\Windows\SFX\boos_death_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\BossDeath		929172
 	755609739	walking4	Y:\Repos\Deepest_Delve\5_vs_40_WwiseProject\.cache\Windows\SFX\walking4_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Steps\walking4		21944
 	803933684	playerAttack	Y:\Repos\Deepest_Delve\5_vs_40_WwiseProject\.cache\Windows\SFX\playerAttack_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\PlayerAttack\playerAttack		92772
 
