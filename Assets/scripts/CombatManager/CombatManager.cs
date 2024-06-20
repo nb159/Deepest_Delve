@@ -88,6 +88,8 @@ public class CombatManager : MonoBehaviour
 
         if (GameManager.instance.bossHealth <= 0)
         {
+
+            BossAnimatorManager.Instance.TriggerDeath();
             PortalManager.instance.togglePortal(true);
             
         }
