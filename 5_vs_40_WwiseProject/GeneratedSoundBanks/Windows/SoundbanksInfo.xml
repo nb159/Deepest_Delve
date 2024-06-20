@@ -22,23 +22,89 @@
 				<Bus Id="3803692087" Name="Master Audio Bus"/>
 			</Busses>
 		</SoundBank>
-		<SoundBank Id="3161908922" Type="User" Language="SFX" Hash="{C1493690-27E4-7853-9116-7D07B9EBDA9F}">
+		<SoundBank Id="3161908922" Type="User" Language="SFX" Hash="{97E9E48C-C93B-97AE-1B80-B70CC82DB3F2}">
 			<ShortName>Main</ShortName>
 			<Path>Main.bnk</Path>
 			<Media>
+				<File Id="8219551" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>walking6.wav</ShortName>
+					<CachePath>SFX/walking6_10C4C929.wem</CachePath>
+				</File>
+				<File Id="46945262" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>walking1.wav</ShortName>
+					<CachePath>SFX/walking1_10C4C929.wem</CachePath>
+				</File>
+				<File Id="161345788" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>walking2.wav</ShortName>
+					<CachePath>SFX/walking2_10C4C929.wem</CachePath>
+				</File>
+				<File Id="165976889" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>player_hit-004.wav</ShortName>
+					<CachePath>SFX/player_hit-004_10C4C929.wem</CachePath>
+				</File>
+				<File Id="217982125" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>BossAttackBase.wav</ShortName>
+					<CachePath>SFX/BossAttackBase_10C4C929.wem</CachePath>
+				</File>
+				<File Id="258359096" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>walking3.wav</ShortName>
+					<CachePath>SFX/walking3_10C4C929.wem</CachePath>
+				</File>
 				<File Id="289292443" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>SancuatryOfDeathAmbience.wav</ShortName>
 					<CachePath>SFX/SancuatryOfDeathAmbience_10C4C929.wem</CachePath>
 				</File>
+				<File Id="656241488" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>walking5.wav</ShortName>
+					<CachePath>SFX/walking5_10C4C929.wem</CachePath>
+				</File>
+				<File Id="755609739" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>walking4.wav</ShortName>
+					<CachePath>SFX/walking4_10C4C929.wem</CachePath>
+				</File>
+				<File Id="803933684" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>playerAttack.wav</ShortName>
+					<CachePath>SFX/playerAttack_10C4C929.wem</CachePath>
+				</File>
 			</Media>
 			<Events>
+				<Event Id="3271307334" Name="Play_BossAttackBase" DurationType="OneShot" DurationMin="2.112585" DurationMax="2.112585">
+					<MediaRefs>
+						<MediaRef Id="217982125"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="3703766381" Name="Play_playerAttack" DurationType="OneShot" DurationMin="0.523859" DurationMax="0.5268937">
+					<MediaRefs>
+						<MediaRef Id="803933684"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="1891302665" Name="Play_PlayerAttack_01" DurationType="OneShot" DurationMin="0.523859" DurationMax="0.5268937">
+					<MediaRefs>
+						<MediaRef Id="803933684"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="514211712" Name="Play_PlayerHit" DurationType="OneShot" DurationMin="0.7008213" DurationMax="0.7870999">
+					<MediaRefs>
+						<MediaRef Id="165976889"/>
+					</MediaRefs>
+				</Event>
 				<Event Id="3092969983" Name="Play_SancuatryOfDeathAmbience" DurationType="OneShot" DurationMin="163.49567" DurationMax="163.49567">
 					<MediaRefs>
 						<MediaRef Id="289292443"/>
 					</MediaRefs>
 				</Event>
+				<Event Id="2600469463" Name="Play_Steps" DurationType="OneShot" DurationMin="0.115294" DurationMax="0.12941313">
+					<MediaRefs>
+						<MediaRef Id="8219551"/>
+						<MediaRef Id="46945262"/>
+						<MediaRef Id="161345788"/>
+						<MediaRef Id="258359096"/>
+						<MediaRef Id="656241488"/>
+						<MediaRef Id="755609739"/>
+					</MediaRefs>
+				</Event>
 			</Events>
 		</SoundBank>
 	</SoundBanks>
-	<FileHash>{61E4EFCD-2DAA-C4CF-2936-5413DEE17CD8}</FileHash>
+	<FileHash>{06D6CEE9-2CF3-93D4-0730-F9AF7D6FD2BF}</FileHash>
 </SoundBanksInfo>
