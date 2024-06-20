@@ -27,10 +27,9 @@ public class ItemsManager : MonoBehaviour
         }
     }
 
-    void OnTriggerEnter(Collider other)
+    public void randomizeItems()
     {
-        if (!other.CompareTag("Player")) return;
-        
+                
         List<PowerUp> selectedItems = new List<PowerUp>();
         List<int> selectedIndices = new List<int>();
         System.Random random = new System.Random();
@@ -53,6 +52,7 @@ public class ItemsManager : MonoBehaviour
             itemDisplayObject[i].GetComponent<ItemDisplaySelector>().AssignedItem = item;
             Debug.Log(item);
         }
+    
     }
 
     public void  togglItemsSelector(bool state){

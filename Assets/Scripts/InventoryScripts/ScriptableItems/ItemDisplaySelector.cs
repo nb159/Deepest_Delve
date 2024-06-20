@@ -34,9 +34,6 @@ public class ItemDisplaySelector : MonoBehaviour
         itemDisplay.sprite = AssignedItem.itemImage;
 
         transform.position = startPos + new Vector3(0, Mathf.Sin((Time.time + timeOffset) * speed) * height, 0);
-
-        
-
     }
     void OnCollisionEnter(Collision other)
     {

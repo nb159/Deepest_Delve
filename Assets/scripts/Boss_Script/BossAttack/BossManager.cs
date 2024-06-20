@@ -9,8 +9,8 @@ public class BossManager : MonoBehaviour
     public float potionAttackChance = 0.5f;
     public float bossHealth = 100f;
     public float enragedHealthThreshold = 50f;
-    public Collider closeProximityCollider = CombatManager.instance.closeProximityCollider;
-    public Collider farProximityCollider = CombatManager.instance.farProximityCollider;
+    public Collider closeProximityCollider;
+    public Collider farProximityCollider;
 
     private BossAnimatorManager bossAnimatorManager;
 
@@ -73,8 +73,9 @@ public class BossManager : MonoBehaviour
         // Debug.Log($"Current State: {currentState}, Distance to Player: {distanceToPlayer}");
 
         ///    Debug.Log(GameManager.instance.bossHealth + "deaddddddddddd");
-        if (GameManager.instance.bossHealth <= 0)
+        if (GameManager.instance.bossHealth <= 0){
             currentState = BossAttackState.Dead;
+        }
         else{
             DetermineAttackState(distanceToPlayer);
         }

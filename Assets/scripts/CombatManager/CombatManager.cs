@@ -89,6 +89,7 @@ public class CombatManager : MonoBehaviour
         if (GameManager.instance.bossHealth <= 0)
         {
             PortalManager.instance.togglePortal(true);
+            
         }
 
     }

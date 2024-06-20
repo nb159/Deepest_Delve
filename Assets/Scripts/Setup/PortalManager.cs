@@ -33,14 +33,12 @@ public class PortalManager : MonoBehaviour
 
         if (hitInfo.CompareTag("Player"))
         {
-
-             //switch game Scene
-          //  GameManager.instance.ChangeScene(GameScene.MainMenuScene);
+            //switch game Scene
+            //  GameManager.instance.ChangeScene(GameScene.MainMenuScene);
              GameManager.instance.BossDefeated();  
               Debug.Log("hy portal");
-          
+              ItemsManager.userSelected = false;
         }
-
         Destroy(gameObject); 
     }
 
@@ -53,6 +51,8 @@ public class PortalManager : MonoBehaviour
         PlayerLocomotion.instance.toggleTargetToLockOn(state);
         PlayerCamera.instance.toggleTargetToLockOn(state);
         ItemsManager.instance.togglItemsSelector(state);
+        ItemsManager.instance.randomizeItems();
+
         
     }
 }
