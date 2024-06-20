@@ -165,22 +165,22 @@ public class GameManager : MonoBehaviour
     {
         currentScene = newScene;
         SceneManager.LoadScene(GameSceneToSceneName(newScene));
+        currentLevel = 1;
+        LoadGameSettings(levelFiles[currentLevel - 1]);
         // resetStats();
     }
 
     public void RestartGame(GameScene newScene)
     {
-        SceneManager.LoadScene("InGameScene");
+        ChangeScene(GameScene.InGameScene);
         resetStats();
-        LoadGameSettings(levelFiles[currentLevel - 1]);
     }
 
     public void ContinueGame(GameScene newScene)
     {
-        SceneManager.LoadScene("InGameScene");
-        resetStats();
+        ChangeScene(GameScene.InGameScene);
         //TODO: LOAD THE FUCKING ITEMS OR WHATEVER IS GOING ON AFTER THE PLAYER WON FFS
-        LoadGameSettings(levelFiles[currentLevel - 1]);
+        resetStats();
     }
 
 
@@ -206,7 +206,6 @@ public class GameManager : MonoBehaviour
 
     public void resetStats()
     {
-        // ????????? PLEASE EXPLAIN
         playerHealth = 100;
         playerPotions = 3;
         playerStamina = 100;

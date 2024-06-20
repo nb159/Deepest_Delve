@@ -4,6 +4,9 @@ public class CombatManager : MonoBehaviour
 {
     public static CombatManager instance;
     public GameObject itemSelectionUI;
+    
+    public Collider closeProximityCollider;
+    public Collider farProximityCollider;
 
     [Header("Player Stats")]
     [SerializeField]

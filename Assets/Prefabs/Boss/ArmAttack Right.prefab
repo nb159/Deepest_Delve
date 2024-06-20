@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 7629071480257220918}
   - component: {fileID: 5853358317016634558}
   m_Layer: 0
-  m_Name: ArmAttack 1
-  m_TagString: Untagged
+  m_Name: ArmAttack Right
+  m_TagString: Boss
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -26,13 +26,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4490715438457187257}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.38525507, y: -0.6457098, z: 0.28560802, w: -0.5941932}
+  m_LocalRotation: {x: -0.6769865, y: -0.3112893, z: 0.6337285, w: -0.20778917}
   m_LocalPosition: {x: -0.01, y: 0.46, z: 1.38}
   m_LocalScale: {x: 2.6397216, y: 2.128871, z: -0.0034750795}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 124.242004, y: -76.56601, z: -163.68}
+  m_LocalEulerAnglesHint: {x: 137.477, y: 81.383, z: -12.3880005}
 --- !u!114 &7629071480257220918
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -60,7 +60,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 0
   serializedVersion: 3
