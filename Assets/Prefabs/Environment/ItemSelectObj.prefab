@@ -696,7 +696,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   AssignedItem: {fileID: 0}
-  itemDisplay: {fileID: 6744791091002290629}
+  itemDisplay: {fileID: 0}
   speed: 1
   height: 0.5
 --- !u!1 &4998420974580337045

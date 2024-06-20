@@ -13,6 +13,9 @@ public class PlayerAnimatorManager : MonoBehaviour
     int horzintall;
     int verticle;
     public int attackType;
+    private float lastFootstepTime;
+    public float footstepCooldown = 0.25f; // ideal to avoid double footstep sound due to blendtree with animation keyframes
+
     [Header("Can do's")]
     public bool canAttack = true;
     public bool hasHit = false;
@@ -23,7 +26,22 @@ public class PlayerAnimatorManager : MonoBehaviour
     public bool canInitateComboAttack = true;
     
 
+    [Header("Wise Sound Defs")]
+    //wwise defs
+    public AK.Wwise.Event swordSwing;
+    public AK.Wwise.Event singleFootstep;
+    public AK.Wwise.Event playerHit;
+
+
+    [Header("player VFX")]
+    public ParticleSystem healingVFX;
+    
+    
+    
+
     private void Awake(){
+        healingVFX.Stop();
+
         if(instance == null){
             instance = this;
         }else{
@@ -98,6 +116,7 @@ public class PlayerAnimatorManager : MonoBehaviour
             canDash = false;
             attackType = 0;
             animator.SetTrigger("LightAttack");    
+            swordSwing.Post(gameObject);
         }        
     }
     public void comboAttackInput(){
@@ -109,6 +128,8 @@ public class PlayerAnimatorManager : MonoBehaviour
         canAttack = false;
         canDash = false;
         animator.SetTrigger("DrinkPotion");
+        healingVFX.Play();
+
     }
     public void DashAnimation(){
         animator.SetTrigger("DashTrigger");
@@ -147,6 +168,8 @@ public class PlayerAnimatorManager : MonoBehaviour
         canDash = true;
         canDrinkPotion = true;
         canAttack = true;
+        healingVFX.Stop();
+
     }
     
     public void comboAttack(int currentAttack){
@@ -190,6 +213,7 @@ public class PlayerAnimatorManager : MonoBehaviour
         inputManager.comboAttackInput = false;
         inputManager.currentComboState = 1;
         inputManager.comboAttackArr = new bool[3] {false, false, false};
+        attackType = -1;
         Debug.Log("i ended the combo");
     }
     public void SwordCollider(int ColliderActivation){
@@ -202,5 +226,12 @@ public class PlayerAnimatorManager : MonoBehaviour
         }
     }
 
+    public void playFootStepSound(){
+        if (Time.time - lastFootstepTime >= footstepCooldown)
+        {
+            singleFootstep.Post(gameObject);
+            lastFootstepTime = Time.time;
+        }
+    }
     
 }

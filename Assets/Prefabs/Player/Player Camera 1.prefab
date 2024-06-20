@@ -47,13 +47,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cameraObject: {fileID: 1856248940449713208}
   player: {fileID: 0}
-  targetToLookAt: {fileID: 0}
+  bossEnemeyTransform: {fileID: 0}
+  portalTransform: {fileID: 0}
   cameraPivotTransform: {fileID: 1593417910783051049}
   cameraSmoothSpeed: 0.5
   cameraCollisionRadius: 0.2
   collideWithLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 1
 --- !u!1 &5777668035040396238
 GameObject:
   m_ObjectHideFlags: 0

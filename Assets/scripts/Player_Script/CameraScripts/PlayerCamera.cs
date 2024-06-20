@@ -63,12 +63,7 @@ public class PlayerCamera : MonoBehaviour
         transform.position = targetCameraPosition;
     }
 
-    // private void HandleRotations(){
-    //     //todo: fix rotation
-    //     //when close to the to the target, container X rotation changes to be able to look at the camera
-    //     transform.LookAt(targetToLookAt);
-        
-    // }
+
     private void HandleRotations()
     {
         
@@ -113,6 +108,7 @@ public class PlayerCamera : MonoBehaviour
         //Debug.Log(hit.collider.gameObject.name);
         if(hit.collider !=null){
             if(hit.collider.gameObject.CompareTag("Projectile")) return;
+            if(hit.collider.gameObject.CompareTag("HighRangeProjectile")) return;
         }
 
         
