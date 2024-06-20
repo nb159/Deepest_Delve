@@ -103,13 +103,13 @@ public class BossManager : MonoBehaviour
         }
     }
 
-    private void rotateBoss()
+    public void rotateBoss()
     {
         bossAnimatorManager.canRotate = true;
 
     }
 
-  private void StopRotateBoss()
+  public void StopRotateBoss()
     {
         bossAnimatorManager.canRotate = false;
       
@@ -207,7 +207,7 @@ public class BossManager : MonoBehaviour
 
 
     //used this in fireBall event
-    private void fireOnPotionEvent()
+    public void fireOnPotionEvent()
     {
         if (Random.value < potionAttackChance)
             //Debug.Log("hello from keyframe");

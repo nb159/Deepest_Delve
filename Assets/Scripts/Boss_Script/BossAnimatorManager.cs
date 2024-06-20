@@ -85,7 +85,7 @@ public class BossAnimatorManager : MonoBehaviour
     public void SetIdle()
     {
         canRotate = true;
-        animator.CrossFade("Idle", 0.1f);
+        animator.CrossFade("idle", 0.1f);
         animator.SetBool("isIdle", true);
     }
 }
