@@ -12,9 +12,13 @@ public class BossAnimatorManager : MonoBehaviour
     private void Awake()
     {
         animator = GetComponent<Animator>();
+         if (animator == null)
+        {
+            Debug.LogError("Animator component not found on the same GameObject.");
+        }
     }
 
-
+    public bool canRotate = true;
     // [Header("What Boss can do")]
     // public bool canHighRangeAttack = true;
     // public bool canLowRangeAttack = true;
@@ -33,10 +37,12 @@ public class BossAnimatorManager : MonoBehaviour
         //     canArmAttack=false;
         //     canLowRangeAttack=false;
         //     canOnPotionAttack=false;
+        // canRotate = false;
 
-            animator.SetTrigger("isHighAttacking");
-            if (golemAnimator != null) Array.ForEach(golemAnimator, ani => ani.SetTrigger("isHighAttacking"));
-       // }
+
+        animator.SetTrigger("isHighAttacking");
+        if (golemAnimator != null) Array.ForEach(golemAnimator, ani => ani.SetTrigger("isHighAttacking"));
+        // }
 
     }
 
@@ -48,9 +54,11 @@ public class BossAnimatorManager : MonoBehaviour
         //     canArmAttack=false;
         //     canHighRangeAttack=false;
         //     canOnPotionAttack=false;
+
+        
         animator.SetTrigger("isLowAttacking");
         if (golemAnimator != null) Array.ForEach(golemAnimator, ani => ani.SetTrigger("isLowAttacking"));
-       // }
+        // }
     }
 
     public void TriggerOnPotionAttack()
@@ -61,6 +69,8 @@ public class BossAnimatorManager : MonoBehaviour
         //     canArmAttack=false;
         //     canHighRangeAttack=false;
         //     canLowRangeAttack=false;
+
+        
         animator.SetTrigger("isOnPotion");
         //}
     }
@@ -87,6 +97,8 @@ public class BossAnimatorManager : MonoBehaviour
         //     canOnPotionAttack=false;
         //     canHighRangeAttack=false;
         //     canLowRangeAttack=false;
+
+         canRotate = false;
         animator.SetTrigger("isArmAttacking");
         //}
     }
@@ -102,6 +114,7 @@ public class BossAnimatorManager : MonoBehaviour
         //     canArmAttack=false;
         //     canLowRangeAttack=false;
         //     canOnPotionAttack=false;
+         canRotate = false;
         animator.SetTrigger("isDead");
 
     }
@@ -109,6 +122,7 @@ public class BossAnimatorManager : MonoBehaviour
     public void SetIdle()
     {
         //animator.SetTrigger("isIdle");
+         canRotate = true;
         animator.SetBool("isIdle", true);
     }
 }
