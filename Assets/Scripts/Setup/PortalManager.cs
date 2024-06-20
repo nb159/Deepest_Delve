@@ -24,8 +24,8 @@ public class PortalManager : MonoBehaviour
 
  
 
- private void OnTriggerEnter(Collider hitInfo)
-    {
+        private void OnTriggerEnter(Collider hitInfo)
+        {
         if (hitInfo.CompareTag("Boss") || hitInfo.CompareTag("highRangeProjectile")|| hitInfo.CompareTag("lowRangeProjectile") || hitInfo.CompareTag("onPotionProjectile"))
         {
             return;

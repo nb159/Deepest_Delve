@@ -23,6 +23,9 @@ public class PlayerLocomotion : MonoBehaviour
 
     [SerializeField] public bool isDashing = false;
     public bool isInvulnerable = false;
+    private bool isFootstepPlaying = false;
+    public float footstepSoundLength;
+
    
 
     private void Awake()
@@ -55,20 +58,36 @@ public class PlayerLocomotion : MonoBehaviour
             moveDirection += cameraObject.right * inputManager.horizontalInput;
             moveDirection.Normalize();
             moveDirection.y = 0;
-            
-            StartCoroutine(walkingSounds());
-        
+
+            if(moveDirection != Vector3.zero){
+                //StartCoroutine(walkingSounds());
+            }
             moveDirection *= GameManager.instance.playerSpeed;
             playerRigidbody.velocity = moveDirection;
         }
     }
 
     IEnumerator walkingSounds(){
-        while(isWalking && inputManager.horizontalInput != 0 || inputManager.verticalInput != 0){
-            PlayerAnimatorManager.instance.singleFootstep.Post(gameObject);
-            yield return new WaitForSeconds(0.2f);
-        }
+
+        // Calculate the delay between each footstep sound based on the player's speed
+        float delay = footstepSoundLength / GameManager.instance.playerSpeed;
+
+        while (isWalking && moveDirection != Vector3.zero)
+        {
+            if (!isFootstepPlaying)
+            {
+                isFootstepPlaying = true;
+                PlayerAnimatorManager.instance.singleFootstep.Post(gameObject);
+                Debug.Log("footstep");
+                yield return new WaitForSeconds(delay);
+                isFootstepPlaying = false;
+            }
+            else
+            {
+                yield return null;
+            }
     }
+}
 
     private void HandleRotation(){
         Vector3 targetDirection = targetToLockOn.position - transform.position;
