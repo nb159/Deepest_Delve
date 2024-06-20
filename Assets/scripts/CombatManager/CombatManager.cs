@@ -14,7 +14,7 @@ public class CombatManager : MonoBehaviour
 
     [SerializeField] public float heavyAttackDamage = 20f;
     [SerializeField] public float playerDefense = 10f;
-    [SerializeField] public float playerCritDamage = 1f;
+    [SerializeField] public float playerCritDamage = 1.5f; 
     [SerializeField] public float playerCritChance = 0.2f;
 
     [Header("Boss Stats")]
@@ -70,7 +70,7 @@ public class CombatManager : MonoBehaviour
 
         if (rand <= playerCritChance)
         {
-            damage += playerCritDamage;
+            damage *= playerCritDamage; 
         }
 
         applyDamageToBoss(damage);
@@ -89,7 +89,7 @@ public class CombatManager : MonoBehaviour
 
         if (rand <= playerCritChance)
         {
-            damage += playerCritDamage;
+            damage *= playerCritDamage;
         }
 
         applyDamageToBoss(damage);
