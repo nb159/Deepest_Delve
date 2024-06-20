@@ -84,6 +84,7 @@ ModelImporter:
         objectReferenceParameter: {fileID: 5777634752236397079, guid: 412f2cf5c429b2844ab82c2f9192c556, type: 3}
         floatParameter: 0
         intParameter: 0
+        intParameter: 0
         messageOptions: 0
       transformMask: []
       maskType: 3
