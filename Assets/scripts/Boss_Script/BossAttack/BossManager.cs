@@ -168,7 +168,7 @@ public class BossManager : MonoBehaviour
         bossAnimatorManager.TriggerDeath();
     }
 
-    private void CloseProximityCollision(int conditionCollider)
+    public void CloseProximityCollision(int conditionCollider)
     {
         if (conditionCollider == 1)
             closeProximityCollider.enabled = true;
@@ -179,7 +179,7 @@ public class BossManager : MonoBehaviour
         Debug.Log("hello toggle arm collider");
     }
 
-    private void FarProximityCollision(int conditionCollider)
+    public void FarProximityCollision(int conditionCollider)
     {
         if (conditionCollider == 1)
             farProximityCollider.enabled = true;
