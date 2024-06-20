@@ -3,12 +3,15 @@
 	<UserProjectSettingsInfo>
 		<UserProjectSettings Name="" ID="{3BE8E31A-66C2-4DE1-A976-E033BEA4D40B}">
 			<PropertyList>
+				<Property Name="AudioFilesImporter\Path" Type="string" Value="Y:\Documents\REAPER Media\"/>
 				<Property Name="Event Action List\{0DC5A094-585A-4E28-B84E-57C67F9C6292}\x64_Expand States" Type="string" Value=""/>
 				<Property Name="Event Action List\{1AAA3E00-C1A7-426A-94D3-2189774F234C}\x64_Expand States" Type="string" Value=""/>
 				<Property Name="Event Action List\{3F052B0F-AFBC-49CF-8614-F9304DD45B74}\x64_Expand States" Type="string" Value=""/>
 				<Property Name="Event Action List\{4CEE03AA-5994-4D46-B1E0-CB4E1BE4853D}\x64_Expand States" Type="string" Value=""/>
 				<Property Name="Event Action List\{B05A042A-0E10-4EA5-9439-C46DF9592147}\x64_Expand States" Type="string" Value=""/>
+				<Property Name="Event Action List\{B0BE42C2-32BA-4ACD-BCA0-9628060021B6}\x64_Expand States" Type="string" Value=""/>
 				<Property Name="Event Action List\{B932FA4F-4735-4489-BA50-3E7C08D98188}\x64_Expand States" Type="string" Value=""/>
+				<Property Name="Event Action List\{FD3379D3-5983-40CC-98BA-3FBDF6D61B19}\x64_Expand States" Type="string" Value=""/>
 				<Property Name="EventView\FilterMode1" Type="int32" Value="2"/>
 				<Property Name="EventView\FilterMode2" Type="int32" Value="2"/>
 				<Property Name="ExternalSourcesInputPath" Type="string">
