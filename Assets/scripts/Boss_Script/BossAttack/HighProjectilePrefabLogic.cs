@@ -62,7 +62,7 @@ public class HighProjectilePrefabLogic : MonoBehaviour
 
         if (hitInfo.CompareTag("Player"))
         {
-             CombatManager.instance.bossHighRangeAttackMethode();
+            CombatManager.instance.bossHighRangeAttackMethode();
 
 
         }
