@@ -21,6 +21,21 @@ public class PlayerAnimatorManager : MonoBehaviour
     public bool canDash = true;
     public bool canMove = true;
     public bool canInitateComboAttack = true;
+
+    private float lastFootstepTime;
+    public float footstepCooldown = 0.25f; // ideal to avoid double footstep sound due to blendtree with animation keyframes
+    public bool deathSoundPlayed = false;
+
+
+    [Header("Wise Sound Defs")]
+    //wwise defs
+    public AK.Wwise.Event swordSwing_Sound;
+    public AK.Wwise.Event singleFootstep_Sound;
+    public AK.Wwise.Event playerDeath_Sound;
+        
+
+    [Header("VFX vals")]
+    public ParticleSystem healingVFX;
     
 
     private void Awake(){
@@ -35,6 +50,8 @@ public class PlayerAnimatorManager : MonoBehaviour
         playerLocomotion = GetComponent<PlayerLocomotion>();
         horzintall = Animator.StringToHash("Horizontal");
         verticle = Animator.StringToHash("Verticle");
+
+        healingVFX.Stop();
     }
     
     public void updateAnimatorFreeRoamValues(float horizontalMovement, float verticleMovement){
@@ -97,7 +114,9 @@ public class PlayerAnimatorManager : MonoBehaviour
             canMove = false;
             canDash = false;
             attackType = 0;
-            animator.SetTrigger("LightAttack");    
+            animator.SetTrigger("LightAttack");
+            swordSwing_Sound.Post(gameObject);
+
         }        
     }
     public void comboAttackInput(){
@@ -109,6 +128,7 @@ public class PlayerAnimatorManager : MonoBehaviour
         canAttack = false;
         canDash = false;
         animator.SetTrigger("DrinkPotion");
+        healingVFX.Play();
     }
     public void DashAnimation(){
         animator.SetTrigger("DashTrigger");
@@ -125,7 +145,14 @@ public class PlayerAnimatorManager : MonoBehaviour
     }
 
     private IEnumerator afterPlayerDeathLogic(){
+        if (!deathSoundPlayed)
+            {
+                Debug.Log("Death sound played");
+                //playerDeath_Sound.Post(gameObject);
+                deathSoundPlayed = true;
+            }        
         yield return new WaitForSeconds(3f);
+
         GameManager.instance.ChangeScene(GameScene.PlayerDeathScene);
     }
 
@@ -147,6 +174,7 @@ public class PlayerAnimatorManager : MonoBehaviour
         canDash = true;
         canDrinkPotion = true;
         canAttack = true;
+        healingVFX.Stop();
     }
     
     public void comboAttack(int currentAttack){
@@ -191,6 +219,14 @@ public class PlayerAnimatorManager : MonoBehaviour
         inputManager.currentComboState = 1;
         inputManager.comboAttackArr = new bool[3] {false, false, false};
         Debug.Log("i ended the combo");
+    }
+
+    public void playFootStepSound(){
+        if (Time.time - lastFootstepTime >= footstepCooldown)
+        {
+            singleFootstep_Sound.Post(gameObject);
+            lastFootstepTime = Time.time;
+        }
     }
     public void SwordCollider(int ColliderActivation){
 

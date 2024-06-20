@@ -7,7 +7,8 @@ public class PlayerCombat : MonoBehaviour
 {
     PlayerAnimatorManager playerAnimatorManager;
     InputManager inputManager;
-    [SerializeField] public bool toggledeath = false;
+    [SerializeField] public bool toggledeath = true;
+    
 
 
     private void Awake(){
@@ -76,6 +77,7 @@ public class PlayerCombat : MonoBehaviour
     private void HandleDeath(){
         if(GameManager.instance.playerHealth <= 0){
             playerAnimatorManager.PlayerDeathAnimation();
+            PlayerAnimatorManager.instance.playerDeath_Sound.Post(gameObject);
             //GameManager.instance.ChangeScene(GameScene.PlayerDeathScene);
         }
     }
