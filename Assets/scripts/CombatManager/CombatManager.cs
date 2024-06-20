@@ -12,6 +12,7 @@ public class CombatManager : MonoBehaviour
     [SerializeField] public float heavyAttackDamage = 20f;
     [SerializeField] public float playerDefense = 10f;
     [SerializeField] public float playerCritDamge = 1f;
+    [SerializeField] public float playerCritChance = 0.2f;
 
     [Header("Boss Stats")]
     // [SerializeField]
@@ -63,20 +64,43 @@ public class CombatManager : MonoBehaviour
     public void playerLightAttack()
     {
         //Debug.Log(GameManager.instance.bossHealth + "  " + lightAttackDamage);
-        GameManager.instance.bossHealth -= lightAttackDamage;
+        float damage = lightAttackDamage;
+        float rand = UnityEngine.Random.value;
 
-// from here the porta should be toggled
+        if (rand <= playerCritChance)
+        {
+            damage += playerCritDamge;
+        }
+
+        applyDamageToBoss(damage);
+
 
         if (GameManager.instance.bossHealth <= 0)
         {
-            // GameManager.instance.BossDefeated();
             PortalManager.instance.togglePortal(true);
-
         }
 
         // if (GameManager.instance.bossHealth <= 0)
         // TODO: itemSelectionUI.GetComponent<UIItemSelection>().ShowRandomItems();
         // GameManager.instance.nextLevel();
+    }
+
+    public void playerComboAttack(){
+        float damage = heavyAttackDamage;
+        float rand = UnityEngine.Random.value;
+
+        if (rand <= playerCritChance)
+        {
+            damage += playerCritDamge;
+        }
+
+        applyDamageToBoss(damage);
+    }
+
+    public void applyDamageToBoss(float damage)
+    {
+        Debug.Log(damage);
+        GameManager.instance.bossHealth -= damage;
     }
 
 
