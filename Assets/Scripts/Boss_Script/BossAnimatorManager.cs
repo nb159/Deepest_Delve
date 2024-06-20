@@ -66,7 +66,7 @@ public class BossAnimatorManager : MonoBehaviour
 
     public void TriggerArmAttack()
     {
-        canRotate = false;
+ 
         animator.SetTrigger("isArmAttacking");
     }
 
