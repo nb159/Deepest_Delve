@@ -22,26 +22,24 @@ public class PortalManager : MonoBehaviour
     }
 
 
- 
 
- private void OnTriggerEnter(Collider hitInfo)
+
+    private void OnTriggerEnter(Collider hitInfo)
     {
-        if (hitInfo.CompareTag("Boss") || hitInfo.CompareTag("highRangeProjectile")|| hitInfo.CompareTag("lowRangeProjectile") || hitInfo.CompareTag("onPotionProjectile"))
+        if (hitInfo.CompareTag("Boss") || hitInfo.CompareTag("highRangeProjectile") || hitInfo.CompareTag("lowRangeProjectile") || hitInfo.CompareTag("onPotionProjectile"))
         {
             return;
         }
 
         if (hitInfo.CompareTag("Player"))
         {
-
-             //switch game Scene
-          //  GameManager.instance.ChangeScene(GameScene.MainMenuScene);
-             GameManager.instance.BossDefeated();  
-              Debug.Log("hy portal");
-          
+            //switch game Scene
+            //  GameManager.instance.ChangeScene(GameScene.MainMenuScene);
+            GameManager.instance.BossDefeated();
+            Debug.Log("hy portal");
+            ItemsManager.userSelected = false;
         }
-
-        Destroy(gameObject); 
+        Destroy(gameObject);
     }
 
 
@@ -53,6 +51,8 @@ public class PortalManager : MonoBehaviour
         PlayerLocomotion.instance.toggleTargetToLockOn(state);
         PlayerCamera.instance.toggleTargetToLockOn(state);
         ItemsManager.instance.togglItemsSelector(state);
-        
+        ItemsManager.instance.randomizeItems();
+
+
     }
 }

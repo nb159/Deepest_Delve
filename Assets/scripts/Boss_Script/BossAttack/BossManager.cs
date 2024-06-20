@@ -9,8 +9,8 @@ public class BossManager : MonoBehaviour
     public float potionAttackChance = 0.5f;
     public float bossHealth = 100f;
     public float enragedHealthThreshold = 50f;
-    public Collider closeProximityCollider = CombatManager.instance.closeProximityCollider;
-    public Collider farProximityCollider = CombatManager.instance.farProximityCollider;
+    public Collider closeProximityCollider;
+    public Collider farProximityCollider;
 
     private BossAnimatorManager bossAnimatorManager;
 
@@ -21,7 +21,8 @@ public class BossManager : MonoBehaviour
 
     private OnPotionUseProjectile onPotionUseProjectile;
 
-    private void Start()
+    private BossRotation bossRotation;
+    void Start()
     {
         highRangeAttack = GetComponent<HighRangeAttack>();
 
@@ -29,9 +30,24 @@ public class BossManager : MonoBehaviour
         onPotionUseProjectile = GetComponent<OnPotionUseProjectile>();
 
         bossAnimatorManager = GetComponent<BossAnimatorManager>();
+        bossRotation = GetComponent<BossRotation>();
 
-        if (highRangeAttack == null || lowRangeAttack == null || bossAnimatorManager == null ||
-            onPotionUseProjectile == null)
+        // if (highRangeAttack == null || lowRangeAttack == null || bossAnimatorManager == null ||
+        //     onPotionUseProjectile == null)
+       if (bossAnimatorManager == null)
+        {
+            Debug.LogError("BossAnimatorManager not found on the same GameObject.");
+        }
+
+        if (bossRotation == null)
+        {
+            Debug.LogError("BossRotation not found on the same GameObject.");
+        }
+        else
+        {
+            bossRotation.Initialize(bossAnimatorManager);
+        }
+        if (highRangeAttack == null || lowRangeAttack == null || bossAnimatorManager == null || onPotionUseProjectile == null)
         {
             // Debug.LogError("Essential components are missing.");
             enabled = false;
@@ -42,6 +58,11 @@ public class BossManager : MonoBehaviour
         farProximityCollider.enabled = false;
         currentState = BossAttackState.Idle;
         InputManager.OnDrinkPotion += TryOnPotionUseAttack;
+
+          if (bossRotation.player == null)
+        {
+            bossRotation.player = player;
+        }
     }
 
     private void Update()
@@ -51,19 +72,15 @@ public class BossManager : MonoBehaviour
         var distanceToPlayer = Vector3.Distance(transform.position, player.position);
         // Debug.Log($"Current State: {currentState}, Distance to Player: {distanceToPlayer}");
 
-        Debug.Log(GameManager.instance.bossHealth + "deaddddddddddd");
-        if (GameManager.instance.bossHealth <= 0)
+        ///    Debug.Log(GameManager.instance.bossHealth + "deaddddddddddd");
+        if (GameManager.instance.bossHealth <= 0){
             currentState = BossAttackState.Dead;
-        else
+        }
+        else{
             DetermineAttackState(distanceToPlayer);
-        // if (isArmColliding)
-        // {
-        //     armCollider.enabled = false;
+        }
 
-        // }
-
-        //checking if boss is dead so that he does not act once dead
-        if (GameManager.instance.bossHealth > 0) ExecuteCurrentState(distanceToPlayer);
+        if (GameManager.instance.bossHealth > 0) { ExecuteCurrentState(distanceToPlayer); }
     }
 
     private void OnDestroy()
@@ -80,11 +97,24 @@ public class BossManager : MonoBehaviour
             currentState = BossAttackState.LowAttack;
         else if (distanceToPlayer <= attackRange)
             currentState = BossAttackState.HighAttack;
-        else
+        else{
             currentState = BossAttackState.Idle;
+            bossAnimatorManager.canRotate = true;
+        }
     }
 
+    public void rotateBoss()
+    {
+        bossAnimatorManager.canRotate = true;
 
+    }
+
+  public void StopRotateBoss()
+    {
+        bossAnimatorManager.canRotate = false;
+      
+
+    }
     private void ExecuteCurrentState(float distanceToPlayer)
     {
         switch (currentState)
@@ -98,9 +128,7 @@ public class BossManager : MonoBehaviour
             case BossAttackState.LowAttack:
                 ExecuteLowAttackState();
                 break;
-            // case BossAttackState.OnPotionUseAttack:
-            //     ExecuteOnPotionAttackState();
-            //     break;
+
             case BossAttackState.ArmAttack:
                 ExecuteArmAttackState();
                 break;
@@ -124,15 +152,11 @@ public class BossManager : MonoBehaviour
 
     private void ExecuteLowAttackState()
     {
-        // bossAnimatorManager.TriggerLowAttack();
+
         lowRangeAttack.ExecuteAttack(player);
     }
 
-    //    private void ExecuteOnPotionAttackState()
-    //     {
-    //         // bossAnimatorManager.TriggerLowAttack();
-    //         lowRangeAttack.ExecuteAttack(player);
-    //     }
+    //  
 
 
     private void ExecuteArmAttackState()
@@ -142,10 +166,10 @@ public class BossManager : MonoBehaviour
 
     private void ExecuteDeath()
     {
-        bossAnimatorManager.SetDeathAnimation();
+        bossAnimatorManager.TriggerDeath();
     }
 
-    private void CloseProximityCollision(int conditionCollider)
+    public void CloseProximityCollision(int conditionCollider)
     {
         if (conditionCollider == 1)
             closeProximityCollider.enabled = true;
@@ -156,7 +180,7 @@ public class BossManager : MonoBehaviour
         Debug.Log("hello toggle arm collider");
     }
 
-    private void FarProximityCollision(int conditionCollider)
+    public void FarProximityCollision(int conditionCollider)
     {
         if (conditionCollider == 1)
             farProximityCollider.enabled = true;
@@ -183,7 +207,7 @@ public class BossManager : MonoBehaviour
 
 
     //used this in fireBall event
-    private void fireOnPotionEvent()
+    public void fireOnPotionEvent()
     {
         if (Random.value < potionAttackChance)
             //Debug.Log("hello from keyframe");

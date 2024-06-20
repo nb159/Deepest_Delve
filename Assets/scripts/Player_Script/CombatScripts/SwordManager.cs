@@ -21,12 +21,16 @@ public class SwordManager : MonoBehaviour
     {
         if (!PlayerAnimatorManager.instance.hasHit && collision.gameObject.CompareTag("Boss")) // Only deal damage if the sword hasn't hit the boss in the current attack
         {
-            Debug.Log(collision.gameObject.tag + " Hit");
-
             //TODO: play enemy damage sound
             //TODO: play Enemey damage animation 
+            if(PlayerAnimatorManager.instance.attackType ==0){
+                CombatManager.instance.playerLightAttack();
+            }else if(PlayerAnimatorManager.instance.attackType ==1){
+                CombatManager.instance.playerComboAttack();
+            }
+
+            PlayerAnimatorManager.instance.attackType = -1;
             
-            CombatManager.instance.playerLightAttack();
             PlayerAnimatorManager.instance.hasHit = true;
 
         }

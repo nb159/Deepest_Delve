@@ -12,6 +12,7 @@ public class PlayerAnimatorManager : MonoBehaviour
     [SerializeField] private Collider swordCollider;
     int horzintall;
     int verticle;
+    public int attackType;
     [Header("Can do's")]
     public bool canAttack = true;
     public bool hasHit = false;
@@ -95,11 +96,11 @@ public class PlayerAnimatorManager : MonoBehaviour
             canDrinkPotion = false;
             canMove = false;
             canDash = false;
+            attackType = 0;
             animator.SetTrigger("LightAttack");    
         }        
     }
     public void comboAttackInput(){
-        
         animator.SetTrigger("ComboAttack");
     }
     public void DrinkPotionAnimation(){
@@ -154,7 +155,7 @@ public class PlayerAnimatorManager : MonoBehaviour
             case 0:
                 if(inputManager.comboAttackArr[currentAttack]){
                     inputManager.comboAttackArr[currentAttack] = false;
-                    
+                    attackType = 1;
                 }else{
                     endComboAttack();
                     return;
@@ -163,6 +164,7 @@ public class PlayerAnimatorManager : MonoBehaviour
             case 1:
                 if(inputManager.comboAttackArr[currentAttack]){
                     inputManager.comboAttackArr[currentAttack] = false;
+                    attackType = 1;
                 }else{
                     endComboAttack();
                     return;
@@ -171,6 +173,7 @@ public class PlayerAnimatorManager : MonoBehaviour
             case 2:
                 if(inputManager.comboAttackArr[currentAttack]){
                     inputManager.comboAttackArr[currentAttack] = false;
+                    attackType = 1;
                 }else{
                    endComboAttack();
                     return;
@@ -191,7 +194,6 @@ public class PlayerAnimatorManager : MonoBehaviour
     }
     public void SwordCollider(int ColliderActivation){
 
-        Debug.Log("ColliderActivation: " + ColliderActivation);
         if(ColliderActivation == 1){
             swordCollider.enabled = true;
             
