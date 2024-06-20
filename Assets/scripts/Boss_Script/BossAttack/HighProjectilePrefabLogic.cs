@@ -2,11 +2,12 @@ using UnityEngine;
 
 public class HighProjectilePrefabLogic : MonoBehaviour
 {
-    public float lifetime = 10f; 
-    public float showIndicatorThreshhold = 5f;  /// this is the thr
-    public GameObject groundIndicatorPrefab; 
 
-    private GameObject indicator; 
+    public float lifetime = 10f;
+    public float showIndicatorThreshhold = 5f;  /// this is the thr
+    public GameObject groundIndicatorPrefab;
+
+    private GameObject indicator;
     private bool indicatorInstantiated = false;
 
     void Start()
@@ -39,7 +40,9 @@ public class HighProjectilePrefabLogic : MonoBehaviour
 
     void OnTriggerEnter(Collider hitInfo)
     {
-        if (hitInfo.CompareTag("Boss") || hitInfo.CompareTag("highRangeProjectile")|| hitInfo.CompareTag("lowRangeProjectile") || hitInfo.CompareTag("onPotionProjectile"))
+
+
+        if (hitInfo.CompareTag("Boss") || hitInfo.CompareTag("highRangeProjectile") || hitInfo.CompareTag("lowRangeProjectile") || hitInfo.CompareTag("onPotionProjectile"))
         {
             return;
         }
@@ -47,6 +50,7 @@ public class HighProjectilePrefabLogic : MonoBehaviour
         if (hitInfo.CompareTag("Player"))
         {
             CombatManager.instance.bossHighRangeAttackMethode();
+           
             //Debug.Log("Player hit by highrange attack");
         }
 

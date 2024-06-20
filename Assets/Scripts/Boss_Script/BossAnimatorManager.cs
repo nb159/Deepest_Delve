@@ -8,10 +8,10 @@ public class BossAnimatorManager : MonoBehaviour
 
     [SerializeField] private Animator[] golemAnimator;
     private Animator animator;
-
+    public AK.Wwise.Event lowRangeAttackSound;
     private void Awake()
     {
-    
+
         if (Instance != null && Instance != this)
         {
             Destroy(gameObject);
@@ -19,7 +19,7 @@ public class BossAnimatorManager : MonoBehaviour
         else
         {
             Instance = this;
-         
+
         }
 
         animator = GetComponent<Animator>();
@@ -66,7 +66,7 @@ public class BossAnimatorManager : MonoBehaviour
 
     public void TriggerArmAttack()
     {
- 
+
         animator.SetTrigger("isArmAttacking");
     }
 

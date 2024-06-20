@@ -52,6 +52,8 @@ public class LowProjectilePrefabLogic : MonoBehaviour
 
     void OnTriggerEnter(Collider hitInfo)
     {
+
+      
         if (hitInfo.CompareTag("Boss") || hitInfo.CompareTag("highRangeProjectile")|| hitInfo.CompareTag("lowRangeProjectile") || hitInfo.CompareTag("onPotionProjectile"))
         {
             return;
@@ -61,6 +63,7 @@ public class LowProjectilePrefabLogic : MonoBehaviour
         {
             CombatManager.instance.bossLowRangeAttackMethode();
             //Debug.Log("player hit low");
+               BossAnimatorManager.Instance.lowRangeAttackSound.Post(gameObject);
         }
 
         Destroy(gameObject); 

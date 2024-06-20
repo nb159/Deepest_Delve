@@ -6,6 +6,7 @@ public class MeleeAttack : MonoBehaviour, IBossAttack
 {
     // Start is called before the first frame update
 
+    public ParticleSystem groundVFX1;
 
     void Start()
     {
@@ -35,6 +36,11 @@ public class MeleeAttack : MonoBehaviour, IBossAttack
 
     void OnTriggerEnter(Collider hitInfo)
     {
+
+        groundVFX1.Play();
+        
+
+
         if (hitInfo.CompareTag("Boss"))
         {
             return;
@@ -42,6 +48,7 @@ public class MeleeAttack : MonoBehaviour, IBossAttack
 
         if (hitInfo.CompareTag("Player"))
         {
+            
             if (CombatManager.instance != null)
             {
 

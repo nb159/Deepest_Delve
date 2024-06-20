@@ -714,11 +714,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!136 &1269361591 stripped
-CapsuleCollider:
-  m_CorrespondingSourceObject: {fileID: 2148072956649772149, guid: e6e517a5bbd5ae74a83e441551c8d820, type: 3}
-  m_PrefabInstance: {fileID: 1086497774}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1272833746 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6208693282485239630, guid: 90e4b32d562cc164d8483db3241f4d50, type: 3}
@@ -2821,6 +2816,10 @@ PrefabInstance:
       propertyPath: armCollider2
       value: 
       objectReference: {fileID: 1540104628}
+    - target: {fileID: 1477895321928955500, guid: 7b9c6c2d6330075448e7c8891abaeebf, type: 3}
+      propertyPath: lowRangeAttackSound.WwiseObjectReference
+      value: 
+      objectReference: {fileID: 11400000, guid: 1e3661fdfa144ff46ae4cca8bab2d145, type: 2}
     - target: {fileID: 2819380133212750903, guid: 7b9c6c2d6330075448e7c8891abaeebf, type: 3}
       propertyPath: spawnHeight
       value: 200
