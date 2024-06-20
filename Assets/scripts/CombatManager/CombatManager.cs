@@ -18,7 +18,7 @@ public class CombatManager : MonoBehaviour
     [SerializeField] public float playerCritChance = 0.2f;
 
     [Header("Boss Stats")]
-    [SerializeField] public float bossHighRangeAttack = 10f;
+    [SerializeField] public float bossHighRangeAttack = 20f;
     [SerializeField] public float bossLowRangeAttack = 20f;
     [SerializeField] public float bossArmAttack = 20f;
     [SerializeField] public float bossHealing;

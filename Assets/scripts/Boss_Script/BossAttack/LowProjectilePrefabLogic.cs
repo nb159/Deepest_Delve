@@ -4,12 +4,13 @@ public class LowProjectilePrefabLogic : MonoBehaviour
 {
     public float speed = 4f;
     public float lifetime = 20f;
-    public float minYPosition = 1f;
-    public float switchDistance = 2f; // stop homing at this
+    public float minYPosition = 1.8f;
+    public float switchDistance = 2f;
 
     private Transform target;
     private Vector3 travelDirection;
-    private bool isHoming = true; 
+    private bool isHoming = true;
+    public ParticleSystem groundVFX1;
 
     public void Initialize(Transform target)
     {
@@ -26,16 +27,27 @@ public class LowProjectilePrefabLogic : MonoBehaviour
 
             if (currentDistance <= switchDistance)
             {
-                isHoming = false; 
-                travelDirection = direction; // keeping current direction
+                isHoming = false;
+                travelDirection = direction;
             }
 
-     
+            if (groundVFX1 != null)
+            {
+              
+                ParticleSystem vfxInstance = Instantiate(groundVFX1, transform.position, Quaternion.identity);
+                vfxInstance.Play();
+
+              
+                Destroy(vfxInstance.gameObject, vfxInstance.main.duration + vfxInstance.main.startLifetime.constantMax);
+            }
+            else
+            {
+                Debug.LogError("Particle System (groundVFX1) is not assigned.");
+            }
             MoveProjectile(direction);
         }
         else if (!isHoming)
         {
-           
             MoveProjectile(travelDirection);
         }
     }
@@ -45,27 +57,32 @@ public class LowProjectilePrefabLogic : MonoBehaviour
         Vector3 newPosition = transform.position + direction * speed * Time.deltaTime;
         if (newPosition.y < minYPosition)
         {
-            newPosition.y = minYPosition; 
+            newPosition.y = minYPosition;
         }
         transform.position = newPosition;
     }
 
     void OnTriggerEnter(Collider hitInfo)
+
+
     {
 
-      
-        if (hitInfo.CompareTag("Boss") || hitInfo.CompareTag("highRangeProjectile")|| hitInfo.CompareTag("lowRangeProjectile") || hitInfo.CompareTag("onPotionProjectile"))
+
+        if (hitInfo.CompareTag("Boss") || hitInfo.CompareTag("highRangeProjectile") || hitInfo.CompareTag("lowRangeProjectile") || hitInfo.CompareTag("onPotionProjectile"))
         {
             return;
         }
 
         if (hitInfo.CompareTag("Player"))
         {
-            CombatManager.instance.bossLowRangeAttackMethode();
-            //Debug.Log("player hit low");
-               BossAnimatorManager.Instance.lowRangeAttackSound.Post(gameObject);
+           CombatManager.instance.bossLowRangeAttackMethode();
+
+             BossAnimatorManager.Instance.lowRangeAttackSound.Post(gameObject);
+
+
+        
         }
 
-        Destroy(gameObject); 
+        Destroy(gameObject);
     }
 }
