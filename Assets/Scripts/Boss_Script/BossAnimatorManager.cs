@@ -5,7 +5,8 @@ public class BossAnimatorManager : MonoBehaviour
 {
     // Static singleton property
     public static BossAnimatorManager Instance { get; private set; }
-
+   public ParticleSystem groundVFX1;
+   public GameObject armPosForVfx;
     [SerializeField] private Animator[] golemAnimator;
     private Animator animator;
     public AK.Wwise.Event lowRangeAttackSound;
@@ -32,7 +33,29 @@ public class BossAnimatorManager : MonoBehaviour
     }
 
     public bool canRotate = true;
+public void ArmAttackVFX(){
+    if (groundVFX1 != null)
+{
+  
+    ParticleSystem vfxInstance = Instantiate(groundVFX1, armPosForVfx.transform.position, Quaternion.identity);
 
+    Vector3 adjustedPosition = vfxInstance.transform.position;
+    adjustedPosition.y -= 1.9f;
+    vfxInstance.transform.position = adjustedPosition;
+
+   
+    Debug.Log(vfxInstance);
+    
+   
+    vfxInstance.Play();
+
+    Destroy(vfxInstance.gameObject, vfxInstance.main.duration + vfxInstance.main.startLifetime.constantMax);
+}
+        else
+        {
+            Debug.LogError("Particle System (groundVFX1) is not assigned.");
+        }
+}
     public void TriggerHighAttack()
     {
         animator.SetTrigger("isHighAttacking");
