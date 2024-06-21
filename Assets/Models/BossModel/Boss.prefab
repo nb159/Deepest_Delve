@@ -191,6 +191,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   golemAnimator: []
+  lowRangeAttackSound:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 1e3661fdfa144ff46ae4cca8bab2d145, type: 2}
   canRotate: 1
 --- !u!95 &8887074287986238250
 Animator:
@@ -856,6 +860,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1344395272824785068}
     m_Modifications:
+    - target: {fileID: 1079557795037156180, guid: 412f2cf5c429b2844ab82c2f9192c556, type: 3}
+      propertyPath: groundVFX1
+      value: 
+      objectReference: {fileID: 270048505735776971, guid: c765d0822dd8c49a3868a1c7c6089e0a, type: 3}
     - target: {fileID: 3909076310065746020, guid: 412f2cf5c429b2844ab82c2f9192c556, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

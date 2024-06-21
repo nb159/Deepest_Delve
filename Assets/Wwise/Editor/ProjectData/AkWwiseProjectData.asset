@@ -66,7 +66,7 @@ MonoBehaviour:
     ParentPath: SoundBanks\Default Work Unit
     guid: 1e91289ac2920a41b68f64b66b835db0
     GuidInternal: 
-    m_lastTime: -8584827938562618476
+    m_lastTime: -8584827012694439915
     List:
     - name: Main
       guid: e0a87379373eaa4ab8972e22b83a918b
@@ -94,7 +94,7 @@ MonoBehaviour:
     ParentPath: Events\Default Work Unit
     guid: 4479bfcf05fb0f4193b80eed81b3da5f
     GuidInternal: 
-    m_lastTime: -8584827938566604180
+    m_lastTime: -8584827012694529976
     List:
     - name: Play_BossAttackBase
       guid: aa03ee4c9459464db1e0cb4e1be4853d
@@ -111,8 +111,25 @@ MonoBehaviour:
         guid: aa03ee4c9459464db1e0cb4e1be4853d
       Path: Events\Default Work Unit\Play_BossAttackBase
       maxAttenuation: 0
-      maxDuration: -1
-      minDuration: -1
+      maxDuration: 2.112585
+      minDuration: 2.112585
+    - name: Play_BossDeath
+      guid: c242beb0ba32cd4abca09628060021b6
+      id: 694925737
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 4479bfcf05fb0f4193b80eed81b3da5f
+      - ElementName: Play_BossDeath
+        ObjectType: 3
+        guid: c242beb0ba32cd4abca09628060021b6
+      Path: Events\Default Work Unit\Play_BossDeath
+      maxAttenuation: 0
+      maxDuration: 5.266871
+      minDuration: 5.266871
     - name: Play_playerAttack
       guid: 4ffa32b935478944ba503e7c08d98188
       id: 3703766381
@@ -128,11 +145,11 @@ MonoBehaviour:
         guid: 4ffa32b935478944ba503e7c08d98188
       Path: Events\Default Work Unit\Play_playerAttack
       maxAttenuation: 0
-      maxDuration: -1
-      minDuration: -1
-    - name: Play_PlayerAttack_01
-      guid: 2a045ab0100ea54e9439c46df9592147
-      id: 1891302665
+      maxDuration: 0.5268937
+      minDuration: 0.523859
+    - name: Play_PlayerDeath
+      guid: d37933fd8359cc4098ba3fbdf6d61b19
+      id: 910581297
       PathAndIcons:
       - ElementName: Events
         ObjectType: 5
@@ -140,13 +157,13 @@ MonoBehaviour:
       - ElementName: Default Work Unit
         ObjectType: 12
         guid: 4479bfcf05fb0f4193b80eed81b3da5f
-      - ElementName: Play_PlayerAttack_01
+      - ElementName: Play_PlayerDeath
         ObjectType: 3
-        guid: 2a045ab0100ea54e9439c46df9592147
-      Path: Events\Default Work Unit\Play_PlayerAttack_01
+        guid: d37933fd8359cc4098ba3fbdf6d61b19
+      Path: Events\Default Work Unit\Play_PlayerDeath
       maxAttenuation: 0
-      maxDuration: -1
-      minDuration: -1
+      maxDuration: 2.8914058
+      minDuration: 2.8914058
     - name: Play_PlayerHit
       guid: 003eaa1aa7c16a4294d32189774f234c
       id: 514211712
@@ -162,8 +179,8 @@ MonoBehaviour:
         guid: 003eaa1aa7c16a4294d32189774f234c
       Path: Events\Default Work Unit\Play_PlayerHit
       maxAttenuation: 0
-      maxDuration: -1
-      minDuration: -1
+      maxDuration: 0.7870999
+      minDuration: 0.7008213
     - name: Play_SancuatryOfDeathAmbience
       guid: 94a0c50d5a58284eb84e57c67f9c6292
       id: 3092969983
@@ -196,8 +213,8 @@ MonoBehaviour:
         guid: 0f2b053fbcafcf498614f9304dd45b74
       Path: Events\Default Work Unit\Play_Steps
       maxAttenuation: 0
-      maxDuration: -1
-      minDuration: -1
+      maxDuration: 0.12941313
+      minDuration: 0.115294
   RtpcWwu:
   - PhysicalPath: Game Parameters\Default Work Unit.wwu
     PathAndIcons:

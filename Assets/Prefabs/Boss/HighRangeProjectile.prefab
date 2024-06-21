@@ -149,3 +149,4 @@ MonoBehaviour:
   lifetime: 10
   showIndicatorThreshhold: 50
   groundIndicatorPrefab: {fileID: 8331984113264592325, guid: e4bd16b4b46740b4cbb906748f172d10, type: 3}
+  groundVFX1: {fileID: 704899392063562775, guid: 5f7bac3c90b324b9fafc347714ae925b, type: 3}

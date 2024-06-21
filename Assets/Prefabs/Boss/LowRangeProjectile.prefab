@@ -51,7 +51,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4362197713740572662}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -148,5 +148,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 4
   lifetime: 20
-  minYPosition: 1
+  minYPosition: 1.8
   switchDistance: 2
+  groundVFX1: {fileID: 704899392063562775, guid: 02744ca345f284c9ab07cd4725d35bd9, type: 3}

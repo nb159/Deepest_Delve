@@ -14,16 +14,12 @@ public class CombatManager : MonoBehaviour
 
     [SerializeField] public float heavyAttackDamage = 20f;
     [SerializeField] public float playerDefense = 10f;
-    [SerializeField] public float playerCritDamge = 1f;
+    [SerializeField] public float playerCritDamage = 1.5f; 
     [SerializeField] public float playerCritChance = 0.2f;
 
     [Header("Boss Stats")]
-    // [SerializeField]
-    [SerializeField] public float bossHighRangeAttack = 10f;
-
+    [SerializeField] public float bossHighRangeAttack = 20f;
     [SerializeField] public float bossLowRangeAttack = 20f;
-
-
     [SerializeField] public float bossArmAttack = 20f;
     [SerializeField] public float bossHealing;
     [SerializeField] public float bossHealingDuration;
@@ -48,17 +44,13 @@ public class CombatManager : MonoBehaviour
     void Start()
     {
         InitializeReferences();
-
     }
-
-
 
     private void InitializeReferences()
     {
         bossAnimatorManager = GetComponent<BossAnimatorManager>();
         Boss = GameObject.FindWithTag("Boss");
         Player = GameObject.FindWithTag("Player");
-
 
         if (Boss == null)
         {
@@ -71,38 +63,34 @@ public class CombatManager : MonoBehaviour
         }
     }
 
-
     public void playerLightAttack()
     {
-        //Debug.Log(GameManager.instance.bossHealth + "  " + lightAttackDamage);
         float damage = lightAttackDamage;
         float rand = UnityEngine.Random.value;
 
         if (rand <= playerCritChance)
         {
-            damage += playerCritDamge;
+            damage *= playerCritDamage; 
         }
 
         applyDamageToBoss(damage);
 
-
         if (GameManager.instance.bossHealth <= 0)
         {
-
+            BossAnimatorManager.Instance.bossDeathSound.Post(gameObject);
             BossAnimatorManager.Instance.TriggerDeath();
             PortalManager.instance.togglePortal(true);
-            
         }
-
     }
 
-    public void playerComboAttack(){
+    public void playerComboAttack()
+    {
         float damage = heavyAttackDamage;
         float rand = UnityEngine.Random.value;
 
         if (rand <= playerCritChance)
         {
-            damage += playerCritDamge;
+            damage *= playerCritDamage;
         }
 
         applyDamageToBoss(damage);
@@ -114,30 +102,29 @@ public class CombatManager : MonoBehaviour
         GameManager.instance.bossHealth -= damage;
     }
 
-
-
-
     public void bossHighRangeAttackMethode()
     {
-
-        if (!PlayerLocomotion.instance.isInvulnerable) GameManager.instance.playerHealth -= bossHighRangeAttack;
-
+        applyDamageToPlayer(bossHighRangeAttack);
     }
 
     public void bossLowRangeAttackMethode()
     {
-        if (!PlayerLocomotion.instance.isInvulnerable) GameManager.instance.playerHealth -= bossLowRangeAttack;
-
+        applyDamageToPlayer(bossLowRangeAttack);
     }
-
 
     public void bossArmAttackMethode()
     {
-
-        if (!PlayerLocomotion.instance.isInvulnerable) GameManager.instance.playerHealth -= bossArmAttack;
-  
+        applyDamageToPlayer(bossArmAttack);
     }
 
+    private void applyDamageToPlayer(float damage)
+    {
+        if (!PlayerLocomotion.instance.isInvulnerable)
+        {
+            float finalDamage = Mathf.Max(damage - playerDefense, 0);
+            GameManager.instance.playerHealth -= finalDamage;
+        }
+    }
 
     public void tesy1()
     {

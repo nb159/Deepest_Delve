@@ -2,11 +2,12 @@ using UnityEngine;
 
 public class HighProjectilePrefabLogic : MonoBehaviour
 {
-    public float lifetime = 10f; 
-    public float showIndicatorThreshhold = 5f;  /// this is the thr
-    public GameObject groundIndicatorPrefab; 
 
-    private GameObject indicator; 
+    public float lifetime = 10f;
+    public float showIndicatorThreshhold = 5f;  /// this is the thr
+    public GameObject groundIndicatorPrefab;
+    public ParticleSystem groundVFX1;
+    private GameObject indicator;
     private bool indicatorInstantiated = false;
 
     void Start()
@@ -39,7 +40,22 @@ public class HighProjectilePrefabLogic : MonoBehaviour
 
     void OnTriggerEnter(Collider hitInfo)
     {
-        if (hitInfo.CompareTag("Boss") || hitInfo.CompareTag("highRangeProjectile")|| hitInfo.CompareTag("lowRangeProjectile") || hitInfo.CompareTag("onPotionProjectile"))
+
+        if (groundVFX1 != null)
+        {
+
+            ParticleSystem vfxInstance = Instantiate(groundVFX1, transform.position, Quaternion.identity);
+            vfxInstance.Play();
+
+
+            Destroy(vfxInstance.gameObject, vfxInstance.main.duration + vfxInstance.main.startLifetime.constantMax);
+        }
+        else
+        {
+            Debug.LogError("Particle System (groundVFX1) is not assigned.");
+        }
+
+        if (hitInfo.CompareTag("Boss") || hitInfo.CompareTag("highRangeProjectile") || hitInfo.CompareTag("lowRangeProjectile") || hitInfo.CompareTag("onPotionProjectile"))
         {
             return;
         }
@@ -47,7 +63,8 @@ public class HighProjectilePrefabLogic : MonoBehaviour
         if (hitInfo.CompareTag("Player"))
         {
             CombatManager.instance.bossHighRangeAttackMethode();
-            //Debug.Log("Player hit by highrange attack");
+
+
         }
 
         Destroy(gameObject);
