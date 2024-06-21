@@ -78,6 +78,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   swordCollider: {fileID: 2148072956649772149}
+  potionObject: {fileID: 993428871520300932}
   attackType: 0
   canAttack: 1
   hasHit: 0
@@ -87,6 +88,7 @@ MonoBehaviour:
   canMove: 1
   canInitateComboAttack: 1
   footstepCooldown: 0.25
+  deathSoundPlayed: 0
   swordSwing_Sound:
     idInternal: 0
     valueGuidInternal: 
@@ -583,6 +585,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 7334143411313245318, guid: 7b9087bd24dc74452b2a982d2f52175a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7910309160040042523, guid: 7b9087bd24dc74452b2a982d2f52175a, type: 3}
       propertyPath: m_Layer
       value: 3
@@ -625,6 +631,11 @@ PrefabInstance:
 --- !u!4 &103920795464502572 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7597697577437191726, guid: 7b9087bd24dc74452b2a982d2f52175a, type: 3}
+  m_PrefabInstance: {fileID: 7494344752809988866}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &993428871520300932 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7334143411313245318, guid: 7b9087bd24dc74452b2a982d2f52175a, type: 3}
   m_PrefabInstance: {fileID: 7494344752809988866}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &2428074951242792674 stripped

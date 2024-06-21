@@ -10,6 +10,7 @@ public class PlayerAnimatorManager : MonoBehaviour
     PlayerLocomotion playerLocomotion;
     InputManager inputManager;
     [SerializeField] private Collider swordCollider;
+    public GameObject potionObject;
     int horzintall;
     int verticle;
     public int attackType;
@@ -123,6 +124,7 @@ public class PlayerAnimatorManager : MonoBehaviour
         animator.SetTrigger("ComboAttack");
     }
     public void DrinkPotionAnimation(){
+        potionObject.SetActive(true);
         GameManager.instance.playerSpeed /=2;
         canDrinkPotion = false;
         canAttack = false;
@@ -175,6 +177,8 @@ public class PlayerAnimatorManager : MonoBehaviour
         canDrinkPotion = true;
         canAttack = true;
         healingVFX.Stop();
+        potionObject.SetActive(false);
+
     }
     
     public void comboAttack(int currentAttack){
