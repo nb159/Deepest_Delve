@@ -10,7 +10,7 @@ public class ItemDisplaySelector : MonoBehaviour
 {
     public PowerUp AssignedItem;
     
-    public UnityEngine.UI.Image itemDisplay; 
+    public UnityEngine.UI.Image itemDisplay;
 
     
     public float speed = 1f; 
@@ -34,6 +34,18 @@ public class ItemDisplaySelector : MonoBehaviour
         itemDisplay.sprite = AssignedItem.itemImage;
 
         transform.position = startPos + new Vector3(0, Mathf.Sin((Time.time + timeOffset) * speed) * height, 0);
+    }
+
+    void FixedUpdate(){
+        HandleRotation();
+    }
+
+    private void HandleRotation(){
+            Vector3 targetPosition = new Vector3(player.transform.position.x, transform.position.y, player.transform.position.z);
+
+        transform.LookAt(targetPosition);
+        transform.rotation *= Quaternion.Euler(0, 90, 0);
+
     }
     void OnCollisionEnter(Collision other)
     {
