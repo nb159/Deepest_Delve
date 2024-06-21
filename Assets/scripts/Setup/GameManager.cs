@@ -19,7 +19,7 @@ public class GameManager : MonoBehaviour
     public CombatManager combatManager;
 
     [Header("Game Stats")]
-    public float bossHealth = 500; // TODO: CHECK THE JSON --> this value will get passed to BossHealthScript
+    public float bossHealth = 100; // TODO: CHECK THE JSON --> this value will get passed to BossHealthScript
 
     public float GameSpeedtime;
     [SerializeField] public float bossAttackDelay = 1f;

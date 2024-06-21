@@ -9,6 +9,8 @@ public class BossAnimatorManager : MonoBehaviour
     [SerializeField] private Animator[] golemAnimator;
     private Animator animator;
     public AK.Wwise.Event lowRangeAttackSound;
+    
+    public AK.Wwise.Event bossDeathSound;
     private void Awake()
     {
 

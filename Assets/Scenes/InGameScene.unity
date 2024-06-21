@@ -2711,6 +2711,10 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 2008284317}
+    - target: {fileID: 1477895321928955500, guid: 7b9c6c2d6330075448e7c8891abaeebf, type: 3}
+      propertyPath: bossDeathSound.WwiseObjectReference
+      value: 
+      objectReference: {fileID: 11400000, guid: 48043d67e55260644afcb123618dd775, type: 2}
     - target: {fileID: 2952978395173758150, guid: 7b9c6c2d6330075448e7c8891abaeebf, type: 3}
       propertyPath: m_Name
       value: Boss
