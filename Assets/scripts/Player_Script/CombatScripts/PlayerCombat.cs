@@ -77,7 +77,7 @@ public class PlayerCombat : MonoBehaviour
     private void HandleDeath(){
         if(GameManager.instance.playerHealth <= 0){
             playerAnimatorManager.PlayerDeathAnimation();
-            PlayerAnimatorManager.instance.playerDeath_Sound.Post(gameObject);
+            //PlayerAnimatorManager.instance.playerDeath_Sound.Post(gameObject);
             //GameManager.instance.ChangeScene(GameScene.PlayerDeathScene);
         }
     }

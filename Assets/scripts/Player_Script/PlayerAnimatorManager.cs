@@ -141,16 +141,16 @@ public class PlayerAnimatorManager : MonoBehaviour
         canMove = false;
         canDash = false;
         
+        
         StartCoroutine(afterPlayerDeathLogic());
     }
 
     private IEnumerator afterPlayerDeathLogic(){
-        if (!deathSoundPlayed)
-            {
-                Debug.Log("Death sound played");
-                //playerDeath_Sound.Post(gameObject);
-                deathSoundPlayed = true;
-            }        
+        if (!deathSoundPlayed){
+            Debug.Log("Death sound played");
+            playerDeath_Sound.Post(gameObject);
+            deathSoundPlayed = true;
+        }   
         yield return new WaitForSeconds(3f);
 
         GameManager.instance.ChangeScene(GameScene.PlayerDeathScene);

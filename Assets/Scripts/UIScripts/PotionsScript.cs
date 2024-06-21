@@ -34,7 +34,15 @@ namespace UIScripts
             // PotionsFloat = (float) Potions;
             //Debug.Log(PotionsFloat);
             //PotionBarViz.fillAmount = PotionsFloat;
+                        Debug.Log("i started potions");
+
+            for(int i =3; i>GameManager.instance.playerPotions; i--)
+            {
+                OnPotionDrink();
+            }
         }
+
+        
 
         private void Update()
         {
@@ -45,12 +53,16 @@ namespace UIScripts
             //             OnPotionDrink();
             //             drinkPotion = false; // Reset drinkPotion to false after drinking
             //         }
+
+            // {
+            //     var color = image[i].color;
+            //     color.a = 100f / 255f; // Alpha value is between 0 and 1, so we divide by 255
+            //     image[i].color = color;
+            // }
         }
 
         public void OnPotionDrink()
         {
-    
-
             if(GameManager.instance.playerPotions >= 0 && GameManager.instance.playerPotions <= 3)
             {
                 var color = image[^1].color;
@@ -60,9 +72,7 @@ namespace UIScripts
                 var newImageArray = new Image[image.Length - 1];
                 Array.Copy(image, newImageArray, newImageArray.Length);
                 image = newImageArray;
-            }
-            
-            
+            }      
         }
     }
 }
