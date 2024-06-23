@@ -15,7 +15,7 @@
   "playerCritDamage": 1.5,
   "bossHighRangeAttack": 60,
   "bossLowRangeAttack": 30,
-  "bossArmAttack": 25,
+  "bossArmAttack": 40,
   "bossHealing": 10,
   "bossHealingDuration": 10
 }

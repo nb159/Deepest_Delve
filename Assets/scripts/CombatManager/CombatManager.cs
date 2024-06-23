@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class CombatManager : MonoBehaviour
 {
-    public static CombatManager instance;
+   public static CombatManager instance;
     public GameObject itemSelectionUI;
     
     public Collider closeProximityCollider;
@@ -27,6 +27,11 @@ public class CombatManager : MonoBehaviour
     private BossAnimatorManager bossAnimatorManager;
     private GameObject Boss;
     private GameObject Player;
+    private float bossCritDamage = 1.75f;
+    [SerializeField]
+    private float bossCritChance = 0.15f;
+
+   
 
     void Awake()
     {
@@ -66,15 +71,26 @@ public class CombatManager : MonoBehaviour
     public void playerLightAttack()
     {
         float damage = lightAttackDamage;
-        float rand = UnityEngine.Random.value;
-
-        if (rand <= playerCritChance)
+        if (UnityEngine.Random.value <= playerCritChance)
         {
-            damage *= playerCritDamage; 
+            damage *= playerCritDamage;
         }
-
         applyDamageToBoss(damage);
+        checkBossDefeat();
+    }
 
+    public void playerComboAttack()
+    {
+        float damage = heavyAttackDamage;
+        if (UnityEngine.Random.value <= playerCritChance)
+        {
+            damage *= playerCritDamage;
+        }
+        applyDamageToBoss(damage);
+    }
+
+    private void checkBossDefeat()
+    {
         if (GameManager.instance.bossHealth <= 0)
         {
             BossAnimatorManager.Instance.bossDeathSound.Post(gameObject);
@@ -83,38 +99,40 @@ public class CombatManager : MonoBehaviour
         }
     }
 
-    public void playerComboAttack()
-    {
-        float damage = heavyAttackDamage;
-        float rand = UnityEngine.Random.value;
-
-        if (rand <= playerCritChance)
-        {
-            damage *= playerCritDamage;
-        }
-
-        applyDamageToBoss(damage);
-    }
-
     public void applyDamageToBoss(float damage)
     {
-        Debug.Log(damage);
+        Debug.Log($"Damage to Boss: {damage}");
         GameManager.instance.bossHealth -= damage;
     }
 
     public void bossHighRangeAttackMethode()
     {
-        applyDamageToPlayer(bossHighRangeAttack);
+        float damage = bossHighRangeAttack;
+        if (UnityEngine.Random.value <= bossCritChance)
+        {
+            damage *= bossCritDamage;
+        }
+        applyDamageToPlayer(damage);
     }
 
     public void bossLowRangeAttackMethode()
     {
-        applyDamageToPlayer(bossLowRangeAttack);
+        float damage = bossLowRangeAttack;
+        if (UnityEngine.Random.value <= bossCritChance)
+        {
+            damage *= bossCritDamage;
+        }
+        applyDamageToPlayer(damage);
     }
 
     public void bossArmAttackMethode()
     {
-        applyDamageToPlayer(bossArmAttack);
+        float damage = bossArmAttack;
+        if (UnityEngine.Random.value <= bossCritChance)
+        {
+            damage *= bossCritDamage;
+        }
+        applyDamageToPlayer(damage);
     }
 
     private void applyDamageToPlayer(float damage)
@@ -126,7 +144,7 @@ public class CombatManager : MonoBehaviour
         }
     }
 
-    public void tesy1()
+    public void test1()
     {
         Debug.Log("test1");
     }
