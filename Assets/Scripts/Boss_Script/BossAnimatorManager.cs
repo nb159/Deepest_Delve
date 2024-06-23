@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class BossAnimatorManager : MonoBehaviour
 {
-    // Static singleton property
+ 
     public static BossAnimatorManager Instance { get; private set; }
    public ParticleSystem groundVFX1;
    public GameObject armPosForVfx;

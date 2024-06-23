@@ -32,8 +32,7 @@ public class BossManager : MonoBehaviour
         bossAnimatorManager = GetComponent<BossAnimatorManager>();
         bossRotation = GetComponent<BossRotation>();
 
-        // if (highRangeAttack == null || lowRangeAttack == null || bossAnimatorManager == null ||
-        //     onPotionUseProjectile == null)
+  
        if (bossAnimatorManager == null)
         {
             Debug.LogError("BossAnimatorManager not found on the same GameObject.");
@@ -49,7 +48,7 @@ public class BossManager : MonoBehaviour
         }
         if (highRangeAttack == null || lowRangeAttack == null || bossAnimatorManager == null || onPotionUseProjectile == null)
         {
-            // Debug.LogError("Essential components are missing.");
+           
             enabled = false;
             return;
         }
@@ -72,9 +71,7 @@ public class BossManager : MonoBehaviour
         if (player == null) return;
 
         var distanceToPlayer = Vector3.Distance(transform.position, player.position);
-        // Debug.Log($"Current State: {currentState}, Distance to Player: {distanceToPlayer}");
-
-        ///    Debug.Log(GameManager.instance.bossHealth + "deaddddddddddd");
+      
         if (GameManager.instance.bossHealth <= 0){
             currentState = BossAttackState.Dead;
         }
@@ -158,7 +155,7 @@ public class BossManager : MonoBehaviour
         lowRangeAttack.ExecuteAttack(player);
     }
 
-    //  
+    
 
 
     private void ExecuteArmAttackState()
@@ -196,25 +193,24 @@ public class BossManager : MonoBehaviour
     private void ExecuteEnragedState()
     {
         bossAnimatorManager.TriggerEnraged();
-        // i will add logic for enraged state attacks
+        
     }
 
 
     private void TryOnPotionUseAttack()
     {
         if (Random.value < potionAttackChance)
-            // onPotionUseProjectile.ExecuteAttack(player);
+       
             bossAnimatorManager.TriggerOnPotionAttack();
     }
 
 
-    //used this in fireBall event
+    // This function is used in the animator event.
     public void fireOnPotionEvent()
     {
-        if (Random.value < potionAttackChance)
-            //Debug.Log("hello from keyframe");
+        
             onPotionUseProjectile.ExecuteAttack(player);
-        //   bossAnimatorManager.TriggerOnPotionAttack();
+      
     }
 
     private enum BossAttackState

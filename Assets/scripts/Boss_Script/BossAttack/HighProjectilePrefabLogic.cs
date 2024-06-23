@@ -4,7 +4,7 @@ public class HighProjectilePrefabLogic : MonoBehaviour
 {
 
     public float lifetime = 10f;
-    public float showIndicatorThreshhold = 5f;  /// this is the thr
+    public float showIndicatorThreshhold = 5f; 
     public GameObject groundIndicatorPrefab;
     public ParticleSystem groundVFX1;
     private GameObject indicator;

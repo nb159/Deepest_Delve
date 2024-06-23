@@ -8,7 +8,7 @@ public class prefabOnpotion : MonoBehaviour
 {
     public float speed = 40f;
     public float lifetime = 3f;
-    public float minYPosition = 4f; // Set your desired minimum y position
+    public float minYPosition = 4f; 
 
     private Transform target;
 
@@ -42,7 +42,7 @@ public class prefabOnpotion : MonoBehaviour
         if (hitInfo.CompareTag("Player"))
         {
             CombatManager.instance.bossLowRangeAttackMethode();
-           // Debug.Log("player hit low");
+           
         }
 
         Destroy(gameObject);

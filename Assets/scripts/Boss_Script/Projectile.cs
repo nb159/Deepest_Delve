@@ -51,13 +51,13 @@ public class Projectile : MonoBehaviour
             return;
         }
 
-        // Apply damage to the player if hit
+       
         if (hitInfo.CompareTag("Player"))
         {
-          //Debug.Log("player is being hurt");
+          
         }
 
-        // Destroy the projectile after impact
+     
         Destroy(gameObject);
     }
 }

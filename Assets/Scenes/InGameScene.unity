@@ -389,10 +389,10 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
---- !u!4 &792527300 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 2523613303037959073, guid: 2af8b06eaaf82d4499f6b5a49e40e9be, type: 3}
-  m_PrefabInstance: {fileID: 5578204021568366561}
+--- !u!1 &735704815 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2416911930069819785, guid: 7b9c6c2d6330075448e7c8891abaeebf, type: 3}
+  m_PrefabInstance: {fileID: 2669654713199975684}
   m_PrefabAsset: {fileID: 0}
 --- !u!114 &799979525 stripped
 MonoBehaviour:
@@ -485,7 +485,7 @@ PrefabInstance:
     - target: {fileID: 4303450925659622921, guid: df1a8f46361cff2449d1ca2e989e3e43, type: 3}
       propertyPath: portalTransform
       value: 
-      objectReference: {fileID: 792527300}
+      objectReference: {fileID: 2064726606}
     - target: {fileID: 4303450925659622921, guid: df1a8f46361cff2449d1ca2e989e3e43, type: 3}
       propertyPath: bossEnemeyTransform
       value: 
@@ -614,7 +614,7 @@ PrefabInstance:
     - target: {fileID: 5992551190473079158, guid: e6e517a5bbd5ae74a83e441551c8d820, type: 3}
       propertyPath: portalTransform
       value: 
-      objectReference: {fileID: 792527300}
+      objectReference: {fileID: 2064726606}
     - target: {fileID: 5992551190473079158, guid: e6e517a5bbd5ae74a83e441551c8d820, type: 3}
       propertyPath: bossEnemyTransform
       value: 
@@ -786,6 +786,11 @@ MonoBehaviour:
 Transform:
   m_CorrespondingSourceObject: {fileID: 1692096990935138913, guid: e6e517a5bbd5ae74a83e441551c8d820, type: 3}
   m_PrefabInstance: {fileID: 1086497774}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &2064726606 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1613314936481573524, guid: 2af8b06eaaf82d4499f6b5a49e40e9be, type: 3}
+  m_PrefabInstance: {fileID: 5578204021568366561}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2071208641
 PrefabInstance:
@@ -2712,9 +2717,21 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2008284317}
     - target: {fileID: 1477895321928955500, guid: 7b9c6c2d6330075448e7c8891abaeebf, type: 3}
+      propertyPath: groundVFX1
+      value: 
+      objectReference: {fileID: 270048505735776971, guid: c765d0822dd8c49a3868a1c7c6089e0a, type: 3}
+    - target: {fileID: 1477895321928955500, guid: 7b9c6c2d6330075448e7c8891abaeebf, type: 3}
+      propertyPath: armPosForVfx
+      value: 
+      objectReference: {fileID: 735704815}
+    - target: {fileID: 1477895321928955500, guid: 7b9c6c2d6330075448e7c8891abaeebf, type: 3}
       propertyPath: bossDeathSound.WwiseObjectReference
       value: 
       objectReference: {fileID: 11400000, guid: 48043d67e55260644afcb123618dd775, type: 2}
+    - target: {fileID: 2819380133212750903, guid: 7b9c6c2d6330075448e7c8891abaeebf, type: 3}
+      propertyPath: projectileCount
+      value: 50
+      objectReference: {fileID: 0}
     - target: {fileID: 2952978395173758150, guid: 7b9c6c2d6330075448e7c8891abaeebf, type: 3}
       propertyPath: m_Name
       value: Boss

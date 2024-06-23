@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MeleeAttack : MonoBehaviour, IBossAttack
 {
-    // Start is called before the first frame update
+   
 
  
 
@@ -13,7 +13,7 @@ public class MeleeAttack : MonoBehaviour, IBossAttack
 
     }
 
-    // Update is called once per frame
+   
     void Update()
     {
 
