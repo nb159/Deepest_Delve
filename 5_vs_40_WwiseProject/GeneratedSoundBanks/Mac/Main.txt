@@ -3,6 +3,7 @@ Event	ID	Name			Wwise Object Path	Notes
 	694925737	Play_BossDeath			\Default Work Unit\Play_BossDeath	
 	910581297	Play_PlayerDeath			\Default Work Unit\Play_PlayerDeath	
 	2600469463	Play_Steps			\Default Work Unit\Play_Steps	
+	2854889103	Play_BossAttackRain			\Default Work Unit\Play_BossAttackRain	
 	3092969983	Play_SancuatryOfDeathAmbience			\Default Work Unit\Play_SancuatryOfDeathAmbience	
 	3271307334	Play_BossAttackBase			\Default Work Unit\Play_BossAttackBase	
 	3703766381	Play_playerAttack			\Default Work Unit\Play_playerAttack	
@@ -12,12 +13,20 @@ In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	46945262	walking1	Y:\Repos\Deepest_Delve\5_vs_40_WwiseProject\.cache\Mac\SFX\walking1_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Steps\walking1		21944
 	161345788	walking2	Y:\Repos\Deepest_Delve\5_vs_40_WwiseProject\.cache\Mac\SFX\walking2_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Steps\walking2		21944
 	165976889	player_hit-004	Y:\Repos\Deepest_Delve\5_vs_40_WwiseProject\.cache\Mac\SFX\player_hit-004_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\PlayerHit\player_hit-004		131072
-	217982125	BossAttackBase	Y:\Repos\Deepest_Delve\5_vs_40_WwiseProject\.cache\Mac\SFX\BossAttackBase_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\BossAttackBase\BossAttackBase		372756
+	254451563	rain6	Y:\Repos\Deepest_Delve\5_vs_40_WwiseProject\.cache\Mac\SFX\rain6_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\BossAttackRain\rain6		215540
+	255969612	rain3	Y:\Repos\Deepest_Delve\5_vs_40_WwiseProject\.cache\Mac\SFX\rain3_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\BossAttackRain\rain3		215540
 	258359096	walking3	Y:\Repos\Deepest_Delve\5_vs_40_WwiseProject\.cache\Mac\SFX\walking3_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Steps\walking3		21944
+	281846218	BossBeingHit	Y:\Repos\Deepest_Delve\5_vs_40_WwiseProject\.cache\Mac\SFX\montster_being_hit_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\BossBeingHit		290804
 	289292443	SancuatryOfDeathAmbience	Y:\Repos\Deepest_Delve\5_vs_40_WwiseProject\.cache\Mac\SFX\SancuatryOfDeathAmbience_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\SancuatryOfDeathAmbience		28840732
 	311278027	BossDeath	Y:\Repos\Deepest_Delve\5_vs_40_WwiseProject\.cache\Mac\SFX\boos_death_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\BossDeath		929172
+	445868337	rain3-001	Y:\Repos\Deepest_Delve\5_vs_40_WwiseProject\.cache\Mac\SFX\rain3-001_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\BossAttackRain\rain3-001		215540
 	656241488	walking5	Y:\Repos\Deepest_Delve\5_vs_40_WwiseProject\.cache\Mac\SFX\walking5_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Steps\walking5		21944
 	755609739	walking4	Y:\Repos\Deepest_Delve\5_vs_40_WwiseProject\.cache\Mac\SFX\walking4_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Steps\walking4		21944
+	766925944	BossAttackBase	Y:\Repos\Deepest_Delve\5_vs_40_WwiseProject\.cache\Mac\SFX\BossAttackBase3_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\BossAttackBase		372756
 	803933684	playerAttack	Y:\Repos\Deepest_Delve\5_vs_40_WwiseProject\.cache\Mac\SFX\playerAttack_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\PlayerAttack\playerAttack		92772
+	804631130	rain4	Y:\Repos\Deepest_Delve\5_vs_40_WwiseProject\.cache\Mac\SFX\rain4_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\BossAttackRain\rain4		215540
+	895785096	rain1	Y:\Repos\Deepest_Delve\5_vs_40_WwiseProject\.cache\Mac\SFX\rain1_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\BossAttackRain\rain1		215540
+	979660127	rain2	Y:\Repos\Deepest_Delve\5_vs_40_WwiseProject\.cache\Mac\SFX\rain2_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\BossAttackRain\rain2		215540
+	1000428058	rain5	Y:\Repos\Deepest_Delve\5_vs_40_WwiseProject\.cache\Mac\SFX\rain5_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\BossAttackRain\rain5		215540
 	1044727952	PlayerDeath	Y:\Repos\Deepest_Delve\5_vs_40_WwiseProject\.cache\Mac\SFX\PlayerDeath_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\PlayerDeath		510140
 

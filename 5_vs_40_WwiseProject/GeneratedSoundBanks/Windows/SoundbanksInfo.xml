@@ -22,7 +22,7 @@
 				<Bus Id="3803692087" Name="Master Audio Bus"/>
 			</Busses>
 		</SoundBank>
-		<SoundBank Id="3161908922" Type="User" Language="SFX" Hash="{B8C2895A-97D4-E32C-6283-A9174CD163DC}">
+		<SoundBank Id="3161908922" Type="User" Language="SFX" Hash="{0755BAC8-FC0A-0A3E-E85A-A15D64D7E56B}">
 			<ShortName>Main</ShortName>
 			<Path>Main.bnk</Path>
 			<Media>
@@ -42,13 +42,21 @@
 					<ShortName>player_hit-004.wav</ShortName>
 					<CachePath>SFX/player_hit-004_10C4C929.wem</CachePath>
 				</File>
-				<File Id="217982125" Language="SFX" Streaming="false" Location="Memory">
-					<ShortName>BossAttackBase.wav</ShortName>
-					<CachePath>SFX/BossAttackBase_10C4C929.wem</CachePath>
+				<File Id="254451563" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>rain6.wav</ShortName>
+					<CachePath>SFX/rain6_10C4C929.wem</CachePath>
+				</File>
+				<File Id="255969612" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>rain3.wav</ShortName>
+					<CachePath>SFX/rain3_10C4C929.wem</CachePath>
 				</File>
 				<File Id="258359096" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>walking3.wav</ShortName>
 					<CachePath>SFX/walking3_10C4C929.wem</CachePath>
+				</File>
+				<File Id="281846218" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>montster_being_hit.wav</ShortName>
+					<CachePath>SFX/montster_being_hit_10C4C929.wem</CachePath>
 				</File>
 				<File Id="289292443" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>SancuatryOfDeathAmbience.wav</ShortName>
@@ -58,6 +66,10 @@
 					<ShortName>boos_death.wav</ShortName>
 					<CachePath>SFX/boos_death_10C4C929.wem</CachePath>
 				</File>
+				<File Id="445868337" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>rain3-001.wav</ShortName>
+					<CachePath>SFX/rain3-001_10C4C929.wem</CachePath>
+				</File>
 				<File Id="656241488" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>walking5.wav</ShortName>
 					<CachePath>SFX/walking5_10C4C929.wem</CachePath>
@@ -66,9 +78,29 @@
 					<ShortName>walking4.wav</ShortName>
 					<CachePath>SFX/walking4_10C4C929.wem</CachePath>
 				</File>
+				<File Id="766925944" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>BossAttackBase3.wav</ShortName>
+					<CachePath>SFX/BossAttackBase3_10C4C929.wem</CachePath>
+				</File>
 				<File Id="803933684" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>playerAttack.wav</ShortName>
 					<CachePath>SFX/playerAttack_10C4C929.wem</CachePath>
+				</File>
+				<File Id="804631130" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>rain4.wav</ShortName>
+					<CachePath>SFX/rain4_10C4C929.wem</CachePath>
+				</File>
+				<File Id="895785096" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>rain1.wav</ShortName>
+					<CachePath>SFX/rain1_10C4C929.wem</CachePath>
+				</File>
+				<File Id="979660127" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>rain2.wav</ShortName>
+					<CachePath>SFX/rain2_10C4C929.wem</CachePath>
+				</File>
+				<File Id="1000428058" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>rain5.wav</ShortName>
+					<CachePath>SFX/rain5_10C4C929.wem</CachePath>
 				</File>
 				<File Id="1044727952" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>PlayerDeath.wav</ShortName>
@@ -76,9 +108,16 @@
 				</File>
 			</Media>
 			<Events>
-				<Event Id="3271307334" Name="Play_BossAttackBase" DurationType="OneShot" DurationMin="2.112585" DurationMax="2.112585">
+				<Event Id="3271307334" Name="Play_BossAttackBase" MaxAttenuation="0" DurationType="OneShot" DurationMin="0" DurationMax="0"/>
+				<Event Id="2854889103" Name="Play_BossAttackRain" DurationType="OneShot" DurationMin="2.2142155" DurationMax="2.2270424">
 					<MediaRefs>
-						<MediaRef Id="217982125"/>
+						<MediaRef Id="254451563"/>
+						<MediaRef Id="255969612"/>
+						<MediaRef Id="445868337"/>
+						<MediaRef Id="804631130"/>
+						<MediaRef Id="895785096"/>
+						<MediaRef Id="979660127"/>
+						<MediaRef Id="1000428058"/>
 					</MediaRefs>
 				</Event>
 				<Event Id="694925737" Name="Play_BossDeath" DurationType="OneShot" DurationMin="5.266871" DurationMax="5.266871">
@@ -119,5 +158,5 @@
 			</Events>
 		</SoundBank>
 	</SoundBanks>
-	<FileHash>{85A78E6E-CD1F-136F-4EB9-5A00145D8938}</FileHash>
+	<FileHash>{BB892078-BB96-1362-D468-53D1BB615D9F}</FileHash>
 </SoundBanksInfo>
