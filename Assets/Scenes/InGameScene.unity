@@ -196,6 +196,16 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &606714223 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 5043881252399706784, guid: 2af8b06eaaf82d4499f6b5a49e40e9be, type: 3}
+  m_PrefabInstance: {fileID: 5578204021568366561}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &631385036 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 4326740254883678666, guid: 2af8b06eaaf82d4499f6b5a49e40e9be, type: 3}
+  m_PrefabInstance: {fileID: 5578204021568366561}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &696167639
 GameObject:
   m_ObjectHideFlags: 0
@@ -405,6 +415,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2041cce0b64823c4e8dcefd4ab084c1e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!95 &813510725 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 9223074229294149308, guid: 2af8b06eaaf82d4499f6b5a49e40e9be, type: 3}
+  m_PrefabInstance: {fileID: 5578204021568366561}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &865314102
 GameObject:
   m_ObjectHideFlags: 0
@@ -462,6 +477,12 @@ MonoBehaviour:
   bossArmAttack: 20
   bossHealing: 10
   bossHealingDuration: 10
+  bossCritChance: 0.15
+--- !u!95 &884242015 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 6013858615522845013, guid: 2af8b06eaaf82d4499f6b5a49e40e9be, type: 3}
+  m_PrefabInstance: {fileID: 5578204021568366561}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1010804102
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -539,6 +560,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: df1a8f46361cff2449d1ca2e989e3e43, type: 3}
+--- !u!95 &1060560756 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 8491195308974551521, guid: 2af8b06eaaf82d4499f6b5a49e40e9be, type: 3}
+  m_PrefabInstance: {fileID: 5578204021568366561}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1086497774
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -709,10 +735,30 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &1159810016 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 1065221188718454217, guid: 2af8b06eaaf82d4499f6b5a49e40e9be, type: 3}
+  m_PrefabInstance: {fileID: 5578204021568366561}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1272833746 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6208693282485239630, guid: 90e4b32d562cc164d8483db3241f4d50, type: 3}
   m_PrefabInstance: {fileID: 2071208641}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &1365544746 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 9189495670446457660, guid: 2af8b06eaaf82d4499f6b5a49e40e9be, type: 3}
+  m_PrefabInstance: {fileID: 5578204021568366561}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &1446475758 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 129661868586629644, guid: 2af8b06eaaf82d4499f6b5a49e40e9be, type: 3}
+  m_PrefabInstance: {fileID: 5578204021568366561}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &1563311528 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 2552343823786921582, guid: 2af8b06eaaf82d4499f6b5a49e40e9be, type: 3}
+  m_PrefabInstance: {fileID: 5578204021568366561}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1740258177
 PrefabInstance:
@@ -771,6 +817,21 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 501663226ed50cf459514cb5bb91bf2f, type: 3}
+--- !u!95 &1767685480 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 1715785107100004890, guid: 2af8b06eaaf82d4499f6b5a49e40e9be, type: 3}
+  m_PrefabInstance: {fileID: 5578204021568366561}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &1797473805 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 3943665125734302066, guid: 2af8b06eaaf82d4499f6b5a49e40e9be, type: 3}
+  m_PrefabInstance: {fileID: 5578204021568366561}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &2000641973 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 8377684257223680472, guid: 2af8b06eaaf82d4499f6b5a49e40e9be, type: 3}
+  m_PrefabInstance: {fileID: 5578204021568366561}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &2008284313 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5936915007190738196, guid: e6e517a5bbd5ae74a83e441551c8d820, type: 3}
@@ -2699,6 +2760,11 @@ MonoBehaviour:
   unloadTriggerList: 958ca0ea
   bankNameInternal: 
   valueGuidInternal: 
+--- !u!95 &2136696389 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 5492678895786310155, guid: 2af8b06eaaf82d4499f6b5a49e40e9be, type: 3}
+  m_PrefabInstance: {fileID: 5578204021568366561}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1353658145002582795 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3519295020688188495, guid: 7b9c6c2d6330075448e7c8891abaeebf, type: 3}
@@ -2724,6 +2790,62 @@ PrefabInstance:
       propertyPath: armPosForVfx
       value: 
       objectReference: {fileID: 735704815}
+    - target: {fileID: 1477895321928955500, guid: 7b9c6c2d6330075448e7c8891abaeebf, type: 3}
+      propertyPath: golemAnimator.Array.size
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 1477895321928955500, guid: 7b9c6c2d6330075448e7c8891abaeebf, type: 3}
+      propertyPath: golemAnimator.Array.data[0]
+      value: 
+      objectReference: {fileID: 1060560756}
+    - target: {fileID: 1477895321928955500, guid: 7b9c6c2d6330075448e7c8891abaeebf, type: 3}
+      propertyPath: golemAnimator.Array.data[1]
+      value: 
+      objectReference: {fileID: 1797473805}
+    - target: {fileID: 1477895321928955500, guid: 7b9c6c2d6330075448e7c8891abaeebf, type: 3}
+      propertyPath: golemAnimator.Array.data[2]
+      value: 
+      objectReference: {fileID: 1446475758}
+    - target: {fileID: 1477895321928955500, guid: 7b9c6c2d6330075448e7c8891abaeebf, type: 3}
+      propertyPath: golemAnimator.Array.data[3]
+      value: 
+      objectReference: {fileID: 2000641973}
+    - target: {fileID: 1477895321928955500, guid: 7b9c6c2d6330075448e7c8891abaeebf, type: 3}
+      propertyPath: golemAnimator.Array.data[4]
+      value: 
+      objectReference: {fileID: 631385036}
+    - target: {fileID: 1477895321928955500, guid: 7b9c6c2d6330075448e7c8891abaeebf, type: 3}
+      propertyPath: golemAnimator.Array.data[5]
+      value: 
+      objectReference: {fileID: 813510725}
+    - target: {fileID: 1477895321928955500, guid: 7b9c6c2d6330075448e7c8891abaeebf, type: 3}
+      propertyPath: golemAnimator.Array.data[6]
+      value: 
+      objectReference: {fileID: 2136696389}
+    - target: {fileID: 1477895321928955500, guid: 7b9c6c2d6330075448e7c8891abaeebf, type: 3}
+      propertyPath: golemAnimator.Array.data[7]
+      value: 
+      objectReference: {fileID: 884242015}
+    - target: {fileID: 1477895321928955500, guid: 7b9c6c2d6330075448e7c8891abaeebf, type: 3}
+      propertyPath: golemAnimator.Array.data[8]
+      value: 
+      objectReference: {fileID: 1563311528}
+    - target: {fileID: 1477895321928955500, guid: 7b9c6c2d6330075448e7c8891abaeebf, type: 3}
+      propertyPath: golemAnimator.Array.data[9]
+      value: 
+      objectReference: {fileID: 1365544746}
+    - target: {fileID: 1477895321928955500, guid: 7b9c6c2d6330075448e7c8891abaeebf, type: 3}
+      propertyPath: golemAnimator.Array.data[10]
+      value: 
+      objectReference: {fileID: 606714223}
+    - target: {fileID: 1477895321928955500, guid: 7b9c6c2d6330075448e7c8891abaeebf, type: 3}
+      propertyPath: golemAnimator.Array.data[11]
+      value: 
+      objectReference: {fileID: 1767685480}
+    - target: {fileID: 1477895321928955500, guid: 7b9c6c2d6330075448e7c8891abaeebf, type: 3}
+      propertyPath: golemAnimator.Array.data[12]
+      value: 
+      objectReference: {fileID: 1159810016}
     - target: {fileID: 1477895321928955500, guid: 7b9c6c2d6330075448e7c8891abaeebf, type: 3}
       propertyPath: bossDeathSound.WwiseObjectReference
       value: 
